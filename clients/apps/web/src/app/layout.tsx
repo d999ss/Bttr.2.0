@@ -119,26 +119,30 @@ export default async function RootLayout({
         {CONFIG.ENVIRONMENT === 'development' ? (
           <>
             <link
-              href="/favicon-dev.png"
+              href="/favicon.svg"
               rel="icon"
+              type="image/svg+xml"
               media="(prefers-color-scheme: dark)"
             />
             <link
-              href="/favicon-dev-dark.png"
+              href="/favicon-dark.svg"
               rel="icon"
+              type="image/svg+xml"
               media="(prefers-color-scheme: light)"
             />
           </>
         ) : (
           <>
             <link
-              href="/favicon.png"
+              href="/favicon.svg"
               rel="icon"
+              type="image/svg+xml"
               media="(prefers-color-scheme: dark)"
             />
             <link
-              href="/favicon-dark.png"
+              href="/favicon-dark.svg"
               rel="icon"
+              type="image/svg+xml"
               media="(prefers-color-scheme: light)"
             />
           </>
