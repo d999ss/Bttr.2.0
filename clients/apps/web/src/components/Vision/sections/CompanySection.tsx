@@ -105,7 +105,7 @@ const Profile = ({ name, title, image }: ProfileProps) => {
   return (
     <div className="relative flex flex-col gap-y-4">
       <Image
-        className="aspect-square size-64 flex-1 shrink-0"
+        className="aspect-square size-32 flex-1 shrink-0 rounded-full object-cover"
         src={image}
         alt={name}
         width={200}
