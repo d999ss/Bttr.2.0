@@ -1,26 +1,16 @@
 'use client'
 
 import { Footer } from '@/components/Vision/Footer'
-import { InkTransition } from '@/components/Vision/InkTransition'
 import { CareersSection } from '@/components/Vision/sections/CareersSection'
 import { CompanySection } from '@/components/Vision/sections/CompanySection'
 import { InvestorsSection } from '@/components/Vision/sections/InvestorsSection'
 import { useArrowFocus } from '@/components/Vision/useArrowFocus'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Navigation, sections } from '../../../../components/Vision/Navigation'
 
 export default function PitchPage() {
   const [index, setIndex] = useState(0)
-  const [showInkTransition, setShowInkTransition] = useState(true)
-
-  useEffect(() => {
-    // Show ink transition on initial mount
-    const timer = setTimeout(() => {
-      setShowInkTransition(false)
-    }, 1500)
-    return () => clearTimeout(timer)
-  }, [])
 
   useArrowFocus({
     onLeft: () => setIndex((index) => Math.max(0, index - 1)),
@@ -32,10 +22,6 @@ export default function PitchPage() {
 
   return (
     <div className="flex h-full flex-col justify-between text-sm">
-      <InkTransition
-        isActive={showInkTransition}
-        onComplete={() => setShowInkTransition(false)}
-      />
       <Navigation
         activeIndex={index}
         setIndex={(index) => {
