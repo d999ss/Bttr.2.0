@@ -15,18 +15,18 @@ export const WhyBttrPage = () => {
 
   return (
     <ResourceLayout
-      title="Why Bttr is different"
+      title="Why Bttr. is different"
       toc={tocItems}
     >
       <ResourceSection id="introduction" title="Introduction">
-        <p className="text-lg">Bttr operates where complexity, regulation, and ambition intersect.</p>
+        <p className="text-lg">Bttr. operates where complexity, regulation, and ambition intersect.</p>
         <p className="dark:text-polar-300 text-gray-500">
           We design, build, and operate mission critical digital products for organizations
-          where failure is not an option. Traditional agencies deliver artifacts. Bttr delivers systems.
+          where failure is not an option. Traditional agencies deliver artifacts. Bttr. delivers systems.
         </p>
         <blockquote className="dark:border-polar-700 flex flex-col gap-y-4 border border-gray-200 p-4">
           <p>
-            Senior leaders at GE and GE Aerospace trust Bttr to design and engineer
+            Senior leaders at GE and GE Aerospace trust Bttr. to design and engineer
             systems that operate under real world constraints.
           </p>
         </blockquote>
@@ -90,7 +90,7 @@ export const WhyBttrPage = () => {
           <div className="flex flex-col gap-2">
             <h3>We take responsibility</h3>
             <p className="dark:text-polar-300 text-gray-500">
-              Bttr takes responsibility for the systems we build. We do not hand off
+              Bttr. takes responsibility for the systems we build. We do not hand off
               and disappear. Long term system stewardship beyond launch is our commitment.
             </p>
           </div>
@@ -124,7 +124,7 @@ export const WhyBttrPage = () => {
         <div className="flex flex-col gap-2">
           <h3>Clarity, speed, and execution</h3>
           <p className="dark:text-polar-300 text-gray-500">
-            Bttr consistently delivers clarity, speed, and execution across complex,
+            Bttr. consistently delivers clarity, speed, and execution across complex,
             regulated environments. Working with us feels less like hiring an agency
             and more like extending your core team.
           </p>
@@ -137,7 +137,7 @@ export const WhyBttrPage = () => {
           <div className="flex flex-col items-center gap-4">
             <h3 className="text-xl">Ready to build something that lasts?</h3>
             <p className="dark:text-polar-300 text-center text-gray-700 md:w-[440px]">
-              Start a conversation about how Bttr can help design and engineer
+              Start a conversation about how Bttr. can help design and engineer
               your next mission critical system.
             </p>
           </div>

@@ -2,13 +2,13 @@ import { CustomersPage } from '@/components/Landing/features/CustomersPage'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Security & Compliance — Bttr',
+  title: 'Security & Compliance — Bttr.',
   description:
     'Regulatory-ready systems built for healthcare, finance, and other regulated environments.',
   keywords:
     'security, compliance, hipaa, regulated environments, healthcare software, fintech, enterprise security',
   openGraph: {
-    siteName: 'Bttr',
+    siteName: 'Bttr.',
     type: 'website',
     images: [
       {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Bttr',
+        alt: 'Bttr.',
       },
     ],
   },

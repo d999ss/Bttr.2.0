@@ -8,6 +8,138 @@
 @plugin 'tailwindcss-radix';
 @plugin '@tailwindcss/typography';
 
+/* Matter - Body Font */
+@font-face {
+  font-family: 'Matter';
+  src: url('/fonts/MatterTRIAL-Light.f753a1.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: url('/fonts/MatterTRIAL-LightItalic.f9b803.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: url('/fonts/MatterTRIAL-Regular.cff43f.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: url('/fonts/MatterTRIAL-RegularItalic.14e4df.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: url('/fonts/MatterTRIAL-Medium.dacb74.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: url('/fonts/MatterTRIAL-MediumItalic.8d68a2.woff2') format('woff2');
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: url('/fonts/MatterTRIAL-Bold.763f86.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter';
+  src: url('/fonts/MatterTRIAL-BoldItalic.679686.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Matter Mono - Monospace Font */
+@font-face {
+  font-family: 'Matter Mono';
+  src: url('/fonts/MatterMonoTRIAL-Light.47028e.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter Mono';
+  src: url('/fonts/MatterMonoTRIAL-LightItalic.ad9418.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter Mono';
+  src: url('/fonts/MatterMonoTRIAL-Regular.522254.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Matter Mono';
+  src: url('/fonts/MatterMonoTRIAL-RegularItalic.7211b6.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Reckless Neue - Display Font */
+@font-face {
+  font-family: 'Reckless Neue';
+  src: url('/fonts/RecklessNeueTRIAL-Light.461b73.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Reckless Neue';
+  src: url('/fonts/RecklessNeueTRIAL-LightItalic.4f5280.woff2') format('woff2');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Reckless Neue';
+  src: url('/fonts/RecklessNeueTRIAL-Regular.e268ea.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Reckless Neue';
+  src: url('/fonts/RecklessNeueTRIAL-RegularItalic.222304.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Reckless Neue';
+  src: url('/fonts/RecklessNeueTRIAL-Bold.a02836.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Reckless Neue';
+  src: url('/fonts/RecklessNeueTRIAL-BoldItalic.973edd.woff2') format('woff2');
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
@@ -16,8 +148,9 @@
   --shadow-xl: 0 0px 30px rgba(0 0 0 / 0.04), 0 0px 10px rgba(0 0 0 / 0.06);
   --shadow-3xl: 0 0 50px rgba(0 0 0 / 0.02), 0 0 50px rgba(0 0 0 / 0.04);
 
-  --font-sans: var(--font-geist-sans), sans-serif;
-  --font-mono: var(--font-geist-mono), monospace;
+  --font-sans: 'Matter', var(--font-geist-sans), sans-serif;
+  --font-mono: 'Matter Mono', var(--font-geist-mono), monospace;
+  --font-display: 'Reckless Neue', Georgia, serif;
 
   --text-xxs: 0.65rem;
 
@@ -145,6 +278,10 @@
 
   html.dark {
     @apply text-gray-200;
+  }
+
+  h1, h2 {
+    font-family: var(--font-display);
   }
 
   *,

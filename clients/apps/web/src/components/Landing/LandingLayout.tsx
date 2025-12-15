@@ -1,5 +1,6 @@
 'use client'
 
+import { BeaAnimation } from '@/components/Brand/BeaAnimation'
 import { BttrLogotype } from '@/components/Brand/BttrLogotype'
 import Footer from '@/components/Organization/Footer'
 import { usePostHog } from '@/hooks/posthog'
@@ -209,7 +210,7 @@ const LandingPageDesktopNavigation = () => {
       items: [
         {
           href: '/resources/why',
-          label: 'Why Bttr',
+          label: 'Why Bttr.',
           subtitle: 'How we work',
         },
         {
@@ -255,9 +256,12 @@ const LandingPageDesktopNavigation = () => {
           </li>
         </ul>
 
-        <Button onClick={onLoginClick} variant="ghost" className="rounded-full">
-          Log In
-        </Button>
+        <div className="flex items-center gap-4">
+          <Button onClick={onLoginClick} variant="ghost" className="rounded-full">
+            Log In
+          </Button>
+          <BeaAnimation size={50} />
+        </div>
       </div>
       <Modal
         title="Login"

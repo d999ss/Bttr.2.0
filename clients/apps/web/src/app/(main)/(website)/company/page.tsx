@@ -8,7 +8,6 @@ import { useArrowFocus } from '@/components/Vision/useArrowFocus'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
 import { Navigation, sections } from '../../../../components/Vision/Navigation'
-import { investors } from './investors'
 
 export default function PitchPage() {
   const [index, setIndex] = useState(0)
@@ -35,14 +34,16 @@ export default function PitchPage() {
         }}
       />
       <div className="relative flex flex-grow flex-col gap-y-16 overflow-y-auto pt-12">
-        <AnimatePresence key={index}>
+        <AnimatePresence>
           <motion.div
+            key="overlay"
             className="bg-polar-900 pointer-events-none absolute right-0 bottom-0 left-0 z-20 h-3/4"
             initial={{ opacity: 1 }}
             animate={{ opacity: 0 }}
             transition={{ duration: 0.07, delay: 0.06 }}
           />
           <motion.div
+            key="content"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -50,7 +51,7 @@ export default function PitchPage() {
           >
             <CompanySection active={index === 0} />
             <CareersSection active={index === 1} />
-            <InvestorsSection active={index === 2} investors={investors} />
+            <InvestorsSection active={index === 2} />
           </motion.div>
         </AnimatePresence>
       </div>

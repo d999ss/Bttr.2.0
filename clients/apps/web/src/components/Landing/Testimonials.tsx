@@ -11,7 +11,7 @@ export const testimonials = [
     avatar: '/assets/landing/testamonials/rauch.jpg',
     text: (
       <p>
-        Senior leaders at GE and GE Aerospace trust Bttr to design and engineer systems that operate under real world constraints.
+        Senior leaders at GE and GE Aerospace trust Bttr. to design and engineer systems that operate under real world constraints.
       </p>
     ),
   },
@@ -23,7 +23,7 @@ export const testimonials = [
     avatar: '/assets/landing/testamonials/steven.jpg',
     text: (
       <p>
-        Bttr consistently delivers clarity, speed, and execution across complex, regulated environments.
+        Bttr. consistently delivers clarity, speed, and execution across complex, regulated environments.
       </p>
     ),
   },
@@ -35,7 +35,7 @@ export const testimonials = [
     avatar: '/assets/landing/testamonials/mitchell.jpg',
     text: (
       <p>
-        Working with Bttr feels less like hiring an agency and more like extending your core team.
+        Working with Bttr. feels less like hiring an agency and more like extending your core team.
       </p>
     ),
   },

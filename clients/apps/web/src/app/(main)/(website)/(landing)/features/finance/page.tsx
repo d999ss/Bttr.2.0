@@ -2,13 +2,13 @@ import { FinancePage } from '@/components/Landing/features/FinancePage'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Finance & Operations — Bttr',
+  title: 'Finance & Operations — Bttr.',
   description:
     'Transparent project management with clear milestones, budget tracking, and operational excellence.',
   keywords:
     'project management, operations, budget tracking, milestones, transparent pricing',
   openGraph: {
-    siteName: 'Bttr',
+    siteName: 'Bttr.',
     type: 'website',
     images: [
       {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Bttr',
+        alt: 'Bttr.',
       },
     ],
   },

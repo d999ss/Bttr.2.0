@@ -10,16 +10,16 @@ export const BttrVsAgenciesPage = () => {
     { id: 'overview', title: 'Overview' },
     { id: 'comparison', title: 'Feature Comparison' },
     { id: 'ownership', title: 'Ownership Model' },
-    { id: 'why-bttr', title: 'Why Choose Bttr?' },
+    { id: 'why-bttr', title: 'Why Choose Bttr.?' },
   ]
 
   return (
-    <ResourceLayout title="Bttr vs Traditional Agencies" toc={tocItems}>
+    <ResourceLayout title="Bttr. vs Traditional Agencies" toc={tocItems}>
       <ResourceSection id="overview" title="Overview">
         <p className="dark:text-polar-300 text-gray-500">
-          Traditional agencies deliver artifacts. Bttr delivers systems.
+          Traditional agencies deliver artifacts. Bttr. delivers systems.
           While most agencies focus on project delivery and handoff,
-          Bttr takes long-term responsibility for the systems we build.
+          Bttr. takes long-term responsibility for the systems we build.
         </p>
       </ResourceSection>
 
@@ -119,9 +119,9 @@ export const BttrVsAgenciesPage = () => {
           </p>
         </div>
         <div className="flex flex-col gap-4">
-          <h3 className="text-lg">The Bttr Model</h3>
+          <h3 className="text-lg">The Bttr. Model</h3>
           <p className="dark:text-polar-300 text-gray-500">
-            Bttr takes responsibility for the systems we build. We do not hand off and disappear.
+            Bttr. takes responsibility for the systems we build. We do not hand off and disappear.
             Our lifecycle ownership model means we stay invested in your success through
             design responsibility, engineering accountability, and operational continuity.
           </p>
@@ -148,7 +148,7 @@ export const BttrVsAgenciesPage = () => {
         </div>
       </ResourceSection>
 
-      <ResourceSection id="why-bttr" title="Why Choose Bttr?">
+      <ResourceSection id="why-bttr" title="Why Choose Bttr.?">
         <div className="flex flex-col gap-2">
           <p className="dark:text-polar-300 text-gray-500">
             If you need more than deliverables—if you need systems that endure—Bttr
@@ -188,7 +188,7 @@ export const BttrVsAgenciesPage = () => {
           <div className="flex flex-col items-center gap-4">
             <h3 className="text-xl">Ready to build something that lasts?</h3>
             <p className="dark:text-polar-300 text-center text-gray-700 md:w-[440px]">
-              Start a conversation about how Bttr can help design and engineer
+              Start a conversation about how Bttr. can help design and engineer
               your next mission critical system.
             </p>
           </div>

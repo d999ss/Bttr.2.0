@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords:
     'engagement models, embedded team, project-based, advisory, consulting, digital product agency',
   openGraph: {
-    siteName: 'Bttr',
+    siteName: 'Bttr.',
     type: 'website',
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Bttr',
+        alt: 'Bttr.',
       },
     ],
   },

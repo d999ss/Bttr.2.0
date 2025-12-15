@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Link from 'next/link'
 import { twMerge } from 'tailwind-merge'
 
-export const sections = ['00. Company', '01. Careers', '02. Investors']
+export const sections = ['01. Company', '02. Careers', '03. Clients']
 
 export const Navigation = ({
   activeIndex,
@@ -13,7 +13,7 @@ export const Navigation = ({
 }) => {
   return (
     <div className="flex flex-col gap-y-8 text-xs md:flex-row md:gap-x-16">
-      <Link href="/">Polar Software Inc.</Link>
+      <Link href="/">Believe in Bttr. LLC</Link>
       <ul className="flex flex-col gap-y-2 md:flex-row md:gap-x-8">
         <AnimatePresence key={activeIndex}>
           {sections.map((section, index) => (

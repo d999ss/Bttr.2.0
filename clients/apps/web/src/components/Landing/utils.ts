@@ -5,7 +5,7 @@ export const MOCKED_WEBSITE_SUBSCRIPTION: Partial<
 > = {
   name: 'Just an Example',
   description:
-    'Bttr builds mission-critical digital products. This tier is only an example of what you could offer your audience.',
+    'Bttr. builds mission-critical digital products. This tier is only an example of what you could offer your audience.',
   prices: [
     {
       id: '123',

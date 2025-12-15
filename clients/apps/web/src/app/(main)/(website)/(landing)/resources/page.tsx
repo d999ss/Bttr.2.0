@@ -4,11 +4,11 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Resources',
-  description: 'Learn more about how Bttr approaches digital product development',
+  description: 'Learn more about how Bttr. approaches digital product development',
   keywords:
     'digital product agency, case studies, engagement models, lifecycle ownership, enterprise software',
   openGraph: {
-    siteName: 'Bttr',
+    siteName: 'Bttr.',
     type: 'website',
     images: [
       {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
         url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Bttr',
+        alt: 'Bttr.',
       },
     ],
   },
@@ -33,9 +33,9 @@ export const metadata: Metadata = {
 
 const resourceLinks = [
   {
-    title: 'Why Bttr',
+    title: 'Why Bttr.',
     description:
-      'Learn what makes Bttr different from traditional agencies',
+      'Learn what makes Bttr. different from traditional agencies',
     href: '/resources/why',
   },
   {

@@ -70,7 +70,7 @@ export const PageContent = () => {
           <div className="flex flex-col items-center gap-y-2">
             <h2 className="text-6xl">"</h2>
             <h2 className="text-2xl leading-relaxed! md:text-4xl">
-              Senior leaders at GE and GE Aerospace trust Bttr to design and engineer systems that operate under real world constraints.
+              Senior leaders at GE and GE Aerospace trust Bttr. to design and engineer systems that operate under real world constraints.
             </h2>
           </div>
         </div>

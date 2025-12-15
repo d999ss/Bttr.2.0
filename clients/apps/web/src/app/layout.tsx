@@ -21,16 +21,16 @@ import {
 export async function generateMetadata(): Promise<Metadata> {
   const baseMetadata: Metadata = {
     title: {
-      template: '%s | Bttr',
-      default: 'Bttr',
+      template: '%s | Bttr.',
+      default: 'Bttr.',
     },
     description:
       'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
     openGraph: {
       images: '/assets/brand/bttr_og.jpg',
       type: 'website',
-      siteName: 'Bttr',
-      title: 'Bttr | Designed to Adapt. Engineered to Win.',
+      siteName: 'Bttr.',
+      title: 'Bttr. | Designed to Adapt. Engineered to Win.',
       description:
         'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
       locale: 'en_US',
@@ -38,7 +38,7 @@ export async function generateMetadata(): Promise<Metadata> {
     twitter: {
       images: '/assets/brand/bttr_og.jpg',
       card: 'summary_large_image',
-      title: 'Bttr | Designed to Adapt. Engineered to Win.',
+      title: 'Bttr. | Designed to Adapt. Engineered to Win.',
       description:
         'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
     },

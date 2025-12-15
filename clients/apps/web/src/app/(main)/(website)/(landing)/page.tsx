@@ -2,12 +2,12 @@ import { Metadata } from 'next'
 import LandingPage from '../../../../components/Landing/LandingPage'
 
 export const metadata: Metadata = {
-  title: 'Bttr — Designed to Adapt. Engineered to Win.',
+  title: 'Bttr. — Designed to Adapt. Engineered to Win.',
   description: 'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
   keywords:
     'digital products, product design, engineering, enterprise software, regulated environments, mission critical, systems design',
   openGraph: {
-    siteName: 'Bttr',
+    siteName: 'Bttr.',
     type: 'website',
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Bttr',
+        alt: 'Bttr.',
       },
     ],
   },

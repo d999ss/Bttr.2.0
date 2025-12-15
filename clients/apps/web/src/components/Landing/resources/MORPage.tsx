@@ -31,7 +31,7 @@ export const MORPage = () => {
     { id: 'introduction', title: 'Introduction' },
     {
       id: 'traditional-vs-bttr',
-      title: 'Traditional Agencies vs. Bttr',
+      title: 'Traditional Agencies vs. Bttr.',
     },
     { id: 'what-ownership-means', title: 'What Ownership Means' },
   ]
@@ -48,7 +48,7 @@ export const MORPage = () => {
         </p>
       </ResourceSection>
 
-      <ResourceSection id="traditional-vs-bttr" title="Traditional Agencies vs. Bttr" className="gap-y-8">
+      <ResourceSection id="traditional-vs-bttr" title="Traditional Agencies vs. Bttr." className="gap-y-8">
         <div className="flex flex-col gap-y-6">
           <div className="flex flex-col gap-4">
             <h3 className="text-lg">Traditional Agencies</h3>
@@ -81,7 +81,7 @@ export const MORPage = () => {
 
         <div className="flex flex-col gap-y-6">
           <div className="flex flex-col gap-4">
-            <h3 className="text-lg">Bttr&apos;s Lifecycle Ownership</h3>
+            <h3 className="text-lg">Bttr.&apos;s Lifecycle Ownership</h3>
             <p className="dark:text-polar-300 text-gray-500">
               We treat your product as if it were our own. Beyond building,
               we stay engaged—handling maintenance, performance monitoring,
@@ -129,7 +129,7 @@ export const MORPage = () => {
 
           <div className="flex flex-col gap-y-6">
             <div className="flex flex-col gap-4">
-              <h3 className="text-lg">Choose Bttr if...</h3>
+              <h3 className="text-lg">Choose Bttr. if...</h3>
             </div>
             <div className="flex flex-col gap-2">
               <ul className="dark:border-polar-700 dark:divide-polar-700 divide-y divide-gray-200 border-y border-gray-200 [&>li]:py-2">
@@ -194,7 +194,7 @@ export const MORPage = () => {
         <div className="dark:border-polar-700 flex flex-col gap-2 border-t border-gray-200 pt-4">
           <p className="dark:text-polar-300 text-gray-500">
             This model works because we&apos;re selective about the projects
-            we take on. Every Bttr engagement is designed for longevity—
+            we take on. Every Bttr. engagement is designed for longevity—
             both for your product and our relationship.
           </p>
         </div>
@@ -206,7 +206,7 @@ export const MORPage = () => {
           <div className="flex flex-col items-center gap-4">
             <h3 className="text-xl">Ready for a different kind of partnership?</h3>
             <p className="dark:text-polar-300 text-center text-gray-700 md:w-[440px]">
-              Join teams who trust Bttr for mission-critical products that
+              Join teams who trust Bttr. for mission-critical products that
               demand long-term accountability.
             </p>
           </div>

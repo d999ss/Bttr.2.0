@@ -44,7 +44,7 @@ export async function GET() {
 
 
 
-              Bttr is a digital product agency.
+              Bttr. is a digital product agency.
 
                     https://makebttr.com
 

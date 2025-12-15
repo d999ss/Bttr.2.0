@@ -22,7 +22,7 @@ export default function GlobalError({ error }: { error: Error }) {
               window.location.href = '/'
             }}
           >
-            <span>Go back to Bttr</span>
+            <span>Go back to Bttr.</span>
           </Button>
 
           <p className="pt-24 text-gray-400"></p>

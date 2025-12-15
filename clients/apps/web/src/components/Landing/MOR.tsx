@@ -7,7 +7,7 @@ export const MerchantOfRecord = () => {
   return (
     <SplitPromo
       title="Lifecycle Ownership"
-      description="Bttr takes responsibility for the systems we build. We do not hand off and disappear."
+      description="Bttr. takes responsibility for the systems we build. We do not hand off and disappear."
       bullets={[
         'Design responsibility',
         'Engineering accountability',

@@ -42,7 +42,7 @@ const Footer = () => {
           <div className="flex flex-col gap-y-4 text-sm">
             <h3 className="dark:text-polar-500 text-gray-500">Resources</h3>
             <div className="flex flex-col gap-y-3">
-              <FooterLink href="/resources/why">Why Bttr</FooterLink>
+              <FooterLink href="/resources/why">Why Bttr.</FooterLink>
               <FooterLink href="/resources/pricing">Engagement Models</FooterLink>
               <FooterLink href="/features/analytics">Case Studies</FooterLink>
             </div>

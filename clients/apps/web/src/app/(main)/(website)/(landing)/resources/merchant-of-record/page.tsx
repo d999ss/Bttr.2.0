@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   keywords:
     'lifecycle ownership, maintenance, long-term partnership, digital product agency, ongoing support',
   openGraph: {
-    siteName: 'Bttr',
+    siteName: 'Bttr.',
     type: 'website',
     images: [
       {
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
         url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Bttr',
+        alt: 'Bttr.',
       },
     ],
   },
