@@ -35,7 +35,7 @@ const caseStudies = [
       'Real-time visibility across global operations',
       'Integrated with existing SAP systems',
     ],
-    image: '/assets/landing/abstract_07.jpg',
+    image: '/assets/work/uploads/2023/08/GE_wayfinding.jpg',
   },
   {
     client: 'Healthcare Network',
@@ -46,7 +46,7 @@ const caseStudies = [
       'HIPAA compliance achieved',
       'Reduced no-show rates by 35%',
     ],
-    image: '/assets/landing/abstract_08.jpg',
+    image: '/assets/work/uploads/2024/03/CS_Inset-full-width-1-2.jpg',
   },
   {
     client: 'Financial Services Firm',
@@ -57,7 +57,7 @@ const caseStudies = [
       'SOC 2 Type II certified',
       'Automated compliance reporting',
     ],
-    image: '/assets/landing/abstract_07.jpg',
+    image: '/assets/work/uploads/2023/08/Desktop.jpg',
   },
 ]
 
