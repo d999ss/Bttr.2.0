@@ -27,6 +27,17 @@ const itemVariants = {
 
 const caseStudies = [
   {
+    client: 'Tarform',
+    industry: 'Electric Vehicles',
+    description: 'Luxury electric motorcycle configurator and mobile app for Brooklyn-based EV manufacturer.',
+    results: [
+      'Real-time 3D bike customization experience',
+      'Streamlined $42K+ purchase flow',
+      'Integrated with manufacturing pipeline',
+    ],
+    image: '/assets/work/uploads/2024/08/NIKED.png',
+  },
+  {
     client: 'GE Aerospace',
     industry: 'Aerospace & Defense',
     description: 'Enterprise asset management platform for jet engine maintenance and lifecycle tracking.',
