@@ -36,7 +36,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'tarform',
     title: 'Tarform',
     description: 'Luxury electric motorcycle configurator and mobile app',
-    thumbnail: '/assets/work/uploads/2024/08/NIKED.png',
+    thumbnail: '/assets/work/uploads/2024/08/tarform-hero.jpg',
   },
   {
     slug: 'revaire',

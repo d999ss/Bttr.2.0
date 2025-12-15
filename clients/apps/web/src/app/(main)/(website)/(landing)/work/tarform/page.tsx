@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Tarform - Bttr.',
     description: 'Luxury electric motorcycle configurator and mobile app.',
-    images: ['/assets/work/uploads/2024/08/NIKED.png'],
+    images: ['/assets/work/uploads/2024/08/tarform-hero.jpg'],
   },
 }
 
@@ -18,18 +18,10 @@ export default function TarformPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/08/NIKED.png"
+            src="/assets/work/uploads/2024/08/tarform-hero.jpg"
             alt="Tarform"
             fill
-            className="hidden object-cover lg:block"
-            priority
-            sizes="100vw"
-          />
-          <Image
-            src="/assets/work/uploads/2024/08/NIKEM.png"
-            alt="Tarform Mobile"
-            fill
-            className="block object-cover lg:hidden"
+            className="object-cover"
             priority
             sizes="100vw"
           />
@@ -104,7 +96,7 @@ export default function TarformPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/MM_Screen_SC-B-01-scaled.jpg.webp"
+            src="/assets/work/uploads/2024/08/tarform-configurator.jpg"
             alt="Tarform Configurator"
             fill
             className="object-cover"
@@ -139,8 +131,8 @@ export default function TarformPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/SQ-Image-frame.jpg.webp"
-              alt="Tarform Detail"
+              src="/assets/work/uploads/2024/08/tarform-luna-1.jpg"
+              alt="Tarform Luna"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -148,8 +140,8 @@ export default function TarformPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/Image-Single-1.jpg.webp"
-              alt="Tarform App"
+              src="/assets/work/uploads/2024/08/tarform-details.jpg"
+              alt="Tarform Details"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -198,8 +190,8 @@ export default function TarformPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/mobile.jpg"
-            alt="Tarform Mobile Experience"
+            src="/assets/work/uploads/2024/08/tarform-luna-2.jpg"
+            alt="Tarform Luna"
             fill
             className="object-cover"
             sizes="100vw"
