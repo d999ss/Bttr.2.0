@@ -104,6 +104,8 @@ const staticPages = [
   'air-company',
   'fleetpulse',
   'ge-aerospace',
+  'tiger-biosciences',
+  'alle',
 ]
 
 export async function generateStaticParams() {

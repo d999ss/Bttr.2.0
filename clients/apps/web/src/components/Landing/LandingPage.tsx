@@ -12,6 +12,7 @@ import { Adapters } from './Adapters'
 import { Checkout } from './Checkout'
 import { Events } from './Events'
 import Features from './Features'
+import { FeaturedWork } from './FeaturedWork'
 import { Pricing } from './Pricing'
 import { Section } from './Section'
 import { Usage } from './Usage'
@@ -50,6 +51,7 @@ export const PageContent = () => {
           </Link>
         </Hero>
         <Features />
+        <FeaturedWork />
         {isMobile ? null : (
           <div className="dark:border-polar-700 relative aspect-video w-full overflow-hidden rounded-xl border border-gray-200 md:rounded-3xl">
             <Stream

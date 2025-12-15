@@ -276,7 +276,6 @@ export default function RevairePage() {
             <div className="space-y-1">
               <p className="text-sm text-gray-600">Jocelyn McArthur</p>
               <p className="text-sm text-gray-600">Bambos Neophytou</p>
-              <p className="text-sm text-gray-600">Neil Corcoran</p>
               <p className="text-sm text-gray-600">Miriam Goldstein</p>
               <p className="text-sm text-gray-600">Bo Floejborg</p>
             </div>

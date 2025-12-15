@@ -3,6 +3,7 @@
 import { BeaAnimation } from '@/components/Brand/BeaAnimation'
 import { BttrLogotype } from '@/components/Brand/BttrLogotype'
 import Footer from '@/components/Organization/Footer'
+import { caseStudies } from '@/data/caseStudies'
 import { usePostHog } from '@/hooks/posthog'
 import Button from '@polar-sh/ui/components/atoms/Button'
 import {
@@ -227,6 +228,27 @@ const LandingPageDesktopNavigation = () => {
     },
   ]
 
+  const workSections: NavPopoverSection[] = [
+    {
+      title: 'Featured',
+      items: caseStudies
+        .filter((study) => study.featured)
+        .map((study) => ({
+          href: `/work/${study.slug}`,
+          label: study.title,
+        })),
+    },
+    {
+      title: 'All Work',
+      items: caseStudies
+        .filter((study) => !study.featured)
+        .map((study) => ({
+          href: `/work/${study.slug}`,
+          label: study.title,
+        })),
+    },
+  ]
+
   return (
     <div className="dark:text-polar-50 hidden w-full flex-col items-center gap-12 py-8 md:flex">
       <div className="relative flex w-full flex-row items-center justify-between lg:max-w-6xl">
@@ -246,7 +268,11 @@ const LandingPageDesktopNavigation = () => {
             <NavPopover trigger="Approach" sections={docsSections} layout="flex" />
           </li>
           <li>
-            <NavLink href="/work">Work</NavLink>
+            <NavPopover
+              trigger="Work"
+              sections={workSections}
+              isActive={pathname.startsWith('/work')}
+            />
           </li>
           <li>
             <NavLink href="/company">Company</NavLink>

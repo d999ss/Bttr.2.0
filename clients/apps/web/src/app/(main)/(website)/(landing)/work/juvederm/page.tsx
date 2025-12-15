@@ -18,7 +18,7 @@ export default function JuvedermPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#f07459]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-1.png"
+            src="/assets/work/uploads/2025/04/Desktop-6.jpg"
             alt="JUVÉDERM"
             fill
             className="object-cover"
@@ -93,7 +93,7 @@ export default function JuvedermPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-6.png"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-6-scaled.jpg"
             alt="JUVÉDERM Website Overview"
             fill
             className="object-cover"
@@ -129,7 +129,7 @@ export default function JuvedermPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-8.png"
+            src="/assets/work/uploads/2025/04/Full-width-3-scaled.jpg"
             alt="JUVÉDERM Design System"
             fill
             className="object-cover"
@@ -143,7 +143,7 @@ export default function JuvedermPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-5.png.webp"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-6.jpg"
               alt="JUVÉDERM Interface"
               fill
               className="object-cover"
@@ -152,7 +152,7 @@ export default function JuvedermPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-6.png"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-1-1.jpg"
               alt="JUVÉDERM Mobile"
               fill
               className="object-cover"
@@ -176,7 +176,7 @@ export default function JuvedermPage() {
       <section className="w-full bg-gray-900">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-13.png.webp"
+            src="/assets/work/uploads/2025/04/Full-width-3-1-scaled.jpg.webp"
             alt="JUVÉDERM Component Library"
             fill
             className="object-cover"
@@ -190,7 +190,7 @@ export default function JuvedermPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-7.png"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-3-1.jpg"
               alt="JUVÉDERM Feature"
               fill
               className="object-cover"
@@ -199,7 +199,7 @@ export default function JuvedermPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-9.png.webp"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-4-1.jpg"
               alt="JUVÉDERM Feature"
               fill
               className="object-cover"
@@ -234,7 +234,7 @@ export default function JuvedermPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-14.png"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-4-1-scaled.jpg"
             alt="JUVÉDERM Conversion"
             fill
             className="object-cover"
@@ -277,7 +277,6 @@ export default function JuvedermPage() {
               <p className="text-sm text-gray-600">Charles Law</p>
               <p className="text-sm text-gray-600">Jocelyn McArthur</p>
               <p className="text-sm text-gray-600">Alex Stojanovski</p>
-              <p className="text-sm text-gray-600">Neil Corcoran</p>
             </div>
           </div>
         </div>

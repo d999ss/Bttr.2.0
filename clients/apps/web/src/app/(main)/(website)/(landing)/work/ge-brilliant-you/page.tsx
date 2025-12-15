@@ -411,7 +411,6 @@ export default function GEBrilliantYouPage() {
               <p className="text-sm text-gray-600">Chris Johns</p>
               <p className="text-sm text-gray-600">Donny Smith</p>
               <p className="text-sm text-gray-600">Danielle Senior</p>
-              <p className="text-sm text-gray-600">Neil Corcoran</p>
               <p className="text-sm text-gray-600">Miriam Goldstein</p>
               <p className="text-sm text-gray-600">Ken Leung</p>
             </div>

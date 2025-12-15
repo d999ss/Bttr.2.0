@@ -373,7 +373,6 @@ export default function IkonPassPage() {
             <div className="space-y-1">
               <p className="text-sm text-gray-600">Donny Smith</p>
               <p className="text-sm text-gray-600">Chris Johns</p>
-              <p className="text-sm text-gray-600">Neil Corcoran</p>
             </div>
           </div>
         </div>

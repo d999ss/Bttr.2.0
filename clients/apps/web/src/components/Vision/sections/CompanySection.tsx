@@ -15,6 +15,31 @@ const team = [
   },
 ]
 
+const brands = [
+  'General Electric',
+  'GE Aerospace',
+  'GE Vernova',
+  'Alterra Mountain Company',
+  'Ikon Pass',
+  'Allergan Aesthetics',
+  'Allergan Data Labs',
+  'BOTOX Cosmetic',
+  'JUVÉDERM',
+  'Allē',
+  'Tiger BioSciences',
+  'Tarform',
+  'Air Company',
+  'Ciitizen',
+  'Helix Homes',
+  'Revaire',
+  'AMI',
+  'FleetPulse',
+  'Atom Bank',
+  'Spark',
+  'Ross J Barr',
+  'Advantage',
+]
+
 export const CompanySection = ({ active }: { active: boolean }) => {
   return (
     <Section
@@ -41,13 +66,30 @@ export const CompanySection = ({ active }: { active: boolean }) => {
         innovative startups, we bring decades of experience in product strategy,
         design systems, and production-grade engineering.
       </p>
-      <div className="flex flex-col gap-y-2">
-        <Link href="https://www.linkedin.com/company/makebttr/" target="_blank" prefetch>
-          Follow us on LinkedIn →
-        </Link>
-        <Link href="https://www.instagram.com/make_bttr/" target="_blank" prefetch>
-          Follow us on Instagram →
-        </Link>
+      <div className="flex flex-col gap-y-6">
+        <div className="flex flex-col gap-y-3">
+          <h3 className="text-polar-400 text-xs uppercase tracking-wider">
+            Brands We've Worked With
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {brands.map((brand) => (
+              <span
+                key={brand}
+                className="bg-polar-800 text-polar-300 rounded-full px-3 py-1 text-xs"
+              >
+                {brand}
+              </span>
+            ))}
+          </div>
+        </div>
+        <div className="flex flex-col gap-y-2">
+          <Link href="https://www.linkedin.com/company/makebttr/" target="_blank" prefetch>
+            Follow us on LinkedIn →
+          </Link>
+          <Link href="https://www.instagram.com/make_bttr/" target="_blank" prefetch>
+            Follow us on Instagram →
+          </Link>
+        </div>
       </div>
     </Section>
   )

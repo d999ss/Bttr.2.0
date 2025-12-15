@@ -241,7 +241,6 @@ export default function FleetPulsePage() {
               <p className="text-sm text-gray-600">Donny Smith</p>
               <p className="text-sm text-gray-600">Nathan Koch</p>
               <p className="text-sm text-gray-600">Chris Kerr</p>
-              <p className="text-sm text-gray-600">Neil Corcoran</p>
             </div>
           </div>
         </div>

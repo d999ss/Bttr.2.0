@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'BOTOX Cosmetic - Bttr.',
     description:
       'Strengthening product recognition and loyalty across a market leader.',
-    images: ['/assets/work/uploads/2025/04/Featured-image-1920x1920.jpg.webp'],
+    images: ['/assets/work/uploads/2025/04/Featured-image.jpg.webp'],
   },
 }
 
@@ -20,7 +20,7 @@ export default function BotoxCosmeticPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#1a1a1a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-2.png"
+            src="/assets/work/uploads/2025/04/Desktop-2.jpg"
             alt="BOTOX Cosmetic"
             fill
             className="object-cover"
@@ -102,7 +102,7 @@ export default function BotoxCosmeticPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/ST13_botox-scaled.jpg"
+            src="/assets/work/uploads/2025/04/Full-width-1.jpg"
             alt="BOTOX Cosmetic Website"
             fill
             className="object-cover"
@@ -135,12 +135,62 @@ export default function BotoxCosmeticPage() {
         </p>
       </section>
 
+      {/* Full-width Image - Design System */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width_11.jpg"
+            alt="BOTOX Design System"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-1.jpg"
+              alt="BOTOX Interface"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/SQ-Image-frame.jpg.webp"
+              alt="BOTOX Mobile"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Full-width Image */}
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-4.png"
-            alt="BOTOX Design System"
+            src="/assets/work/uploads/2025/04/Full-width.jpg"
+            alt="BOTOX Website Full View"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width_12.jpg"
+            alt="BOTOX Components"
             fill
             className="object-cover"
             sizes="100vw"
@@ -158,13 +208,26 @@ export default function BotoxCosmeticPage() {
         </h2>
       </section>
 
+      {/* Full-width Image */}
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-3.jpg"
+            alt="BOTOX Experience"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
       {/* Two Column Images */}
       <section className="w-full bg-gray-100">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-3.png.webp"
-              alt="BOTOX Interface"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame_4.jpg"
+              alt="BOTOX Feature"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -172,8 +235,8 @@ export default function BotoxCosmeticPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-4.png"
-              alt="BOTOX Mobile"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-4.jpg.webp"
+              alt="BOTOX Feature"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -205,10 +268,36 @@ export default function BotoxCosmeticPage() {
 
       {/* Full-width Image */}
       <section className="w-full bg-white">
+        <div className="relative aspect-square w-full md:aspect-video">
+          <Image
+            src="/assets/work/uploads/2025/04/SQ-Image-frame_6.jpg"
+            alt="BOTOX Content Strategy"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-12.png"
-            alt="BOTOX Conversion"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width_10-scaled.jpg"
+            alt="BOTOX Platform"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/ST13_botox-scaled.jpg"
+            alt="BOTOX Final"
             fill
             className="object-cover"
             sizes="100vw"
