@@ -1,5 +1,5 @@
 import { schemas } from '@polar-sh/client'
-import LogoIcon from '../Brand/LogoIcon'
+import { BttrLogotype } from '../Brand/BttrLogotype'
 import Login from './Login'
 
 interface AuthModalProps {
@@ -18,15 +18,14 @@ export const AuthModal = ({
 
   const copy = isSignup ? (
     <p className="dark:text-polar-500 text-xl text-gray-500">
-      Join thousands of developers &amp; startups monetizing their products with
-      Polar.
+      Access your project dashboard and collaborate with the Bttr. team.
     </p>
   ) : null
 
   return (
     <div className="overflow-y-auto p-12">
       <div className="flex flex-col justify-between gap-y-16">
-        <LogoIcon className="text-black dark:text-white" size={60} />
+        <BttrLogotype variant="logotype" size={120} />
 
         <div className="flex flex-col gap-y-4">
           <h1 className="text-3xl">{title}</h1>
