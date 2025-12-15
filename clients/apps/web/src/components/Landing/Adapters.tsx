@@ -20,53 +20,53 @@ import {
 
 const adapters = [
   {
-    name: 'Next.js',
-    code: `import { Checkout } from "@polar-sh/nextjs";
+    name: 'Web Applications',
+    code: `// Modern web platforms built for scale
+// React, Next.js, Vue, Angular
 
-export const GET = Checkout({
-  accessToken: 'xxx'
-});`,
-    link: 'https://polar.sh/docs/integrate/sdk/adapters/nextjs',
+export default function App() {
+  return (
+    <Platform
+      secure={true}
+      scalable={true}
+      regulatory="compliant"
+    />
+  );
+}`,
+    link: '/features/platforms',
   },
   {
-    name: 'BetterAuth',
-    code: `import { betterAuth } from "better-auth";
-import { polar, checkout, portal, usage, webhooks } from "@polar-sh/better-auth";
-import { Polar } from "@polar-sh/sdk";
+    name: 'Internal Platforms',
+    code: `// Enterprise internal tools
+// Built for operational efficiency
 
-const client = new Polar({ accessToken: 'xxx' });
+interface InternalPlatform {
+  security: "enterprise-grade";
+  integration: "seamless";
+  maintenance: "long-term";
+}
 
-const auth = betterAuth({
-    // ... Better Auth config
-    plugins: [
-        polar({
-            client,
-            createCustomerOnSignUp: true,
-            use: [
-                checkout(...),
-                portal(),
-                usage(),
-                webhooks(...)
-            ],
-        })
-    ]
-});`,
-    link: 'https://polar.sh/docs/integrate/sdk/adapters/better-auth',
+export const platform: InternalPlatform = {
+  security: "enterprise-grade",
+  integration: "seamless",
+  maintenance: "long-term"
+};`,
+    link: '/features/platforms',
   },
   {
-    name: 'TypeScript',
-    code: `import { Polar } from "@polar-sh/sdk";
+    name: 'Customer Facing Products',
+    code: `// Customer-facing digital products
+// Designed for reliability
 
-const polar = new Polar({
-  accessToken: 'xxx',
-});
+const product = {
+  uptime: "99.99%",
+  performance: "optimized",
+  compliance: "regulatory-ready",
+  support: "lifecycle-ownership"
+};
 
-const checkout = await polar.checkouts.create({
-  products: ["<PRODUCT_ID>"]
-});
-
-redirect(checkout.url)`,
-    link: 'https://polar.sh/docs/api-reference/checkouts/create-session',
+export default product;`,
+    link: '/features/platforms',
   },
 ]
 
@@ -97,10 +97,10 @@ export const Adapters = () => {
         <div className="flex w-full flex-col gap-y-16 md:h-full md:min-h-96">
           <div className="flex flex-col items-center gap-y-8">
             <span className="dark:text-polar-500 text-lg text-gray-400">
-              Framework Adapters
+              Platforms and Environments
             </span>
             <h1 className="w-fit max-w-2xl text-center text-3xl text-pretty md:text-5xl md:leading-normal">
-              Integrate in under a minute
+              Built for modern enterprise stacks
             </h1>
             <TabsList>
               {adapters.map((adapter) => (
@@ -113,11 +113,10 @@ export const Adapters = () => {
                 </TabsTrigger>
               ))}
               <Link
-                href="https://polar.sh/docs/integrate/sdk/adapters/nextjs"
-                target="_blank"
+                href="/features/benefits"
               >
                 <Button className="rounded-full" variant="ghost">
-                  <span>All 13 Adapters</span>
+                  <span>All Capabilities</span>
                   <ArrowOutwardOutlined className="ml-2" />
                 </Button>
               </Link>
@@ -138,14 +137,13 @@ export const Adapters = () => {
                       className="text-2xl leading-normal! md:text-4xl"
                       variants={itemVariants}
                     >
-                      {adapter.name} Adapter
+                      {adapter.name}
                     </motion.h2>
                     <motion.p
                       className="text-lg leading-relaxed text-pretty"
                       variants={itemVariants}
                     >
-                      Payments and Checkouts made dead simple with{' '}
-                      {adapter.name}
+                      Enterprise-grade platforms designed for scale and reliability
                     </motion.p>
                     <ul className="flex flex-col gap-y-1">
                       <motion.li
@@ -154,7 +152,7 @@ export const Adapters = () => {
                       >
                         <Check className="text-emerald-500" fontSize="small" />
                         <p className="leading-relaxed text-pretty">
-                          Secure & Simple Checkouts
+                          Secure by default
                         </p>
                       </motion.li>
                       <motion.li
@@ -163,7 +161,7 @@ export const Adapters = () => {
                       >
                         <Check className="text-emerald-500" fontSize="small" />
                         <p className="leading-relaxed text-pretty">
-                          Integrated Customer Portal
+                          Scalable by design
                         </p>
                       </motion.li>
                       <motion.li
@@ -172,7 +170,7 @@ export const Adapters = () => {
                       >
                         <Check className="text-emerald-500" fontSize="small" />
                         <p className="leading-relaxed text-pretty">
-                          Granular & Reliable Webhook Handler
+                          Regulatory aware
                         </p>
                       </motion.li>
 
@@ -182,7 +180,7 @@ export const Adapters = () => {
                       >
                         <Check className="text-emerald-500" fontSize="small" />
                         <p className="leading-relaxed text-pretty">
-                          Global Merchant of Record
+                          Operationally durable
                         </p>
                       </motion.li>
                     </ul>

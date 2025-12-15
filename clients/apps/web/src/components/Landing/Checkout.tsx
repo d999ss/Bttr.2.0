@@ -46,19 +46,19 @@ export const Checkout = () => {
     >
       <div className="flex flex-col items-center gap-y-8 px-8 pt-8 md:px-16 md:pt-16">
         <span className="dark:text-polar-500 text-lg text-gray-400">
-          Built for simplicity
+          Built for Reality
         </span>
         <h1 className="w-fit max-w-2xl text-center text-2xl text-pretty md:text-4xl md:leading-normal">
-          Powerful Checkouts made simple
+          Systems that hold up under pressure
         </h1>
-        <Link href="https://polar.sh/docs/documentation/features/checkouts/checkout-links">
+        <Link href="/features/analytics">
           <Button
             fullWidth
             wrapperClassNames="flex flex-row items-center gap-x-2"
             variant="secondary"
             className="rounded-full"
           >
-            <span>Integrate Checkouts</span>
+            <span>View Our Work</span>
             <ArrowOutwardOutlined fontSize="inherit" />
           </Button>
         </Link>

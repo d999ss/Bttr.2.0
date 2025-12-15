@@ -1,6 +1,6 @@
 'use client'
 
-import { PolarLogotype } from '@/components/Layout/Public/PolarLogotype'
+import { BttrLogotype } from '@/components/Brand/BttrLogotype'
 import Footer from '@/components/Organization/Footer'
 import { usePostHog } from '@/hooks/posthog'
 import Button from '@polar-sh/ui/components/atoms/Button'
@@ -88,23 +88,24 @@ const mobileNavigationItems: NavigationItem[] = [
     isActive: (pathname) => pathname === '/',
   },
   {
-    title: 'Documentation',
-    href: 'https://polar.sh/docs',
-    target: '_blank',
+    title: 'Capabilities',
+    href: '/features/design',
+  },
+  {
+    title: 'Work',
+    href: '/work',
   },
   {
     title: 'Company',
     href: '/company',
   },
   {
-    title: 'Open Source',
-    href: 'https://github.com/polarsource',
-    target: '_blank',
+    title: 'Careers',
+    href: '/careers',
   },
   {
-    title: 'Polar on X',
-    href: 'https://x.com/polar_sh',
-    target: '_blank',
+    title: 'Contact',
+    href: '/contact',
   },
 ]
 
@@ -125,7 +126,7 @@ const LandingPageMobileNavigation = () => {
       <Sidebar className="md:hidden">
         <SidebarHeader className="p-4">
           <Link href="/">
-            <PolarLogotype logoVariant="icon" />
+            <BttrLogotype variant="icon" />
           </Link>
         </SidebarHeader>
         <SidebarContent className="flex flex-col gap-y-6 px-6 py-2">
@@ -180,33 +181,23 @@ const LandingPageDesktopNavigation = () => {
       items: [
         {
           href: '/features/products',
-          label: 'Products',
-          subtitle: 'Digital products for SaaS',
-        },
-        {
-          href: '/features/usage-billing',
-          label: 'Usage Billing',
-          subtitle: 'Ingestion-based Billing',
-        },
-        {
-          href: '/features/customers',
-          label: 'Customer Management',
-          subtitle: 'Profiles & Analytics',
-        },
-        {
-          href: '/features/analytics',
-          label: 'Analytics',
-          subtitle: 'Revenue Insights',
+          label: 'Design and Strategy',
+          subtitle: 'Product strategy and design systems',
         },
         {
           href: '/features/benefits',
-          label: 'Benefits',
-          subtitle: 'Powerful Entitlements',
+          label: 'Engineering',
+          subtitle: 'Production grade platforms',
         },
         {
-          href: '/features/finance',
-          label: 'Finance',
-          subtitle: 'Payouts & Reporting',
+          href: '/resources/merchant-of-record',
+          label: 'Lifecycle Ownership',
+          subtitle: 'Long term system stewardship',
+        },
+        {
+          href: '/features/customers',
+          label: 'Security and Compliance',
+          subtitle: 'Regulatory-ready systems',
         },
       ],
     },
@@ -214,71 +205,22 @@ const LandingPageDesktopNavigation = () => {
 
   const docsSections: NavPopoverSection[] = [
     {
-      title: 'Integrate',
+      title: 'Approach',
       items: [
         {
-          href: '/docs/integrate/sdk/adapters/nextjs',
-          label: 'Next.js',
-          target: '_blank',
+          href: '/resources/why',
+          label: 'Why Bttr',
+          subtitle: 'How we work',
         },
         {
-          href: '/docs/integrate/sdk/adapters/better-auth',
-          label: 'Better Auth',
-          target: '_blank',
+          href: '/resources/pricing',
+          label: 'Engagement Models',
+          subtitle: 'Ways to work with us',
         },
         {
-          href: '/docs/integrate/sdk/adapters/hono',
-          label: 'Hono',
-          target: '_blank',
-        },
-        {
-          href: '/docs/integrate/sdk/adapters/laravel',
-          label: 'Laravel',
-          target: '_blank',
-        },
-        {
-          href: '/docs/integrate/sdk/adapters/hono',
-          target: '_blank',
-          label: 'All 13 Adapters',
-        },
-      ],
-    },
-    {
-      title: 'Features',
-      items: [
-        {
-          href: '/docs/features/products',
-          label: 'Documentation Portal',
-          target: '_blank',
-          subtitle: 'Get started with Polar',
-        },
-        {
-          href: '/docs/features/products',
-          label: 'Products & Subscriptions',
-          target: '_blank',
-          subtitle: 'Flexible pricing models',
-        },
-        {
-          href: '/docs/features/checkout/links',
-          target: '_blank',
-          label: 'Checkouts',
-          subtitle: 'Checkout Links & Embeds',
-        },
-        {
-          href: '/docs/features/usage-based-billing/introduction',
-          label: 'Usage Billing',
-          subtitle: 'Ingestion-based Billing',
-        },
-        {
-          href: '/docs/features/benefits',
-          label: 'Benefits',
-          subtitle: 'Entitlement Automation',
-        },
-        {
-          href: '/docs/features/finance/payouts',
-          label: 'Finance & Payouts',
-          subtitle: 'Detailed financial insights',
-          target: '_blank',
+          href: '/features/analytics',
+          label: 'Case Studies',
+          subtitle: 'Our work in action',
         },
       ],
     },
@@ -288,22 +230,28 @@ const LandingPageDesktopNavigation = () => {
     <div className="dark:text-polar-50 hidden w-full flex-col items-center gap-12 py-8 md:flex">
       <div className="relative flex w-full flex-row items-center justify-between lg:max-w-6xl">
         <Link href="/">
-          <PolarLogotype logoVariant="icon" size={40} />
+          <BttrLogotype variant="icon" size={40} />
         </Link>
 
         <ul className="absolute left-1/2 mx-auto flex -translate-x-1/2 flex-row gap-x-8 font-medium">
           <li>
             <NavPopover
-              trigger="Features"
+              trigger="Capabilities"
               sections={featuresSections}
               isActive={pathname.startsWith('/features')}
             />
           </li>
           <li>
-            <NavPopover trigger="Docs" sections={docsSections} layout="flex" />
+            <NavPopover trigger="Approach" sections={docsSections} layout="flex" />
+          </li>
+          <li>
+            <NavLink href="/work">Work</NavLink>
           </li>
           <li>
             <NavLink href="/company">Company</NavLink>
+          </li>
+          <li>
+            <NavLink href="/contact">Contact</NavLink>
           </li>
         </ul>
 
@@ -325,9 +273,9 @@ const LandingPageDesktopNavigation = () => {
 const LandingPageTopbar = () => {
   return (
     <div className="z-30 flex w-full flex-row items-center justify-between px-6 py-6 md:hidden md:px-12">
-      <PolarLogotype
+      <BttrLogotype
         className="mt-1 ml-2 md:hidden"
-        logoVariant="logotype"
+        variant="logotype"
         size={100}
       />
       <SidebarTrigger className="md:hidden" />

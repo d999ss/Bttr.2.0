@@ -2,10 +2,10 @@
 
 import GetStartedButton from '@/components/Auth/GetStartedButton'
 import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
-import AutorenewOutlined from '@mui/icons-material/AutorenewOutlined'
 import CheckOutlined from '@mui/icons-material/CheckOutlined'
-import CreditCardOutlined from '@mui/icons-material/CreditCardOutlined'
-import TrendingUpOutlined from '@mui/icons-material/TrendingUpOutlined'
+import DesignServicesOutlined from '@mui/icons-material/DesignServicesOutlined'
+import LightbulbOutlined from '@mui/icons-material/LightbulbOutlined'
+import RouteOutlined from '@mui/icons-material/RouteOutlined'
 import Button from '@polar-sh/ui/components/atoms/Button'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -33,13 +33,13 @@ export const ProductsPage = () => {
     <div className="flex flex-col">
       <Section className="flex flex-col gap-y-32 pt-0 md:pt-0">
         <Hero
-          title="Digital Products for SaaS"
-          description="Flexible billing with multiple pricing models, trials & seamless product management"
+          title="Design & Strategy"
+          description="Research-driven design that translates complexity into clarity. We create products people actually want to use."
         >
-          <GetStartedButton size="lg" text="Get Started" />
-          <Link href="/docs/features/products">
+          <GetStartedButton size="lg" text="Start a Conversation" />
+          <Link href="/contact">
             <Button variant="secondary" className="rounded-full" size="lg">
-              View Documentation
+              View Our Work
               <ArrowOutwardOutlined className="ml-2" />
             </Button>
           </Link>
@@ -56,13 +56,13 @@ export const ProductsPage = () => {
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-3">
                 <h2 className="text-2xl leading-normal! md:text-3xl">
-                  Flexible subscription models
+                  User-centered design process
                 </h2>
               </div>
               <p className="dark:text-polar-500 text-lg text-gray-500">
-                Create subscriptions with fixed pricing, tiered plans, or
-                usage-based billing. Support monthly, yearly, or custom billing
-                cycles.
+                We start with deep user research and stakeholder interviews to
+                understand the real problems. Then we design solutions that
+                actually work.
               </p>
             </div>
             <motion.ul
@@ -70,10 +70,10 @@ export const ProductsPage = () => {
               variants={containerVariants}
             >
               {[
-                'Multiple pricing tiers and plans',
-                'Free trials and grace periods',
-                'Automatic recurring billing',
-                'Proration on plan changes',
+                'User research and discovery workshops',
+                'Information architecture and user flows',
+                'Interactive prototyping and testing',
+                'Design systems and component libraries',
               ].map((item, i) => (
                 <motion.li
                   key={i}
@@ -96,41 +96,35 @@ export const ProductsPage = () => {
             >
               <div className="flex flex-row items-center justify-between gap-x-2">
                 <span className="text-sm font-medium text-black dark:text-white">
-                  Active Subscription
+                  Design Process
                 </span>
-                <AutorenewOutlined
+                <DesignServicesOutlined
                   className="text-emerald-500"
                   fontSize="small"
                 />
               </div>
-              <div className="flex flex-col gap-y-1">
-                <span className="text-2xl text-black dark:text-white">
-                  Pro Plan
-                </span>
-                <span className="dark:text-polar-500 text-sm text-gray-500">
-                  $49/month
-                </span>
-              </div>
-              <div className="dark:border-polar-700 flex items-center justify-between border-t border-gray-200 pt-4">
-                <div className="flex flex-col">
-                  <span className="dark:text-polar-500 text-xs text-gray-500">
-                    Next Invoice
-                  </span>
-                  <span className="font-medium text-black dark:text-white">
-                    $49.00
-                  </span>
+              <div className="flex flex-col gap-y-3">
+                <div className="flex items-center gap-x-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <span className="text-sm">Discovery & Research</span>
                 </div>
-                <div className="flex flex-col items-end">
-                  <span className="dark:text-polar-500 text-xs text-gray-500">
-                    Status
-                  </span>
-                  <span className="font-medium text-emerald-500">Active</span>
+                <div className="flex items-center gap-x-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <span className="text-sm">Strategy & Architecture</span>
+                </div>
+                <div className="flex items-center gap-x-2">
+                  <div className="dark:bg-polar-600 h-2 w-2 rounded-full bg-gray-300" />
+                  <span className="dark:text-polar-500 text-sm text-gray-500">Design & Prototype</span>
+                </div>
+                <div className="flex items-center gap-x-2">
+                  <div className="dark:bg-polar-600 h-2 w-2 rounded-full bg-gray-300" />
+                  <span className="dark:text-polar-500 text-sm text-gray-500">Test & Iterate</span>
                 </div>
               </div>
             </motion.div>
             <Image
               src="/assets/landing/abstract_07.jpg"
-              alt="Subscriptions"
+              alt="Design Process"
               className="absolute inset-0 h-full w-full object-cover"
               width={500}
               height={500}
@@ -139,28 +133,28 @@ export const ProductsPage = () => {
         </motion.div>
 
         <Hero
-          title="Powerful subscription features"
-          description="Everything you need to manage subscription billing at scale"
+          title="Strategy that drives results"
+          description="We help you make the right decisions before writing a single line of code"
         >
           <div className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
-                icon: <CreditCardOutlined fontSize="large" />,
-                title: 'Flexible Billing',
+                icon: <LightbulbOutlined fontSize="large" />,
+                title: 'Product Strategy',
                 description:
-                  'Support monthly, annual, or custom billing cycles with automatic renewals.',
+                  'Define your product vision, identify market opportunities, and create a roadmap for success.',
               },
               {
-                icon: <TrendingUpOutlined fontSize="large" />,
-                title: 'Plan Upgrades',
+                icon: <DesignServicesOutlined fontSize="large" />,
+                title: 'Design Systems',
                 description:
-                  'Let customers upgrade or downgrade plans with automatic proration.',
+                  'Build consistent, scalable design systems that accelerate development and ensure quality.',
               },
               {
-                icon: <AutorenewOutlined fontSize="large" />,
-                title: 'Recurring Payments',
+                icon: <RouteOutlined fontSize="large" />,
+                title: 'User Experience',
                 description:
-                  'Automatic payment collection with smart retry logic for failed payments.',
+                  'Create intuitive experiences that delight users and drive business outcomes.',
               },
             ].map((feature, i) => (
               <div
@@ -189,17 +183,17 @@ export const ProductsPage = () => {
           variants={containerVariants}
         >
           <motion.h2 className="text-2xl md:text-3xl" variants={itemVariants}>
-            Ready to launch subscriptions?
+            Ready to design something meaningful?
           </motion.h2>
           <motion.p
             className="dark:text-polar-500 text-lg text-gray-500 md:w-[480px]"
             variants={itemVariants}
           >
-            Join companies using Polar for reliable, scalable subscription
-            billing.
+            Let&apos;s talk about your product vision and how we can bring it to
+            life.
           </motion.p>
           <motion.div variants={itemVariants}>
-            <GetStartedButton size="lg" text="Get Started" />
+            <GetStartedButton size="lg" text="Start a Conversation" />
           </motion.div>
         </motion.div>
       </Section>

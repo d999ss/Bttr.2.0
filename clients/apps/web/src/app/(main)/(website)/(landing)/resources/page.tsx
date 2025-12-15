@@ -4,15 +4,15 @@ import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Resources',
-  description: 'Handy links related to the Polar platform',
+  description: 'Learn more about how Bttr approaches digital product development',
   keywords:
-    'monetization, merchant of record, saas, digital products, platform, developer, open source, funding, open source, economy',
+    'digital product agency, case studies, engagement models, lifecycle ownership, enterprise software',
   openGraph: {
-    siteName: 'Polar',
+    siteName: 'Bttr',
     type: 'website',
     images: [
       {
-        url: 'https://polar.sh/assets/brand/polar_og.jpg',
+        url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
       },
@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: 'https://polar.sh/assets/brand/polar_og.jpg',
+        url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Polar',
+        alt: 'Bttr',
       },
     ],
   },
@@ -33,50 +33,41 @@ export const metadata: Metadata = {
 
 const resourceLinks = [
   {
-    title: 'Documentation',
-    description: 'Learn the ins and outs of the Polar platform',
-    href: 'https://polar.sh/docs',
-    target: '_blank',
-  },
-  {
-    title: 'Why Polar',
+    title: 'Why Bttr',
     description:
-      'Learn why Polar is the best choice for monetizing your business',
+      'Learn what makes Bttr different from traditional agencies',
     href: '/resources/why',
   },
   {
-    title: 'Pricing',
+    title: 'Engagement Models',
     href: '/resources/pricing',
-    description: 'The cheapest & most transparent Merchant of Record',
+    description: 'Flexible ways to work with us',
   },
   {
-    title: 'Merchant of Record',
+    title: 'Lifecycle Ownership',
     href: '/resources/merchant-of-record',
-    description: 'Learn the differences between PSPs and Merchant of Records',
+    description: 'Long-term partnership beyond project handoff',
   },
 ]
 
-const comparisonLinks = [
+const capabilityLinks = [
   {
-    title: 'Polar vs. Stripe',
-    href: '/resources/comparison/stripe',
-    description: 'Compare Polar with Stripe',
-    target: '_blank',
-  },
-
-  {
-    title: 'Polar vs. Paddle',
-    href: '/resources/comparison/paddle',
-    description: 'Compare Polar with Paddle',
-    target: '_blank',
+    title: 'Design & Strategy',
+    href: '/features/products',
+    description: 'Research-driven design and product strategy',
   },
   {
-    title: 'Polar vs. Lemon Squeezy',
-    href: '/resources/comparison/lemon-squeezy',
-    description: 'Compare Polar with Lemon Squeezy',
-    target: '_blank',
+    title: 'Engineering',
+    href: '/features/benefits',
+    description: 'Full-stack systems built for performance',
+  },
+  {
+    title: 'Security & Compliance',
+    href: '/features/customers',
+    description: 'Regulatory-ready systems for sensitive environments',
   },
 ]
+
 export default function Resources() {
   return (
     <div className="mx-auto flex h-full min-h-screen w-full max-w-6xl flex-col gap-y-8 md:gap-y-16">
@@ -84,14 +75,13 @@ export default function Resources() {
         <h3 className="text-3xl md:text-5xl">Resources</h3>
       </div>
       <div className="flex flex-col gap-y-8">
-        <h3 className="text-2xl">Platform</h3>
+        <h3 className="text-2xl">Approach</h3>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
           {resourceLinks.map((link) => (
             <Link
               key={link.title + link.description}
               className="dark:hover:bg-polar-900 dark:border-polar-700 flex w-full cursor-pointer flex-col gap-6 border border-gray-300 p-6 transition-colors duration-200 hover:bg-gray-100"
               href={link.href}
-              target={link.target}
             >
               <ArrowOutwardOutlined fontSize="inherit" />
               <div className="flex flex-col gap-2">
@@ -105,14 +95,13 @@ export default function Resources() {
         </div>
       </div>
       <div className="flex flex-col gap-y-8">
-        <h3 className="text-2xl">Comparisons</h3>
+        <h3 className="text-2xl">Capabilities</h3>
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-          {comparisonLinks.map((link) => (
+          {capabilityLinks.map((link) => (
             <Link
               key={link.title + link.description}
               className="dark:hover:bg-polar-900 dark:border-polar-700 flex w-full cursor-pointer flex-col gap-6 border border-gray-300 p-6 transition-colors duration-200 hover:bg-gray-100"
               href={link.href}
-              target={link.target}
             >
               <ArrowOutwardOutlined fontSize="inherit" />
               <div className="flex flex-col gap-2">

@@ -2,7 +2,7 @@
 
 import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
 import Button from '@polar-sh/ui/components/atoms/Button'
-import { SquareTerminalIcon } from 'lucide-react'
+import { Compass, Cpu, Wrench } from 'lucide-react'
 import Link from 'next/link'
 
 export const Tools = () => {
@@ -10,14 +10,14 @@ export const Tools = () => {
     <div className="dark:bg-polar-900 flex w-full flex-col gap-y-16 rounded-4xl bg-white p-8 md:p-16">
       <div className="flex flex-col items-center gap-y-8">
         <span className="dark:text-polar-500 text-lg text-gray-400">
-          Command Line Tools
+          How We Work
         </span>
         <h1 className="w-fit max-w-2xl text-center text-2xl text-pretty md:text-4xl md:leading-normal">
-          The fastest way to add SaaS & digital products to your stack
+          From discovery to delivery, engineered for mission-critical outcomes
         </h1>
-        <Link href="https://polar.sh/docs/documentation/tools/polar-init">
+        <Link href="/resources/why">
           <Button className="rounded-full" variant="secondary">
-            <span>Explore our tools</span>
+            <span>Learn more</span>
             <ArrowOutwardOutlined className="ml-2" />
           </Button>
         </Link>
@@ -25,30 +25,29 @@ export const Tools = () => {
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
         <div className="dark:bg-polar-800 flex w-full flex-col gap-y-4 rounded-3xl bg-gray-50 p-8">
           <div className="flex flex-row items-center gap-x-3">
-            <SquareTerminalIcon className="h-5 w-5" />
-            <h1 className="text-xl">npx polar-init</h1>
+            <Compass className="h-5 w-5" />
+            <h1 className="text-xl">Discovery</h1>
           </div>
           <p className="dark:text-polar-400 text-gray-500">
-            Bootstrap products, subscriptions, checkouts & webhooks in your
-            Next.js or Nuxt.js project.
+            We start by understanding your constraints, users, and goals. No assumptions.
           </p>
         </div>
         <div className="dark:bg-polar-800 flex w-full flex-col gap-y-4 rounded-3xl bg-gray-50 p-8">
           <div className="flex flex-row items-center gap-x-3">
-            <SquareTerminalIcon className="h-5 w-5" />
-            <h1 className="text-xl">npx polar-migrate</h1>
+            <Cpu className="h-5 w-5" />
+            <h1 className="text-xl">Build</h1>
           </div>
           <p className="dark:text-polar-400 text-gray-500">
-            Migrate from LemonSqueezy to Polar in under a minute.
+            Iterative sprints with senior engineers. Real progress, not just prototypes.
           </p>
         </div>
         <div className="dark:bg-polar-800 flex w-full flex-col gap-y-4 rounded-3xl bg-gray-50 p-8">
           <div className="flex flex-row items-center gap-x-3">
-            <SquareTerminalIcon className="h-5 w-5" />
-            <h1 className="text-xl">npx checkout-link</h1>
+            <Wrench className="h-5 w-5" />
+            <h1 className="text-xl">Sustain</h1>
           </div>
           <p className="dark:text-polar-400 text-gray-500">
-            Sell any kind of file from your CLI with a single command.
+            Long-term ownership and support. We stay accountable beyond launch.
           </p>
         </div>
       </div>

@@ -61,25 +61,23 @@ export const Events = () => {
       <div className="dark:bg-polar-900 flex w-full flex-col gap-y-6 overflow-hidden rounded-4xl bg-gray-200 p-2 xl:flex-row">
         <div className="flex w-full flex-1 flex-col gap-y-8 p-6 md:p-12">
           <span className="bg-blue w-fit rounded-full px-3 py-1 text-xs font-medium text-white">
-            Now in Beta
+            Now Operating
           </span>
           <h3 className="text-3xl leading-tight! text-balance md:text-4xl">
-            A realtime view of your revenue & costs
+            A real time view of your product ecosystem
           </h3>
           <p className="dark:text-polar-500 text-lg text-gray-500">
-            Track revenue, costs & profits in realtime. Understand your business
-            performance like never before.
+            We help teams understand how their systems perform, evolve, and scale over time through disciplined engineering and lifecycle ownership.
           </p>
           <Link
-            href="/docs/features/cost-insights/introduction"
-            target="_blank"
+            href="/resources/why"
           >
             <Button
               variant="secondary"
               className="rounded-full"
               wrapperClassNames="flex flex-row items-center gap-x-2"
             >
-              <span>Read the docs</span>
+              <span>Our Approach</span>
               <ArrowOutwardOutlined fontSize="inherit" />
             </Button>
           </Link>
@@ -171,136 +169,136 @@ export const Events = () => {
 const mockedEvents = [
   {
     id: 1,
-    name: 'OpenAI Inference',
+    name: 'Sprint Completed',
     timestamp: new Date('2025-10-30T00:00:14Z'),
-    cost: {
-      amount: 24,
+    revenue: {
+      amount: 4500,
       currency: 'usd',
     },
   },
   {
     id: 2,
-    name: 'Anthropic Inference',
+    name: 'Design Review',
     timestamp: new Date('2025-10-30T00:00:13Z'),
-    cost: {
-      amount: 15,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 3,
-    name: 'Order Paid',
-    timestamp: new Date('2025-10-30T00:00:12Z'),
-    revenue: {
-      amount: 2500,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 4,
-    name: 'Storage Upload',
-    timestamp: new Date('2025-10-30T00:00:11Z'),
-    cost: {
-      amount: 33,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 5,
-    name: 'Anthropic Inference',
-    timestamp: new Date('2025-10-30T00:00:10Z'),
-    cost: {
-      amount: 28,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 6,
-    name: 'OpenAI Inference',
-    timestamp: new Date('2025-10-30T00:00:09Z'),
-    cost: {
-      amount: 24,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 7,
-    name: 'Anthropic Inference',
-    timestamp: new Date('2025-10-30T00:00:08Z'),
-    cost: {
-      amount: 15,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 8,
-    name: 'Subscription Upgrade',
-    timestamp: new Date('2025-10-30T00:00:07Z'),
-    revenue: {
-      amount: 1000,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 9,
-    name: 'Storage Upload',
-    timestamp: new Date('2025-10-30T00:00:06Z'),
-    cost: {
-      amount: 33,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 10,
-    name: 'Anthropic Inference',
-    timestamp: new Date('2025-10-30T00:00:05Z'),
-    cost: {
-      amount: 21,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 11,
-    name: 'OpenAI Inference',
-    timestamp: new Date('2025-10-30T00:00:04Z'),
-    cost: {
-      amount: 29,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 12,
-    name: 'Anthropic Inference',
-    timestamp: new Date('2025-10-30T00:00:03Z'),
-    cost: {
-      amount: 52,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 13,
-    name: 'OpenAI Inference',
-    timestamp: new Date('2025-10-30T00:00:02Z'),
-    cost: {
-      amount: 78,
-      currency: 'usd',
-    },
-  },
-  {
-    id: 14,
-    name: 'Trial Started',
-    timestamp: new Date('2025-10-30T00:00:01Z'),
     cost: {
       amount: 0,
       currency: 'usd',
     },
   },
   {
-    id: 17,
-    name: 'Customer Acquired',
-    timestamp: new Date('2025-10-30T00:00:00Z'),
+    id: 3,
+    name: 'Milestone Delivered',
+    timestamp: new Date('2025-10-30T00:00:12Z'),
+    revenue: {
+      amount: 25000,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 4,
+    name: 'Infrastructure Setup',
+    timestamp: new Date('2025-10-30T00:00:11Z'),
     cost: {
-      amount: 5000,
+      amount: 850,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 5,
+    name: 'User Testing',
+    timestamp: new Date('2025-10-30T00:00:10Z'),
+    cost: {
+      amount: 200,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 6,
+    name: 'Code Review',
+    timestamp: new Date('2025-10-30T00:00:09Z'),
+    cost: {
+      amount: 0,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 7,
+    name: 'Security Audit',
+    timestamp: new Date('2025-10-30T00:00:08Z'),
+    cost: {
+      amount: 1500,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 8,
+    name: 'Contract Signed',
+    timestamp: new Date('2025-10-30T00:00:07Z'),
+    revenue: {
+      amount: 50000,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 9,
+    name: 'Cloud Deployment',
+    timestamp: new Date('2025-10-30T00:00:06Z'),
+    cost: {
+      amount: 450,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 10,
+    name: 'Performance Test',
+    timestamp: new Date('2025-10-30T00:00:05Z'),
+    cost: {
+      amount: 0,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 11,
+    name: 'API Integration',
+    timestamp: new Date('2025-10-30T00:00:04Z'),
+    cost: {
+      amount: 0,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 12,
+    name: 'Compliance Check',
+    timestamp: new Date('2025-10-30T00:00:03Z'),
+    cost: {
+      amount: 0,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 13,
+    name: 'Sprint Completed',
+    timestamp: new Date('2025-10-30T00:00:02Z'),
+    revenue: {
+      amount: 4500,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 14,
+    name: 'Discovery Complete',
+    timestamp: new Date('2025-10-30T00:00:01Z'),
+    revenue: {
+      amount: 15000,
+      currency: 'usd',
+    },
+  },
+  {
+    id: 17,
+    name: 'Project Kickoff',
+    timestamp: new Date('2025-10-30T00:00:00Z'),
+    revenue: {
+      amount: 0,
       currency: 'usd',
     },
   },

@@ -30,50 +30,50 @@ export const MORPage = () => {
   const tocItems = [
     { id: 'introduction', title: 'Introduction' },
     {
-      id: 'mor',
-      title: 'PSP vs. MoR',
+      id: 'traditional-vs-bttr',
+      title: 'Traditional Agencies vs. Bttr',
     },
-    { id: 'sales-tax', title: 'International Sales Tax' },
+    { id: 'what-ownership-means', title: 'What Ownership Means' },
   ]
 
   return (
-    <ResourceLayout title="Polar as a Merchant of Record" toc={tocItems}>
+    <ResourceLayout title="Lifecycle Ownership" toc={tocItems}>
       <ResourceSection id="introduction" title="Introduction">
-        <p className="text-lg">What is a Merchant of Record?</p>
+        <p className="text-lg">Beyond project handoff</p>
         <p className="dark:text-polar-300 text-gray-500">
-          We take on the liability of international sales taxes globally for
-          you. So you can focus on growing your business vs. accounting bills.
-          Leave billing infrastructure and international sales tax headaches to
-          us.
+          Most agencies finish a project and disappear. We stay accountable.
+          Lifecycle Ownership means we remain invested in your product&apos;s
+          success long after launch—monitoring, maintaining, and evolving
+          alongside your business.
         </p>
       </ResourceSection>
 
-      <ResourceSection id="mor" title="PSP vs. MoR" className="gap-y-8">
+      <ResourceSection id="traditional-vs-bttr" title="Traditional Agencies vs. Bttr" className="gap-y-8">
         <div className="flex flex-col gap-y-6">
           <div className="flex flex-col gap-4">
-            <h3 className="text-lg">Payment Service Provider (PSPs)</h3>
+            <h3 className="text-lg">Traditional Agencies</h3>
             <p className="dark:text-polar-300 text-gray-500">
-              Stripe and other Payment Service Providers (PSPs) offer an
-              accessible and convenient abstraction to faciliate transactions on
-              top of underlying credit card networks & banks.
+              Conventional agencies operate on a project-by-project basis.
+              They build, deliver, and move on—leaving you to manage maintenance,
+              bugs, and future development.
             </p>
           </div>
           <div className="flex flex-col gap-2">
             <ul className="dark:border-polar-700 dark:divide-polar-700 divide-y divide-gray-200 border-y border-gray-200 [&>li]:py-2">
               <Benefit>
-                Powerful, flexibile & low-level APIs to facilitate transactions
+                Fixed deliverables and defined scope
               </Benefit>
               <Benefit>
-                Can be used to power all business- and pricing models under the
-                sun.
+                Clear project timeline
               </Benefit>
               <Benefit positive={false}>
-                You are responsible for all liabilities associated with
-                transactions, e.g international taxes
+                Support ends at handoff
               </Benefit>
               <Benefit positive={false}>
-                Low-level APIs require more development even for common use
-                cases
+                You inherit all maintenance responsibilities
+              </Benefit>
+              <Benefit positive={false}>
+                Knowledge leaves with the team
               </Benefit>
             </ul>
           </div>
@@ -81,73 +81,69 @@ export const MORPage = () => {
 
         <div className="flex flex-col gap-y-6">
           <div className="flex flex-col gap-4">
-            <h3 className="text-lg">Merchant of Record</h3>
+            <h3 className="text-lg">Bttr&apos;s Lifecycle Ownership</h3>
             <p className="dark:text-polar-300 text-gray-500">
-              Merchants of Record offer yet another layer of convenient
-              abstraction to facilitate digital orders on top of the underlying
-              PSPs and transactions.
+              We treat your product as if it were our own. Beyond building,
+              we stay engaged—handling maintenance, performance monitoring,
+              and continuous improvement as your needs evolve.
             </p>
           </div>
           <div className="flex flex-col gap-2">
             <ul className="dark:border-polar-700 dark:divide-polar-700 divide-y divide-gray-200 border-y border-gray-200 [&>li]:py-2">
               <Benefit>
-                Powerful, Higher-level Dashboard, APIs & SDKs to better
-                facilitate digital products, services & orders beyond the
-                underlying transactions
+                Long-term partnership beyond launch
               </Benefit>
               <Benefit>
-                Can be used to power all business- and pricing models under the
-                sun.
+                Ongoing maintenance and bug fixes included
+              </Benefit>
+              <Benefit>
+                Performance monitoring and optimization
+              </Benefit>
+              <Benefit>
+                Knowledge retention and documentation
               </Benefit>
               <Benefit positive={false}>
-                Less flexibility & control in terms of advanced business- and
-                pricing models.
+                Requires ongoing engagement commitment
               </Benefit>
-              <Benefit positive={false}>Higher fees per payment</Benefit>
             </ul>
           </div>
         </div>
 
         <div className="flex flex-col gap-y-6">
           <div className="flex flex-col gap-4">
-            <h3 className="text-lg">Go with a PSP if...</h3>
+            <h3 className="text-lg">Choose a traditional agency if...</h3>
           </div>
           <div className="flex flex-col gap-2">
             <ul className="dark:border-polar-700 dark:divide-polar-700 divide-y divide-gray-200 border-y border-gray-200 [&>li]:py-2">
               <Benefit>
-                You&apos;re comfortable & prefer absolute control with low-level
-                APIs.
+                You have a capable internal team to take over
               </Benefit>
               <Benefit>
-                You&apos;re looking for the lowest fees possible.
+                The project is a one-time marketing site or campaign
               </Benefit>
               <Benefit>
-                You want to register & file for international taxes yourself.
+                You prefer complete control over future development
               </Benefit>
             </ul>
           </div>
 
           <div className="flex flex-col gap-y-6">
             <div className="flex flex-col gap-4">
-              <h3 className="text-lg">Go with Polar if...</h3>
+              <h3 className="text-lg">Choose Bttr if...</h3>
             </div>
             <div className="flex flex-col gap-2">
               <ul className="dark:border-polar-700 dark:divide-polar-700 divide-y divide-gray-200 border-y border-gray-200 [&>li]:py-2">
                 <Benefit>
-                  You want product-, customer-, order- and subscription
-                  management via an intuitive and easy dashboard
+                  Your product is mission-critical to your business
                 </Benefit>
                 <Benefit>
-                  You want to offer file downloads, license keys, Discord-
-                  and/or private GitHub repository invites with ease - with more
-                  built-in automations to come.
+                  You need senior engineering expertise long-term
                 </Benefit>
                 <Benefit>
-                  You prefer a more high-level API optimized for making
-                  monetization easier.
+                  You operate in regulated environments requiring compliance
                 </Benefit>
                 <Benefit>
-                  You want us to handle international taxes for you
+                  You want a partner, not just a vendor
                 </Benefit>
               </ul>
             </div>
@@ -156,123 +152,51 @@ export const MORPage = () => {
       </ResourceSection>
 
       <ResourceSection
-        id="sales-tax"
-        title="International Sales Tax"
+        id="what-ownership-means"
+        title="What Ownership Means"
         className="gap-y-8"
       >
         <div className="flex flex-col gap-2">
           <p className="dark:text-polar-300 text-gray-500">
-            Most countries, states and jurisdictions globally impose sales taxes
-            on digital goods and services (VAT, GST, US Sales Tax etc).
-            Regardless of whether the merchant (seller) is a resident there or
-            not - they&apos;re doing business there.
-          </p>
-          <p className="dark:text-polar-300 text-gray-500">
-            For example, a $10/month subscription should cost $12.5/month for a
-            Swedish (25% VAT) consumer, but $10/month for a Swedish business
-            with VAT registration (reverse charge).
-          </p>
-          <p className="dark:text-polar-300 text-gray-500">
-            Merchants are responsible for capturing & remitting sales taxes to
-            the local tax authorities. What does that mean in our example?
+            Lifecycle Ownership isn&apos;t a marketing term—it&apos;s how we
+            structure every engagement. From the first conversation, we plan
+            for the long term.
           </p>
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3>Capturing</h3>
+          <h3>Continuous Monitoring</h3>
           <p className="dark:text-polar-300 text-gray-500">
-            Charging the Swedish consumer $12.5/month and saving $2.5/month for
-            the Swedish tax authorities. Stripe Tax is an excellent service to
-            automate this and the one Polar uses today.
+            We proactively monitor your systems for performance, security,
+            and reliability. Issues are caught and addressed before they
+            impact your users.
           </p>
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3>Remitting</h3>
+          <h3>Maintenance Included</h3>
           <p className="dark:text-polar-300 text-gray-500">
-            Filing & paying the captured sales taxes with the tax authorities on
-            time. Stripe Tax does not do this, i.e the merchant is liable to
-            register, file and pay taxes to local tax authorities.
+            Bug fixes, security patches, and dependency updates are part
+            of our engagement—not billable surprises. Your product stays
+            healthy without hidden costs.
+          </p>
+        </div>
+
+        <div className="flex flex-col gap-2">
+          <h3>Evolving Together</h3>
+          <p className="dark:text-polar-300 text-gray-500">
+            As your business grows, we adapt. New features, scaling challenges,
+            and strategic pivots are handled by the same team that built your
+            foundation.
           </p>
         </div>
 
         <div className="dark:border-polar-700 flex flex-col gap-2 border-t border-gray-200 pt-4">
           <p className="dark:text-polar-300 text-gray-500">
-            Many jurisdictions, however, don&apos;t require this until you reach
-            a certain threshold in terms of sales volume. But others require
-            registration even before the first sale - or after a very low
-            threshold. In addition to having different rates and rules on which
-            goods are taxable and whether they&apos;re deductable or not for
-            business customers.
+            This model works because we&apos;re selective about the projects
+            we take on. Every Bttr engagement is designed for longevity—
+            both for your product and our relationship.
           </p>
-
-          <p className="dark:text-polar-300 text-gray-500">
-            For example, United Kingdom and EU countries require upfront
-            registration for international companies, but Texas (United States)
-            does not until you&apos;ve sold for more than $500,000.
-          </p>
-
-          <p className="dark:text-polar-300 text-gray-500">
-            In short: It&apos;s complex and hard. Even large and well-known
-            businesses don&apos;t do it perfectly. Arguably, it&apos;s almost
-            impossible and at least highly impracticle and expensive to comply
-            perfectly upfront. Many companies even delay compliance as a
-            calculated risk, i.e focus on validating & growing their business
-            with the risk of paying back taxes + penalities later.
-          </p>
-        </div>
-
-        <div className="flex flex-col gap-y-6">
-          <div className="flex flex-col gap-4">
-            <h3 className="text-lg">PSP</h3>
-          </div>
-          <div className="flex flex-col gap-2">
-            <ul className="dark:border-polar-700 dark:divide-polar-700 divide-y divide-gray-200 border-y border-gray-200 [&>li]:py-2">
-              <Benefit>
-                Your volume alone is what counts towards international
-                thresholds vs. the MoR platform, i.e customers might not need to
-                pay sales taxes with you, but would via a MoR.
-              </Benefit>
-              <Benefit>
-                You can deduct inbound VAT against purchases your business does
-                with VAT
-              </Benefit>
-              <Benefit positive={false}>
-                You&apos;re liable for capturing & remitting international sales
-                taxes
-              </Benefit>
-              <Benefit positive={false}>
-                Stripe Tax is great to monitor & automate capturing, but
-                registration and remittance is up to you.
-              </Benefit>
-            </ul>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-y-6">
-          <div className="flex flex-col gap-4">
-            <h3 className="text-lg">Merchant of Record</h3>
-          </div>
-          <div className="flex flex-col gap-2">
-            <ul className="dark:border-polar-700 dark:divide-polar-700 divide-y divide-gray-200 border-y border-gray-200 [&>li]:py-2">
-              <Benefit>
-                We are liable for all of the above as your reseller.
-              </Benefit>
-              <Benefit>
-                Offer EU VAT for B2B sales (expected and desired within EU for
-                businesses) without having to register, capture and remit it
-                yourself.
-              </Benefit>
-              <Benefit positive={false}>
-                Sales taxes would be added for more customers vs. with you
-                selling directly.
-              </Benefit>
-              <Benefit positive={false}>
-                You cannot leverage inbound VAT towards VAT expense deductions
-                yourself.
-              </Benefit>
-            </ul>
-          </div>
         </div>
       </ResourceSection>
 
@@ -280,15 +204,15 @@ export const MORPage = () => {
       <div className="dark:border-polar-700 flex flex-col border-t border-gray-200 pt-16">
         <div className="flex flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-4">
-            <h3 className="text-xl">Ready to make the switch?</h3>
+            <h3 className="text-xl">Ready for a different kind of partnership?</h3>
             <p className="dark:text-polar-300 text-center text-gray-700 md:w-[440px]">
-              Join thousands of teams who have already transformed their payment
-              infrastructure with Polar.
+              Join teams who trust Bttr for mission-critical products that
+              demand long-term accountability.
             </p>
           </div>
           <GetStartedButton
             size="lg"
-            text="Get Started"
+            text="Start a Conversation"
             className="dark:hover:bg-polar-50 rounded-full bg-black font-medium text-white hover:bg-gray-800 dark:bg-white dark:text-black"
           />
         </div>

@@ -2,17 +2,17 @@ import { UsageBillingPage } from '@/components/Landing/features/UsageBillingPage
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Usage Billing on Steroids — Polar',
+  title: 'Scalable Solutions — Bttr',
   description:
-    'Flexible usage-based billing that scales with your business. Track consumption, meter usage, and bill customers accurately.',
+    'Systems designed to grow with your business. Built for scale from day one.',
   keywords:
-    'usage billing, metered billing, consumption billing, pay-as-you-go, usage tracking, saas billing',
+    'scalable software, enterprise solutions, growth infrastructure, performance optimization',
   openGraph: {
-    siteName: 'Polar',
+    siteName: 'Bttr',
     type: 'website',
     images: [
       {
-        url: 'https://polar.sh/assets/brand/polar_og.jpg',
+        url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
       },
@@ -22,10 +22,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: 'https://polar.sh/assets/brand/polar_og.jpg',
+        url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Polar',
+        alt: 'Bttr',
       },
     ],
   },

@@ -2,11 +2,9 @@
 
 import AccountBalance from '@mui/icons-material/AccountBalance'
 import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
-import GitHub from '@mui/icons-material/GitHub'
-import ShoppingBagOutlined from '@mui/icons-material/ShoppingBagOutlined'
 import Button from '@polar-sh/ui/components/atoms/Button'
 import { motion } from 'framer-motion'
-import { Box, Check, LucideIcon } from 'lucide-react'
+import { Check, Compass, Cpu, LucideIcon, Wrench } from 'lucide-react'
 import Link from 'next/link'
 
 interface UpsellCardProps {
@@ -37,7 +35,7 @@ const UpsellCard = ({
       </div>
       {children && <div className="flex gap-4">{children}</div>}
       {link && (
-        <Link href={link} target="_blank">
+        <Link href={link}>
           <Button variant="ghost" className="rounded-full">
             Learn more
             <span className="ml-2">
@@ -75,23 +73,23 @@ export const Upsell = () => {
     >
       <motion.div variants={item}>
         <UpsellCard
-          icon={Box}
-          title="Digital Products"
-          description="Manage and distribute your digital products with our robust platform."
-          link="https://polar.sh/docs/documentation/features/products"
+          icon={Compass}
+          title="Design & Strategy"
+          description="Research-driven design that translates complexity into clarity."
+          link="/features/products"
         >
           <ul className="dark:text-polar-300 flex flex-col gap-y-1 text-gray-600">
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Flexible Pricing Models
+              User Research
             </li>
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Robust Analytics
+              Interface Design
             </li>
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Discount Codes
+              Strategic Roadmaps
             </li>
           </ul>
         </UpsellCard>
@@ -99,23 +97,23 @@ export const Upsell = () => {
 
       <motion.div variants={item}>
         <UpsellCard
-          icon={ShoppingBagOutlined}
-          title="Simple Checkouts"
-          description="Streamlined checkouts for a seamless user experience."
-          link="https://polar.sh/docs/documentation/features/checkouts/checkout-links"
+          icon={Cpu}
+          title="Engineering"
+          description="Full-stack systems built for performance and longevity."
+          link="/features/benefits"
         >
           <ul className="dark:text-polar-300 flex flex-col gap-y-1 text-gray-600">
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Custom Checkout Fields
+              Web & Mobile Platforms
             </li>
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Automatic Tax Calculation
+              Cloud Infrastructure
             </li>
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Checkout Links & Embeds
+              Third-party Integrations
             </li>
           </ul>
         </UpsellCard>
@@ -123,23 +121,23 @@ export const Upsell = () => {
 
       <motion.div variants={item}>
         <UpsellCard
-          icon={GitHub}
-          title="Open Source Integrations"
-          description="We believe in building in public & therefore proud to be open source."
-          link="https://github.com/polarsource"
+          icon={Wrench}
+          title="Lifecycle Ownership"
+          description="Long-term partnership beyond project handoff."
+          link="/resources/merchant-of-record"
         >
           <ul className="dark:text-polar-300 flex flex-col gap-y-1 text-gray-600">
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Raycast Extension
+              Ongoing Maintenance
             </li>
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Framer Plugin
+              Performance Monitoring
             </li>
             <li className="flex flex-row items-center gap-x-2">
               <Check className="h-4 w-4 text-emerald-500" />
-              Zapier Integration
+              Continuous Improvement
             </li>
           </ul>
         </UpsellCard>

@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 
+import Script from 'next/script'
 import SandboxBanner from '@/components/Sandbox/SandboxBanner'
 import { UserContextProvider } from '@/providers/auth'
 import { getServerSideAPI } from '@/utils/client/serverside'
@@ -20,30 +21,30 @@ import {
 export async function generateMetadata(): Promise<Metadata> {
   const baseMetadata: Metadata = {
     title: {
-      template: '%s | Polar',
-      default: 'Polar',
+      template: '%s | Bttr',
+      default: 'Bttr',
     },
     description:
-      'Create digital products and SaaS billing with flexible pricing models and seamless payment processing.',
+      'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
     openGraph: {
-      images: 'https://polar.sh/assets/brand/polar_og.jpg',
+      images: '/assets/brand/bttr_og.jpg',
       type: 'website',
-      siteName: 'Polar',
-      title: 'Polar | Monetize your software with ease',
+      siteName: 'Bttr',
+      title: 'Bttr | Designed to Adapt. Engineered to Win.',
       description:
-        'Create digital products and SaaS billing with flexible pricing models and seamless payment processing.',
+        'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
       locale: 'en_US',
     },
     twitter: {
-      images: 'https://polar.sh/assets/brand/polar_og.jpg',
+      images: '/assets/brand/bttr_og.jpg',
       card: 'summary_large_image',
-      title: 'Polar | Monetize your software with ease',
+      title: 'Bttr | Designed to Adapt. Engineered to Win.',
       description:
-        'Create digital products and SaaS billing with flexible pricing models and seamless payment processing.',
+        'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
     },
-    metadataBase: new URL('https://polar.sh/'),
+    metadataBase: new URL('https://makebttr.com/'),
     alternates: {
-      canonical: 'https://polar.sh/',
+      canonical: 'https://makebttr.com/',
     },
   }
 
@@ -108,6 +109,13 @@ export default async function RootLayout({
       className={`antialiased ${GeistSans.variable} ${GeistMono.variable}`}
     >
       <head>
+        {CONFIG.ENVIRONMENT === 'development' && (
+          <Script
+            src="//unpkg.com/react-grab/dist/index.global.js"
+            crossOrigin="anonymous"
+            strategy="beforeInteractive"
+          />
+        )}
         {CONFIG.ENVIRONMENT === 'development' ? (
           <>
             <link

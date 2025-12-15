@@ -7,212 +7,162 @@ import { ResourceLayout, ResourceSection } from './ResourceLayout'
 export const PricingPage = () => {
   const toc = [
     { id: 'introduction', title: 'Introduction' },
-    { id: 'transaction-fees', title: 'Transaction Fees' },
-    { id: 'additional-fees', title: 'Additional Fees' },
-    { id: 'example', title: 'Example' },
-    { id: 'refunds', title: 'Refunds' },
-    { id: 'dispute-fees', title: 'Dispute/Chargeback Fees' },
-    { id: 'payout-fees', title: 'Payout Fees' },
-    { id: 'volume-pricing', title: 'Volume Pricing' },
+    { id: 'embedded-team', title: 'Embedded Team' },
+    { id: 'project-based', title: 'Project-Based' },
+    { id: 'advisory', title: 'Advisory & Strategy' },
+    { id: 'what-to-expect', title: 'What to Expect' },
   ]
 
   return (
-    <ResourceLayout title="Pricing" toc={toc}>
+    <ResourceLayout title="Engagement Models" toc={toc}>
       <ResourceSection id="introduction" title="Introduction">
         <div className="flex flex-col gap-2">
-          <h3>Cheapest MoR on the market</h3>
+          <h3>Flexible engagement, real accountability</h3>
           <p className="dark:text-polar-300 text-gray-500">
-            Polar is priced 20% cheaper than other MoR alternatives. 4% and 40¢
-            per transaction.
+            We structure engagements around your needs, not billable hours.
+            Every model includes our commitment to lifecycle ownership—
+            long-term accountability beyond the initial project.
           </p>
         </div>
 
         <div className="flex flex-col gap-2">
-          <h3>No Hidden Fees</h3>
+          <h3>Transparent Investment</h3>
           <p className="dark:text-polar-300 text-gray-500">
-            While payouts may incur fees charged by the payout providers (such
-            as Stripe), Polar does not add any extra fees or markup.
+            No hidden fees, no surprise scope creep. We define clear
+            deliverables and honest timelines upfront, so you know exactly
+            what you&apos;re investing in.
           </p>
         </div>
       </ResourceSection>
 
-      <ResourceSection id="transaction-fees" title="Transaction Fees">
+      <ResourceSection id="embedded-team" title="Embedded Team">
         <div className="flex flex-col gap-4">
-          <h3 className="text-lg">4% + 40¢ per transaction</h3>
+          <h3 className="text-lg">Senior engineers, integrated with your team</h3>
           <p className="dark:text-polar-300 text-gray-500">
-            Polar is currently built on Stripe, and we cover their 2.9% + 30¢
-            fee from ours. However, they impose a few additional fees for
-            certain transactions that we need to pass on.
+            Our engineers work alongside your internal team, bringing expertise
+            in design, engineering, and product strategy. This model works best
+            for ongoing product development and companies building core platforms.
           </p>
         </div>
-      </ResourceSection>
 
-      <ResourceSection id="additional-fees" title="Additional Fees">
-        <ul className="space-y-2">
-          <li>
-            <strong>+1.5%</strong> for international cards (non-US)
-          </li>
-          <li>
-            <strong>+0.5%</strong> for subscription payments
-          </li>
-        </ul>
+        <div className="flex flex-col gap-4">
+          <h3 className="text-lg">Best for</h3>
+          <ul className="space-y-2">
+            <li>
+              Long-term product development
+            </li>
+            <li>
+              Teams needing senior expertise without full-time hiring
+            </li>
+            <li>
+              Complex systems requiring deep domain knowledge
+            </li>
+          </ul>
+        </div>
+
         <div className="dark:text-polar-300 dark:bg-polar-800 bg-gray-50 p-4 text-sm text-gray-500">
-          We also reserve the right to pass on any other fees Stripe might
-          impose in the future
+          Embedded engagements typically run 6+ months with dedicated team
+          members working 20-40 hours per week.
         </div>
       </ResourceSection>
 
-      <ResourceSection id="example" title="Example">
+      <ResourceSection id="project-based" title="Project-Based">
         <div className="flex flex-col gap-4">
-          <p>
-            Let&apos;s look at an example breakdown with all these additional
-            fees applied. Below is a payment of a $30 subscription from Sweden
-            (25% VAT).
+          <h3 className="text-lg">Defined scope, clear outcomes</h3>
+          <p className="dark:text-polar-300 text-gray-500">
+            For projects with well-defined requirements, we deliver end-to-end
+            solutions—from discovery through launch. Fixed investment with
+            ongoing maintenance included in our lifecycle ownership model.
           </p>
+        </div>
 
-          <div className="overflow-x-auto">
-            <table className="min-w-full">
-              <tbody>
-                <tr>
-                  <td className="px-4 py-2">Product Price</td>
-                  <td className="px-4 py-2">$30</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">VAT (25%)</td>
-                  <td className="px-4 py-2">$7.5</td>
-                </tr>
-                <tr className="dark:bg-polar-800 bg-gray-50">
-                  <td className="px-4 py-2">Total Transaction Value</td>
-                  <td className="px-4 py-2">$37.5</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Transaction Fee (4% + 40¢)</td>
-                  <td className="px-4 py-2">$1.9</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">International Card (+1.5%)</td>
-                  <td className="px-4 py-2">$0.56</td>
-                </tr>
-                <tr>
-                  <td className="px-4 py-2">Subscription (+0.5%)</td>
-                  <td className="px-4 py-2">$0.19</td>
-                </tr>
-                <tr className="dark:bg-polar-800 bg-gray-50">
-                  <td className="px-4 py-2">Total Fees (Before Payout)</td>
-                  <td className="px-4 py-2">$2.65</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+        <div className="flex flex-col gap-4">
+          <h3 className="text-lg">Best for</h3>
+          <ul className="space-y-2">
+            <li>
+              New product launches
+            </li>
+            <li>
+              Platform rebuilds or migrations
+            </li>
+            <li>
+              Specific feature development
+            </li>
+          </ul>
+        </div>
+
+        <div className="dark:text-polar-300 dark:bg-polar-800 bg-gray-50 p-4 text-sm text-gray-500">
+          Project timelines vary from 8-24 weeks depending on scope and
+          complexity. All projects include 90 days of post-launch support.
         </div>
       </ResourceSection>
 
-      <ResourceSection id="refunds" title="Refunds">
+      <ResourceSection id="advisory" title="Advisory & Strategy">
         <div className="flex flex-col gap-4">
-          <p>
-            You can issue both full or partial refunds on Polar to your
-            customers. However, the initial transaction fees are not refunded to
-            you since credit card networks and PSPs charge them regardless of a
-            future refund.
+          <h3 className="text-lg">Strategic guidance for critical decisions</h3>
+          <p className="dark:text-polar-300 text-gray-500">
+            Technical leadership and product strategy for teams navigating
+            complex challenges. Architecture reviews, technology selection,
+            and roadmap planning—without the overhead of a full engagement.
           </p>
-          <div className="dark:bg-polar-800 bg-gray-50 p-4">
-            <p className="dark:text-polar-300 text-sm text-gray-500">
-              Polar reserves the right to issue refunds at our own discretion up
-              to 60 days after the purchase as part of our efforts to
-              continuously and proactively reduce disputes & chargebacks which
-              costs you $15/dispute. We only leverage this right for this
-              purpose and in the interest of reducing chargebacks and fees for
-              you.
-            </p>
-          </div>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <h3 className="text-lg">Best for</h3>
+          <ul className="space-y-2">
+            <li>
+              Technical due diligence
+            </li>
+            <li>
+              Architecture and technology decisions
+            </li>
+            <li>
+              Product strategy and roadmapping
+            </li>
+          </ul>
+        </div>
+
+        <div className="dark:text-polar-300 dark:bg-polar-800 bg-gray-50 p-4 text-sm text-gray-500">
+          Advisory engagements are structured as retainers or project-based
+          consulting, typically 10-20 hours per month.
         </div>
       </ResourceSection>
 
-      <ResourceSection id="dispute-fees" title="Dispute/Chargeback Fees">
+      <ResourceSection id="what-to-expect" title="What to Expect">
         <div className="flex flex-col gap-4">
-          <p>
-            Sometimes, customers can open a <strong>dispute/chargeback</strong>{' '}
-            via their bank for a purchase.{' '}
-            <strong>Disputes cost $15 per dispute</strong> regardless of outcome
-            and is deducted from your balance directly. This fee is charged by
-            the underlying credit card networks & PSPs regardless of outcome and
-            therefore something we cannot refund.
+          <h3 className="text-lg">Discovery call</h3>
+          <p className="dark:text-polar-300 text-gray-500">
+            Every engagement starts with a conversation. We learn about your
+            business, constraints, and goals to determine if we&apos;re the
+            right fit.
           </p>
-          <p>
-            However, we continuously work to proactively reduce the rate of
-            chargebacks across Polar to be at or lower than industry standards.
-          </p>
-          <p>
-            Credit card networks impose monitoring programs, penalties and
-            higher chargeback costs for sellers with high chargeback rates
-            (~0.7%+). Since Polar is the Merchant of Record, we therefore always
-            monitor and proactively prevent our rate coming close to these
-            thresholds.
-          </p>
-          <div className="dark:bg-polar-800 bg-gray-50 p-4">
-            <p className="dark:text-polar-300 text-sm text-gray-500">
-              Therefore, we might need to intervene and even suspend your
-              account unless swift and proactive measures are taken to reduce
-              chargebacks to an acceptable industry standard.
-            </p>
-          </div>
         </div>
-      </ResourceSection>
 
-      <ResourceSection id="payout-fees" title="Payout Fees">
         <div className="flex flex-col gap-4">
-          <p>
-            While payouts may incur fees charged by the payout providers (such
-            as Stripe), Polar does not add any extra fees or markup. These are
-            strictly the provider&apos;s fees, and Polar does not profit from
-            them.
+          <h3 className="text-lg">Proposal & scoping</h3>
+          <p className="dark:text-polar-300 text-gray-500">
+            For qualified opportunities, we provide a detailed proposal
+            outlining approach, timeline, team composition, and investment.
           </p>
-          <p>
-            In addition, Polar offers manual withdrawals for developers. Keeping
-            you in control of when to issue payouts.
-          </p>
-          <div className="dark:bg-polar-800 bg-gray-50 p-4">
-            <p className="dark:text-polar-300 text-sm text-gray-500">
-              Unless you have a Polar balance that you haven&apos;t withdrawn
-              for several months, at which point we&apos;ll eventually need to
-              trigger a payout on your behalf.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div className="flex flex-col gap-2">
-              <h3 className="text-lg">Stripe</h3>
-              <div className="flex flex-col gap-2 text-sm">
-                <p>$2 per month of active payout(s)</p>
-                <p>0.25% + $0.25 per payout</p>
-              </div>
-              <div className="flex flex-col gap-2 text-sm">
-                <h4 className="dark:text-polar-300 text-gray-500">
-                  Cross border fees (currency conversion)
-                </h4>
-                <p>0.25% (EU) - 1% in other countries</p>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <h3 className="text-lg">Open Collective</h3>
-              <p className="text-sm">10% on amount transferred</p>
-            </div>
-          </div>
         </div>
-      </ResourceSection>
 
-      <ResourceSection id="volume-pricing" title="Volume Pricing">
         <div className="flex flex-col gap-4">
+          <h3 className="text-lg">Kickoff & execution</h3>
+          <p className="dark:text-polar-300 text-gray-500">
+            We move quickly from agreement to execution. Our team integrates
+            with your workflows and communication tools from day one.
+          </p>
+        </div>
+
+        <div className="dark:border-polar-700 flex flex-col gap-4 border-t border-gray-200 pt-4">
           <p>
-            Large or fast-growing business? We can offer custom pricing to
-            better fit your needs.
+            Ready to discuss your project? Let&apos;s start a conversation.
           </p>
           <Link
-            href="mailto:support@polar.sh"
+            href="/contact"
             className="w-fit border-b border-black pb-0.5 dark:border-white"
           >
-            Reach out to us
+            Get in touch
             <ArrowOutwardOutlined className="ml-2" fontSize="inherit" />
           </Link>
         </div>

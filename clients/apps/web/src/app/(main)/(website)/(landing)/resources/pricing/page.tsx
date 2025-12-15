@@ -2,16 +2,16 @@ import { PricingPage } from '@/components/Landing/resources/PricingPage'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Pricing',
-  description: 'The cheapest MoR on the market',
+  title: 'Engagement Models',
+  description: 'Flexible engagement structures for every stage of your product',
   keywords:
-    'pricing, price, usage billing, polar, pricing, pricing for polar, pricing for polar, pricing for polar',
+    'engagement models, embedded team, project-based, advisory, consulting, digital product agency',
   openGraph: {
-    siteName: 'Polar',
+    siteName: 'Bttr',
     type: 'website',
     images: [
       {
-        url: 'https://polar.sh/assets/brand/polar_og.jpg',
+        url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
       },
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: 'https://polar.sh/assets/brand/polar_og.jpg',
+        url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Polar',
+        alt: 'Bttr',
       },
     ],
   },

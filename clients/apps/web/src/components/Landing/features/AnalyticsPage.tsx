@@ -1,12 +1,12 @@
 'use client'
 
 import GetStartedButton from '@/components/Auth/GetStartedButton'
-import AssessmentOutlined from '@mui/icons-material/AssessmentOutlined'
+import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
 import CheckOutlined from '@mui/icons-material/CheckOutlined'
-import SpaceDashboardOutlined from '@mui/icons-material/SpaceDashboardOutlined'
-import TrendingUpOutlined from '@mui/icons-material/TrendingUpOutlined'
+import Button from '@polar-sh/ui/components/atoms/Button'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Hero } from '../Hero/Hero'
 import { Section } from '../Section'
 
@@ -25,153 +25,113 @@ const itemVariants = {
   visible: { opacity: 1, transition: { duration: 1 } },
 }
 
+const caseStudies = [
+  {
+    client: 'GE Aerospace',
+    industry: 'Aerospace & Defense',
+    description: 'Enterprise asset management platform for jet engine maintenance and lifecycle tracking.',
+    results: [
+      'Reduced maintenance planning time by 40%',
+      'Real-time visibility across global operations',
+      'Integrated with existing SAP systems',
+    ],
+    image: '/assets/landing/abstract_07.jpg',
+  },
+  {
+    client: 'Healthcare Network',
+    industry: 'Healthcare',
+    description: 'Patient engagement platform with HIPAA-compliant messaging and appointment scheduling.',
+    results: [
+      '60% increase in patient engagement',
+      'HIPAA compliance achieved',
+      'Reduced no-show rates by 35%',
+    ],
+    image: '/assets/landing/abstract_08.jpg',
+  },
+  {
+    client: 'Financial Services Firm',
+    industry: 'Fintech',
+    description: 'Real-time trading dashboard with advanced analytics and regulatory reporting.',
+    results: [
+      'Sub-100ms data refresh rates',
+      'SOC 2 Type II certified',
+      'Automated compliance reporting',
+    ],
+    image: '/assets/landing/abstract_07.jpg',
+  },
+]
+
 export const AnalyticsPage = () => {
   return (
     <div className="flex flex-col">
       <Section className="flex flex-col gap-y-32 pt-0 md:pt-0">
         <Hero
-          title="Analytics & Insights"
-          description="Track revenue, understand customer behavior & identify growth opportunities"
+          title="Case Studies"
+          description="See how we help organizations build mission-critical digital products that deliver real results."
         >
-          <GetStartedButton size="lg" text="Get Started" />
+          <GetStartedButton size="lg" text="Start a Conversation" />
+          <Link href="/contact">
+            <Button variant="secondary" className="rounded-full" size="lg">
+              Work With Us
+              <ArrowOutwardOutlined className="ml-2" />
+            </Button>
+          </Link>
         </Hero>
 
-        <motion.div
-          className="dark:bg-polar-900 flex w-full flex-col overflow-hidden rounded-2xl bg-white md:flex-row-reverse md:items-stretch"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
-        >
-          <div className="flex flex-1 grow flex-col gap-y-10 p-8 md:p-16">
-            <div className="flex flex-col gap-y-4">
-              <div className="flex items-center gap-x-3">
-                <h2 className="text-2xl leading-normal! md:text-3xl">
-                  Revenue metrics that matter
-                </h2>
-              </div>
-              <p className="dark:text-polar-500 text-lg text-gray-500">
-                Track the metrics that drive your business forward. From MRR and
-                ARR to churn and lifetime value, get instant visibility into
-                your revenue performance.
-              </p>
-            </div>
-            <motion.ul
-              className="dark:divide-polar-700 dark:border-polar-700 flex flex-col divide-y divide-gray-200 border-y border-gray-200"
-              variants={containerVariants}
-            >
-              {[
-                'Monthly Recurring Revenue (MRR) & growth trends',
-                'Customer lifetime value (LTV) & acquisition costs',
-                'Churn rate & retention analytics',
-                'Revenue cohort analysis',
-              ].map((item, i) => (
-                <motion.li
-                  key={i}
-                  className="flex items-start gap-x-3 py-2"
-                  variants={itemVariants}
-                >
-                  <CheckOutlined
-                    className="mt-0.5 text-emerald-500"
-                    fontSize="small"
-                  />
-                  <span>{item}</span>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </div>
-          <div className="dark:bg-polar-800 relative flex flex-1 items-center justify-center p-8 md:p-16">
-            <motion.div
-              className="dark:bg-polar-900 dark:border-polar-700 z-10 flex w-full max-w-xs flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm"
-              variants={itemVariants}
-            >
-              <div className="flex flex-row items-center justify-between gap-x-2">
-                <span className="text-sm font-medium text-black dark:text-white">
-                  Monthly Recurring Revenue
-                </span>
-                <TrendingUpOutlined
-                  className="text-emerald-500"
-                  fontSize="small"
-                />
-              </div>
-              <div className="flex flex-col gap-y-1">
-                <span className="text-3xl text-black dark:text-white">
-                  $48,392
-                </span>
-                <span className="dark:text-polar-500 text-sm text-gray-500">
-                  <span className="text-emerald-500">+12.5%</span> from last
-                  month
-                </span>
-              </div>
-              <div className="dark:border-polar-700 flex items-center justify-between border-t border-gray-200 pt-4">
-                <div className="flex flex-col">
-                  <span className="dark:text-polar-500 text-xs text-gray-500">
-                    New Customers
+        {caseStudies.map((study, index) => (
+          <motion.div
+            key={study.client}
+            className="dark:bg-polar-900 flex w-full flex-col overflow-hidden rounded-2xl bg-white md:flex-row-reverse md:items-stretch"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={containerVariants}
+            style={{ flexDirection: index % 2 === 0 ? undefined : 'row' }}
+          >
+            <div className="flex flex-1 grow flex-col gap-y-10 p-8 md:p-16">
+              <div className="flex flex-col gap-y-4">
+                <div className="flex flex-col gap-y-2">
+                  <span className="dark:text-polar-500 text-sm font-medium text-gray-500">
+                    {study.industry}
                   </span>
-                  <span className="font-medium text-black dark:text-white">
-                    127
-                  </span>
+                  <h2 className="text-2xl leading-normal! md:text-3xl">
+                    {study.client}
+                  </h2>
                 </div>
-                <div className="flex flex-col">
-                  <span className="dark:text-polar-500 text-xs text-gray-500">
-                    Churn Rate
-                  </span>
-                  <span className="font-medium text-black dark:text-white">
-                    2.3%
-                  </span>
-                </div>
+                <p className="dark:text-polar-500 text-lg text-gray-500">
+                  {study.description}
+                </p>
               </div>
-            </motion.div>
-            <Image
-              src="/assets/landing/abstract_08.jpg"
-              alt="Analytics"
-              className="absolute inset-0 h-full w-full object-cover"
-              width={500}
-              height={500}
-            />
-          </div>
-        </motion.div>
-
-        <Hero
-          title="Customer Insights"
-          description="Understand your customers with detailed segmentation, behavior tracking & usage analytics"
-        >
-          <div className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
-            {[
-              {
-                icon: <TrendingUpOutlined fontSize="large" />,
-                title: 'Detailed Metrics',
-                description:
-                  'Track revenue, understand customer behavior & identify growth opportunities',
-              },
-              {
-                icon: <SpaceDashboardOutlined fontSize="large" />,
-                title: 'Dashboard built for SaaS',
-                description:
-                  'Get a 360° view of your business with the Polar Dashboard',
-              },
-              {
-                icon: <AssessmentOutlined fontSize="large" />,
-                title: 'Churn Analysis',
-                description:
-                  'Analyze customer behavior like cancellation behavior & churn rate',
-              },
-            ].map((feature, i) => (
-              <div
-                key={i}
-                className="dark:bg-polar-900 flex flex-col items-center gap-y-8 rounded-xl bg-white px-6 py-12 text-center"
+              <motion.ul
+                className="dark:divide-polar-700 dark:border-polar-700 flex flex-col divide-y divide-gray-200 border-y border-gray-200"
+                variants={containerVariants}
               >
-                <div className="flex flex-row gap-x-2">{feature.icon}</div>
-                <div className="flex flex-col gap-y-4">
-                  <h3 className="text-2xl">{feature.title}</h3>
-                  <p className="dark:text-polar-400 text-balance text-gray-600">
-                    {feature.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Hero>
+                {study.results.map((result, i) => (
+                  <motion.li
+                    key={i}
+                    className="flex items-start gap-x-3 py-2"
+                    variants={itemVariants}
+                  >
+                    <CheckOutlined
+                      className="mt-0.5 text-emerald-500"
+                      fontSize="small"
+                    />
+                    <span>{result}</span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </div>
+            <div className="dark:bg-polar-800 relative flex flex-1 items-center justify-center p-8 md:p-16">
+              <Image
+                src={study.image}
+                alt={study.client}
+                className="absolute inset-0 h-full w-full object-cover"
+                width={500}
+                height={500}
+              />
+            </div>
+          </motion.div>
+        ))}
       </Section>
 
       <Section className="flex flex-col gap-y-24">
@@ -183,17 +143,17 @@ export const AnalyticsPage = () => {
           variants={containerVariants}
         >
           <motion.h2 className="text-2xl md:text-3xl" variants={itemVariants}>
-            Ready to unlock powerful insights?
+            Ready to be our next success story?
           </motion.h2>
           <motion.p
             className="dark:text-polar-500 text-lg text-gray-500 md:w-[480px]"
             variants={itemVariants}
           >
-            Join companies using Polar analytics to drive growth and make
-            data-driven decisions.
+            Let&apos;s discuss how we can help you achieve similar results for
+            your organization.
           </motion.p>
           <motion.div variants={itemVariants}>
-            <GetStartedButton size="lg" text="Get Started" />
+            <GetStartedButton size="lg" text="Start a Conversation" />
           </motion.div>
         </motion.div>
       </Section>

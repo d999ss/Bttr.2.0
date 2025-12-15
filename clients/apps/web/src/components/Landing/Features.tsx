@@ -1,13 +1,14 @@
 'use client'
 
-import AllInclusiveOutlined from '@mui/icons-material/AllInclusiveOutlined'
-import DiamondOutlined from '@mui/icons-material/DiamondOutlined'
-import DonutLargeOutlined from '@mui/icons-material/DonutLargeOutlined'
-import HiveOutlined from '@mui/icons-material/HiveOutlined'
-import LinkOutlined from '@mui/icons-material/LinkOutlined'
-import TrendingUpOutlined from '@mui/icons-material/TrendingUpOutlined'
+import BrushOutlined from '@mui/icons-material/BrushOutlined'
+import BuildOutlined from '@mui/icons-material/BuildOutlined'
+import CodeOutlined from '@mui/icons-material/CodeOutlined'
+import DesignServicesOutlined from '@mui/icons-material/DesignServicesOutlined'
+import HandshakeOutlined from '@mui/icons-material/HandshakeOutlined'
+import InsightsOutlined from '@mui/icons-material/InsightsOutlined'
+import SecurityOutlined from '@mui/icons-material/SecurityOutlined'
+import SpeedOutlined from '@mui/icons-material/SpeedOutlined'
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import { twMerge } from 'tailwind-merge'
@@ -60,31 +61,6 @@ const FeatureCard = ({
   )
 }
 
-const CustomerCard = () => {
-  return (
-    <div className="dark:bg-polar-800 dark:border-polar-700 flex items-center gap-x-4 rounded-lg border border-gray-100 bg-gray-50 p-4">
-      <div className="h-12 w-12 overflow-hidden rounded-full">
-        <Image
-          src="/assets/landing/testamonials/emil.jpg"
-          alt="Customer avatar"
-          className="h-full w-full object-cover"
-          width={48}
-          height={48}
-        />
-      </div>
-      <div className="flex flex-col">
-        <span className="font-medium text-black dark:text-white">John Doe</span>
-
-        <span className="dark:text-polar-500 flex flex-row gap-x-2 text-sm text-gray-500">
-          <span>Premium Plan</span>
-          <span>•</span>
-          <span>Monthly</span>
-        </span>
-      </div>
-    </div>
-  )
-}
-
 type FeaturesProps = {
   className?: string
 }
@@ -92,42 +68,28 @@ type FeaturesProps = {
 const Features = ({ className }: FeaturesProps) => {
   const features = [
     {
-      title: 'Payments, Usage & Billing',
+      title: 'Design and Strategy',
       description:
-        'Create digital products and SaaS billing with flexible pricing models and seamless payment processing.',
-      linkHref: 'https://polar.sh/docs/features/products',
+        'Product strategy, experience architecture, and design systems grounded in business reality.',
+      linkHref: '/features/products',
       children: (
         <div className="grid grid-cols-2 gap-2">
           {[
             {
-              icon: <HiveOutlined className="h-4 w-4" fontSize="inherit" />,
-              text: 'Subscriptions',
+              icon: <InsightsOutlined className="h-4 w-4" fontSize="inherit" />,
+              text: 'User Research',
             },
             {
-              icon: (
-                <DonutLargeOutlined className="h-4 w-4" fontSize="inherit" />
-              ),
-              text: 'Usage Billing',
+              icon: <DesignServicesOutlined className="h-4 w-4" fontSize="inherit" />,
+              text: 'UX Design',
             },
             {
-              icon: <DiamondOutlined className="h-4 w-4" fontSize="inherit" />,
-              text: 'Benefits',
+              icon: <BrushOutlined className="h-4 w-4" fontSize="inherit" />,
+              text: 'Design Systems',
             },
             {
-              icon: (
-                <AllInclusiveOutlined className="h-4 w-4" fontSize="inherit" />
-              ),
-              text: 'Customer Portal',
-            },
-            {
-              icon: <LinkOutlined className="h-4 w-4" fontSize="inherit" />,
-              text: 'Checkout Links',
-            },
-            {
-              icon: (
-                <TrendingUpOutlined className="h-4 w-4" fontSize="inherit" />
-              ),
-              text: 'Metrics',
+              icon: <HandshakeOutlined className="h-4 w-4" fontSize="inherit" />,
+              text: 'Strategy',
             },
           ].map((item, i) => (
             <div
@@ -145,51 +107,70 @@ const Features = ({ className }: FeaturesProps) => {
     },
 
     {
-      title: 'Customer Management',
+      title: 'Engineering',
       description:
-        'Streamlined customer lifecycle management with detailed profiles and analytics.',
-      linkHref: '/features/customers',
+        'Production grade platforms engineered for scale, security, and compliance.',
+      linkHref: '/features/benefits',
       children: (
-        <div className="relative h-[120px] md:h-[200px]">
-          <div className="absolute right-0 bottom-8 left-0 scale-90 transition-transform hover:-translate-y-1">
-            <CustomerCard />
-          </div>
-          <div className="absolute right-0 bottom-4 left-0 scale-95 transition-transform hover:-translate-y-1">
-            <CustomerCard />
-          </div>
-          <div className="absolute right-0 bottom-0 left-0 transition-transform hover:-translate-y-1">
-            <CustomerCard />
-          </div>
+        <div className="grid grid-cols-2 gap-2">
+          {[
+            {
+              icon: <CodeOutlined className="h-4 w-4" fontSize="inherit" />,
+              text: 'Web & Mobile',
+            },
+            {
+              icon: <SpeedOutlined className="h-4 w-4" fontSize="inherit" />,
+              text: 'Performance',
+            },
+            {
+              icon: <SecurityOutlined className="h-4 w-4" fontSize="inherit" />,
+              text: 'Security',
+            },
+            {
+              icon: <BuildOutlined className="h-4 w-4" fontSize="inherit" />,
+              text: 'Infrastructure',
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="dark:bg-polar-800 dark:border-polar-700 flex items-center gap-x-3 rounded-lg border border-transparent bg-gray-50 px-3 py-2"
+            >
+              {item.icon}
+              <span className="dark:text-polar-50 text-xs text-gray-950">
+                {item.text}
+              </span>
+            </div>
+          ))}
         </div>
       ),
     },
     {
-      title: 'Global Merchant of Record',
+      title: 'Lifecycle Ownership',
       description:
-        'Focus on your passion while we handle all headaches & tax compliance.',
+        'Long term system stewardship beyond launch.',
       linkHref: '/resources/merchant-of-record',
       children: (
         <div className="dark:bg-polar-800 dark:border-polar-700 flex flex-col gap-y-2 rounded-lg border border-transparent bg-gray-50 p-4">
           <div className="flex items-center justify-between">
             <span className="text-sm text-black dark:text-white">
-              Tax Report 2025
+              System Status
             </span>
-            <span className="text-sm text-emerald-500">Submitted</span>
+            <span className="text-sm text-emerald-500">Operational</span>
           </div>
           <div className="dark:border-polar-700 flex items-center justify-between border-t border-gray-200 pt-2">
             <span className="dark:text-polar-500 text-sm text-gray-500">
-              VAT (EU)
+              Uptime
             </span>
             <span className="dark:text-polar-500 text-sm text-gray-500">
-              €2,450.00
+              99.99%
             </span>
           </div>
           <div className="flex items-center justify-between">
             <span className="dark:text-polar-500 text-sm text-gray-500">
-              Sales Tax (US)
+              Response Time
             </span>
             <span className="dark:text-polar-500 text-sm text-gray-500">
-              $3,120.00
+              42ms avg
             </span>
           </div>
         </div>

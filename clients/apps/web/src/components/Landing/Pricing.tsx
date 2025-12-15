@@ -38,13 +38,13 @@ export const Pricing = () => {
             className="text-2xl leading-normal! md:text-4xl"
             variants={itemVariants}
           >
-            Competitive Pricing
+            Engagement Models
           </motion.h2>
           <motion.p
             className="text-lg leading-relaxed text-pretty"
             variants={itemVariants}
           >
-            Polar is proud to be the cheapest Merchant of Record on the market.
+            We structure engagements around accountability, outcomes, and long term value.
           </motion.p>
           <ul className="flex flex-col gap-y-1">
             <motion.li
@@ -53,7 +53,7 @@ export const Pricing = () => {
             >
               <Check className="text-emerald-500" fontSize="small" />
               <p className="leading-relaxed text-pretty">
-                4% + 40¢ per transaction
+                Product and Platform Builds
               </p>
             </motion.li>
             <motion.li
@@ -61,7 +61,7 @@ export const Pricing = () => {
               variants={itemVariants}
             >
               <Check className="text-emerald-500" fontSize="small" />
-              <p className="leading-relaxed text-pretty">No hidden fees</p>
+              <p className="leading-relaxed text-pretty">Strategic Design and Engineering Retainers</p>
             </motion.li>
             <motion.li
               className="flex flex-row items-center gap-x-2"
@@ -69,16 +69,7 @@ export const Pricing = () => {
             >
               <Check className="text-emerald-500" fontSize="small" />
               <p className="leading-relaxed text-pretty">
-                Global Merchant of Record
-              </p>
-            </motion.li>
-            <motion.li
-              className="flex flex-row items-center gap-x-2"
-              variants={itemVariants}
-            >
-              <Check className="text-emerald-500" fontSize="small" />
-              <p className="leading-relaxed text-pretty">
-                Negotiated Volume Discounts
+                Long Term Platform Ownership
               </p>
             </motion.li>
           </ul>
@@ -86,14 +77,14 @@ export const Pricing = () => {
             className="flex flex-row gap-x-4 text-sm text-gray-400"
             variants={itemVariants}
           >
-            <Link href="/resources/pricing" target="_blank">
+            <Link href="/contact">
               <Button className="dark:hover:bg-polar-50 rounded-full border-none bg-black hover:bg-neutral-900 dark:bg-white dark:text-black">
-                Pricing Guide
+                Start a Conversation
               </Button>
             </Link>
-            <Link href="/resources/comparison/stripe" target="_blank">
+            <Link href="/resources/why">
               <Button variant="secondary" className="rounded-full">
-                Polar vs. Stripe
+                Why Bttr
                 <ArrowOutwardOutlined fontSize="inherit" className="ml-2" />
               </Button>
             </Link>
@@ -118,37 +109,15 @@ export const Pricing = () => {
                   Feature
                 </th>
                 <th className="dark:border-polar-700 border-r border-gray-200 p-4 text-center font-medium">
-                  Polar
+                  Bttr
                 </th>
-                <th className="p-4 text-center font-medium">Stripe</th>
+                <th className="p-4 text-center font-medium">Agencies</th>
               </tr>
             </thead>
             <tbody className="dark:divide-polar-700 divide-y divide-gray-200">
               <tr>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4">
-                  Payment Processing
-                </td>
-                <td className="dark:border-polar-700 border-r border-gray-200 p-4 text-center">
-                  <CheckOutlined className="text-green-600" fontSize="small" />
-                </td>
-                <td className="p-4 text-center">
-                  <CheckOutlined className="text-green-600" fontSize="small" />
-                </td>
-              </tr>
-              <tr>
-                <td className="dark:border-polar-700 border-r border-gray-200 p-4">
-                  Subscription Management
-                </td>
-                <td className="dark:border-polar-700 border-r border-gray-200 p-4 text-center">
-                  <CheckOutlined className="text-green-600" fontSize="small" />
-                </td>
-                <td className="p-4 text-center">
-                  <CheckOutlined className="text-green-600" fontSize="small" />
-                </td>
-              </tr>
-              <tr>
-                <td className="dark:border-polar-700 border-r border-gray-200 p-4">
-                  Merchant of Record
+                  Long Term Ownership
                 </td>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4 text-center">
                   <CheckOutlined className="text-green-600" fontSize="small" />
@@ -159,7 +128,7 @@ export const Pricing = () => {
               </tr>
               <tr>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4">
-                  Global Tax Compliance
+                  Engineering Depth
                 </td>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4 text-center">
                   <CheckOutlined className="text-green-600" fontSize="small" />
@@ -170,7 +139,7 @@ export const Pricing = () => {
               </tr>
               <tr>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4">
-                  Framework Adapters
+                  Accountability
                 </td>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4 text-center">
                   <CheckOutlined className="text-green-600" fontSize="small" />
@@ -181,7 +150,7 @@ export const Pricing = () => {
               </tr>
               <tr>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4">
-                  Payments in 6 lines of code
+                  Senior Execution
                 </td>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4 text-center">
                   <CheckOutlined className="text-green-600" fontSize="small" />
@@ -192,7 +161,18 @@ export const Pricing = () => {
               </tr>
               <tr>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4">
-                  Flexible Usage Billing
+                  Regulatory Compliance
+                </td>
+                <td className="dark:border-polar-700 border-r border-gray-200 p-4 text-center">
+                  <CheckOutlined className="text-green-600" fontSize="small" />
+                </td>
+                <td className="p-4 text-center">
+                  <CloseOutlined className="text-red-600" fontSize="small" />
+                </td>
+              </tr>
+              <tr>
+                <td className="dark:border-polar-700 border-r border-gray-200 p-4">
+                  Systems Delivery
                 </td>
                 <td className="dark:border-polar-700 border-r border-gray-200 p-4 text-center">
                   <CheckOutlined className="text-green-600" fontSize="small" />

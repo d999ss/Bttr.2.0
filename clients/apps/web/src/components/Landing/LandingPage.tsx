@@ -5,9 +5,7 @@ import { MerchantOfRecord } from '@/components/Landing/MOR'
 import { Testimonials } from '@/components/Landing/Testimonials'
 import useIsMobile from '@/utils/mobile'
 import { Stream } from '@cloudflare/stream-react'
-import Avatar from '@polar-sh/ui/components/atoms/Avatar'
 import Button from '@polar-sh/ui/components/atoms/Button'
-import Image from 'next/image'
 import Link from 'next/link'
 import GetStartedButton from '../Auth/GetStartedButton'
 import { Adapters } from './Adapters'
@@ -33,10 +31,10 @@ export const PageContent = () => {
     <>
       <Section className="flex flex-col gap-y-32 py-0 md:py-0">
         <Hero
-          title="Monetize your software"
-          description="Turn your software into a business with 6 lines of code"
+          title="Designed to Adapt. Engineered to Win."
+          description="We design, build, and operate mission critical digital products for organizations where failure is not an option."
         >
-          <GetStartedButton size="lg" text="Get Started" />
+          <GetStartedButton size="lg" text="Start a Conversation" />
           <Link
             href="/resources/why"
             prefetch
@@ -47,7 +45,7 @@ export const PageContent = () => {
               size="lg"
               className="dark:bg-polar-800 rounded-full border-none bg-white"
             >
-              Why Polar
+              Why Bttr
             </Button>
           </Link>
         </Hero>
@@ -66,36 +64,16 @@ export const PageContent = () => {
         <Events />
         <Adapters />
         <Usage />
-        <Link
-          href="https://x.com/rauchg/status/1909810055622672851"
-          className="flex flex-col items-center gap-y-12 text-center transition-opacity hover:opacity-80"
-          target="_blank"
+        <div
+          className="flex flex-col items-center gap-y-12 text-center"
         >
           <div className="flex flex-col items-center gap-y-2">
-            <h2 className="text-6xl">”</h2>
+            <h2 className="text-6xl">"</h2>
             <h2 className="text-2xl leading-relaxed! md:text-4xl">
-              The speed at which Polar is executing on the financial
-              infrastructure primitives the new world needs is very impressive
+              Senior leaders at GE and GE Aerospace trust Bttr to design and engineer systems that operate under real world constraints.
             </h2>
           </div>
-          <div className="flex flex-col items-center gap-y-4">
-            <Avatar
-              name="Guillermo Rauch"
-              avatar_url="/assets/landing/testamonials/rauch.jpg"
-              className="h-16 w-16"
-              width={64}
-              height={64}
-              loading="lazy"
-              CustomImageComponent={Image}
-            />
-            <div className="flex flex-col">
-              <span className="">Guillermo Rauch</span>
-              <span className="dark:text-polar-500 text-gray-500">
-                CEO & Founder of Vercel
-              </span>
-            </div>
-          </div>
-        </Link>
+        </div>
       </Section>
       <Section className="flex flex-col gap-y-24">
         <Checkout />

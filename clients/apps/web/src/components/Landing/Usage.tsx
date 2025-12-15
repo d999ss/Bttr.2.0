@@ -20,92 +20,76 @@ import {
 
 const strategies = [
   {
-    name: 'LLM',
-    description: "Capture your Customer's LLM Usage & bill them for it",
+    name: 'AI Enabled',
+    description: "We design systems that integrate AI responsibly within regulated and high risk environments.",
     bullets: [
-      'Automatic Token Consumption Ingestion',
-      'Prompt & Completion Tokens',
-      'Vercel AI SDK Support',
+      'Responsible AI integration',
+      'Regulatory compliance',
+      'Risk-aware architecture',
     ],
-    code: `import { Ingestion } from "@polar-sh/ingestion";
-import { LLMStrategy } from "@polar-sh/ingestion/strategies/LLM";
-import { generateText } from "ai";
-import { openai } from "@ai-sdk/openai";
+    code: `// AI-enabled platform architecture
+// Designed for regulated environments
 
-const llmIngestion = Ingestion({ accessToken: 'xxx' })
-  .strategy(new LLMStrategy(openai("gpt-4o")))
-  .ingest("openai-usage");
+interface AISystem {
+  compliance: "regulatory-ready";
+  risk: "managed";
+  integration: "responsible";
+}
 
-export async function POST(req: Request) {
-  const { prompt }: { prompt: string } = await req.json();
-
-  const model = llmIngestion.client({
-    externalCustomerId: "<USER_ID_FROM_YOUR_DATABASE>",
-  });
-
-  const { text } = await generateText({
-    model,
-    system: "You are a helpful assistant.",
-    prompt,
-  });
-
-  return Response.json({ text });
-}`,
-    link: 'https://polar.sh/docs/features/usage-based-billing/ingestion-strategies/llm-strategy',
+export const aiPlatform: AISystem = {
+  compliance: "regulatory-ready",
+  risk: "managed",
+  integration: "responsible"
+};`,
+    link: '/resources/why',
   },
   {
-    name: 'Delta Time',
+    name: 'Performance',
     description:
-      'Bill your customers for the time it takes to execute code on your infrastructure',
+      'Architected for latency, throughput, and reliability at scale.',
     bullets: [
-      'Precise measurements of execution time',
-      'Bring your own time-resolver',
+      'Low-latency architecture',
+      'High-throughput systems',
+      'Reliability at scale',
     ],
-    code: `import { Ingestion } from "@polar-sh/ingestion";
-import { DeltaTimeStrategy } from "@polar-sh/ingestion/strategies/DeltaTime";
+    code: `// Performance-sensitive systems
+// Built for demanding workloads
 
-const nowResolver = () => performance.now();
+const performanceMetrics = {
+  latency: "< 100ms p99",
+  throughput: "10k+ rps",
+  uptime: "99.99%",
+  scalability: "horizontal"
+};
 
-const deltaTimeIngestion = Ingestion({ accessToken: 'xxx' })
-  .strategy(new DeltaTimeStrategy(nowResolver))
-  .ingest("execution-time");
-
-export async function GET(request: Request) {
-  const start = deltaTimeIngestion.client({
-    externalCustomerId: "<USER_ID_FROM_YOUR_DATABASE>",
-  });
-
-  const stop = start();
-
-  await sleep(1000);
-
-  const delta = stop();
-
-  return Response.json({ delta });
-}`,
-    link: 'https://polar.sh/docs/features/usage-based-billing/ingestion-strategies/delta-time-strategy',
+export default performanceMetrics;`,
+    link: '/resources/why',
   },
   {
-    name: 'Custom Ingestion',
+    name: 'Custom',
     description:
-      'Manually ingest data from your application to bill your customers',
+      'Every system is designed around the realities of the business, not templates.',
     bullets: [
-      'Manually ingest usage data',
-      'Use any custom metadata',
-      'Support for batch ingestion',
+      'Business-driven architecture',
+      'No template solutions',
+      'Tailored to your constraints',
     ],
-    code: `import { Ingestion } from "@polar-sh/ingestion";
+    code: `// Custom system architecture
+// Designed for your reality
 
-await Ingestion({ accessToken: 'xxx' }).ingest([
-  {
-    name: "<value>",
-    externalCustomerId: "<USER_ID_FROM_YOUR_DATABASE>",
-    metadata: {
-      myProp: "value",
-    },
-  },
-]);`,
-    link: 'https://github.com/polarsource/polar-ingestion',
+interface CustomSystem {
+  requirements: BusinessRequirements;
+  constraints: OperationalConstraints;
+  architecture: TailoredSolution;
+}
+
+export function designSystem(
+  business: BusinessRequirements
+): CustomSystem {
+  // Every solution is unique
+  return buildForReality(business);
+}`,
+    link: '/resources/why',
   },
 ]
 
@@ -136,10 +120,10 @@ export const Usage = () => {
         <div className="flex w-full flex-col gap-y-16 md:h-full md:min-h-96">
           <div className="flex flex-col items-center gap-y-8">
             <span className="dark:text-polar-500 text-lg text-gray-400">
-              Ingestion Based Billing
+              Adaptive Systems
             </span>
             <h1 className="w-fit max-w-3xl text-center text-3xl text-pretty md:text-5xl md:leading-normal">
-              Usage Based Billing on Autopilot with Ingestion Strategies
+              Designed for change, not replacement
             </h1>
             <TabsList>
               {strategies.map((strategy) => (
@@ -151,12 +135,9 @@ export const Usage = () => {
                   {strategy.name}
                 </TabsTrigger>
               ))}
-              <Link
-                href="https://polar.sh/docs/features/usage-based-billing/ingestion-strategies/ingestion-strategy"
-                target="_blank"
-              >
+              <Link href="/resources/why">
                 <Button className="rounded-full" variant="ghost">
-                  <span>All Ingestion Strategies</span>
+                  <span>Our Approach</span>
                   <ArrowOutwardOutlined className="ml-2" />
                 </Button>
               </Link>
@@ -177,7 +158,7 @@ export const Usage = () => {
                       className="text-2xl leading-normal! md:text-4xl"
                       variants={itemVariants}
                     >
-                      {strategy.name} Strategy
+                      {strategy.name} Platforms
                     </motion.h2>
                     <motion.p
                       className="text-lg leading-relaxed text-pretty"
@@ -206,7 +187,7 @@ export const Usage = () => {
                       className="text-sm text-gray-400"
                       variants={itemVariants}
                     >
-                      <Link href={strategy.link} target="_blank">
+                      <Link href={strategy.link}>
                         <Button variant="secondary" className="rounded-full">
                           Learn More
                           <ArrowOutwardOutlined

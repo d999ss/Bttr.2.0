@@ -1,11 +1,11 @@
 'use client'
 
 import GetStartedButton from '@/components/Auth/GetStartedButton'
-import AccountBalanceOutlined from '@mui/icons-material/AccountBalanceOutlined'
 import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
 import CheckOutlined from '@mui/icons-material/CheckOutlined'
-import PaymentsOutlined from '@mui/icons-material/PaymentsOutlined'
-import ReceiptLongOutlined from '@mui/icons-material/ReceiptLongOutlined'
+import GroupsOutlined from '@mui/icons-material/GroupsOutlined'
+import HandshakeOutlined from '@mui/icons-material/HandshakeOutlined'
+import SupportAgentOutlined from '@mui/icons-material/SupportAgentOutlined'
 import Button from '@polar-sh/ui/components/atoms/Button'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -33,13 +33,13 @@ export const FinancePage = () => {
     <div className="flex flex-col">
       <Section className="flex flex-col gap-y-32 pt-0 md:pt-0">
         <Hero
-          title="Finance & Payouts"
-          description="Transparent financial reporting with automatic tax handling & global payouts"
+          title="Engagement Models"
+          description="Flexible partnership structures designed to meet your organization where it is."
         >
-          <GetStartedButton size="lg" text="Get Started" />
-          <Link href="/docs/features/finance/payouts">
+          <GetStartedButton size="lg" text="Start a Conversation" />
+          <Link href="/contact">
             <Button variant="secondary" className="rounded-full" size="lg">
-              View Documentation
+              Get in Touch
               <ArrowOutwardOutlined className="ml-2" />
             </Button>
           </Link>
@@ -56,12 +56,13 @@ export const FinancePage = () => {
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-3">
                 <h2 className="text-2xl leading-normal! md:text-3xl">
-                  Transparent financial reporting
+                  Structured for long-term success
                 </h2>
               </div>
               <p className="dark:text-polar-500 text-lg text-gray-500">
-                Complete visibility into your revenue, payouts, and taxes. Track
-                every transaction with detailed financial reporting.
+                We offer multiple engagement models to match your project scope,
+                timeline, and organizational needs. Every engagement is designed
+                for clarity and accountability.
               </p>
             </div>
             <motion.ul
@@ -69,10 +70,10 @@ export const FinancePage = () => {
               variants={containerVariants}
             >
               {[
-                'Automatic tax calculation & remittance',
-                'Global payout support',
-                'Detailed revenue reporting',
-                'Transaction-level visibility',
+                'Fixed-scope project engagements',
+                'Retainer-based ongoing partnerships',
+                'Dedicated team augmentation',
+                'Advisory and strategic consulting',
               ].map((item, i) => (
                 <motion.li
                   key={i}
@@ -95,43 +96,37 @@ export const FinancePage = () => {
             >
               <div className="flex flex-row items-center justify-between gap-x-2">
                 <span className="text-sm font-medium text-black dark:text-white">
-                  Payout Summary
+                  Engagement Overview
                 </span>
-                <AccountBalanceOutlined
+                <HandshakeOutlined
                   className="text-emerald-500"
                   fontSize="small"
                 />
               </div>
-              <div className="flex flex-col gap-y-1">
-                <span className="text-3xl text-black dark:text-white">
-                  $12,450
-                </span>
-                <span className="dark:text-polar-500 text-sm text-gray-500">
-                  Available for payout
-                </span>
-              </div>
-              <div className="dark:border-polar-700 flex items-center justify-between border-t border-gray-200 pt-4">
-                <div className="flex flex-col">
-                  <span className="dark:text-polar-500 text-xs text-gray-500">
-                    Revenue
-                  </span>
-                  <span className="font-medium text-black dark:text-white">
-                    $15,000
-                  </span>
+              <div className="flex flex-col gap-y-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Project Scope</span>
+                  <span className="text-sm font-medium text-emerald-500">Defined</span>
                 </div>
-                <div className="flex flex-col items-end">
-                  <span className="dark:text-polar-500 text-xs text-gray-500">
-                    Fees & Tax
-                  </span>
-                  <span className="font-medium text-black dark:text-white">
-                    $602
-                  </span>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Timeline</span>
+                  <span className="text-sm font-medium text-emerald-500">On Track</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-sm">Team Aligned</span>
+                  <span className="text-sm font-medium text-emerald-500">Yes</span>
+                </div>
+              </div>
+              <div className="dark:border-polar-700 border-t border-gray-200 pt-4">
+                <div className="flex items-center gap-x-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <span className="text-sm text-emerald-500">Sprint in progress</span>
                 </div>
               </div>
             </motion.div>
             <Image
               src="/assets/landing/abstract_07.jpg"
-              alt="Finance"
+              alt="Engagement Models"
               className="absolute inset-0 h-full w-full object-cover"
               width={500}
               height={500}
@@ -140,28 +135,28 @@ export const FinancePage = () => {
         </motion.div>
 
         <Hero
-          title="Complete financial management"
-          description="Everything you need to manage your business finances"
+          title="Partnership options"
+          description="Choose the engagement model that fits your needs"
         >
           <div className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
-                icon: <PaymentsOutlined fontSize="large" />,
-                title: 'Global Payouts',
+                icon: <GroupsOutlined fontSize="large" />,
+                title: 'Project-Based',
                 description:
-                  'Receive payouts through your Stripe Connect account.',
+                  'Fixed-scope engagements with clear deliverables and timelines.',
               },
               {
-                icon: <ReceiptLongOutlined fontSize="large" />,
-                title: 'Automatic Invoicing',
+                icon: <SupportAgentOutlined fontSize="large" />,
+                title: 'Retainer',
                 description:
-                  'Generate compliant invoices automatically for every transaction.',
+                  'Ongoing partnership with dedicated resources and priority support.',
               },
               {
-                icon: <AccountBalanceOutlined fontSize="large" />,
-                title: 'Tax Compliance',
+                icon: <HandshakeOutlined fontSize="large" />,
+                title: 'Team Extension',
                 description:
-                  'We handle VAT, GST, and sales tax in all jurisdictions globally.',
+                  'Embedded engineers and designers working as part of your team.',
               },
             ].map((feature, i) => (
               <div
@@ -190,17 +185,17 @@ export const FinancePage = () => {
           variants={containerVariants}
         >
           <motion.h2 className="text-2xl md:text-3xl" variants={itemVariants}>
-            Ready to simplify your finances?
+            Ready to explore partnership options?
           </motion.h2>
           <motion.p
             className="dark:text-polar-500 text-lg text-gray-500 md:w-[480px]"
             variants={itemVariants}
           >
-            Join companies using Polar for transparent, compliant financial
-            management.
+            Let&apos;s discuss which engagement model is right for your
+            organization and project goals.
           </motion.p>
           <motion.div variants={itemVariants}>
-            <GetStartedButton size="lg" text="Get Started" />
+            <GetStartedButton size="lg" text="Start a Conversation" />
           </motion.div>
         </motion.div>
       </Section>

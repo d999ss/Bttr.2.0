@@ -44,11 +44,11 @@ export async function GET() {
 
 
 
-              Polar is made by all of our wonderful contributors.
+              Bttr is a digital product agency.
 
-                    https://github.com/polarsource/polar
+                    https://makebttr.com
 
-                Wanna work with us? https://polar.sh/company#open-roles
+                Wanna work with us? https://makebttr.com/careers
 
     `,
     {

@@ -47,8 +47,8 @@ export const Hero = ({
         <Image
           src="/assets/brand/app-icon.png"
           alt="App Icon"
-          width={160}
-          height={160}
+          width={320}
+          height={320}
         />
       </motion.div>
       <motion.h1

@@ -1,14 +1,14 @@
 'use client'
 
 import GetStartedButton from '@/components/Auth/GetStartedButton'
-import { DiscordIcon } from '@/components/Benefit/utils'
-import GitHubIcon from '@/components/Icons/GitHubIcon'
 import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
 import CheckOutlined from '@mui/icons-material/CheckOutlined'
-import CreditCardOutlined from '@mui/icons-material/CreditCardOutlined'
-import DiamondOutlined from '@mui/icons-material/DiamondOutlined'
-import FileDownloadOutlined from '@mui/icons-material/FileDownloadOutlined'
-import KeyOutlined from '@mui/icons-material/KeyOutlined'
+import CloudOutlined from '@mui/icons-material/CloudOutlined'
+import CodeOutlined from '@mui/icons-material/CodeOutlined'
+import IntegrationInstructionsOutlined from '@mui/icons-material/IntegrationInstructionsOutlined'
+import StorageOutlined from '@mui/icons-material/StorageOutlined'
+import SpeedOutlined from '@mui/icons-material/SpeedOutlined'
+import SecurityOutlined from '@mui/icons-material/SecurityOutlined'
 import Button from '@polar-sh/ui/components/atoms/Button'
 import { motion } from 'framer-motion'
 import Image from 'next/image'
@@ -36,13 +36,13 @@ export const BenefitsPage = () => {
     <div className="flex flex-col">
       <Section className="flex flex-col gap-y-32 pt-0 md:pt-0">
         <Hero
-          title="Product Benefits & Fulfillment"
-          description="Automate benefit delivery with license keys, downloads, repository access & custom integrations"
+          title="Engineering"
+          description="Full-stack systems built for performance, reliability, and longevity. We write code that lasts."
         >
-          <GetStartedButton size="lg" text="Get Started" />
-          <Link href="/docs/features/benefits/introduction">
+          <GetStartedButton size="lg" text="Start a Conversation" />
+          <Link href="/contact">
             <Button variant="secondary" className="rounded-full" size="lg">
-              View Documentation
+              View Our Work
               <ArrowOutwardOutlined className="ml-2" />
             </Button>
           </Link>
@@ -59,12 +59,13 @@ export const BenefitsPage = () => {
             <div className="flex flex-col gap-y-4">
               <div className="flex items-center gap-x-3">
                 <h2 className="text-2xl leading-normal! md:text-3xl">
-                  Automated benefit delivery
+                  Production-grade platforms
                 </h2>
               </div>
               <p className="dark:text-polar-500 text-lg text-gray-500">
-                Configure benefits that are automatically granted when customers
-                purchase your products. No manual work required.
+                We build systems that handle real-world scale. From high-traffic
+                web applications to complex distributed systems, our engineering
+                is built to perform under pressure.
               </p>
             </div>
             <motion.ul
@@ -72,11 +73,10 @@ export const BenefitsPage = () => {
               variants={containerVariants}
             >
               {[
-                'License keys for software access',
-                'Digital file downloads',
-                'GitHub repository access',
-                'Discord server roles',
-                'Custom benefits via webhooks',
+                'Modern web and mobile platforms',
+                'Cloud infrastructure and DevOps',
+                'API design and third-party integrations',
+                'Performance optimization and scaling',
               ].map((item, i) => (
                 <motion.li
                   key={i}
@@ -97,40 +97,39 @@ export const BenefitsPage = () => {
               className="dark:bg-polar-900 dark:border-polar-700 z-10 flex w-full max-w-xs flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow-sm"
               variants={itemVariants}
             >
-              <div className="flex flex-row items-center gap-x-2">
-                <KeyOutlined className="text-emerald-500" fontSize="small" />
+              <div className="flex flex-row items-center justify-between gap-x-2">
                 <span className="text-sm font-medium text-black dark:text-white">
-                  License Key
+                  System Health
                 </span>
+                <SpeedOutlined
+                  className="text-emerald-500"
+                  fontSize="small"
+                />
               </div>
               <div className="flex flex-col gap-y-2">
-                <span className="dark:bg-polar-800 dark:border-polar-700 rounded-lg border border-gray-200 bg-gray-100 p-3 font-mono text-xs">
-                  POLAR-ABC123-XYZ789-DEF456
-                </span>
-                <span className="dark:text-polar-500 text-xs text-gray-500">
-                  Granted on Jan 1, 2025
-                </span>
-              </div>
-              <div className="dark:border-polar-700 flex items-center justify-between border-t border-gray-200 pt-4">
-                <div className="flex flex-col">
-                  <span className="dark:text-polar-500 text-xs text-gray-500">
-                    Product
-                  </span>
-                  <span className="font-medium text-black dark:text-white">
-                    Pro License
-                  </span>
+                <div className="flex justify-between">
+                  <span className="dark:text-polar-500 text-sm text-gray-500">Uptime</span>
+                  <span className="text-sm font-medium text-emerald-500">99.99%</span>
                 </div>
-                <div className="flex flex-col items-end">
-                  <span className="dark:text-polar-500 text-xs text-gray-500">
-                    Status
-                  </span>
-                  <span className="font-medium text-emerald-500">Active</span>
+                <div className="flex justify-between">
+                  <span className="dark:text-polar-500 text-sm text-gray-500">Response Time</span>
+                  <span className="text-sm font-medium text-black dark:text-white">42ms</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="dark:text-polar-500 text-sm text-gray-500">Requests/sec</span>
+                  <span className="text-sm font-medium text-black dark:text-white">12.4k</span>
+                </div>
+              </div>
+              <div className="dark:border-polar-700 border-t border-gray-200 pt-4">
+                <div className="flex items-center gap-x-2">
+                  <div className="h-2 w-2 rounded-full bg-emerald-500" />
+                  <span className="text-sm text-emerald-500">All systems operational</span>
                 </div>
               </div>
             </motion.div>
             <Image
               src="/assets/landing/abstract_07.jpg"
-              alt="Benefits"
+              alt="Engineering"
               className="absolute inset-0 h-full w-full object-cover"
               width={500}
               height={500}
@@ -139,46 +138,46 @@ export const BenefitsPage = () => {
         </motion.div>
 
         <Hero
-          title="Flexible benefit types"
-          description="Support any type of product benefit your business needs"
+          title="Full-stack capabilities"
+          description="From frontend to infrastructure, we handle the complete technical stack"
         >
           <div className="grid flex-1 grid-cols-1 gap-8 md:grid-cols-3">
             {[
               {
-                icon: <GitHubIcon className="h-8 w-8" />,
-                title: 'GitHub Repository Access',
+                icon: <CodeOutlined fontSize="large" />,
+                title: 'Web & Mobile',
                 description:
-                  'Automatically invite subscribers to private GitHub repo(s).',
+                  'React, Next.js, React Native, and modern frameworks for fast, responsive applications.',
               },
               {
-                icon: <DiscordIcon size={32} />,
-                title: 'Discord Roles',
+                icon: <CloudOutlined fontSize="large" />,
+                title: 'Cloud Infrastructure',
                 description:
-                  'Automatically invite subscribers to your Discord server.',
+                  'AWS, GCP, Azure deployment with infrastructure as code and automated pipelines.',
               },
               {
-                icon: <KeyOutlined fontSize="large" />,
-                title: 'License Keys',
+                icon: <StorageOutlined fontSize="large" />,
+                title: 'Data & APIs',
                 description:
-                  'Generate and validate license keys for software access control.',
+                  'PostgreSQL, Redis, GraphQL, REST APIs designed for scale and reliability.',
               },
               {
-                icon: <FileDownloadOutlined fontSize="large" />,
-                title: 'File Downloads',
+                icon: <IntegrationInstructionsOutlined fontSize="large" />,
+                title: 'Integrations',
                 description:
-                  'Provide secure file downloads for digital products and assets.',
+                  'Connect with any third-party service, payment processor, or enterprise system.',
               },
               {
-                icon: <CreditCardOutlined fontSize="large" />,
-                title: 'Meter Credits',
+                icon: <SpeedOutlined fontSize="large" />,
+                title: 'Performance',
                 description:
-                  "Credit a customer's Usage Meter balance for usage.",
+                  'Optimization at every layer—from database queries to CDN caching strategies.',
               },
               {
-                icon: <DiamondOutlined fontSize="large" />,
-                title: 'Custom Benefits',
+                icon: <SecurityOutlined fontSize="large" />,
+                title: 'Security',
                 description:
-                  'Build custom integrations with webhooks and our API.',
+                  'Security-first development with encryption, authentication, and compliance built in.',
               },
             ].map((feature, i) => (
               <div
@@ -207,17 +206,17 @@ export const BenefitsPage = () => {
           variants={containerVariants}
         >
           <motion.h2 className="text-2xl md:text-3xl" variants={itemVariants}>
-            Ready to automate benefit delivery?
+            Ready to build something that scales?
           </motion.h2>
           <motion.p
             className="dark:text-polar-500 text-lg text-gray-500 md:w-[480px]"
             variants={itemVariants}
           >
-            Join companies using Polar to deliver seamless product benefits to
-            their customers.
+            Let&apos;s talk about your technical challenges and how we can solve
+            them together.
           </motion.p>
           <motion.div variants={itemVariants}>
-            <GetStartedButton size="lg" text="Get Started" />
+            <GetStartedButton size="lg" text="Start a Conversation" />
           </motion.div>
         </motion.div>
       </Section>

@@ -2,16 +2,16 @@ import { MORPage } from '@/components/Landing/resources/MORPage'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Merchant of Record',
-  description: 'A deep dive into Merchant of Records & what they mean for you',
+  title: 'Lifecycle Ownership',
+  description: 'Long-term partnership beyond project handoff',
   keywords:
-    'mor, merchant of record, lemon squeezy, paddle, taxes, compliance, monetization',
+    'lifecycle ownership, maintenance, long-term partnership, digital product agency, ongoing support',
   openGraph: {
-    siteName: 'Polar',
+    siteName: 'Bttr',
     type: 'website',
     images: [
       {
-        url: 'https://polar.sh/assets/brand/polar_og.jpg',
+        url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
       },
@@ -21,10 +21,10 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: 'https://polar.sh/assets/brand/polar_og.jpg',
+        url: '/assets/brand/bttr_og.jpg',
         width: 1200,
         height: 630,
-        alt: 'Polar',
+        alt: 'Bttr',
       },
     ],
   },

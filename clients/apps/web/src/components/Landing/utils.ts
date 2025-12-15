@@ -5,7 +5,7 @@ export const MOCKED_WEBSITE_SUBSCRIPTION: Partial<
 > = {
   name: 'Just an Example',
   description:
-    'Polar has no monthly fees. This tier is only an example of what you could offer your audience in minutes using Polar.',
+    'Bttr builds mission-critical digital products. This tier is only an example of what you could offer your audience.',
   prices: [
     {
       id: '123',
