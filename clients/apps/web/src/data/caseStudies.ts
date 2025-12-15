@@ -11,7 +11,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'ikon-pass',
     title: 'Ikon Pass',
     description: 'Redefining the ride with an ambitious digital transformation',
-    thumbnail: '/assets/work/uploads/2025/04/CS_Inset-full-width-2.png',
+    thumbnail: '/assets/work/uploads/2024/06/ikon-pass-thumb.jpg',
     featured: true,
   },
   {
