@@ -3,7 +3,7 @@
   "buildCommand": "cd ../.. && turbo run build --filter=web",
   "git": {
     "deploymentEnabled": {
-      "main": false
+      "main": true
     }
   },
   "rewrites": [
