@@ -272,6 +272,7 @@ const LandingPageDesktopNavigation = () => {
               trigger="Work"
               sections={workSections}
               isActive={pathname.startsWith('/work')}
+              href="/work"
             />
           </li>
           <li>

@@ -26,6 +26,7 @@ interface NavPopoverProps {
   sections: NavPopoverSection[]
   isActive?: boolean
   layout?: 'grid' | 'flex'
+  href?: string
 }
 
 export const NavPopover = ({
@@ -33,20 +34,37 @@ export const NavPopover = ({
   sections,
   isActive,
   layout = 'grid',
+  href,
 }: NavPopoverProps) => {
   const [isOpen, setIsOpen] = useState(false)
+
+  const triggerContent = (
+    <span
+      className={twMerge(
+        'dark:text-polar-500 -m-1 flex cursor-pointer items-center gap-x-2 p-1 text-gray-500 transition-colors hover:text-black focus:outline-none dark:hover:text-white',
+        (isOpen || isActive) && 'text-black dark:text-white',
+      )}
+    >
+      {trigger}
+    </span>
+  )
 
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger
-        className={twMerge(
-          'dark:text-polar-500 -m-1 flex cursor-pointer items-center gap-x-2 p-1 text-gray-500 transition-colors hover:text-black focus:outline-none dark:hover:text-white',
-          (isOpen || isActive) && 'text-black dark:text-white',
-        )}
+        asChild
         onMouseEnter={() => setIsOpen(true)}
         onMouseLeave={() => setIsOpen(false)}
       >
-        {trigger}
+        {href ? (
+          <Link href={href} className="focus:outline-none">
+            {triggerContent}
+          </Link>
+        ) : (
+          <button type="button" className="focus:outline-none">
+            {triggerContent}
+          </button>
+        )}
       </PopoverTrigger>
       <PopoverContent
         className={twMerge(
