@@ -92,9 +92,23 @@ export default async function CaseStudyPage({ params }: PageProps) {
   )
 }
 
+// Pages with dedicated static routes - exclude from dynamic generation
+const staticPages = [
+  'ikon-pass',
+  'ge-brilliant-you',
+  'juvederm',
+  'botox-cosmetic',
+  'ami',
+  'tarform',
+  'revaire',
+  'air-company',
+  'fleetpulse',
+  'ge-aerospace',
+]
+
 export async function generateStaticParams() {
   return caseStudies
-    .filter((study) => !['ge-brilliant-you', 'ikon-pass'].includes(study.slug))
+    .filter((study) => !staticPages.includes(study.slug))
     .map((study) => ({
       slug: study.slug,
     }))
