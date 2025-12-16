@@ -13,13 +13,30 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
 
-    const { error } = await supabase.auth.exchangeCodeForSession(code)
+    const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
-    if (!error) {
-      return NextResponse.redirect(`${origin}${next}`)
+    if (error) {
+      console.error('Auth callback error:', error.message, error)
+      return NextResponse.redirect(`${origin}/portal/login?error=${encodeURIComponent(error.message)}`)
+    }
+
+    if (data.session) {
+      // Set the auth cookie
+      const response = NextResponse.redirect(`${origin}${next}`)
+      response.cookies.set('sb-oiekbwdggfjihihdmzsa-auth-token', JSON.stringify([
+        data.session.access_token,
+        data.session.refresh_token
+      ]), {
+        path: '/',
+        httpOnly: true,
+        secure: true,
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 7 // 1 week
+      })
+      return response
     }
   }
 
   // Return to login page with error
-  return NextResponse.redirect(`${origin}/portal/login?error=auth_failed`)
+  return NextResponse.redirect(`${origin}/portal/login?error=no_code_received`)
 }

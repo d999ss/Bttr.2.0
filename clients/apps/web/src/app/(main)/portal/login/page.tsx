@@ -85,7 +85,7 @@ export default function PortalLoginPage() {
 
         {error && (
           <div className="rounded-xl bg-red-500/10 p-4 text-sm text-red-500">
-            Authentication failed. Please try again.
+            {decodeURIComponent(error)}
           </div>
         )}
 
