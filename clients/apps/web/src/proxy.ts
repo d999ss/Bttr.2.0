@@ -55,6 +55,18 @@ const getLoginResponse = (request: NextRequest): NextResponse => {
 }
 
 export async function proxy(request: NextRequest) {
+  // Handle OAuth code on homepage - redirect to client-side callback
+  const code = request.nextUrl.searchParams.get('code')
+  if (code && request.nextUrl.pathname === '/') {
+    const callbackUrl = new URL('/portal/callback', request.url)
+    callbackUrl.searchParams.set('code', code)
+    const next = request.nextUrl.searchParams.get('next')
+    if (next) {
+      callbackUrl.searchParams.set('next', next)
+    }
+    return NextResponse.redirect(callbackUrl)
+  }
+
   // Do not run middleware for forwarded routes
   // @pieterbeulque added this because the `config.matcher` behavior below
   // doesn't appear to be working consistently with Vercel rewrites
