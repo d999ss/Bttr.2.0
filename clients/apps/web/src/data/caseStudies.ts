@@ -36,6 +36,15 @@ export const caseStudies: CaseStudy[] = [
     tags: ['Web Design', 'Manufacturing', 'Enterprise', 'UX Strategy'],
   },
   {
+    slug: 'juvederm',
+    title: 'JUVÉDERM',
+    description: 'Enhancing engagement for a leading aesthetic brand',
+    thumbnail: '/assets/work/uploads/2025/04/juvederm-thumb.jpg',
+    featured: true,
+    resultHighlight: '40% engagement lift',
+    tags: ['Healthcare', 'Consumer', 'Web Design', 'Branding'],
+  },
+  {
     slug: 'summit',
     title: 'Summit',
     description: 'Creating an AI-generated concept car brand for a marketing automation prototype',
@@ -59,15 +68,6 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2025/04/botox-cosmetic-thumb.webp',
     featured: true,
     resultHighlight: '#1 aesthetic brand',
-    tags: ['Healthcare', 'Consumer', 'Web Design', 'Branding'],
-  },
-  {
-    slug: 'juvederm',
-    title: 'JUVÉDERM',
-    description: 'Enhancing engagement for a leading aesthetic brand',
-    thumbnail: '/assets/work/uploads/2025/04/juvederm-thumb.jpg',
-    featured: true,
-    resultHighlight: '40% engagement lift',
     tags: ['Healthcare', 'Consumer', 'Web Design', 'Branding'],
   },
   {
