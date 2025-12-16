@@ -3,40 +3,43 @@ import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'GE Aerospace - Bttr.',
-  description: 'Enterprise asset management for jet engine maintenance.',
+  description: 'Enterprise asset management for the future of flight.',
   openGraph: {
     title: 'GE Aerospace - Bttr.',
-    description: 'Enterprise asset management for jet engine maintenance.',
-    images: ['/assets/work/uploads/2023/09/GE-O-HS-1-1-1_00000.png'],
+    description: 'Enterprise asset management for the future of flight.',
+    images: ['/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg'],
   },
 }
 
 export default function GEAerospacePage() {
   return (
-    <main className="bg-white">
+    <main className="dark:bg-polar-950 bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#003366]">
+      <section className="relative min-h-screen w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/GE-O-HS-1-1-1_00000.png"
+            src="/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg"
             alt="GE Aerospace"
             fill
-            className="object-cover"
+            className="object-cover opacity-60"
             priority
             sizes="100vw"
           />
         </div>
         <div className="relative flex min-h-screen items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
-            <h1 className="max-w-4xl text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
-              Enterprise asset management for jet engine maintenance
+            <p className="mb-4 text-sm uppercase tracking-wider text-white/70">
+              GE Aerospace
+            </p>
+            <h1 className="max-w-5xl text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
+              Advancing flight for future generations
             </h1>
           </div>
         </div>
       </section>
 
       {/* Case Study Intro */}
-      <section className="w-full bg-[#003366] px-8 py-16 text-white md:px-16 lg:px-24">
+      <section className="dark:bg-polar-950 w-full bg-[#0a1628] px-8 py-16 text-white md:px-16 lg:px-24">
         <div className="mb-8">
           <p className="text-sm uppercase tracking-wider text-white/70">
             <a href="/work" className="hover:text-white">
@@ -63,7 +66,7 @@ export default function GEAerospacePage() {
 
             <div>
               <h3 className="mb-2 font-medium text-white/70">Year</h3>
-              <p className="text-white">2023</p>
+              <p className="text-white">2022–Present</p>
             </div>
 
             <div className="sm:col-span-2 lg:col-span-3">
@@ -73,28 +76,24 @@ export default function GEAerospacePage() {
                 <p>UX Design</p>
                 <p>UI Design</p>
                 <p>Design System</p>
+                <p>Engineering</p>
               </div>
             </div>
           </div>
 
           <div className="space-y-6">
             <p className="text-xl leading-relaxed text-white lg:text-2xl">
-              GE Aerospace needed an enterprise asset management platform to
-              revolutionize how airlines and maintenance organizations track,
-              maintain, and optimize their jet engine fleets across global
-              operations.
+              GE Aerospace powers commercial and military aircraft around the world. They needed enterprise platforms to manage billions of dollars in jet engine assets across global operations.
             </p>
             <p className="text-xl leading-relaxed text-white lg:text-2xl">
-              We partnered with GE to design a comprehensive platform that
-              provides real-time visibility, reduces maintenance planning time,
-              and integrates seamlessly with existing SAP systems.
+              We partnered with GE to design and build asset management systems that provide real-time visibility into engine health, maintenance schedules, and lifecycle optimization for fleets spanning six continents.
             </p>
           </div>
         </div>
       </section>
 
       {/* Full-width Image */}
-      <section className="w-full bg-white">
+      <section className="w-full bg-[#0a1628]">
         <div className="relative aspect-video w-full">
           <Image
             src="/assets/work/uploads/2023/08/GE_wayfinding.jpg"
@@ -107,99 +106,105 @@ export default function GEAerospacePage() {
       </section>
 
       {/* Section Header */}
-      <section className="w-full bg-white px-8 py-16 md:px-16 lg:px-24">
-        <p className="mb-4 text-sm uppercase tracking-wider text-gray-500">
-          GE Aerospace
+      <section className="dark:bg-polar-950 w-full bg-white px-8 py-16 md:px-16 lg:px-24">
+        <p className="dark:text-polar-500 mb-4 text-sm uppercase tracking-wider text-gray-500">
+          The Challenge
         </p>
-        <h2 className="max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
-          Real-time visibility across global operations
+        <h2 className="max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+          Managing $1B+ in mission-critical assets
         </h2>
       </section>
 
       {/* Single Column Text */}
-      <section className="w-full bg-white px-8 py-8 md:px-16 lg:px-24">
-        <p className="ml-auto max-w-2xl text-base leading-relaxed text-gray-600">
-          The platform provides maintenance teams with unprecedented visibility
-          into engine health, lifecycle status, and maintenance schedules across
-          their entire fleet. By consolidating data from multiple sources and
-          presenting it in an intuitive interface, we enabled faster
-          decision-making and more efficient resource allocation.
+      <section className="dark:bg-polar-950 w-full bg-white px-8 py-8 md:px-16 lg:px-24">
+        <p className="dark:text-polar-400 ml-auto max-w-2xl text-base leading-relaxed text-gray-600">
+          Airlines and maintenance organizations rely on GE Aerospace engines to power everything from regional jets to the world's largest widebody aircraft. Each engine represents millions of dollars in capital—and every hour of unplanned downtime costs operators significantly. The existing tools couldn't keep pace with the complexity of modern fleet management across GEnx, GE90, GE9X, and CFM engine families.
         </p>
       </section>
 
       {/* Results Section */}
-      <section className="w-full bg-gray-100 px-8 py-16 md:px-16 lg:px-24">
-        <p className="mb-8 text-sm uppercase tracking-wider text-gray-500">
+      <section className="dark:bg-polar-900 w-full bg-gray-100 px-8 py-16 md:px-16 lg:px-24">
+        <p className="dark:text-polar-500 mb-8 text-sm uppercase tracking-wider text-gray-500">
           Results
         </p>
         <div className="grid gap-8 md:grid-cols-3">
           <div className="text-center">
-            <p className="mb-2 text-5xl font-light text-gray-900">40%</p>
-            <p className="text-sm text-gray-600">
-              Reduced maintenance planning time
+            <p className="mb-2 text-5xl font-light text-gray-900 dark:text-white">$1B+</p>
+            <p className="dark:text-polar-400 text-sm text-gray-600">
+              Assets under management
             </p>
           </div>
           <div className="text-center">
-            <p className="mb-2 text-5xl font-light text-gray-900">Real-time</p>
-            <p className="text-sm text-gray-600">
-              Visibility across global operations
+            <p className="mb-2 text-5xl font-light text-gray-900 dark:text-white">40%</p>
+            <p className="dark:text-polar-400 text-sm text-gray-600">
+              Faster maintenance planning
             </p>
           </div>
           <div className="text-center">
-            <p className="mb-2 text-5xl font-light text-gray-900">SAP</p>
-            <p className="text-sm text-gray-600">
-              Integrated with existing systems
+            <p className="mb-2 text-5xl font-light text-gray-900 dark:text-white">6</p>
+            <p className="dark:text-polar-400 text-sm text-gray-600">
+              Continents served
             </p>
           </div>
         </div>
       </section>
 
       {/* Section Header - Design System */}
-      <section className="w-full bg-[#003366] px-8 py-16 md:px-16 lg:px-24">
+      <section className="w-full bg-[#0a1628] px-8 py-16 md:px-16 lg:px-24">
         <p className="mb-4 text-sm uppercase tracking-wider text-gray-400">
-          GE Aerospace
+          The Solution
         </p>
         <h2 className="max-w-4xl text-3xl leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
-          Enterprise-grade design system
+          Real-time visibility for global operations
         </h2>
       </section>
 
       {/* Single Column Text Dark */}
-      <section className="w-full bg-[#003366] px-8 py-8 md:px-16 lg:px-24">
+      <section className="w-full bg-[#0a1628] px-8 py-8 md:px-16 lg:px-24">
         <p className="ml-auto max-w-2xl text-base leading-relaxed text-gray-300">
-          We developed a comprehensive design system that ensures consistency
-          across all touchpoints while meeting the rigorous requirements of
-          enterprise aerospace applications. The system scales from desktop
-          workstations to mobile devices used on the shop floor.
+          We designed and built enterprise platforms that consolidate data from maintenance systems, flight operations, and engine telemetry into unified dashboards. Maintenance teams now have unprecedented visibility into engine health, lifecycle status, and service schedules—enabling faster decisions and more efficient resource allocation across global operations.
         </p>
       </section>
 
+      {/* Second Image */}
+      <section className="w-full bg-[#0a1628]">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/GE-O-HS-1-1-1_00000.png"
+            alt="GE Aerospace Dashboard"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
       {/* Credits */}
-      <section className="w-full border-t border-gray-200 px-8 py-16 md:px-16 lg:px-24">
+      <section className="dark:border-polar-800 dark:bg-polar-950 w-full border-t border-gray-200 bg-white px-8 py-16 md:px-16 lg:px-24">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div>
-            <h3 className="mb-3 text-sm font-medium text-gray-900">Client</h3>
-            <p className="text-sm text-gray-600">GE Aerospace</p>
+            <h3 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">Client</h3>
+            <p className="dark:text-polar-400 text-sm text-gray-600">GE Aerospace</p>
           </div>
 
           <div>
-            <h3 className="mb-3 text-sm font-medium text-gray-900">Location</h3>
-            <p className="text-sm text-gray-600">Cincinnati, OH</p>
+            <h3 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">Location</h3>
+            <p className="dark:text-polar-400 text-sm text-gray-600">Cincinnati, OH</p>
           </div>
 
           <div>
-            <h3 className="mb-3 text-sm font-medium text-gray-900">Sector</h3>
+            <h3 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">Sector</h3>
             <div className="space-y-1">
-              <p className="text-sm text-gray-600">Aerospace &amp; Defense</p>
-              <p className="text-sm text-gray-600">Enterprise Software</p>
+              <p className="dark:text-polar-400 text-sm text-gray-600">Aerospace &amp; Defense</p>
+              <p className="dark:text-polar-400 text-sm text-gray-600">Enterprise Software</p>
             </div>
           </div>
 
           <div>
-            <h3 className="mb-3 text-sm font-medium text-gray-900">Team</h3>
+            <h3 className="mb-3 text-sm font-medium text-gray-900 dark:text-white">Team</h3>
             <div className="space-y-1">
-              <p className="text-sm text-gray-600">Donny Smith</p>
-              <p className="text-sm text-gray-600">Chris Johns</p>
+              <p className="dark:text-polar-400 text-sm text-gray-600">Donny Smith</p>
+              <p className="dark:text-polar-400 text-sm text-gray-600">Chris Johns</p>
             </div>
           </div>
         </div>
