@@ -199,7 +199,7 @@ const Footer = () => {
                 Headquarters
               </h3>
               <p className="dark:text-white text-lg text-black">
-                New York, NY
+                North America
               </p>
             </div>
           </div>
