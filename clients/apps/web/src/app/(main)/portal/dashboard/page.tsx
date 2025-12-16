@@ -440,20 +440,20 @@ export default function DashboardPage() {
           </div>
         </Link>
 
-        <a
-          href="mailto:donny@makebttr.com"
+        <Link
+          href="/portal/support"
           className="dark:bg-polar-900 group flex items-center gap-x-4 rounded-2xl bg-white p-6 transition-transform hover:translate-y-[-4px]"
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
             <svg className="h-6 w-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
             </svg>
           </div>
           <div className="flex flex-col gap-y-1">
-            <h3 className="dark:text-white">Get Support</h3>
-            <p className="dark:text-polar-500 text-sm text-gray-500">Questions? Let's chat</p>
+            <h3 className="dark:text-white">Submit Ticket</h3>
+            <p className="dark:text-polar-500 text-sm text-gray-500">Need help? We're here</p>
           </div>
-        </a>
+        </Link>
       </motion.div>
     </motion.div>
   )

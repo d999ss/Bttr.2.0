@@ -26,17 +26,46 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Account already exists' }, { status: 400 })
   }
 
-  // Create client
-  const { data: client, error: clientError } = await supabase
-    .from('clients')
-    .insert({
-      name,
-      email: user.email,
-      company_name: company_name || null,
-      phone: phone || null,
-    })
-    .select()
-    .single()
+  // Create client (phone field is optional - column may not exist yet)
+  const clientData: Record<string, string | null> = {
+    name,
+    email: user.email,
+    company_name: company_name || null,
+  }
+
+  // Try with phone first, fall back to without if column doesn't exist
+  let client
+  let clientError
+
+  if (phone) {
+    const result = await supabase
+      .from('clients')
+      .insert({ ...clientData, phone })
+      .select()
+      .single()
+
+    if (result.error?.message?.includes('phone')) {
+      // Phone column doesn't exist, try without it
+      const fallback = await supabase
+        .from('clients')
+        .insert(clientData)
+        .select()
+        .single()
+      client = fallback.data
+      clientError = fallback.error
+    } else {
+      client = result.data
+      clientError = result.error
+    }
+  } else {
+    const result = await supabase
+      .from('clients')
+      .insert(clientData)
+      .select()
+      .single()
+    client = result.data
+    clientError = result.error
+  }
 
   if (clientError) {
     console.error('Client creation error:', clientError)

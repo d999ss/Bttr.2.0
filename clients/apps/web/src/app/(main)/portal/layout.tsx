@@ -11,6 +11,7 @@ const navItems = [
   { href: '/portal/projects', label: 'Projects' },
   { href: '/portal/hours', label: 'Hours' },
   { href: '/portal/invoices', label: 'Invoices' },
+  { href: '/portal/support', label: 'Support' },
 ]
 
 export default function PortalLayout({ children }: PropsWithChildren) {
