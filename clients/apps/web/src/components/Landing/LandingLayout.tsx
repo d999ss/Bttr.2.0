@@ -195,6 +195,11 @@ const LandingPageDesktopNavigation = () => {
           label: 'Case Studies',
           subtitle: 'Our work in action',
         },
+        {
+          href: '/resources/client-hub',
+          label: 'Client Hub',
+          subtitle: 'Your project command center',
+        },
       ],
     },
   ]
