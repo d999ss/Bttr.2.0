@@ -1,11 +1,29 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
 
-const supabaseUrl = process.env.SUPABASE_URL!
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY!
+// Lazy initialization to avoid build-time errors when env vars aren't set
+let _supabase: SupabaseClient | null = null
+
+function getSupabase(): SupabaseClient {
+  if (!_supabase) {
+    const supabaseUrl = process.env.SUPABASE_URL
+    const supabaseServiceKey = process.env.SUPABASE_SERVICE_KEY
+
+    if (!supabaseUrl || !supabaseServiceKey) {
+      throw new Error('Supabase environment variables not configured')
+    }
+
+    _supabase = createClient(supabaseUrl, supabaseServiceKey)
+  }
+  return _supabase
+}
 
 // Server-side Supabase client with service role key
 // Use this in API routes only - never expose to client
-export const supabase = createClient(supabaseUrl, supabaseServiceKey)
+export const supabase = new Proxy({} as SupabaseClient, {
+  get(_, prop) {
+    return (getSupabase() as any)[prop]
+  }
+})
 
 // Types for our client portal tables
 export interface Client {
