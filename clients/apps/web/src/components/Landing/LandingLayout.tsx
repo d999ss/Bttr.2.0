@@ -4,7 +4,6 @@ import { BeaAnimation } from '@/components/Brand/BeaAnimation'
 import { BttrLogotype } from '@/components/Brand/BttrLogotype'
 import Footer from '@/components/Organization/Footer'
 import { caseStudies } from '@/data/caseStudies'
-import { usePostHog } from '@/hooks/posthog'
 import Button from '@polar-sh/ui/components/atoms/Button'
 import {
   Sidebar,
@@ -19,9 +18,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ComponentProps, PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { AuthModal } from '../Auth/AuthModal'
-import { Modal } from '../Modal'
-import { useModal } from '../Modal/useModal'
 import { NavPopover, NavPopoverSection } from './NavPopover'
 
 export default function Layout({ children }: PropsWithChildren) {
@@ -114,69 +110,44 @@ const mobileNavigationItems: NavigationItem[] = [
 const LandingPageMobileNavigation = () => {
   const sidebar = useSidebar()
 
-  const posthog = usePostHog()
-  const { isShown: isModalShown, hide: hideModal, show: showModal } = useModal()
-
-  const onLoginClick = () => {
-    posthog.capture('global:user:login:click')
-    sidebar.toggleSidebar()
-    showModal()
-  }
-
   return (
-    <>
-      <Sidebar className="md:hidden">
-        <SidebarHeader className="p-4">
-          <Link href="/">
-            <BttrLogotype variant="icon" />
-          </Link>
-        </SidebarHeader>
-        <SidebarContent className="flex flex-col gap-y-6 px-6 py-2">
-          <div className="flex flex-col gap-y-1">
-            {mobileNavigationItems.map((item) => {
-              return (
-                <NavLink
-                  key={item.title}
-                  className="text-xl tracking-tight"
-                  isActive={item.isActive}
-                  target={item.target}
-                  href={item.href}
-                  onClick={sidebar.toggleSidebar}
-                >
-                  {item.title}
-                </NavLink>
-              )
-            })}
-          </div>
-          <NavLink
-            href="#"
-            onClick={onLoginClick}
-            className="text-xl tracking-tight"
-          >
-            Client Login
-          </NavLink>
-        </SidebarContent>
-      </Sidebar>
-      <Modal
-        title="Client Login"
-        isShown={isModalShown}
-        hide={hideModal}
-        modalContent={<AuthModal />}
-        className="lg:w-full lg:max-w-[480px]"
-      />
-    </>
+    <Sidebar className="md:hidden">
+      <SidebarHeader className="p-4">
+        <Link href="/">
+          <BttrLogotype variant="icon" />
+        </Link>
+      </SidebarHeader>
+      <SidebarContent className="flex flex-col gap-y-6 px-6 py-2">
+        <div className="flex flex-col gap-y-1">
+          {mobileNavigationItems.map((item) => {
+            return (
+              <NavLink
+                key={item.title}
+                className="text-xl tracking-tight"
+                isActive={item.isActive}
+                target={item.target}
+                href={item.href}
+                onClick={sidebar.toggleSidebar}
+              >
+                {item.title}
+              </NavLink>
+            )
+          })}
+        </div>
+        <NavLink
+          href="/portal/login"
+          onClick={sidebar.toggleSidebar}
+          className="text-xl tracking-tight"
+        >
+          Client Login
+        </NavLink>
+      </SidebarContent>
+    </Sidebar>
   )
 }
 
 const LandingPageDesktopNavigation = () => {
-  const posthog = usePostHog()
-  const { isShown: isModalShown, hide: hideModal, show: showModal } = useModal()
   const pathname = usePathname()
-
-  const onLoginClick = () => {
-    posthog.capture('global:user:login:click')
-    showModal()
-  }
 
   const featuresSections: NavPopoverSection[] = [
     {
@@ -284,19 +255,14 @@ const LandingPageDesktopNavigation = () => {
         </ul>
 
         <div className="flex items-center gap-4">
-          <Button onClick={onLoginClick} variant="ghost" className="rounded-full">
-            Client Login
-          </Button>
+          <Link href="/portal/login">
+            <Button variant="ghost" className="rounded-full">
+              Client Login
+            </Button>
+          </Link>
           <BeaAnimation size={50} />
         </div>
       </div>
-      <Modal
-        title="Client Login"
-        isShown={isModalShown}
-        hide={hideModal}
-        modalContent={<AuthModal />}
-        className="lg:w-full lg:max-w-[480px]"
-      />
     </div>
   )
 }
