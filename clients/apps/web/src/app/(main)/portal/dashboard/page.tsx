@@ -512,9 +512,12 @@ export default function DashboardPage() {
                 {allProjects.slice(0, 6).map((project, index) => {
                   const status = statusConfig[project.status] || statusConfig.active
                   return (
-                    <motion.div
+                    <Link
                       key={project.id}
+                      href="/portal/projects"
                       className="dark:bg-polar-900 group flex flex-col gap-y-4 rounded-2xl bg-white p-6 transition-transform hover:translate-y-[-4px]"
+                    >
+                    <motion.div
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1, delay: index * 0.1 }}
@@ -586,6 +589,7 @@ export default function DashboardPage() {
                         </div>
                       )}
                     </motion.div>
+                    </Link>
                   )
                 })}
               </div>
