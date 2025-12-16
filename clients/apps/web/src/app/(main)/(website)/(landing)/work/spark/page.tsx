@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Spark - Bttr.',
     description: 'Inspiring & educating a new generation.',
-    images: ['/assets/work/uploads/2023/08/Thumb.jpg'],
+    images: ['/assets/work/uploads/2025/04/Desktop-3.png'],
   },
 }
 
@@ -18,7 +18,7 @@ export default function SparkPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/08/spark-thumb.jpg"
+            src="/assets/work/uploads/2025/04/Desktop-3.png"
             alt="Spark"
             fill
             className="object-cover"
@@ -96,7 +96,7 @@ export default function SparkPage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/Thumb.jpg"
+            src="/assets/work/uploads/2023/08/CS_Inset-full-width-3-3.png.webp"
             alt="Spark Platform"
             fill
             className="object-cover"
@@ -131,7 +131,7 @@ export default function SparkPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Spark-SQ-1.jpg"
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-11.png"
               alt="Spark Learning Interface"
               fill
               className="object-cover"
@@ -140,7 +140,7 @@ export default function SparkPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Spark-SQ-2.jpg"
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-1-4.png.webp"
               alt="Spark Mobile App"
               fill
               className="object-cover"

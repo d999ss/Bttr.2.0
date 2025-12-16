@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Atom - Bttr.',
     description: 'Designing a premium movie ticketing platform experience.',
-    images: ['/assets/work/uploads/2023/08/Desktop.png'],
+    images: ['/assets/work/uploads/2023/08/Desktop.png.webp'],
   },
 }
 
@@ -18,7 +18,7 @@ export default function AtomPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/08/Desktop.png"
+            src="/assets/work/uploads/2023/08/Desktop.png.webp"
             alt="Atom Tickets"
             fill
             className="object-cover"
@@ -97,7 +97,7 @@ export default function AtomPage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/atom-thumb.jpg"
+            src="/assets/work/uploads/2023/08/atom-new-thumb.png"
             alt="Atom Tickets App"
             fill
             className="object-cover"
@@ -131,7 +131,7 @@ export default function AtomPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Atom-SQ-1.jpg"
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-8.png"
               alt="Atom Movie Selection"
               fill
               className="object-cover"
@@ -140,7 +140,7 @@ export default function AtomPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Atom-SQ-2.jpg"
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-2-1.png"
               alt="Atom Seat Selection"
               fill
               className="object-cover"

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ciitizen - Bttr.',
     description: "Turning one brother's dream into a reality.",
-    images: ['/assets/work/uploads/2023/09/Desktop-6.jpg'],
+    images: ['/assets/work/uploads/2023/09/Desktop-5.jpg'],
   },
 }
 
@@ -18,7 +18,7 @@ export default function CiitizenPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/Desktop-6.jpg"
+            src="/assets/work/uploads/2023/09/Desktop-5.jpg"
             alt="Ciitizen"
             fill
             className="object-cover"
@@ -97,7 +97,7 @@ export default function CiitizenPage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/ciitizen-thumb.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-12.jpg.webp"
             alt="Ciitizen Platform"
             fill
             className="object-cover"
@@ -132,7 +132,7 @@ export default function CiitizenPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Ciitizen-SQ-1.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-24.jpg.webp"
               alt="Ciitizen Interface"
               fill
               className="object-cover"
@@ -141,7 +141,7 @@ export default function CiitizenPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Ciitizen-SQ-2.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-25.jpg.webp"
               alt="Ciitizen Mobile"
               fill
               className="object-cover"

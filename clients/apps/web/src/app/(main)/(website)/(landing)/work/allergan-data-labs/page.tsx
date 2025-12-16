@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Allergan Data Labs - Bttr.',
     description: 'An identity to be proud of.',
-    images: ['/assets/work/uploads/2023/09/ADL-HS-1-1-1_00000.png'],
+    images: ['/assets/work/uploads/2023/08/ADL_1_Header.png.webp'],
   },
 }
 
@@ -18,7 +18,7 @@ export default function AllerganDataLabsPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/ADL-HS-1-1-1_00000.png"
+            src="/assets/work/uploads/2023/08/ADL_1_Header.png.webp"
             alt="Allergan Data Labs"
             fill
             className="object-cover"
@@ -98,7 +98,7 @@ export default function AllerganDataLabsPage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/allergan-data-labs-thumb.jpg"
+            src="/assets/work/uploads/2023/08/ADL_Large_3.png"
             alt="Allergan Data Labs Brand"
             fill
             className="object-cover"
@@ -133,7 +133,7 @@ export default function AllerganDataLabsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/ADL-SQ-1.jpg"
+              src="/assets/work/uploads/2023/08/ADL_Square_2.png.webp"
               alt="Allergan Data Labs Logo"
               fill
               className="object-cover"
@@ -142,7 +142,7 @@ export default function AllerganDataLabsPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/ADL-SQ-2.jpg"
+              src="/assets/work/uploads/2023/08/ADL_Large_1.png.webp"
               alt="Allergan Data Labs Brand Application"
               fill
               className="object-cover"

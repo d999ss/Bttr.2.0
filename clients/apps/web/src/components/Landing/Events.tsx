@@ -1,11 +1,9 @@
 import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
 import AvatarWrapper from '@polar-sh/ui/components/atoms/Avatar'
 import Button from '@polar-sh/ui/components/atoms/Button'
-import { formatCurrencyAndAmount } from '@polar-sh/ui/lib/money'
 import { motion, useMotionValue, useMotionValueEvent } from 'framer-motion'
 import Link from 'next/link'
 import { useMemo, useRef, useState } from 'react'
-import { EventCostBadge } from '../Events/EventCostBadge'
 import { Section } from './Section'
 
 export const Events = () => {
@@ -42,18 +40,9 @@ export const Events = () => {
     }
   })
 
-  const profit = useMemo(() => {
+  const activeCount = useMemo(() => {
     const events = mockedEvents.slice(-eventOffset)
-
-    const profit = events.reduce((acc, event) => {
-      return (
-        acc +
-        (event.cost?.amount ? -event.cost.amount : 0) +
-        (event.revenue?.amount ? event.revenue.amount : 0)
-      )
-    }, 0)
-
-    return profit
+    return events.filter(e => e.status === 'In progress' || e.status === 'Running').length
   }, [eventOffset])
 
   return (
@@ -87,9 +76,9 @@ export const Events = () => {
             <h3>Activity</h3>
             <div className="flex flex-row items-center gap-x-4">
               <div className="flex flex-row items-center gap-x-4 font-mono text-xs">
-                <span>Profit</span>
+                <span>Active</span>
                 <span className="dark:text-polar-500 text-gray-500">
-                  {formatCurrencyAndAmount(profit, 'usd', 2, 'compact', 12)}
+                  {activeCount}
                 </span>
               </div>
             </div>
@@ -134,22 +123,7 @@ export const Events = () => {
                     })}
                   </p>
                   <div className="flex w-fit flex-row items-center justify-end gap-x-4 md:w-32">
-                    {'cost' in event && event.cost && (
-                      <EventCostBadge
-                        cost={event.cost.amount}
-                        currency={event.cost.currency}
-                        type="cost"
-                        nonCostEvent={event.cost.amount === 0}
-                      />
-                    )}
-                    {'revenue' in event && event.revenue && (
-                      <EventCostBadge
-                        cost={event.revenue.amount}
-                        currency={event.revenue.currency}
-                        type="revenue"
-                        nonCostEvent={event.revenue.amount === 0}
-                      />
-                    )}
+                    <StatusBadge status={event.status} />
                     <AvatarWrapper
                       className="hidden md:block"
                       name={event.name}
@@ -166,140 +140,120 @@ export const Events = () => {
   )
 }
 
+const StatusBadge = ({ status }: { status: string }) => {
+  const getStatusStyle = (status: string) => {
+    switch (status) {
+      case 'Confirmed':
+      case 'Passed':
+      case 'Approved':
+      case 'Live':
+      case 'Closed':
+      case 'Applied':
+        return 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400'
+      case 'Running':
+      case 'In progress':
+        return 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+      default:
+        return 'bg-gray-200 text-gray-600 dark:bg-gray-700 dark:text-gray-300'
+    }
+  }
+
+  return (
+    <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusStyle(status)}`}>
+      {status}
+    </span>
+  )
+}
+
 const mockedEvents = [
   {
     id: 1,
-    name: 'Sprint Completed',
-    timestamp: new Date('2025-10-30T00:00:14Z'),
-    revenue: {
-      amount: 4500,
-      currency: 'usd',
-    },
+    name: 'Contract signed',
+    timestamp: new Date('2025-12-16T00:00:14Z'),
+    status: 'Confirmed',
   },
   {
     id: 2,
-    name: 'Design Review',
-    timestamp: new Date('2025-10-30T00:00:13Z'),
-    cost: {
-      amount: 0,
-      currency: 'usd',
-    },
+    name: 'Cloud deployment',
+    timestamp: new Date('2025-12-16T00:00:13Z'),
+    status: 'Live',
   },
   {
     id: 3,
-    name: 'Milestone Delivered',
-    timestamp: new Date('2025-10-30T00:00:12Z'),
-    revenue: {
-      amount: 25000,
-      currency: 'usd',
-    },
+    name: 'Performance test',
+    timestamp: new Date('2025-12-16T00:00:12Z'),
+    status: 'Running',
   },
   {
     id: 4,
-    name: 'Infrastructure Setup',
-    timestamp: new Date('2025-10-30T00:00:11Z'),
-    cost: {
-      amount: 850,
-      currency: 'usd',
-    },
+    name: 'API integration',
+    timestamp: new Date('2025-12-16T00:00:11Z'),
+    status: 'In progress',
   },
   {
     id: 5,
-    name: 'User Testing',
-    timestamp: new Date('2025-10-30T00:00:10Z'),
-    cost: {
-      amount: 200,
-      currency: 'usd',
-    },
+    name: 'Security review',
+    timestamp: new Date('2025-12-16T00:00:10Z'),
+    status: 'Passed',
   },
   {
     id: 6,
-    name: 'Code Review',
-    timestamp: new Date('2025-10-30T00:00:09Z'),
-    cost: {
-      amount: 0,
-      currency: 'usd',
-    },
+    name: 'Sprint completed',
+    timestamp: new Date('2025-12-16T00:00:09Z'),
+    status: 'Closed',
   },
   {
     id: 7,
-    name: 'Security Audit',
-    timestamp: new Date('2025-10-30T00:00:08Z'),
-    cost: {
-      amount: 1500,
-      currency: 'usd',
-    },
+    name: 'Design review',
+    timestamp: new Date('2025-12-16T00:00:08Z'),
+    status: 'Approved',
   },
   {
     id: 8,
-    name: 'Contract Signed',
-    timestamp: new Date('2025-10-30T00:00:07Z'),
-    revenue: {
-      amount: 50000,
-      currency: 'usd',
-    },
+    name: 'User testing',
+    timestamp: new Date('2025-12-16T00:00:07Z'),
+    status: 'In progress',
   },
   {
     id: 9,
-    name: 'Cloud Deployment',
-    timestamp: new Date('2025-10-30T00:00:06Z'),
-    cost: {
-      amount: 450,
-      currency: 'usd',
-    },
+    name: 'Infrastructure update',
+    timestamp: new Date('2025-12-16T00:00:06Z'),
+    status: 'Applied',
   },
   {
     id: 10,
-    name: 'Performance Test',
-    timestamp: new Date('2025-10-30T00:00:05Z'),
-    cost: {
-      amount: 0,
-      currency: 'usd',
-    },
+    name: 'Release published',
+    timestamp: new Date('2025-12-16T00:00:05Z'),
+    status: 'v1.4.0',
   },
   {
     id: 11,
-    name: 'API Integration',
-    timestamp: new Date('2025-10-30T00:00:04Z'),
-    cost: {
-      amount: 0,
-      currency: 'usd',
-    },
+    name: 'Contract signed',
+    timestamp: new Date('2025-12-15T00:00:14Z'),
+    status: 'Confirmed',
   },
   {
     id: 12,
-    name: 'Compliance Check',
-    timestamp: new Date('2025-10-30T00:00:03Z'),
-    cost: {
-      amount: 0,
-      currency: 'usd',
-    },
+    name: 'Cloud deployment',
+    timestamp: new Date('2025-12-15T00:00:13Z'),
+    status: 'Live',
   },
   {
     id: 13,
-    name: 'Sprint Completed',
-    timestamp: new Date('2025-10-30T00:00:02Z'),
-    revenue: {
-      amount: 4500,
-      currency: 'usd',
-    },
+    name: 'Performance test',
+    timestamp: new Date('2025-12-15T00:00:12Z'),
+    status: 'Running',
   },
   {
     id: 14,
-    name: 'Discovery Complete',
-    timestamp: new Date('2025-10-30T00:00:01Z'),
-    revenue: {
-      amount: 15000,
-      currency: 'usd',
-    },
+    name: 'API integration',
+    timestamp: new Date('2025-12-15T00:00:11Z'),
+    status: 'In progress',
   },
   {
-    id: 17,
-    name: 'Project Kickoff',
-    timestamp: new Date('2025-10-30T00:00:00Z'),
-    revenue: {
-      amount: 0,
-      currency: 'usd',
-    },
+    id: 15,
+    name: 'Security review',
+    timestamp: new Date('2025-12-15T00:00:10Z'),
+    status: 'Passed',
   },
 ]

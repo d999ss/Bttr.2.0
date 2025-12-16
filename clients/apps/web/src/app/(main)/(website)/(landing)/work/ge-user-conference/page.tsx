@@ -97,7 +97,7 @@ export default function GEUserConferencePage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/ge-user-conference-thumb.jpg"
+            src="/assets/work/uploads/2023/08/ad-ge-orchestrate-scaled.jpg.webp"
             alt="GE Orchestrate Platform"
             fill
             className="object-cover"
@@ -131,7 +131,7 @@ export default function GEUserConferencePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/GE-SQ-1.jpg"
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-2.jpg.webp"
               alt="GE Orchestrate Sessions"
               fill
               className="object-cover"
@@ -140,7 +140,7 @@ export default function GEUserConferencePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/GE-SQ-2.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-1-1.jpg.webp"
               alt="GE Orchestrate Networking"
               fill
               className="object-cover"

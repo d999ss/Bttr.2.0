@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     title: 'Helix - Bttr.',
     description:
       'One brand three sectors – Securities, Carbon Assets, and Real Estate.',
-    images: ['/assets/work/uploads/2023/09/SQ-Image-frame-20.jpg'],
+    images: ['/assets/work/uploads/2023/09/Mask-group-1.png.webp'],
   },
 }
 
@@ -20,7 +20,7 @@ export default function HelixHomesPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/SQ-Image-frame-20.jpg"
+            src="/assets/work/uploads/2023/09/Mask-group-1.png.webp"
             alt="Helix"
             fill
             className="object-cover"
@@ -101,7 +101,7 @@ export default function HelixHomesPage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/helix-homes-thumb.jpg"
+            src="/assets/work/uploads/2023/09/Full-Bleed-2-1.jpg"
             alt="Helix Brand"
             fill
             className="object-cover"
@@ -136,7 +136,7 @@ export default function HelixHomesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Helix-SQ-1.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-5.jpg"
               alt="Helix Securities"
               fill
               className="object-cover"
@@ -145,7 +145,7 @@ export default function HelixHomesPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Helix-SQ-2.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-3.jpg"
               alt="Helix Carbon"
               fill
               className="object-cover"

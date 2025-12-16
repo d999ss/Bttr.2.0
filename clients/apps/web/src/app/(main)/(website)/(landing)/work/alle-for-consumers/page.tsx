@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Allē for Consumers - Bttr.',
     description: 'A simple, modern, and engaging consumer loyalty program.',
-    images: ['/assets/work/uploads/2024/03/Desktop-1440x905.jpg'],
+    images: ['/assets/work/uploads/2024/03/Desktop-7-1440x905.jpg'],
   },
 }
 
@@ -18,7 +18,7 @@ export default function AlleForConsumersPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/03/Desktop-1440x905.jpg"
+            src="/assets/work/uploads/2024/03/Desktop-7-1440x905.jpg"
             alt="Allē for Consumers"
             fill
             className="object-cover"
@@ -97,7 +97,7 @@ export default function AlleForConsumersPage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/03/Desktop.jpg"
+            src="/assets/work/uploads/2024/03/Desktop-7.jpg.webp"
             alt="Allē Consumer App"
             fill
             className="object-cover"
@@ -140,7 +140,7 @@ export default function AlleForConsumersPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/03/Alle-for-Consumers.jpg.webp"
+              src="/assets/work/uploads/2024/03/Alle-for-consumers_mobile.jpg"
               alt="Allē Mobile Experience"
               fill
               className="object-cover"

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Advantage - Bttr.',
     description: 'A Fresh New Look for an Established B2B Platform.',
-    images: ['/assets/work/uploads/2023/09/Advantage-HS-1-1-1_00000.png'],
+    images: ['/assets/work/uploads/2023/09/Desktop-copy.jpg'],
   },
 }
 
@@ -18,7 +18,7 @@ export default function AdvantagePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/Advantage-HS-1-1-1_00000.png"
+            src="/assets/work/uploads/2023/09/Desktop-copy.jpg"
             alt="Advantage"
             fill
             className="object-cover"
@@ -97,7 +97,7 @@ export default function AdvantagePage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/advantage-thumb.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-1-1.jpg.webp"
             alt="Advantage Platform"
             fill
             className="object-cover"
@@ -131,7 +131,7 @@ export default function AdvantagePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Advantage-SQ-1.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-19.jpg"
               alt="Advantage Dashboard"
               fill
               className="object-cover"
@@ -140,7 +140,7 @@ export default function AdvantagePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/Advantage-SQ-2.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-1-2.jpg.webp"
               alt="Advantage Interface"
               fill
               className="object-cover"
