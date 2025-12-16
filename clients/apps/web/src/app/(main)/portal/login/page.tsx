@@ -52,37 +52,41 @@ export default function PortalLoginPage() {
   }
 
   return (
-    <div className="flex min-h-screen w-full grow items-center justify-center bg-gray-50">
-      <div className="flex w-full max-w-md flex-col justify-between gap-10 rounded-2xl bg-white p-10 shadow-sm">
-        <div className="flex flex-col gap-y-6">
-          <BttrLogotype variant="logotype" size={120} />
-          <div className="flex flex-col gap-2">
-            <h1 className="text-2xl font-medium text-gray-900">
+    <div className="dark:bg-polar-950 flex min-h-screen w-full grow items-center justify-center bg-gray-50">
+      <div className="dark:bg-polar-900 flex w-full max-w-md flex-col justify-between gap-12 rounded-4xl bg-white p-12 shadow-sm dark:shadow-none">
+        <div className="flex flex-col gap-y-8">
+          <BttrLogotype variant="icon" size={60} />
+          <div className="flex flex-col gap-4">
+            <h2 className="text-2xl text-black dark:text-white">
               Client Portal
-            </h1>
-            <p className="text-gray-500">
+            </h2>
+            <p className="dark:text-polar-400 text-lg text-gray-500">
               Sign in to view your projects, invoices, and more.
             </p>
           </div>
         </div>
 
         {error && (
-          <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600">
+          <div className="rounded-xl bg-red-500/10 p-4 text-sm text-red-500">
             Authentication failed. Please try again.
           </div>
         )}
 
         {message && (
-          <div className={`rounded-lg p-3 text-sm ${message.includes('Check your email') ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'}`}>
+          <div className={`rounded-xl p-4 text-sm ${
+            message.includes('Check your email')
+              ? 'bg-green-500/10 text-green-500'
+              : 'bg-red-500/10 text-red-500'
+          }`}>
             {message}
           </div>
         )}
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-y-4">
           <button
             onClick={handleGoogleLogin}
             disabled={loading}
-            className="flex w-full items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 disabled:opacity-50"
+            className="dark:bg-polar-700 dark:hover:bg-polar-600 dark:border-polar-600 flex w-full items-center justify-center gap-3 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-gray-50 disabled:opacity-50 dark:text-white"
           >
             <svg className="h-5 w-5" viewBox="0 0 24 24">
               <path
@@ -94,9 +98,9 @@ export default function PortalLoginPage() {
           </button>
 
           <div className="flex items-center gap-4">
-            <div className="h-px flex-1 bg-gray-200" />
-            <span className="text-sm text-gray-400">or</span>
-            <div className="h-px flex-1 bg-gray-200" />
+            <div className="dark:border-polar-700 h-px flex-1 border-t border-gray-200" />
+            <span className="dark:text-polar-500 text-sm text-gray-400">or</span>
+            <div className="dark:border-polar-700 h-px flex-1 border-t border-gray-200" />
           </div>
 
           <form onSubmit={handleMagicLink} className="flex flex-col gap-3">
@@ -105,37 +109,39 @@ export default function PortalLoginPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none focus:border-gray-400"
+              className="dark:border-polar-700 dark:bg-polar-800 dark:text-white dark:placeholder:text-polar-500 w-full rounded-full border border-gray-200 bg-white px-6 py-3 text-sm text-black outline-none transition-colors focus:border-gray-400 dark:focus:border-polar-500"
               required
             />
             <button
               type="submit"
               disabled={loading || !email}
-              className="w-full rounded-xl bg-gray-900 px-4 py-3 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
+              className="w-full rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90 disabled:opacity-50"
             >
               {loading ? 'Sending...' : 'Send Magic Link'}
             </button>
           </form>
         </div>
 
-        <div className="text-center text-xs text-gray-400">
-          By signing in, you agree to our{' '}
-          <Link href="/legal/terms" className="text-gray-600 hover:underline">
-            Terms of Service
-          </Link>{' '}
-          and{' '}
-          <Link href="/legal/privacy" className="text-gray-600 hover:underline">
-            Privacy Policy
-          </Link>
-        </div>
+        <div className="flex flex-col gap-4">
+          <div className="dark:text-polar-500 text-center text-xs text-gray-400">
+            By signing in, you agree to our{' '}
+            <Link href="/legal/terms" className="dark:text-polar-300 text-gray-600 hover:underline">
+              Terms of Service
+            </Link>{' '}
+            and{' '}
+            <Link href="/legal/privacy" className="dark:text-polar-300 text-gray-600 hover:underline">
+              Privacy Policy
+            </Link>
+          </div>
 
-        <div className="text-center">
-          <Link
-            href="/portal/dashboard?demo=true"
-            className="text-sm text-gray-500 hover:text-gray-700"
-          >
-            Try Demo Mode
-          </Link>
+          <div className="text-center">
+            <Link
+              href="/portal/dashboard?demo=true"
+              className="dark:text-polar-400 dark:hover:text-polar-300 text-sm text-gray-500 transition-colors hover:text-gray-700"
+            >
+              Try Demo Mode
+            </Link>
+          </div>
         </div>
       </div>
     </div>
