@@ -55,18 +55,6 @@ export const caseStudies: CaseStudy[] = [
     resultHighlight: '$15M+ configured',
   },
   {
-    slug: 'revaire',
-    title: 'Revaire',
-    description: 'A modern, luxurious identity.',
-    thumbnail: '/assets/work/uploads/2024/08/SQ-Image-frame-4.jpg.webp',
-  },
-  {
-    slug: 'air-company',
-    title: 'Air Company',
-    description: 'Shaping a startup around groundbreaking technology',
-    thumbnail: '/assets/work/uploads/2023/09/AirCo-HS-1-1-1_00000.png.webp',
-  },
-  {
     slug: 'fleetpulse',
     title: 'FleetPulse',
     description: 'Smart-Trailer innovation, designed for a more efficient future',
@@ -93,6 +81,20 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2024/08/tiger-fur-thumb.png',
     featured: true,
     resultHighlight: 'FDA breakthrough',
+  },
+  {
+    slug: 'revaire',
+    title: 'Revaire',
+    description: 'A modern, luxurious identity.',
+    thumbnail: '/assets/work/uploads/2024/08/SQ-Image-frame-4.jpg.webp',
+    featured: true,
+  },
+  {
+    slug: 'air-company',
+    title: 'Air Company',
+    description: 'Shaping a startup around groundbreaking technology',
+    thumbnail: '/assets/work/uploads/2023/09/AirCo-HS-1-1-1_00000.png.webp',
+    featured: true,
   },
   {
     slug: 'alle-for-business',
