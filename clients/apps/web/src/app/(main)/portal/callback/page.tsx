@@ -10,66 +10,62 @@ export default function AuthCallbackPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    // Debug: log URL info
-    console.log('Callback page loaded')
-    console.log('URL:', window.location.href)
-    console.log('Hash:', window.location.hash)
-    console.log('Search:', window.location.search)
+    const handleAuth = async () => {
+      // Check if there's an error in the URL
+      const errorParam = searchParams.get('error')
+      const errorDescription = searchParams.get('error_description')
 
-    // Check if there's an error in the URL (from OAuth provider)
-    const errorParam = searchParams.get('error')
-    const errorDescription = searchParams.get('error_description')
+      // Also check hash for errors
+      const hashParams = new URLSearchParams(window.location.hash.substring(1))
+      const hashError = hashParams.get('error')
+      const hashErrorDesc = hashParams.get('error_description')
 
-    // Also check hash for errors (implicit flow puts params in hash)
-    const hashParams = new URLSearchParams(window.location.hash.substring(1))
-    const hashError = hashParams.get('error')
-    const hashErrorDesc = hashParams.get('error_description')
-
-    if (errorParam || hashError) {
-      setError(errorDescription || hashErrorDesc || errorParam || hashError || 'Unknown error')
-      return
-    }
-
-    const supabase = getSupabaseBrowserClient()
-
-    // With implicit flow, tokens are in the URL hash
-    // detectSessionInUrl: true will auto-process them
-    // Listen for the auth state change
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      console.log('Auth state change:', event, session?.user?.email)
-
-      if (session) {
-        const next = searchParams.get('next') || '/portal/dashboard'
-        router.replace(next)
+      if (errorParam || hashError) {
+        setError(errorDescription || hashErrorDesc || errorParam || hashError || 'Unknown error')
+        return
       }
-    })
 
-    // Check if we already have a session (might have been set from URL hash)
-    supabase.auth.getSession().then(({ data: { session }, error }) => {
-      console.log('Initial getSession:', session?.user?.email, error)
+      const supabase = getSupabaseBrowserClient()
+
+      // Check if tokens are in the hash (implicit flow)
+      const accessToken = hashParams.get('access_token')
+      const refreshToken = hashParams.get('refresh_token')
+
+      if (accessToken) {
+        console.log('Found tokens in hash, setting session manually')
+
+        // Set the session manually
+        const { data, error: sessionError } = await supabase.auth.setSession({
+          access_token: accessToken,
+          refresh_token: refreshToken || '',
+        })
+
+        if (sessionError) {
+          console.error('Error setting session:', sessionError)
+          setError(sessionError.message)
+          return
+        }
+
+        if (data.session) {
+          console.log('Session set successfully:', data.session.user?.email)
+          const next = searchParams.get('next') || '/portal/dashboard'
+          router.replace(next)
+          return
+        }
+      }
+
+      // Fallback: check if we already have a session
+      const { data: { session } } = await supabase.auth.getSession()
 
       if (session) {
         const next = searchParams.get('next') || '/portal/dashboard'
         router.replace(next)
       } else {
-        // No session after a moment - show error with more details
-        setTimeout(() => {
-          supabase.auth.getSession().then(({ data: { session: s }, error: e }) => {
-            console.log('Delayed getSession:', s?.user?.email, e)
-            if (!s) {
-              // Check what we have in the URL
-              const hasCode = searchParams.get('code')
-              const hasHash = window.location.hash.includes('access_token')
-              setError(`No session. Code in URL: ${!!hasCode}, Token in hash: ${hasHash}`)
-            }
-          })
-        }, 3000)
+        setError('No authentication tokens found. Please try again.')
       }
-    })
-
-    return () => {
-      subscription.unsubscribe()
     }
+
+    handleAuth()
   }, [router, searchParams])
 
   if (error) {
