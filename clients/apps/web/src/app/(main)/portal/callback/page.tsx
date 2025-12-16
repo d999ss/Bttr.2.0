@@ -10,12 +10,23 @@ export default function AuthCallbackPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    // Debug: log URL info
+    console.log('Callback page loaded')
+    console.log('URL:', window.location.href)
+    console.log('Hash:', window.location.hash)
+    console.log('Search:', window.location.search)
+
     // Check if there's an error in the URL (from OAuth provider)
     const errorParam = searchParams.get('error')
     const errorDescription = searchParams.get('error_description')
 
-    if (errorParam) {
-      setError(errorDescription || errorParam)
+    // Also check hash for errors (implicit flow puts params in hash)
+    const hashParams = new URLSearchParams(window.location.hash.substring(1))
+    const hashError = hashParams.get('error')
+    const hashErrorDesc = hashParams.get('error_description')
+
+    if (errorParam || hashError) {
+      setError(errorDescription || hashErrorDesc || errorParam || hashError || 'Unknown error')
       return
     }
 
@@ -34,16 +45,22 @@ export default function AuthCallbackPage() {
     })
 
     // Check if we already have a session (might have been set from URL hash)
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session }, error }) => {
+      console.log('Initial getSession:', session?.user?.email, error)
+
       if (session) {
         const next = searchParams.get('next') || '/portal/dashboard'
         router.replace(next)
       } else {
-        // No session after a moment - show error
+        // No session after a moment - show error with more details
         setTimeout(() => {
-          supabase.auth.getSession().then(({ data: { session: s } }) => {
+          supabase.auth.getSession().then(({ data: { session: s }, error: e }) => {
+            console.log('Delayed getSession:', s?.user?.email, e)
             if (!s) {
-              setError('Authentication failed. Please try again.')
+              // Check what we have in the URL
+              const hasCode = searchParams.get('code')
+              const hasHash = window.location.hash.includes('access_token')
+              setError(`No session. Code in URL: ${!!hasCode}, Token in hash: ${hasHash}`)
             }
           })
         }, 3000)
