@@ -10,60 +10,49 @@ export default function AuthCallbackPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const handleCallback = async () => {
-      try {
-        const supabase = getSupabaseBrowserClient()
+    // Check if there's an error in the URL (from OAuth provider)
+    const errorParam = searchParams.get('error')
+    const errorDescription = searchParams.get('error_description')
 
-        // Check if there's an error in the URL (from OAuth provider)
-        const errorParam = searchParams.get('error')
-        const errorDescription = searchParams.get('error_description')
-
-        if (errorParam) {
-          setError(errorDescription || errorParam)
-          return
-        }
-
-        // Let Supabase handle the OAuth callback
-        // It will automatically exchange the code using the stored code verifier
-        const { data: { session }, error: authError } = await supabase.auth.getSession()
-
-        if (authError) {
-          console.error('Auth callback error:', authError)
-          setError(authError.message)
-          return
-        }
-
-        if (session) {
-          // Successfully authenticated
-          const next = searchParams.get('next') || '/portal/dashboard'
-          router.replace(next)
-        } else {
-          // No session yet, might need to wait for URL detection
-          // Try to get session from URL hash/params
-          const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(
-            window.location.href
-          )
-
-          if (exchangeError) {
-            console.error('Exchange error:', exchangeError)
-            setError(exchangeError.message)
-            return
-          }
-
-          if (data.session) {
-            const next = searchParams.get('next') || '/portal/dashboard'
-            router.replace(next)
-          } else {
-            setError('No session created')
-          }
-        }
-      } catch (err) {
-        console.error('Callback error:', err)
-        setError(err instanceof Error ? err.message : 'Authentication failed')
-      }
+    if (errorParam) {
+      setError(errorDescription || errorParam)
+      return
     }
 
-    handleCallback()
+    const supabase = getSupabaseBrowserClient()
+
+    // With implicit flow, tokens are in the URL hash
+    // detectSessionInUrl: true will auto-process them
+    // Listen for the auth state change
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      console.log('Auth state change:', event, session?.user?.email)
+
+      if (session) {
+        const next = searchParams.get('next') || '/portal/dashboard'
+        router.replace(next)
+      }
+    })
+
+    // Check if we already have a session (might have been set from URL hash)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session) {
+        const next = searchParams.get('next') || '/portal/dashboard'
+        router.replace(next)
+      } else {
+        // No session after a moment - show error
+        setTimeout(() => {
+          supabase.auth.getSession().then(({ data: { session: s } }) => {
+            if (!s) {
+              setError('Authentication failed. Please try again.')
+            }
+          })
+        }, 3000)
+      }
+    })
+
+    return () => {
+      subscription.unsubscribe()
+    }
   }, [router, searchParams])
 
   if (error) {
