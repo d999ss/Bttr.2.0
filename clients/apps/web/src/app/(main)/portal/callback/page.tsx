@@ -2,56 +2,64 @@
 
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function AuthCallbackPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [error, setError] = useState<string | null>(null)
-  const exchangeAttempted = useRef(false)
 
   useEffect(() => {
-    // Prevent double execution in React Strict Mode
-    if (exchangeAttempted.current) return
-    exchangeAttempted.current = true
+    const supabase = getSupabaseBrowserClient()
 
-    const handleCallback = async () => {
-      const supabase = getSupabaseBrowserClient()
+    // Check for errors in URL params
+    const errorParam = searchParams.get('error')
+    const errorDesc = searchParams.get('error_description')
 
-      // Check for errors in URL
-      const errorParam = searchParams.get('error')
-      const errorDesc = searchParams.get('error_description')
+    if (errorParam) {
+      setError(errorDesc || errorParam)
+      return
+    }
 
-      if (errorParam) {
-        setError(errorDesc || errorParam)
-        return
-      }
-
-      // PKCE flow: exchange code for session
-      const code = searchParams.get('code')
-      if (code) {
-        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
-        if (exchangeError) {
-          console.error('Code exchange error:', exchangeError)
-          setError(exchangeError.message)
-          return
-        }
-
-        // Successfully exchanged - redirect to dashboard
+    // For implicit flow, Supabase automatically handles the hash fragment
+    // via detectSessionInUrl: true when the client initializes.
+    // We just need to listen for the auth state change.
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event === 'SIGNED_IN' && session) {
         router.replace('/portal/dashboard')
-        return
       }
+    })
 
-      // No code - check if there's already a session
+    // Check if session already exists (auth may have completed before listener was set up)
+    const checkExistingSession = async () => {
       const { data: { session } } = await supabase.auth.getSession()
       if (session) {
         router.replace('/portal/dashboard')
       } else {
-        setError('No authentication data found. Please try again.')
+        // Check for hash fragment - if present, wait for Supabase to process
+        if (window.location.hash && window.location.hash.includes('access_token')) {
+          // Supabase should be processing this, wait a bit
+          setTimeout(async () => {
+            const { data: { session: retrySession } } = await supabase.auth.getSession()
+            if (retrySession) {
+              router.replace('/portal/dashboard')
+            } else {
+              setError('Failed to complete authentication. Please try again.')
+            }
+          }, 2000)
+        } else if (!window.location.hash) {
+          // No hash fragment and no session - something went wrong
+          setError('No authentication data found. Please try again.')
+        }
       }
     }
 
-    handleCallback()
+    // Small delay to let Supabase process the URL hash
+    setTimeout(checkExistingSession, 500)
+
+    return () => {
+      subscription.unsubscribe()
+    }
   }, [router, searchParams])
 
   if (error) {
