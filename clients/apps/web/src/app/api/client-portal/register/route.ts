@@ -1,9 +1,9 @@
-import { getAuthenticatedUser } from '@/utils/user'
+import { getPortalUser } from '@/utils/portal-auth'
 import { supabase } from '@/utils/supabase'
 import { NextRequest, NextResponse } from 'next/server'
 
 export async function POST(request: NextRequest) {
-  const user = await getAuthenticatedUser()
+  const user = await getPortalUser()
   if (!user) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
   }
