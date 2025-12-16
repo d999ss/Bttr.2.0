@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 interface UnicornStudioEmbedProps {
   projectId: string
   className?: string
-  fallbackClassName?: string
 }
 
 declare global {
@@ -20,11 +19,9 @@ declare global {
 export const UnicornStudioEmbed = ({
   projectId,
   className,
-  fallbackClassName = 'bg-gradient-to-br from-gray-900 via-gray-800 to-black',
 }: UnicornStudioEmbedProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const initializedRef = useRef(false)
-  const [hasError, setHasError] = useState(false)
 
   useEffect(() => {
     if (initializedRef.current) return
@@ -41,20 +38,13 @@ export const UnicornStudioEmbed = ({
         script.async = true
         script.onload = () => {
           if (window.UnicornStudio) {
-            window.UnicornStudio.init().catch(() => {
-              setHasError(true)
-            })
+            window.UnicornStudio.init()
             initializedRef.current = true
           }
         }
-        script.onerror = () => {
-          setHasError(true)
-        }
         document.body.appendChild(script)
       } else if (window.UnicornStudio) {
-        window.UnicornStudio.init().catch(() => {
-          setHasError(true)
-        })
+        window.UnicornStudio.init()
         initializedRef.current = true
       }
     }
@@ -69,22 +59,6 @@ export const UnicornStudioEmbed = ({
     }
   }, [])
 
-  // Show fallback gradient if there's an error loading the animation
-  if (hasError) {
-    return (
-      <div
-        className={`${className} ${fallbackClassName}`}
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'absolute',
-          top: 0,
-          left: 0,
-        }}
-      />
-    )
-  }
-
   return (
     <div
       ref={containerRef}
@@ -96,7 +70,6 @@ export const UnicornStudioEmbed = ({
         position: 'absolute',
         top: 0,
         left: 0,
-        background: 'linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%)',
       }}
     />
   )

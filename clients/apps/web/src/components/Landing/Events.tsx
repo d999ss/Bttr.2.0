@@ -49,7 +49,7 @@ export const Events = () => {
     <Section className="flex flex-col gap-y-32 py-0 md:py-0">
       <div className="dark:bg-polar-900 flex w-full flex-col gap-y-6 overflow-hidden rounded-4xl bg-gray-200 p-2 xl:flex-row">
         <div className="flex w-full flex-1 flex-col gap-y-8 p-6 md:p-12">
-          <span className="bg-blue w-fit rounded-full px-3 py-1 text-xs font-medium text-white">
+          <span className="bg-blue-500 w-fit rounded-full px-3 py-1 text-xs font-medium text-white">
             Now Operating
           </span>
           <h3 className="text-3xl leading-tight! text-balance md:text-4xl">
@@ -169,91 +169,151 @@ const mockedEvents = [
   {
     id: 1,
     name: 'Contract signed',
-    timestamp: new Date('2025-12-16T00:00:14Z'),
+    timestamp: new Date('2025-12-16T00:00:20Z'),
     status: 'Confirmed',
   },
   {
     id: 2,
     name: 'Cloud deployment',
-    timestamp: new Date('2025-12-16T00:00:13Z'),
+    timestamp: new Date('2025-12-16T00:00:19Z'),
     status: 'Live',
   },
   {
     id: 3,
     name: 'Performance test',
-    timestamp: new Date('2025-12-16T00:00:12Z'),
+    timestamp: new Date('2025-12-16T00:00:18Z'),
     status: 'Running',
   },
   {
     id: 4,
     name: 'API integration',
-    timestamp: new Date('2025-12-16T00:00:11Z'),
+    timestamp: new Date('2025-12-16T00:00:17Z'),
     status: 'In progress',
   },
   {
     id: 5,
     name: 'Security review',
-    timestamp: new Date('2025-12-16T00:00:10Z'),
+    timestamp: new Date('2025-12-16T00:00:16Z'),
     status: 'Passed',
   },
   {
     id: 6,
     name: 'Sprint completed',
-    timestamp: new Date('2025-12-16T00:00:09Z'),
+    timestamp: new Date('2025-12-16T00:00:15Z'),
     status: 'Closed',
   },
   {
     id: 7,
     name: 'Design review',
-    timestamp: new Date('2025-12-16T00:00:08Z'),
+    timestamp: new Date('2025-12-16T00:00:14Z'),
     status: 'Approved',
   },
   {
     id: 8,
     name: 'User testing',
-    timestamp: new Date('2025-12-16T00:00:07Z'),
+    timestamp: new Date('2025-12-16T00:00:13Z'),
     status: 'In progress',
   },
   {
     id: 9,
     name: 'Infrastructure update',
-    timestamp: new Date('2025-12-16T00:00:06Z'),
+    timestamp: new Date('2025-12-16T00:00:12Z'),
     status: 'Applied',
   },
   {
     id: 10,
     name: 'Release published',
-    timestamp: new Date('2025-12-16T00:00:05Z'),
+    timestamp: new Date('2025-12-16T00:00:11Z'),
     status: 'v1.4.0',
   },
   {
     id: 11,
-    name: 'Contract signed',
-    timestamp: new Date('2025-12-15T00:00:14Z'),
-    status: 'Confirmed',
-  },
-  {
-    id: 12,
-    name: 'Cloud deployment',
-    timestamp: new Date('2025-12-15T00:00:13Z'),
+    name: 'Database migration',
+    timestamp: new Date('2025-12-16T00:00:10Z'),
     status: 'Live',
   },
   {
+    id: 12,
+    name: 'Code review',
+    timestamp: new Date('2025-12-16T00:00:09Z'),
+    status: 'Approved',
+  },
+  {
     id: 13,
-    name: 'Performance test',
-    timestamp: new Date('2025-12-15T00:00:12Z'),
+    name: 'CI/CD pipeline',
+    timestamp: new Date('2025-12-16T00:00:08Z'),
     status: 'Running',
   },
   {
     id: 14,
-    name: 'API integration',
-    timestamp: new Date('2025-12-15T00:00:11Z'),
-    status: 'In progress',
+    name: 'Load testing',
+    timestamp: new Date('2025-12-16T00:00:07Z'),
+    status: 'Passed',
   },
   {
     id: 15,
+    name: 'Feature flag',
+    timestamp: new Date('2025-12-16T00:00:06Z'),
+    status: 'Applied',
+  },
+  {
+    id: 16,
+    name: 'Monitoring setup',
+    timestamp: new Date('2025-12-16T00:00:05Z'),
+    status: 'Live',
+  },
+  {
+    id: 17,
+    name: 'Bug fix deployed',
+    timestamp: new Date('2025-12-16T00:00:04Z'),
+    status: 'Confirmed',
+  },
+  {
+    id: 18,
+    name: 'A/B test',
+    timestamp: new Date('2025-12-16T00:00:03Z'),
+    status: 'Running',
+  },
+  {
+    id: 19,
+    name: 'Backup verified',
+    timestamp: new Date('2025-12-16T00:00:02Z'),
+    status: 'Passed',
+  },
+  {
+    id: 20,
+    name: 'SSL cert renewed',
+    timestamp: new Date('2025-12-16T00:00:01Z'),
+    status: 'Applied',
+  },
+  {
+    id: 21,
+    name: 'Contract signed',
+    timestamp: new Date('2025-12-15T00:00:20Z'),
+    status: 'Confirmed',
+  },
+  {
+    id: 22,
+    name: 'Cloud deployment',
+    timestamp: new Date('2025-12-15T00:00:19Z'),
+    status: 'Live',
+  },
+  {
+    id: 23,
+    name: 'Performance test',
+    timestamp: new Date('2025-12-15T00:00:18Z'),
+    status: 'Running',
+  },
+  {
+    id: 24,
+    name: 'API integration',
+    timestamp: new Date('2025-12-15T00:00:17Z'),
+    status: 'In progress',
+  },
+  {
+    id: 25,
     name: 'Security review',
-    timestamp: new Date('2025-12-15T00:00:10Z'),
+    timestamp: new Date('2025-12-15T00:00:16Z'),
     status: 'Passed',
   },
 ]

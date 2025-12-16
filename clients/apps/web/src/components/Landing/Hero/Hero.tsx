@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
-import { UnicornStudioEmbed } from './UnicornStudioEmbed'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -34,51 +33,42 @@ export const Hero = ({
   children,
 }: HeroProps) => {
   return (
-    <div className="relative min-h-[80vh] w-full overflow-hidden">
-      {/* Animated Background */}
-      <UnicornStudioEmbed
-        projectId="ziFP1lFITDIU9uVSFulg"
-        className="absolute inset-0 z-0"
-      />
-
-      {/* Content */}
-      <motion.div
-        className={twMerge(
-          'relative z-10 flex min-h-[80vh] flex-col items-center justify-center gap-4 px-4 pt-8 text-center md:pt-12',
-          className,
-        )}
-        variants={containerVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <motion.div variants={itemVariants}>
-          <Image
-            src="/assets/brand/app-icon.png"
-            alt="App Icon"
-            width={320}
-            height={320}
-          />
-        </motion.div>
-        <motion.h1
-          className="text-5xl leading-tight! tracking-tight text-balance text-white md:px-0 md:text-7xl"
-          variants={itemVariants}
-        >
-          {title}
-        </motion.h1>
-        <motion.p
-          className="max-w-2xl text-center text-2xl !leading-relaxed text-balance text-white/70"
-          variants={itemVariants}
-        >
-          {description}
-        </motion.p>
-        <motion.div
-          className="mt-6 flex flex-col items-center gap-4 md:flex-row md:gap-6"
-          variants={itemVariants}
-        >
-          {children}
-        </motion.div>
+    <motion.div
+      className={twMerge(
+        'relative flex flex-col items-center justify-center gap-4 px-4 pt-8 text-center md:pt-12',
+        className,
+      )}
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+    >
+      <motion.div variants={itemVariants}>
+        <Image
+          src="/assets/brand/app-icon.png"
+          alt="App Icon"
+          width={320}
+          height={320}
+        />
       </motion.div>
-    </div>
+      <motion.h1
+        className="text-5xl leading-tight! tracking-tight text-balance md:px-0 md:text-7xl"
+        variants={itemVariants}
+      >
+        {title}
+      </motion.h1>
+      <motion.p
+        className="dark:text-polar-500 max-w-2xl text-center text-2xl !leading-relaxed text-balance text-gray-500"
+        variants={itemVariants}
+      >
+        {description}
+      </motion.p>
+      <motion.div
+        className="mt-6 flex flex-col items-center gap-4 md:flex-row md:gap-6"
+        variants={itemVariants}
+      >
+        {children}
+      </motion.div>
+    </motion.div>
   )
 }
