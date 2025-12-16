@@ -48,13 +48,9 @@ const FeaturedCard = ({
 export const FeaturedWork = () => {
   return (
     <section className="flex w-full flex-col gap-y-12">
-      <div className="flex items-center gap-x-4">
-        <div className="dark:to-polar-700 h-px w-12 bg-gradient-to-r from-transparent to-gray-300" />
-        <p className="dark:text-polar-500 text-lg text-gray-400">
-          Featured Work
-        </p>
-        <div className="dark:to-polar-700 h-px w-12 bg-gradient-to-l from-transparent to-gray-300" />
-      </div>
+      <p className="dark:text-polar-500 text-center text-lg text-gray-400">
+        Featured Work
+      </p>
 
       <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {featuredCaseStudies.map((study, index) => (
