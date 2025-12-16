@@ -28,7 +28,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'botox-cosmetic',
     title: 'BOTOX Cosmetic',
     description: 'Strengthening product recognition and loyalty across a market leader',
-    thumbnail: '/assets/work/uploads/2025/04/ST13_botox-scaled.jpg',
+    thumbnail: '/assets/work/uploads/2025/04/botox-cosmetic-thumb.webp',
     featured: true,
     resultHighlight: '#1 aesthetic brand',
   },
