@@ -18,7 +18,7 @@ const Footer = () => {
                 size={120}
               />
               <p className="dark:text-polar-400 text-sm text-gray-500">
-                We design, build, and operate mission-critical digital products for organizations where failure is not an option.
+                We design, build, and run digital systems for the science, aerospace, and biotech industries.
               </p>
             </div>
             <div className="flex flex-row gap-x-4">
