@@ -94,6 +94,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
 // Pages with dedicated static routes - exclude from dynamic generation
 const staticPages = [
+  'great-dane',
   'ikon-pass',
   'ge-brilliant-you',
   'juvederm',

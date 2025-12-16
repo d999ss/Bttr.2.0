@@ -9,6 +9,14 @@ export interface CaseStudy {
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'great-dane',
+    title: 'Great Dane',
+    description: 'Redesigning the digital presence for a 125-year legacy in American manufacturing',
+    thumbnail: '/assets/work/uploads/2025/01/great-dane-thumb.jpg',
+    featured: true,
+    resultHighlight: '125 years strong',
+  },
+  {
     slug: 'ikon-pass',
     title: 'Ikon Pass',
     description: 'Redefining the ride with an ambitious digital transformation',
