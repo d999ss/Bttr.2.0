@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'Spark - Bttr.',
@@ -201,6 +202,8 @@ export default function SparkPage() {
           </div>
         </div>
       </section>
+
+      <NextCaseStudy currentSlug="spark" />
     </main>
   )
 }

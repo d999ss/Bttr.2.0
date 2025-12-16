@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'Great Dane - Bttr.',
@@ -465,6 +466,9 @@ export default function GreatDanePage() {
           </div>
         </div>
       </section>
+
+      {/* Next Case Study */}
+      <NextCaseStudy currentSlug="great-dane" />
     </main>
   )
 }

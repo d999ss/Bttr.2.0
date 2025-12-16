@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'Tarform - Bttr.',
@@ -229,6 +230,8 @@ export default function TarformPage() {
           </div>
         </div>
       </section>
+
+      <NextCaseStudy currentSlug="tarform" />
     </main>
   )
 }

@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'Helix - Bttr.',
@@ -206,6 +207,8 @@ export default function HelixHomesPage() {
           </div>
         </div>
       </section>
+
+      <NextCaseStudy currentSlug="helix-homes" />
     </main>
   )
 }

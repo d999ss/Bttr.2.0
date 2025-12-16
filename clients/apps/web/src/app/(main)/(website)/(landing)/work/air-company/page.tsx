@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'Air Company - Bttr.',
@@ -337,6 +338,8 @@ export default function AirCompanyPage() {
           </div>
         </div>
       </section>
+
+      <NextCaseStudy currentSlug="air-company" />
     </main>
   )
 }

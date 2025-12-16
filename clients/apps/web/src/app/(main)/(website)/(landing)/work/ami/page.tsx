@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'AMI - Bttr.',
@@ -369,6 +370,8 @@ export default function AMIPage() {
           </div>
         </div>
       </section>
+
+      <NextCaseStudy currentSlug="ami" />
     </main>
   )
 }

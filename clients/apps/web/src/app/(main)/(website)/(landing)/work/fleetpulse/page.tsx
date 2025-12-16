@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'FleetPulse - Bttr.',
@@ -310,6 +311,8 @@ export default function FleetPulsePage() {
           </div>
         </div>
       </section>
+
+      <NextCaseStudy currentSlug="fleetpulse" />
     </main>
   )
 }

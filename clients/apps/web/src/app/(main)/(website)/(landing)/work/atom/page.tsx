@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'Atom - Bttr.',
@@ -200,6 +201,8 @@ export default function AtomPage() {
           </div>
         </div>
       </section>
+
+      <NextCaseStudy currentSlug="atom" />
     </main>
   )
 }

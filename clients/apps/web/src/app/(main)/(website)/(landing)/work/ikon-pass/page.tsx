@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
+import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
 
 export const metadata: Metadata = {
   title: 'Ikon Pass - Bttr.',
@@ -626,6 +627,8 @@ export default function IkonPassPage() {
           </div>
         </div>
       </section>
+
+      <NextCaseStudy currentSlug="ikon-pass" />
     </main>
   )
 }
