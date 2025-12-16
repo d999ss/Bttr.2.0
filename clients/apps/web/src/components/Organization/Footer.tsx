@@ -70,7 +70,7 @@ const Footer = () => {
             <h3 className="dark:text-polar-500 text-gray-500">Company</h3>
             <div className="flex flex-col gap-y-3">
               <FooterLink href="/company">About</FooterLink>
-              <FooterLink href="/careers">Careers</FooterLink>
+              <FooterLink href="/company">Careers</FooterLink>
               <FooterLink href="/contact">Contact</FooterLink>
             </div>
           </div>
