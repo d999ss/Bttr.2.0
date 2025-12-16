@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'GE Aerospace - Bttr.',
     description: 'Enterprise asset management for the future of flight.',
-    images: ['/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg'],
+    images: ['/assets/work/uploads/2024/08/ge-aerospace-hero.jpg'],
   },
 }
 
@@ -18,10 +18,10 @@ export default function GEAerospacePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg"
+            src="/assets/work/uploads/2024/08/ge-aerospace-hero.jpg"
             alt="GE Aerospace"
             fill
-            className="object-cover opacity-60"
+            className="object-cover opacity-70"
             priority
             sizes="100vw"
           />
@@ -96,8 +96,8 @@ export default function GEAerospacePage() {
       <section className="w-full bg-[#0a1628]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/GE_wayfinding.jpg"
-            alt="GE Aerospace Platform"
+            src="/assets/work/uploads/2024/08/ge-aerospace-engine.jpg"
+            alt="GE Aerospace Engine"
             fill
             className="object-cover"
             sizes="100vw"
@@ -170,8 +170,8 @@ export default function GEAerospacePage() {
       <section className="w-full bg-[#0a1628]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/GE-O-HS-1-1-1_00000.png"
-            alt="GE Aerospace Dashboard"
+            src="/assets/work/uploads/2024/08/ge-aerospace-platform.jpg"
+            alt="GE Aerospace Platform"
             fill
             className="object-cover"
             sizes="100vw"
