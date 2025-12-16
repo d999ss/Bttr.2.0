@@ -18,10 +18,10 @@ export default function GEAerospacePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg"
-            alt="GE Aerospace"
+            src="/assets/work/uploads/2024/08/ge-aerospace-ge9x-gearbox.jpg"
+            alt="GE Aerospace GE9X Gearbox"
             fill
-            className="object-cover opacity-70"
+            className="object-cover opacity-80"
             priority
             sizes="100vw"
           />
@@ -95,8 +95,8 @@ export default function GEAerospacePage() {
       <section className="w-full bg-[#0a1628]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/GE_wayfinding.jpg"
-            alt="GE Aerospace FlightDeck"
+            src="/assets/work/uploads/2024/08/ge-aerospace-cfm-engines.jpg"
+            alt="CFM Engines"
             fill
             className="object-cover"
             sizes="100vw"
@@ -176,8 +176,8 @@ export default function GEAerospacePage() {
         <div className="grid md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-ge90.jpg"
-              alt="GE90 Engine"
+              src="/assets/work/uploads/2024/08/ge-aerospace-cf6.jpg"
+              alt="CF6 Engine"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -185,8 +185,8 @@ export default function GEAerospacePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-genx.jpg"
-              alt="GEnx Engine"
+              src="/assets/work/uploads/2024/08/ge-aerospace-choice.jpg"
+              alt="GE Aerospace Innovation"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -259,8 +259,8 @@ export default function GEAerospacePage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-engines.jpg"
-            alt="GE Aerospace Engines"
+            src="/assets/work/uploads/2024/08/ge-aerospace-masthead.jpg"
+            alt="GE Aerospace Catalyst Engine"
             fill
             className="object-cover"
             sizes="100vw"
@@ -320,8 +320,8 @@ export default function GEAerospacePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-catalyst.jpg"
-              alt="Catalyst Engine"
+              src="/assets/work/uploads/2024/08/ge-aerospace-genx.jpg"
+              alt="GEnx Engine"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -358,12 +358,12 @@ export default function GEAerospacePage() {
         </div>
       </section>
 
-      {/* Full-width Catalyst Image */}
+      {/* Full-width Closing Image */}
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-services.jpg"
-            alt="GE Aerospace Services"
+            src="/assets/work/uploads/2024/08/ge-aerospace-ge9x-gearbox.jpg"
+            alt="GE9X Gearbox Engineering"
             fill
             className="object-cover"
             sizes="100vw"
