@@ -87,7 +87,8 @@ const mobileNavigationItems: NavigationItem[] = [
   },
   {
     title: 'Capabilities',
-    href: '/features/design',
+    href: '/features/products',
+    isActive: (pathname) => pathname.startsWith('/features'),
   },
   {
     title: 'Work',
