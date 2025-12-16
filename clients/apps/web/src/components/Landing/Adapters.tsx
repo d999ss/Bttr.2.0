@@ -33,7 +33,7 @@ export default function App() {
     />
   );
 }`,
-    link: '/features/platforms',
+    link: '/features/benefits',
   },
   {
     name: 'Internal Platforms',
@@ -51,7 +51,7 @@ export const platform: InternalPlatform = {
   integration: "seamless",
   maintenance: "long-term"
 };`,
-    link: '/features/platforms',
+    link: '/features/benefits',
   },
   {
     name: 'Customer Facing Products',
@@ -66,7 +66,7 @@ const product = {
 };
 
 export default product;`,
-    link: '/features/platforms',
+    link: '/features/benefits',
   },
 ]
 
@@ -188,7 +188,7 @@ export const Adapters = () => {
                       className="text-sm text-gray-400"
                       variants={itemVariants}
                     >
-                      <Link href={adapter.link} target="_blank">
+                      <Link href={adapter.link}>
                         <Button variant="secondary" className="rounded-full">
                           Learn More
                           <ArrowOutwardOutlined
