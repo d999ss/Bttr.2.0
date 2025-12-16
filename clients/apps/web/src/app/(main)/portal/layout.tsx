@@ -118,7 +118,7 @@ export default function PortalLayout({ children }: PropsWithChildren) {
             {isDemo ? (
               <span className="dark:text-polar-500 text-sm text-gray-500">Demo Mode</span>
             ) : user ? (
-              <Link href="/portal/dashboard" className="flex items-center gap-3 group">
+              <Link href="/portal/profile" className="flex items-center gap-3 group">
                 {user.avatarUrl ? (
                   <img
                     src={user.avatarUrl}
@@ -172,7 +172,7 @@ export default function PortalLayout({ children }: PropsWithChildren) {
             )}
           </div>
           {user && !isDemo && (
-            <Link href="/portal/dashboard" className="flex-shrink-0">
+            <Link href="/portal/profile" className="flex-shrink-0">
               {user.avatarUrl ? (
                 <img
                   src={user.avatarUrl}
