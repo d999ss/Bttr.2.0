@@ -102,10 +102,10 @@ export const Events = () => {
                 y: keyframes,
               }}
               transition={{
-                duration: 8,
+                duration: 20,
                 repeat: Infinity,
                 repeatType: 'loop',
-                ease: [0.83, 0, 0.17, 1],
+                ease: 'linear',
               }}
               whileInView="animate"
             >
@@ -159,71 +159,28 @@ const StatusBadge = ({ status }: { status: string }) => {
   }
 
   return (
-    <span className={`rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusStyle(status)}`}>
+    <span className={`shrink-0 whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusStyle(status)}`}>
       {status}
     </span>
   )
 }
 
-const mockedEvents = [
-  {
-    id: 1,
-    name: 'Contract signed',
-    timestamp: new Date('2025-12-16T00:00:10Z'),
-    status: 'Confirmed',
-  },
-  {
-    id: 2,
-    name: 'Cloud deployment',
-    timestamp: new Date('2025-12-16T00:00:09Z'),
-    status: 'Live',
-  },
-  {
-    id: 3,
-    name: 'Performance test',
-    timestamp: new Date('2025-12-16T00:00:08Z'),
-    status: 'Running',
-  },
-  {
-    id: 4,
-    name: 'API integration',
-    timestamp: new Date('2025-12-16T00:00:07Z'),
-    status: 'In progress',
-  },
-  {
-    id: 5,
-    name: 'Security review',
-    timestamp: new Date('2025-12-16T00:00:06Z'),
-    status: 'Passed',
-  },
-  {
-    id: 6,
-    name: 'Sprint completed',
-    timestamp: new Date('2025-12-16T00:00:05Z'),
-    status: 'Closed',
-  },
-  {
-    id: 7,
-    name: 'Design review',
-    timestamp: new Date('2025-12-16T00:00:04Z'),
-    status: 'Approved',
-  },
-  {
-    id: 8,
-    name: 'User testing',
-    timestamp: new Date('2025-12-16T00:00:03Z'),
-    status: 'In progress',
-  },
-  {
-    id: 9,
-    name: 'Infrastructure update',
-    timestamp: new Date('2025-12-16T00:00:02Z'),
-    status: 'Applied',
-  },
-  {
-    id: 10,
-    name: 'Release published',
-    timestamp: new Date('2025-12-16T00:00:01Z'),
-    status: 'v1.4.0',
-  },
+const baseEvents = [
+  { name: 'Contract signed', status: 'Confirmed' },
+  { name: 'Cloud deployment', status: 'Live' },
+  { name: 'Performance test', status: 'Running' },
+  { name: 'API integration', status: 'In progress' },
+  { name: 'Security review', status: 'Passed' },
+  { name: 'Sprint completed', status: 'Closed' },
+  { name: 'Design review', status: 'Approved' },
+  { name: 'User testing', status: 'In progress' },
+  { name: 'Infrastructure update', status: 'Applied' },
+  { name: 'Release published', status: 'v1.4.0' },
 ]
+
+const mockedEvents = [...baseEvents, ...baseEvents, ...baseEvents].map((event, idx) => ({
+  id: idx + 1,
+  name: event.name,
+  timestamp: new Date(Date.now() - idx * 60000),
+  status: event.status,
+}))
