@@ -96,8 +96,19 @@ export default function OnboardingPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="dark:bg-polar-900 flex w-full max-w-lg flex-col gap-8 rounded-2xl bg-white p-8 md:p-12"
+        className="dark:bg-polar-900 relative flex w-full max-w-lg flex-col gap-8 rounded-2xl bg-white p-8 md:p-12"
       >
+        {/* Close button */}
+        <button
+          onClick={() => router.push('/portal/dashboard')}
+          className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-polar-800 dark:hover:text-gray-300"
+          aria-label="Close"
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+
         <div className="flex flex-col gap-y-6">
           <BttrLogotype variant="icon" size={48} />
           <div className="flex flex-col gap-2">

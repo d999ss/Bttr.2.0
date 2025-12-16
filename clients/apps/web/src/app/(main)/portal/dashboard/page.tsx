@@ -79,15 +79,10 @@ export default function DashboardPage() {
           const res = await fetch('/api/client-portal/me')
           if (res.ok) {
             clientData = await res.json()
-          } else {
-            // Not a registered client - redirect to onboarding
-            router.push('/portal/onboarding')
-            return
           }
+          // If not a registered client, just show the welcome state
         } catch {
-          // Not a registered client - redirect to onboarding
-          router.push('/portal/onboarding')
-          return
+          // Not a registered client, show welcome state
         }
 
         setUser({ email: authUser.email, clientData })
