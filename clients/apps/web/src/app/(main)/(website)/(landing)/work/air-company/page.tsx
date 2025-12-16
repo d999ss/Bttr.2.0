@@ -247,7 +247,7 @@ export default function AirCompanyPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-8.jpg.webp"
               alt="Air Company Product Shot"
               fill
               className="object-cover"
