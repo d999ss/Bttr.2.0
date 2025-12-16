@@ -8,7 +8,6 @@ import Link from 'next/link'
 import GetStartedButton from '../Auth/GetStartedButton'
 import { Adapters } from './Adapters'
 import { Checkout } from './Checkout'
-import { ClientLogos } from './ClientLogos'
 import { Events } from './Events'
 import Features from './Features'
 import { FeaturedWork } from './FeaturedWork'
@@ -49,7 +48,6 @@ export const PageContent = () => {
           </Link>
         </Hero>
         <Features />
-        <ClientLogos />
         <FeaturedWork />
         <ImpactMetrics />
         <Events />
