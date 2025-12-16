@@ -23,6 +23,7 @@ export default function PortalLoginPage() {
         provider: 'google',
         options: {
           redirectTo: `${window.location.origin}/api/auth/callback?next=/portal/dashboard`,
+          skipBrowserRedirect: false,
         },
       })
 
@@ -30,8 +31,12 @@ export default function PortalLoginPage() {
         console.error('Google login error:', error)
         setMessage(error.message)
         setLoading(false)
-      } else {
-        console.log('OAuth initiated:', data)
+        return
+      }
+
+      // If we get a URL back, redirect manually
+      if (data?.url) {
+        window.location.href = data.url
       }
     } catch (err) {
       console.error('Unexpected error:', err)
