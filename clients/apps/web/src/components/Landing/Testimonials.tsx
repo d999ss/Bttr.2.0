@@ -100,7 +100,7 @@ export const Testimonials = () => {
           Testimonials
         </span>
         <h1 className="w-fit max-w-2xl text-center text-3xl text-pretty md:text-5xl md:leading-normal">
-          Why teams trust Bttr
+          Why teams trust Bttr.
         </h1>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">

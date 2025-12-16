@@ -227,12 +227,12 @@ const LandingPageDesktopNavigation = () => {
 
   return (
     <div className="dark:text-polar-50 hidden w-full flex-col items-center gap-12 py-8 md:flex">
-      <div className="relative flex w-full flex-row items-center justify-between lg:max-w-6xl">
-        <Link href="/">
+      <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center px-8 lg:max-w-7xl">
+        <Link href="/" className="justify-self-start">
           <BttrLogotype variant="icon" size={40} />
         </Link>
 
-        <ul className="absolute left-1/2 mx-auto flex -translate-x-1/2 flex-row gap-x-8 font-medium">
+        <ul className="flex flex-row gap-x-8 font-medium">
           <li>
             <NavPopover
               trigger="Capabilities"
@@ -259,7 +259,7 @@ const LandingPageDesktopNavigation = () => {
           </li>
         </ul>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 justify-self-end">
           <Link href="/portal/login">
             <Button variant="ghost" className="rounded-full">
               Client Login
