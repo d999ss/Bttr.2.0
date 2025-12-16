@@ -5,7 +5,25 @@ export interface CaseStudy {
   thumbnail: string
   featured?: boolean
   resultHighlight?: string
+  tags: string[]
 }
+
+export const allTags = [
+  'Web Design',
+  'Mobile App',
+  'Enterprise',
+  'Healthcare',
+  'Aerospace',
+  'Manufacturing',
+  'Fintech',
+  'Consumer',
+  'B2B',
+  'Branding',
+  'UX Strategy',
+  'Design System',
+] as const
+
+export type Tag = typeof allTags[number]
 
 export const caseStudies: CaseStudy[] = [
   {
@@ -15,6 +33,7 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2025/01/great-dane-thumb.jpg',
     featured: true,
     resultHighlight: '125 years strong',
+    tags: ['Web Design', 'Manufacturing', 'Enterprise', 'UX Strategy'],
   },
   {
     slug: 'ikon-pass',
@@ -23,6 +42,7 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2024/06/ikon-pass-thumb.jpg',
     featured: true,
     resultHighlight: '2M+ active users',
+    tags: ['Mobile App', 'Consumer', 'Web Design', 'UX Strategy'],
   },
   {
     slug: 'botox-cosmetic',
@@ -31,6 +51,7 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2025/04/botox-cosmetic-thumb.webp',
     featured: true,
     resultHighlight: '#1 aesthetic brand',
+    tags: ['Healthcare', 'Consumer', 'Web Design', 'Branding'],
   },
   {
     slug: 'juvederm',
@@ -39,12 +60,14 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2025/04/juvederm-thumb.jpg',
     featured: true,
     resultHighlight: '40% engagement lift',
+    tags: ['Healthcare', 'Consumer', 'Web Design', 'Branding'],
   },
   {
     slug: 'ami',
     title: 'AMI',
     description: 'Improving the user experience and product strategy for a learning platform.',
     thumbnail: '/assets/work/uploads/2025/03/20211133.jpg.webp',
+    tags: ['Web Design', 'B2B', 'UX Strategy', 'Enterprise'],
   },
   {
     slug: 'tarform',
@@ -53,18 +76,21 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2024/08/tarform-tech.jpg',
     featured: true,
     resultHighlight: '$15M+ configured',
+    tags: ['Mobile App', 'Consumer', 'Manufacturing', 'Web Design'],
   },
   {
     slug: 'fleetpulse',
     title: 'FleetPulse',
     description: 'Smart-Trailer innovation, designed for a more efficient future',
     thumbnail: '/assets/work/uploads/2024/06/Fleetpulse_Thumb.jpg.webp',
+    tags: ['Enterprise', 'Manufacturing', 'Mobile App', 'B2B'],
   },
   {
     slug: 'ge-brilliant-you',
     title: 'GE Brilliant You',
     description: "Investing in GE's most valuable asset—their people",
     thumbnail: '/assets/work/uploads/2023/08/ge-brilliant-you-thumb.webp',
+    tags: ['Enterprise', 'Aerospace', 'Web Design', 'UX Strategy'],
   },
   {
     slug: 'ge-aerospace',
@@ -73,6 +99,7 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg',
     featured: true,
     resultHighlight: '$1B+ assets managed',
+    tags: ['Enterprise', 'Aerospace', 'B2B', 'UX Strategy'],
   },
   {
     slug: 'tiger-biosciences',
@@ -81,6 +108,7 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/assets/work/uploads/2024/08/tiger-fur-thumb.png',
     featured: true,
     resultHighlight: 'FDA breakthrough',
+    tags: ['Healthcare', 'Web Design', 'Branding', 'B2B'],
   },
   {
     slug: 'revaire',
@@ -88,6 +116,7 @@ export const caseStudies: CaseStudy[] = [
     description: 'A modern, luxurious identity.',
     thumbnail: '/assets/work/uploads/2024/08/SQ-Image-frame-4.jpg.webp',
     featured: true,
+    tags: ['Branding', 'Web Design', 'Consumer', 'UX Strategy'],
   },
   {
     slug: 'air-company',
@@ -95,71 +124,83 @@ export const caseStudies: CaseStudy[] = [
     description: 'Shaping a startup around groundbreaking technology',
     thumbnail: '/assets/work/uploads/2023/09/AirCo-HS-1-1-1_00000.png.webp',
     featured: true,
+    tags: ['Branding', 'Web Design', 'Manufacturing', 'UX Strategy'],
   },
   {
     slug: 'alle-for-business',
     title: 'Allē for Business',
     description: 'Empowering healthcare practices to manage, grow, and scale',
     thumbnail: '/assets/work/uploads/2023/09/alle-master-header.jpg.webp',
+    tags: ['Healthcare', 'B2B', 'Enterprise', 'Web Design'],
   },
   {
     slug: 'alle-for-consumers',
     title: 'Allē for Consumers',
     description: 'The loyalty program for Allergan Aesthetics consumers',
     thumbnail: '/assets/work/uploads/2023/09/Alle-HS-1-1-3_00000-768x768.png',
+    tags: ['Healthcare', 'Consumer', 'Mobile App', 'Web Design'],
   },
   {
     slug: 'ciitizen',
     title: 'Ciitizen',
     description: 'Empowering patients with ownership of their health data',
     thumbnail: '/assets/work/uploads/2023/08/ADL_Square_1.png.webp',
+    tags: ['Healthcare', 'Consumer', 'Web Design', 'UX Strategy'],
   },
   {
     slug: 'alle',
     title: 'Allē',
     description: 'Building the loyalty platform for Allergan Aesthetics',
     thumbnail: '/assets/work/uploads/2023/09/Alle-HS-1-1-3_00000.png',
+    tags: ['Healthcare', 'Enterprise', 'Design System', 'UX Strategy'],
   },
   {
     slug: 'helix-homes',
     title: 'Helix Homes',
     description: 'Rethinking the homebuilding experience',
     thumbnail: '/assets/work/uploads/2023/08/CS_Inset-full-width-1-1-1024x576.png',
+    tags: ['Consumer', 'Web Design', 'UX Strategy', 'Branding'],
   },
   {
     slug: 'advantage',
     title: 'Advantage',
     description: 'A complete design system for a growing financial services company',
     thumbnail: '/assets/work/uploads/2023/08/ADL_Square_5-520x520.png',
+    tags: ['Fintech', 'Design System', 'B2B', 'Enterprise'],
   },
   {
     slug: 'allergan-data-labs',
     title: 'Allergan Data Labs',
     description: 'Building the innovation engine for Allergan Aesthetics',
     thumbnail: '/assets/work/uploads/2023/09/allergan-data-labs-thumb.png',
+    tags: ['Healthcare', 'Enterprise', 'Branding', 'UX Strategy'],
   },
   {
     slug: 'ross-j-barr',
     title: 'Ross J Barr',
     description: 'A refined digital presence for a renowned acupuncturist',
     thumbnail: '/assets/work/uploads/2023/08/ADL_Square_3-768x768.png',
+    tags: ['Healthcare', 'Web Design', 'Branding', 'Consumer'],
   },
   {
     slug: 'spark',
     title: 'Spark',
     description: 'Igniting creativity through an innovative design tool',
     thumbnail: '/assets/work/uploads/2023/08/spark-new-thumb.jpg',
+    tags: ['B2B', 'Web Design', 'Enterprise', 'UX Strategy'],
   },
   {
     slug: 'ge-user-conference',
     title: 'GE User Conference',
     description: 'Orchestrating a world-class event experience',
     thumbnail: '/assets/work/uploads/2023/08/ad-ge-orchestrate-1024x577.jpg',
+    tags: ['Enterprise', 'Aerospace', 'Web Design', 'Branding'],
   },
   {
     slug: 'atom',
     title: 'Atom',
     description: 'Reimagining the future of banking',
     thumbnail: '/assets/work/uploads/2023/08/atom-new-thumb.png',
+    tags: ['Fintech', 'Mobile App', 'Consumer', 'UX Strategy'],
   },
 ]
