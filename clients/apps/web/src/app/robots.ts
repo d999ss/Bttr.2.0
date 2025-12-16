@@ -15,7 +15,13 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/dashboard/', '/login/', '/verify-email/'],
+      disallow: [
+        '/dashboard/',
+        '/portal/',
+        '/login/',
+        '/verify-email/',
+        '/api/',
+      ],
     },
     sitemap: 'https://www.makebttr.com/sitemap.xml',
   }
