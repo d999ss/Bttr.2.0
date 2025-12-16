@@ -94,7 +94,7 @@ export default function JuvedermPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-6-scaled.jpg"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-6-scaled.webp"
             alt="JUVÉDERM Website Overview"
             fill
             className="object-cover"
@@ -235,7 +235,7 @@ export default function JuvedermPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-4-1-scaled.jpg"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-4-1-scaled.webp"
             alt="JUVÉDERM Conversion"
             fill
             className="object-cover"
