@@ -27,6 +27,15 @@ export type Tag = typeof allTags[number]
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'summit',
+    title: 'Summit',
+    description: 'Creating an AI-generated concept car brand for a marketing automation prototype',
+    thumbnail: '/assets/work/uploads/2025/02/summit-hero.jpg',
+    featured: true,
+    resultHighlight: 'AI-powered design',
+    tags: ['Branding', 'UX Strategy', 'Manufacturing', 'Consumer'],
+  },
+  {
     slug: 'great-dane',
     title: 'Great Dane',
     description: 'Redesigning the digital presence for a 125-year legacy in American manufacturing',
