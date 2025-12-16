@@ -1,162 +1,131 @@
 'use client'
 
-import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
+import { useEffect, useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState, useRef } from 'react'
+import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
+import { BttrLogotype } from '@/components/Brand/BttrLogotype'
 
-// Helper to set auth cookie that server can read
-function setAuthCookie(session: { access_token: string; refresh_token: string }) {
-  const cookieValue = JSON.stringify({
-    access_token: session.access_token,
-    refresh_token: session.refresh_token,
-  })
-  const expires = new Date()
-  expires.setTime(expires.getTime() + 7 * 24 * 60 * 60 * 1000) // 7 days
-  document.cookie = `sb-oiekbwdggfjihihdmzsa-auth-token=${encodeURIComponent(cookieValue)}; path=/; expires=${expires.toUTCString()}; SameSite=Lax`
-}
-
-// Check if user is already a registered client
-async function checkClientExists(): Promise<{ isClient: boolean; error?: string }> {
-  try {
-    const res = await fetch('/api/client-portal/me', {
-      credentials: 'include',
-      cache: 'no-store',
-    })
-
-    if (res.ok) {
-      return { isClient: true }
-    }
-
-    if (res.status === 401) {
-      return { isClient: false, error: 'auth' }
-    }
-
-    // 404 means user is authenticated but not a client yet
-    return { isClient: false }
-  } catch (err) {
-    console.error('checkClientExists error:', err)
-    return { isClient: false, error: 'network' }
-  }
-}
-
-export default function AuthCallbackPage() {
+export default function PortalCallbackPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [error, setError] = useState<string | null>(null)
-  const processed = useRef(false)
+  const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(() => {
-    // Prevent double processing
-    if (processed.current) return
-    processed.current = true
+    async function handleCallback() {
+      try {
+        const code = searchParams.get('code')
+        const error = searchParams.get('error')
+        const errorDescription = searchParams.get('error_description')
 
-    const handleCallback = async () => {
-      const supabase = getSupabaseBrowserClient()
-
-      // Check for errors in URL params
-      const errorParam = searchParams.get('error')
-      const errorDesc = searchParams.get('error_description')
-
-      if (errorParam) {
-        setError(errorDesc || errorParam)
-        return
-      }
-
-      // Helper to complete auth and redirect appropriately
-      const completeAuth = async (session: { access_token: string; refresh_token: string }) => {
-        setAuthCookie(session)
-        // Small delay to ensure cookie is available for server-side reads
-        await new Promise(resolve => setTimeout(resolve, 500))
-        // Check if user is already registered as a client
-        const result = await checkClientExists()
-
-        if (result.error === 'auth') {
-          // Auth cookie not working - try once more after longer delay
-          await new Promise(resolve => setTimeout(resolve, 1000))
-          const retry = await checkClientExists()
-          if (retry.isClient) {
-            window.location.href = '/portal/dashboard'
-          } else if (retry.error === 'auth') {
-            setError('Authentication failed. Please try logging in again.')
-          } else {
-            window.location.href = '/portal/onboarding'
-          }
+        if (error) {
+          setStatus('error')
+          setErrorMessage(errorDescription || error)
           return
         }
 
-        if (result.isClient) {
-          window.location.href = '/portal/dashboard'
+        if (!code) {
+          // No code - check if we already have a session
+          const supabase = getSupabaseBrowserClient()
+          const { data: { session } } = await supabase.auth.getSession()
+
+          if (session) {
+            setStatus('success')
+            router.replace('/portal/dashboard')
+            return
+          }
+
+          setStatus('error')
+          setErrorMessage('No authorization code received')
+          return
+        }
+
+        // Exchange the code for a session using the browser client
+        // This works because the browser client has access to the PKCE code_verifier
+        const supabase = getSupabaseBrowserClient()
+        const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
+
+        if (exchangeError) {
+          console.error('Code exchange error:', exchangeError)
+          setStatus('error')
+          setErrorMessage(exchangeError.message)
+          return
+        }
+
+        if (data.session) {
+          setStatus('success')
+          // Small delay to ensure session is persisted
+          setTimeout(() => {
+            router.replace('/portal/dashboard')
+          }, 100)
         } else {
-          window.location.href = '/portal/onboarding'
+          setStatus('error')
+          setErrorMessage('No session returned from authentication')
         }
+      } catch (err) {
+        console.error('Callback error:', err)
+        setStatus('error')
+        setErrorMessage(err instanceof Error ? err.message : 'An unexpected error occurred')
       }
-
-      // Check for PKCE code in URL (query param)
-      const code = searchParams.get('code')
-      if (code) {
-        try {
-          const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
-          if (exchangeError) {
-            setError(`Code exchange failed: ${exchangeError.message}`)
-            return
-          }
-          if (data.session) {
-            await completeAuth(data.session)
-            return
-          }
-        } catch (err) {
-          setError(`Exchange exception: ${err instanceof Error ? err.message : 'Unknown error'}`)
-          return
-        }
-      }
-
-      // Check for hash fragment (implicit flow fallback)
-      if (window.location.hash && window.location.hash.includes('access_token')) {
-        await new Promise(resolve => setTimeout(resolve, 1000))
-
-        const { data: { session } } = await supabase.auth.getSession()
-        if (session) {
-          await completeAuth(session)
-          return
-        }
-      }
-
-      // Final check for existing session
-      const { data: { session } } = await supabase.auth.getSession()
-      if (session) {
-        await completeAuth(session)
-        return
-      }
-
-      // No session found
-      setError('No authentication data found. Please try again.')
     }
 
     handleCallback()
-  }, [router, searchParams])
-
-  if (error) {
-    return (
-      <div className="flex min-h-[50vh] items-center justify-center">
-        <div className="rounded-xl bg-red-500/10 p-6 text-center max-w-lg">
-          <h2 className="mb-2 text-lg font-medium text-red-600">Authentication Failed</h2>
-          <p className="text-sm text-red-500 mb-4">{error}</p>
-          <button
-            onClick={() => router.push('/portal/login')}
-            className="mt-4 rounded-full bg-gray-900 px-4 py-2 text-sm text-white hover:bg-gray-800"
-          >
-            Back to Login
-          </button>
-        </div>
-      </div>
-    )
-  }
+  }, [searchParams, router])
 
   return (
-    <div className="flex min-h-[50vh] items-center justify-center">
-      <div className="text-center">
-        <div className="mb-4 h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-gray-900 mx-auto" />
-        <p className="text-gray-600">Completing sign in...</p>
+    <div className="dark:bg-polar-950 flex min-h-screen w-full grow items-center justify-center bg-gray-50">
+      <div className="dark:bg-polar-900 flex w-full max-w-md flex-col items-center justify-center gap-8 rounded-4xl bg-white p-12 shadow-sm dark:shadow-none">
+        <BttrLogotype variant="icon" size={60} />
+
+        {status === 'loading' && (
+          <>
+            <div className="h-10 w-10 animate-spin rounded-full border-2 border-gray-300 border-t-[#D2A62C] dark:border-gray-700" />
+            <div className="flex flex-col items-center gap-2">
+              <h2 className="text-xl text-black dark:text-white">Signing you in...</h2>
+              <p className="dark:text-polar-400 text-center text-gray-500">
+                Please wait while we complete your authentication.
+              </p>
+            </div>
+          </>
+        )}
+
+        {status === 'success' && (
+          <>
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/10">
+              <svg className="h-8 w-8 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <h2 className="text-xl text-black dark:text-white">Success!</h2>
+              <p className="dark:text-polar-400 text-center text-gray-500">
+                Redirecting to your dashboard...
+              </p>
+            </div>
+          </>
+        )}
+
+        {status === 'error' && (
+          <>
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-red-500/10">
+              <svg className="h-8 w-8 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <h2 className="text-xl text-black dark:text-white">Authentication Failed</h2>
+              <p className="dark:text-polar-400 text-center text-gray-500">
+                {errorMessage}
+              </p>
+            </div>
+            <a
+              href="/portal/login"
+              className="rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              Try Again
+            </a>
+          </>
+        )}
       </div>
     </div>
   )

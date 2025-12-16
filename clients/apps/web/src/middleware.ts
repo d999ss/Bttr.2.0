@@ -4,10 +4,10 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl
 
-  // If there's an OAuth code on the homepage or any page, redirect to the auth callback
+  // If there's an OAuth code on the homepage, redirect to the client-side callback
   const code = searchParams.get('code')
   if (code && pathname === '/') {
-    const callbackUrl = new URL('/api/auth/callback', request.url)
+    const callbackUrl = new URL('/portal/callback', request.url)
     callbackUrl.searchParams.set('code', code)
     // Preserve any other params
     const next = searchParams.get('next')
