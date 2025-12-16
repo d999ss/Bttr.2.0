@@ -1,12 +1,8 @@
 import { getAuthenticatedUser } from '@/utils/user'
 import { NextResponse } from 'next/server'
-import {
-  getContactByEmail,
-  getInvoicesForContact,
-  getProjectsForContact,
-  calculateInvoiceSummary,
-  calculateProjectSummary
-} from '@/utils/xero'
+
+// GodMode server handles Xero token refresh
+const GODMODE_URL = process.env.GODMODE_URL || 'http://localhost:3001'
 
 export async function GET() {
   try {
@@ -16,40 +12,44 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Find Xero contact by email
-    const contact = await getContactByEmail(user.email)
+    // Call GodMode server to get client data
+    const response = await fetch(
+      `${GODMODE_URL}/api/xero/client/data?email=${encodeURIComponent(user.email)}`,
+      {
+        headers: { 'Accept': 'application/json' },
+        cache: 'no-store'
+      }
+    )
 
-    if (!contact) {
+    if (response.status === 404) {
       return NextResponse.json({
         error: 'not-a-client',
         message: 'No Xero contact found for this email'
       }, { status: 404 })
     }
 
-    // Fetch invoices and projects in parallel
-    const [invoices, projects] = await Promise.all([
-      getInvoicesForContact(contact.ContactID),
-      getProjectsForContact(contact.ContactID)
-    ])
+    if (!response.ok) {
+      throw new Error(`GodMode API error: ${response.status}`)
+    }
 
-    // Calculate summaries
-    const invoiceSummary = calculateInvoiceSummary(invoices)
-    const projectSummary = calculateProjectSummary(projects)
+    const data = await response.json()
 
+    // Transform to expected format
     return NextResponse.json({
       client: {
-        id: contact.ContactID,
-        name: contact.Name,
-        email: contact.EmailAddress,
-        company_name: contact.Name,
-        firstName: contact.FirstName,
-        lastName: contact.LastName
+        id: data.contact?.id,
+        name: data.contact?.name,
+        email: data.contact?.email,
+        company_name: data.contact?.company
       },
-      invoices: invoices.filter(inv => inv.type === 'ACCREC').slice(0, 20),
-      projects: projects,
-      summary: {
-        ...invoiceSummary,
-        ...projectSummary
+      invoices: data.invoices || [],
+      projects: data.projects || [],
+      summary: data.summary || {
+        totalOutstanding: 0,
+        overdueAmount: 0,
+        overdueCount: 0,
+        activeCount: 0,
+        totalHoursLogged: 0
       }
     })
   } catch (error) {
