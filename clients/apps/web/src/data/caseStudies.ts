@@ -74,7 +74,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'ge-aerospace',
     title: 'GE Aerospace',
     description: 'Enterprise asset management for jet engine maintenance',
-    thumbnail: '/assets/work/uploads/2023/09/GE-O-HS-1-1-1_00000.png',
+    thumbnail: '/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg',
     featured: true,
     resultHighlight: '$1B+ assets managed',
   },
