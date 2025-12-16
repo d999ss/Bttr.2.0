@@ -50,7 +50,7 @@ const values = [
   {
     title: 'Growth',
     description:
-      'We're constantly learning, pushing boundaries, and helping each other level up.',
+      "We're constantly learning, pushing boundaries, and helping each other level up.",
   },
 ]
 
