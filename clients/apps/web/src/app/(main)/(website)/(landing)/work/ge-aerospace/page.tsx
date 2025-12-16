@@ -2,11 +2,11 @@ import { Metadata } from 'next'
 import Image from 'next/image'
 
 export const metadata: Metadata = {
-  title: 'GE Aerospace - Bttr.',
-  description: 'Enterprise asset management for the future of flight.',
+  title: 'GE Aerospace FlightDeck - Bttr.',
+  description: 'Modernizing the FlightDeck Activation Hub for GE Aerospace.',
   openGraph: {
-    title: 'GE Aerospace - Bttr.',
-    description: 'Enterprise asset management for the future of flight.',
+    title: 'GE Aerospace FlightDeck - Bttr.',
+    description: 'Modernizing the FlightDeck Activation Hub for GE Aerospace.',
     images: ['/assets/work/uploads/2024/08/ge-aerospace-hero.jpg'],
   },
 }
@@ -32,7 +32,7 @@ export default function GEAerospacePage() {
               GE Aerospace
             </p>
             <h1 className="max-w-5xl text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
-              Advancing flight for future generations
+              FlightDeck Activation Hub
             </h1>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default function GEAerospacePage() {
 
             <div>
               <h3 className="mb-2 font-medium text-white/70">Year</h3>
-              <p className="text-white">2022–Present</p>
+              <p className="text-white">2024–Present</p>
             </div>
 
             <div className="sm:col-span-2 lg:col-span-3">
@@ -74,19 +74,18 @@ export default function GEAerospacePage() {
               <div className="flex flex-wrap gap-x-4 gap-y-1 text-white">
                 <p>Product Strategy</p>
                 <p>UX Design</p>
-                <p>UI Design</p>
+                <p>Information Architecture</p>
                 <p>Design System</p>
-                <p>Engineering</p>
               </div>
             </div>
           </div>
 
           <div className="space-y-6">
             <p className="text-xl leading-relaxed text-white lg:text-2xl">
-              GE Aerospace powers commercial and military aircraft around the world. They needed enterprise platforms to manage billions of dollars in jet engine assets across global operations.
+              GE Aerospace engaged Bttr. to modernize the FlightDeck Activation Hub, a mission defining internal SharePoint system used to operationalize behaviors, standards, and continuous improvement across the organization.
             </p>
             <p className="text-xl leading-relaxed text-white lg:text-2xl">
-              We partnered with GE to design and build asset management systems that provide real-time visibility into engine health, maintenance schedules, and lifecycle optimization for fleets spanning six continents.
+              The work began under real enterprise constraints—delayed procurement, government grade infrastructure, and zero room for disruption.
             </p>
           </div>
         </div>
@@ -105,69 +104,159 @@ export default function GEAerospacePage() {
         </div>
       </section>
 
-      {/* Section Header */}
+      {/* Context Section */}
       <section className="dark:bg-polar-950 w-full bg-white px-8 py-16 md:px-16 lg:px-24">
         <p className="dark:text-polar-500 mb-4 text-sm uppercase tracking-wider text-gray-500">
-          The Challenge
+          Context
         </p>
-        <h2 className="max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-          Managing $1B+ in mission-critical assets
+        <h2 className="mb-8 max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+          This was not a greenfield build
         </h2>
-      </section>
-
-      {/* Single Column Text */}
-      <section className="dark:bg-polar-950 w-full bg-white px-8 py-8 md:px-16 lg:px-24">
-        <p className="dark:text-polar-400 ml-auto max-w-2xl text-base leading-relaxed text-gray-600">
-          Airlines and maintenance organizations rely on GE Aerospace engines to power everything from regional jets to the world's largest widebody aircraft. Each engine represents millions of dollars in capital—and every hour of unplanned downtime costs operators significantly. The existing tools couldn't keep pace with the complexity of modern fleet management across GEnx, GE90, GE9X, and CFM engine families.
+        <p className="dark:text-polar-400 max-w-3xl text-lg leading-relaxed text-gray-600">
+          It was a live system, already in use, already politicized, and in the middle of a tenant migration.
         </p>
       </section>
 
-      {/* Results Section */}
+      {/* Timeline Section */}
       <section className="dark:bg-polar-900 w-full bg-gray-100 px-8 py-16 md:px-16 lg:px-24">
         <p className="dark:text-polar-500 mb-8 text-sm uppercase tracking-wider text-gray-500">
-          Results
+          Timeline Reality Check
         </p>
-        <div className="grid gap-8 md:grid-cols-3">
-          <div className="text-center">
-            <p className="mb-2 text-5xl font-light text-gray-900 dark:text-white">$1B+</p>
-            <p className="dark:text-polar-400 text-sm text-gray-600">
-              Assets under management
+        <div className="grid gap-12 md:grid-cols-2">
+          <div>
+            <p className="mb-4 text-2xl font-light text-gray-900 dark:text-white">March 28</p>
+            <p className="dark:text-polar-400 text-gray-600">
+              Initial alignment emails surfaced two blockers immediately—procurement and access. Hardware deployment and SharePoint permissions were gated behind a PO that had not yet cleared. Laptop delivery timelines were uncertain and could not be guaranteed before April.
+            </p>
+            <p className="dark:text-polar-400 mt-4 text-gray-600">
+              Despite this, the business expectation was still an April 1 kickoff.
             </p>
           </div>
-          <div className="text-center">
-            <p className="mb-2 text-5xl font-light text-gray-900 dark:text-white">40%</p>
-            <p className="dark:text-polar-400 text-sm text-gray-600">
-              Faster maintenance planning
+          <div>
+            <p className="mb-4 text-2xl font-light text-gray-900 dark:text-white">April 1</p>
+            <p className="dark:text-polar-400 text-gray-600">
+              Fieldglass support was contacted to validate that no configuration or compliance issues would block onboarding once procurement cleared. This allowed the team to eliminate unknowns before access even existed.
             </p>
-          </div>
-          <div className="text-center">
-            <p className="mb-2 text-5xl font-light text-gray-900 dark:text-white">6</p>
-            <p className="dark:text-polar-400 text-sm text-gray-600">
-              Continents served
+            <p className="dark:text-polar-400 mt-4 font-medium text-gray-900 dark:text-white">
+              The result was a zero idle time ramp once systems unlocked.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Section Header - Design System */}
+      {/* What Existed Section */}
+      <section className="dark:bg-polar-950 w-full bg-white px-8 py-16 md:px-16 lg:px-24">
+        <p className="dark:text-polar-500 mb-4 text-sm uppercase tracking-wider text-gray-500">
+          What Existed
+        </p>
+        <h2 className="mb-8 max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+          The structure was strong. The experience was not.
+        </h2>
+        <div className="grid gap-8 md:grid-cols-2">
+          <div>
+            <p className="dark:text-polar-400 text-lg leading-relaxed text-gray-600">
+              GE Aerospace maintained a FlightDeck Activation Hub organized around three core behaviors: respect for people, continuous improvement, and customer driven execution.
+            </p>
+          </div>
+          <div>
+            <p className="dark:text-polar-400 text-lg leading-relaxed text-gray-600">
+              The system housed eight FlightDeck fundamentals including standard work, daily and visual management, value stream management, operating cadences, action planning, problem solving, Five S, and flow and pull.
+            </p>
+          </div>
+        </div>
+        <div className="dark:border-polar-800 mt-12 border-t border-gray-200 pt-12">
+          <p className="dark:text-polar-400 text-gray-600">
+            Each fundamental had its own page with overview content, usage guidance, examples, templates, expert directories, and Smartsheets driven feedback loops.
+          </p>
+        </div>
+      </section>
+
+      {/* Image Grid */}
+      <section className="w-full bg-[#0a1628]">
+        <div className="grid md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2024/08/ge-aerospace-ge90.jpg"
+              alt="GE90 Engine"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2024/08/ge-aerospace-genx.jpg"
+              alt="GEnx Engine"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Constraint Stack */}
       <section className="w-full bg-[#0a1628] px-8 py-16 md:px-16 lg:px-24">
         <p className="mb-4 text-sm uppercase tracking-wider text-gray-400">
-          The Solution
+          The Constraint Stack
         </p>
-        <h2 className="max-w-4xl text-3xl leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
-          Real-time visibility for global operations
+        <h2 className="mb-8 max-w-4xl text-3xl leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+          Design had to work inside the cage
         </h2>
-      </section>
-
-      {/* Single Column Text Dark */}
-      <section className="w-full bg-[#0a1628] px-8 py-8 md:px-16 lg:px-24">
-        <p className="ml-auto max-w-2xl text-base leading-relaxed text-gray-300">
-          We designed and built enterprise platforms that consolidate data from maintenance systems, flight operations, and engine telemetry into unified dashboards. Maintenance teams now have unprecedented visibility into engine health, lifecycle status, and service schedules—enabling faster decisions and more efficient resource allocation across global operations.
+        <p className="mb-8 max-w-3xl text-lg leading-relaxed text-gray-300">
+          This project ran directly into a non negotiable technical shift. GE Aerospace was migrating SharePoint into GCC High, Microsoft's government cloud, due to military relationships.
+        </p>
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-xl bg-white/5 p-6">
+            <p className="text-white">Reduced feature set</p>
+          </div>
+          <div className="rounded-xl bg-white/5 p-6">
+            <p className="text-white">Stripped visual capabilities</p>
+          </div>
+          <div className="rounded-xl bg-white/5 p-6">
+            <p className="text-white">Security driven UI limitations</p>
+          </div>
+          <div className="rounded-xl bg-white/5 p-6">
+            <p className="text-white">Unknown migration timeline</p>
+          </div>
+          <div className="rounded-xl bg-white/5 p-6 md:col-span-2 lg:col-span-2">
+            <p className="text-white">No parity with standard enterprise SharePoint</p>
+          </div>
+        </div>
+        <p className="mt-8 text-gray-400">
+          A test site had already been migrated with minimal visual change, signaling that cosmetic redesign alone would fail.
         </p>
       </section>
 
-      {/* Second Image */}
-      <section className="w-full bg-[#0a1628]">
+      {/* User Reality */}
+      <section className="dark:bg-polar-950 w-full bg-white px-8 py-16 md:px-16 lg:px-24">
+        <p className="dark:text-polar-500 mb-4 text-sm uppercase tracking-wider text-gray-500">
+          User Reality
+        </p>
+        <h2 className="mb-8 max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+          High risk, high complexity, zero margin for confusion
+        </h2>
+        <div className="grid gap-8 md:grid-cols-3">
+          <div className="dark:bg-polar-900 rounded-xl bg-gray-100 p-8">
+            <p className="mb-2 font-medium text-gray-900 dark:text-white">FlightDeck Leaders</p>
+            <p className="dark:text-polar-400 text-sm text-gray-600">Who lived in the system</p>
+          </div>
+          <div className="dark:bg-polar-900 rounded-xl bg-gray-100 p-8">
+            <p className="mb-2 font-medium text-gray-900 dark:text-white">Unofficial FlightDeck Leaders</p>
+            <p className="dark:text-polar-400 text-sm text-gray-600">Who inherited responsibility without training</p>
+          </div>
+          <div className="dark:bg-polar-900 rounded-xl bg-gray-100 p-8">
+            <p className="mb-2 font-medium text-gray-900 dark:text-white">KPI Owners</p>
+            <p className="dark:text-polar-400 text-sm text-gray-600">Operating at frontline and mid management levels</p>
+          </div>
+        </div>
+        <p className="dark:text-polar-400 mt-8 text-gray-600">
+          On top of that, the system needed to support external users including suppliers, customers, and consultants, with no permission model yet defined.
+        </p>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
             src="/assets/work/uploads/2024/08/ge-aerospace-platform.jpg"
@@ -179,34 +268,48 @@ export default function GEAerospacePage() {
         </div>
       </section>
 
-      {/* Engine Portfolio Section */}
+      {/* What We Did */}
       <section className="dark:bg-polar-950 w-full bg-white px-8 py-16 md:px-16 lg:px-24">
         <p className="dark:text-polar-500 mb-4 text-sm uppercase tracking-wider text-gray-500">
-          Engine Portfolio
+          What We Did
         </p>
-        <h2 className="mb-12 max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-          Powering commercial and military aviation
+        <h2 className="mb-8 max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+          We focused on what could be designed independently of access
         </h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          <div className="relative aspect-video overflow-hidden rounded-xl">
-            <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-ge90.jpg"
-              alt="GE90 Engine"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+        <p className="dark:text-polar-400 mb-12 max-w-3xl text-lg leading-relaxed text-gray-600">
+          Instead of waiting on procurement or migration clarity, the work was reframed around certainty.
+        </p>
+        <div className="grid gap-6 md:grid-cols-2">
+          <div className="dark:border-polar-800 border-l-2 border-gray-200 pl-6">
+            <p className="dark:text-polar-300 text-gray-700">Audited the full content model and fundamental structure</p>
           </div>
-          <div className="relative aspect-video overflow-hidden rounded-xl">
-            <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-genx.jpg"
-              alt="GEnx Engine"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
+          <div className="dark:border-polar-800 border-l-2 border-gray-200 pl-6">
+            <p className="dark:text-polar-300 text-gray-700">Designed a reusable visual template system compatible with GCC High constraints</p>
           </div>
-          <div className="relative aspect-video overflow-hidden rounded-xl">
+          <div className="dark:border-polar-800 border-l-2 border-gray-200 pl-6">
+            <p className="dark:text-polar-300 text-gray-700">Reworked information architecture to reduce clicks and cognitive load</p>
+          </div>
+          <div className="dark:border-polar-800 border-l-2 border-gray-200 pl-6">
+            <p className="dark:text-polar-300 text-gray-700">Prioritized an example and pattern repository over abstract guidance</p>
+          </div>
+          <div className="dark:border-polar-800 border-l-2 border-gray-200 pl-6">
+            <p className="dark:text-polar-300 text-gray-700">Planned a permission model that could flex once external access rules were defined</p>
+          </div>
+          <div className="dark:border-polar-800 border-l-2 border-gray-200 pl-6">
+            <p className="dark:text-polar-300 text-gray-700">Scoped a technical audit to activate the moment migration timelines were confirmed</p>
+          </div>
+        </div>
+        <div className="dark:border-polar-800 mt-12 border-t border-gray-200 pt-12">
+          <p className="dark:text-polar-400 text-lg text-gray-600">
+            Everything was built to survive the environment it would actually live in, not the one people wished they had.
+          </p>
+        </div>
+      </section>
+
+      {/* Engine Grid */}
+      <section className="w-full bg-[#0a1628]">
+        <div className="grid md:grid-cols-2">
+          <div className="relative aspect-square">
             <Image
               src="/assets/work/uploads/2024/08/ge-aerospace-f110.jpg"
               alt="F110 Military Engine"
@@ -215,7 +318,7 @@ export default function GEAerospacePage() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-          <div className="relative aspect-video overflow-hidden rounded-xl">
+          <div className="relative aspect-square">
             <Image
               src="/assets/work/uploads/2024/08/ge-aerospace-t901.jpg"
               alt="T901 Engine"
@@ -224,6 +327,34 @@ export default function GEAerospacePage() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
+        </div>
+      </section>
+
+      {/* Outcome */}
+      <section className="w-full bg-[#0a1628] px-8 py-16 md:px-16 lg:px-24">
+        <p className="mb-4 text-sm uppercase tracking-wider text-gray-400">
+          Outcome
+        </p>
+        <h2 className="mb-8 max-w-4xl text-3xl leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+          By the time access unlocked, the team was not onboarding. They were executing.
+        </h2>
+        <p className="mb-8 max-w-3xl text-lg leading-relaxed text-gray-300">
+          While access, hardware, and procurement worked their way through enterprise systems, the project advanced without losing a week.
+        </p>
+        <p className="mb-4 max-w-3xl text-lg leading-relaxed text-gray-300">
+          Rather than stall momentum, leadership alignment, staffing plans, and scope clarity were delivered upfront so procurement could move in parallel with strategy.
+        </p>
+      </section>
+
+      {/* Closing Statement */}
+      <section className="dark:bg-polar-900 w-full bg-gray-100 px-8 py-16 md:px-16 lg:px-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-2xl leading-relaxed text-gray-900 md:text-3xl dark:text-white">
+            This is what enterprise work actually looks like.
+          </p>
+          <p className="dark:text-polar-400 mt-6 text-lg text-gray-600">
+            Constraints first. Clarity second. Design that survives reality.
+          </p>
         </div>
       </section>
 
