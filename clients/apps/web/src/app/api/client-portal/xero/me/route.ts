@@ -1,4 +1,4 @@
-import { getAuthenticatedUser } from '@/utils/user'
+import { getPortalUser } from '@/utils/portal-auth'
 import { NextResponse } from 'next/server'
 import {
   getContactByEmail,
@@ -10,7 +10,7 @@ import {
 
 export async function GET() {
   try {
-    const user = await getAuthenticatedUser()
+    const user = await getPortalUser()
 
     if (!user?.email) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
