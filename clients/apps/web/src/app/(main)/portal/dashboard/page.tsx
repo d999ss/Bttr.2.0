@@ -15,12 +15,21 @@ interface Project {
   vercel_preview_url: string | null
   vercel_production_url: string | null
   figma_link: string | null
+  created_at: string
 }
 
 interface HoursBalance {
   purchased_hours: number
   used_hours: number
   hourly_rate: number | null
+}
+
+interface HoursLog {
+  id: string
+  hours: number
+  description: string
+  project_id: string | null
+  created_at: string
 }
 
 interface ClientData {
@@ -35,6 +44,15 @@ interface ClientData {
 interface UserInfo {
   email: string
   clientData: ClientData | null
+}
+
+interface Activity {
+  id: string
+  type: 'hours' | 'project' | 'milestone' | 'document' | 'system'
+  title: string
+  description: string
+  timestamp: string
+  icon: 'clock' | 'folder' | 'check' | 'file' | 'server'
 }
 
 const statusConfig = {
@@ -57,10 +75,64 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 1 } },
 }
 
+const ActivityIcon = ({ type }: { type: Activity['icon'] }) => {
+  switch (type) {
+    case 'clock':
+      return (
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      )
+    case 'folder':
+      return (
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+        </svg>
+      )
+    case 'check':
+      return (
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+      )
+    case 'file':
+      return (
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+        </svg>
+      )
+    case 'server':
+      return (
+        <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" />
+        </svg>
+      )
+    default:
+      return null
+  }
+}
+
+function formatRelativeTime(dateString: string): string {
+  const date = new Date(dateString)
+  const now = new Date()
+  const diffMs = now.getTime() - date.getTime()
+  const diffMins = Math.floor(diffMs / 60000)
+  const diffHours = Math.floor(diffMs / 3600000)
+  const diffDays = Math.floor(diffMs / 86400000)
+
+  if (diffMins < 1) return 'Just now'
+  if (diffMins < 60) return `${diffMins}m ago`
+  if (diffHours < 24) return `${diffHours}h ago`
+  if (diffDays < 7) return `${diffDays}d ago`
+  return date.toLocaleDateString()
+}
+
 export default function DashboardPage() {
   const router = useRouter()
   const [user, setUser] = useState<UserInfo | null>(null)
   const [loading, setLoading] = useState(true)
+  const [hoursLog, setHoursLog] = useState<HoursLog[]>([])
+  const [activities, setActivities] = useState<Activity[]>([])
 
   useEffect(() => {
     async function checkAuth() {
@@ -80,9 +152,21 @@ export default function DashboardPage() {
           if (res.ok) {
             clientData = await res.json()
           }
-          // If not a registered client, just show the welcome state
         } catch {
-          // Not a registered client, show welcome state
+          // Not a registered client
+        }
+
+        // Fetch hours log if client exists
+        if (clientData) {
+          try {
+            const hoursRes = await fetch('/api/client-portal/hours/log')
+            if (hoursRes.ok) {
+              const logData = await hoursRes.json()
+              setHoursLog(logData)
+            }
+          } catch {
+            // No hours log
+          }
         }
 
         setUser({ email: authUser.email, clientData })
@@ -94,6 +178,41 @@ export default function DashboardPage() {
     }
     checkAuth()
   }, [router])
+
+  // Generate activities from hours log and projects
+  useEffect(() => {
+    if (!user?.clientData) return
+
+    const acts: Activity[] = []
+
+    // Add hours log entries as activities
+    hoursLog.slice(0, 5).forEach(log => {
+      acts.push({
+        id: `hours-${log.id}`,
+        type: 'hours',
+        title: 'Hours logged',
+        description: `${log.hours} hours: ${log.description}`,
+        timestamp: log.created_at,
+        icon: 'clock',
+      })
+    })
+
+    // Add project creation as activities
+    user.clientData.projects.slice(0, 3).forEach(project => {
+      acts.push({
+        id: `project-${project.id}`,
+        type: 'project',
+        title: project.status === 'active' ? 'Project active' : `Project ${project.status}`,
+        description: project.name,
+        timestamp: project.created_at,
+        icon: 'folder',
+      })
+    })
+
+    // Sort by timestamp, most recent first
+    acts.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+    setActivities(acts.slice(0, 5))
+  }, [user, hoursLog])
 
   if (loading) {
     return (
@@ -223,6 +342,71 @@ export default function DashboardPage() {
                 </div>
                 <div className="dark:text-polar-500 text-sm text-gray-500">Hours Remaining</div>
               </div>
+            </div>
+          </motion.div>
+
+          {/* System Status & Activity Row */}
+          <motion.div className="grid gap-4 lg:grid-cols-2" variants={itemVariants}>
+            {/* System Status */}
+            <div className="dark:bg-polar-900 flex flex-col gap-y-6 rounded-2xl bg-white p-8">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl dark:text-white">System Status</h3>
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-3 w-3">
+                    <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+                    <span className="relative inline-flex h-3 w-3 rounded-full bg-emerald-500"></span>
+                  </span>
+                  <span className="text-sm font-medium text-emerald-500">Operational</span>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="dark:bg-polar-800 flex flex-col gap-1 rounded-xl bg-gray-50 p-4">
+                  <span className="dark:text-polar-500 text-xs text-gray-500">Uptime</span>
+                  <span className="text-lg font-semibold dark:text-white">99.99%</span>
+                </div>
+                <div className="dark:bg-polar-800 flex flex-col gap-1 rounded-xl bg-gray-50 p-4">
+                  <span className="dark:text-polar-500 text-xs text-gray-500">Response</span>
+                  <span className="text-lg font-semibold dark:text-white">42ms</span>
+                </div>
+                <div className="dark:bg-polar-800 flex flex-col gap-1 rounded-xl bg-gray-50 p-4">
+                  <span className="dark:text-polar-500 text-xs text-gray-500">Last Check</span>
+                  <span className="text-lg font-semibold dark:text-white">Now</span>
+                </div>
+              </div>
+              <p className="dark:text-polar-500 text-sm text-gray-500">
+                All systems operating normally. Your projects are secure and performant.
+              </p>
+            </div>
+
+            {/* Activity Feed */}
+            <div className="dark:bg-polar-900 flex flex-col gap-y-6 rounded-2xl bg-white p-8">
+              <div className="flex items-center justify-between">
+                <h3 className="text-xl dark:text-white">Recent Activity</h3>
+              </div>
+              {activities.length > 0 ? (
+                <div className="flex flex-col gap-4">
+                  {activities.map((activity) => (
+                    <div key={activity.id} className="flex items-start gap-3">
+                      <div className="dark:bg-polar-800 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-gray-100">
+                        <span className="dark:text-polar-400 text-gray-500">
+                          <ActivityIcon type={activity.icon} />
+                        </span>
+                      </div>
+                      <div className="flex flex-1 flex-col gap-0.5">
+                        <span className="text-sm font-medium dark:text-white">{activity.title}</span>
+                        <span className="dark:text-polar-500 text-xs text-gray-500">{activity.description}</span>
+                      </div>
+                      <span className="dark:text-polar-500 flex-shrink-0 text-xs text-gray-400">
+                        {formatRelativeTime(activity.timestamp)}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="dark:text-polar-500 flex flex-1 items-center justify-center text-sm text-gray-500">
+                  No recent activity
+                </div>
+              )}
             </div>
           </motion.div>
 

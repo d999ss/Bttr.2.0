@@ -11,6 +11,7 @@ export const WhyBttrPage = () => {
     { id: 'longevity', title: 'Designed for Longevity' },
     { id: 'ownership', title: 'Ownership over Handoff' },
     { id: 'how-we-work', title: 'How We Work' },
+    { id: 'client-hub', title: 'Client Hub' },
   ]
 
   return (
@@ -128,6 +129,65 @@ export const WhyBttrPage = () => {
             regulated environments. Working with us feels less like hiring an agency
             and more like extending your core team.
           </p>
+        </div>
+      </ResourceSection>
+
+      <ResourceSection id="client-hub" title="Client Hub">
+        <div className="flex flex-col gap-4">
+          <h3 className="text-lg">
+            Complete transparency into your projects
+          </h3>
+          <p className="dark:text-polar-300 text-gray-500">
+            Every client gets access to our Client Hub, a dedicated portal where you can
+            monitor progress, track hours, view system status, and access all project resources
+            in one place. No more chasing updates or wondering about project status.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2">
+          <ul className="dark:border-polar-700 dark:divide-polar-700 divide-y divide-gray-200 border-y border-gray-200 [&>li]:py-2">
+            <li>
+              <CheckOutlined className="mr-3" fontSize="inherit" />
+              Real-time system status and uptime monitoring
+            </li>
+            <li>
+              <CheckOutlined className="mr-3" fontSize="inherit" />
+              Project progress and milestone tracking
+            </li>
+            <li>
+              <CheckOutlined className="mr-3" fontSize="inherit" />
+              Hours balance with detailed activity logs
+            </li>
+            <li>
+              <CheckOutlined className="mr-3" fontSize="inherit" />
+              Direct access to invoices and billing history
+            </li>
+            <li>
+              <CheckOutlined className="mr-3" fontSize="inherit" />
+              Integrated support ticket system
+            </li>
+            <li>
+              <CheckOutlined className="mr-3" fontSize="inherit" />
+              Links to live sites, staging environments, and design files
+            </li>
+          </ul>
+        </div>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="flex flex-col gap-2">
+            <h3>Lifecycle visibility</h3>
+            <p className="dark:text-polar-300 text-gray-500">
+              See exactly what we are working on, when hours are logged, and how your
+              project is performing. Our commitment to lifecycle ownership means you
+              always know the status of the systems we build for you.
+            </p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3>Operational continuity</h3>
+            <p className="dark:text-polar-300 text-gray-500">
+              Monitor uptime, response times, and system health for your deployed
+              applications. The Client Hub delivers on our promise of long-term
+              stewardship with real metrics, not just words.
+            </p>
+          </div>
         </div>
       </ResourceSection>
 

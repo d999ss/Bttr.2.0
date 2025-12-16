@@ -14,7 +14,26 @@ interface Project {
   vercel_preview_url: string | null
   vercel_production_url: string | null
   figma_link: string | null
+  github_link: string | null
+  notion_link: string | null
   created_at: string
+}
+
+const milestones = [
+  { id: 'discovery', label: 'Discovery', description: 'Requirements & research' },
+  { id: 'design', label: 'Design', description: 'UX & visual design' },
+  { id: 'development', label: 'Development', description: 'Building & testing' },
+  { id: 'launch', label: 'Launch', description: 'Deployment & handoff' },
+]
+
+function getMilestoneProgress(status: Project['status']): number {
+  switch (status) {
+    case 'active': return 2 // In development
+    case 'completed': return 4 // All done
+    case 'paused': return 1 // Discovery done
+    case 'archived': return 4 // Complete
+    default: return 0
+  }
 }
 
 const statusConfig = {
@@ -312,13 +331,14 @@ export default function ProjectsPage() {
 
 function ProjectCard({ project, index }: { project: Project; index: number }) {
   const status = statusConfig[project.status] || statusConfig.active
+  const progress = getMilestoneProgress(project.status)
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05, duration: 1 }}
-      className="dark:bg-polar-900 group flex flex-col gap-y-4 rounded-2xl bg-white p-6 transition-transform hover:translate-y-[-4px]"
+      className="dark:bg-polar-900 group flex flex-col gap-y-5 rounded-2xl bg-white p-6 transition-transform hover:translate-y-[-4px]"
     >
       <div className="flex items-start justify-between">
         <div className={twMerge('inline-flex items-center gap-x-2 rounded-lg px-3 py-1.5 text-xs font-medium', status.color)}>
@@ -346,8 +366,51 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         )}
       </div>
 
+      {/* Milestone Progress */}
+      <div className="flex flex-col gap-3">
+        <div className="flex items-center justify-between">
+          {milestones.map((milestone, i) => (
+            <div key={milestone.id} className="flex flex-col items-center gap-1">
+              <div
+                className={twMerge(
+                  'flex h-6 w-6 items-center justify-center rounded-full text-xs font-medium transition-colors',
+                  i < progress
+                    ? 'bg-emerald-500 text-white'
+                    : i === progress
+                    ? 'bg-[#D2A62C] text-white'
+                    : 'dark:bg-polar-800 dark:text-polar-500 bg-gray-100 text-gray-400'
+                )}
+              >
+                {i < progress ? (
+                  <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                  </svg>
+                ) : (
+                  i + 1
+                )}
+              </div>
+              <span className={twMerge(
+                'text-[10px]',
+                i <= progress ? 'dark:text-polar-300 text-gray-700' : 'dark:text-polar-600 text-gray-400'
+              )}>
+                {milestone.label}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="relative h-1 w-full">
+          <div className="dark:bg-polar-800 absolute inset-0 rounded-full bg-gray-100" />
+          <motion.div
+            className="absolute inset-y-0 left-0 rounded-full bg-emerald-500"
+            initial={{ width: 0 }}
+            animate={{ width: `${(progress / milestones.length) * 100}%` }}
+            transition={{ duration: 1, delay: index * 0.1 }}
+          />
+        </div>
+      </div>
+
       {/* Quick Links */}
-      {(project.vercel_preview_url || project.vercel_production_url || project.figma_link) && (
+      {(project.vercel_preview_url || project.vercel_production_url || project.figma_link || project.github_link || project.notion_link) && (
         <div className="flex flex-wrap gap-2">
           {project.vercel_production_url && (
             <a
@@ -356,10 +419,10 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               rel="noopener noreferrer"
               className="dark:bg-polar-800 dark:border-polar-700 inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-gray-50 px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-polar-700"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
               </svg>
-              <span className="dark:text-polar-50 text-gray-900">Live Site</span>
+              <span className="dark:text-polar-50 text-gray-900">Live</span>
             </a>
           )}
           {project.vercel_preview_url && (
@@ -369,7 +432,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               rel="noopener noreferrer"
               className="dark:bg-polar-800 dark:border-polar-700 inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-gray-50 px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-polar-700"
             >
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
               </svg>
@@ -383,7 +446,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
               rel="noopener noreferrer"
               className="dark:bg-polar-800 dark:border-polar-700 inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-gray-50 px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-polar-700"
             >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z" />
                 <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z" />
                 <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z" />
@@ -391,6 +454,32 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
                 <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z" />
               </svg>
               <span className="dark:text-polar-50 text-gray-900">Figma</span>
+            </a>
+          )}
+          {project.notion_link && (
+            <a
+              href={project.notion_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="dark:bg-polar-800 dark:border-polar-700 inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-gray-50 px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-polar-700"
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.968c-.42-.326-.98-.7-2.055-.607L3.01 2.295c-.466.046-.56.28-.374.466l1.823 1.447zm.793 3.08v13.904c0 .747.373 1.027 1.214.98l14.523-.84c.841-.046.935-.56.935-1.166V6.354c0-.606-.233-.933-.748-.886l-15.177.887c-.56.047-.747.327-.747.933zm14.337.745c.093.42 0 .84-.42.888l-.7.14v10.264c-.608.327-1.168.514-1.635.514-.748 0-.935-.234-1.495-.933l-4.577-7.186v6.952l1.448.327s0 .84-1.168.84l-3.22.186c-.094-.187 0-.653.327-.746l.84-.233V9.854L7.822 9.62c-.094-.42.14-1.026.793-1.073l3.456-.233 4.764 7.279v-6.44l-1.215-.14c-.093-.514.28-.886.747-.933l3.222-.187zM2.71.967l13.167-.933c1.635-.14 2.055-.047 3.08.7l4.249 2.986c.7.513.934.653.934 1.213v16.378c0 1.026-.373 1.634-1.681 1.726l-15.458.934c-.98.047-1.448-.093-1.962-.747l-3.129-4.06c-.56-.747-.793-1.306-.793-1.96V2.62c0-.839.374-1.54 1.593-1.653z" />
+              </svg>
+              <span className="dark:text-polar-50 text-gray-900">Docs</span>
+            </a>
+          )}
+          {project.github_link && (
+            <a
+              href={project.github_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="dark:bg-polar-800 dark:border-polar-700 inline-flex items-center gap-x-2 rounded-lg border border-transparent bg-gray-50 px-3 py-1.5 text-xs transition-colors hover:bg-gray-100 dark:hover:bg-polar-700"
+            >
+              <svg className="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+              </svg>
+              <span className="dark:text-polar-50 text-gray-900">Code</span>
             </a>
           )}
         </div>
