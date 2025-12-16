@@ -9,6 +9,7 @@ import { twMerge } from 'tailwind-merge'
 const navItems = [
   { href: '/portal/dashboard', label: 'Dashboard' },
   { href: '/portal/projects', label: 'Projects' },
+  { href: '/portal/hours', label: 'Hours' },
   { href: '/portal/invoices', label: 'Invoices' },
 ]
 
@@ -17,10 +18,11 @@ export default function PortalLayout({ children }: PropsWithChildren) {
   const searchParams = useSearchParams()
   const isDemo = searchParams.get('demo') === 'true'
   const isLoginPage = pathname === '/portal/login'
+  const isCallbackPage = pathname === '/portal/callback'
   const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
-    if (isDemo || isLoginPage) return
+    if (isDemo || isLoginPage || isCallbackPage) return
     async function checkAdmin() {
       try {
         const res = await fetch('/api/client-portal/admin/check')
@@ -31,17 +33,17 @@ export default function PortalLayout({ children }: PropsWithChildren) {
       }
     }
     checkAdmin()
-  }, [isDemo, isLoginPage])
+  }, [isDemo, isLoginPage, isCallbackPage])
 
   const getHref = (href: string) => isDemo ? `${href}?demo=true` : href
 
-  // Login page has its own layout
-  if (isLoginPage) {
+  // Login and callback pages have their own layout
+  if (isLoginPage || isCallbackPage) {
     return <>{children}</>
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-950">
       {/* Demo Mode Banner */}
       {isDemo && (
         <div className="bg-[#D2A62C] px-4 py-2 text-center text-sm font-medium text-white">
@@ -53,7 +55,7 @@ export default function PortalLayout({ children }: PropsWithChildren) {
       )}
 
       {/* Navigation */}
-      <nav className="border-b border-gray-200 bg-white">
+      <nav className="border-b border-gray-800 bg-gray-900/80 backdrop-blur-md sticky top-0 z-50">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center gap-8">
@@ -68,8 +70,8 @@ export default function PortalLayout({ children }: PropsWithChildren) {
                     className={twMerge(
                       'text-sm font-medium transition-colors',
                       pathname === item.href || pathname.startsWith(item.href + '/')
-                        ? 'text-gray-900'
-                        : 'text-gray-500 hover:text-gray-900'
+                        ? 'text-white'
+                        : 'text-gray-400 hover:text-white'
                     )}
                   >
                     {item.label}
@@ -81,8 +83,8 @@ export default function PortalLayout({ children }: PropsWithChildren) {
                     className={twMerge(
                       'text-sm font-medium transition-colors',
                       pathname === '/portal/admin' || pathname.startsWith('/portal/admin/')
-                        ? 'text-gray-900'
-                        : 'text-gray-500 hover:text-gray-900'
+                        ? 'text-white'
+                        : 'text-gray-400 hover:text-white'
                     )}
                   >
                     Admin
@@ -90,25 +92,27 @@ export default function PortalLayout({ children }: PropsWithChildren) {
                 )}
               </div>
             </div>
-            <div className="text-sm text-gray-500">
-              {isDemo ? 'Demo Mode' : 'Client Portal'}
+            <div className="flex items-center gap-4">
+              <span className="text-sm text-gray-500">
+                {isDemo ? 'Demo Mode' : 'Client Portal'}
+              </span>
             </div>
           </div>
         </div>
       </nav>
 
       {/* Mobile Navigation */}
-      <div className="border-b border-gray-200 bg-white md:hidden">
-        <div className="flex gap-4 overflow-x-auto px-4 py-2">
+      <div className="border-b border-gray-800 bg-gray-900 md:hidden">
+        <div className="flex gap-4 overflow-x-auto px-4 py-3 scrollbar-hide">
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={getHref(item.href)}
               className={twMerge(
-                'whitespace-nowrap text-sm font-medium transition-colors',
+                'whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
                 pathname === item.href || pathname.startsWith(item.href + '/')
-                  ? 'text-gray-900'
-                  : 'text-gray-500'
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-400 hover:text-white'
               )}
             >
               {item.label}
@@ -118,10 +122,10 @@ export default function PortalLayout({ children }: PropsWithChildren) {
             <Link
               href="/portal/admin"
               className={twMerge(
-                'whitespace-nowrap text-sm font-medium transition-colors',
+                'whitespace-nowrap rounded-full px-4 py-1.5 text-sm font-medium transition-colors',
                 pathname === '/portal/admin' || pathname.startsWith('/portal/admin/')
-                  ? 'text-gray-900'
-                  : 'text-gray-500'
+                  ? 'bg-gray-800 text-white'
+                  : 'text-gray-400 hover:text-white'
               )}
             >
               Admin
