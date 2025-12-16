@@ -1,50 +1,12 @@
+'use client'
+
 import ArrowOutwardOutlined from '@mui/icons-material/ArrowOutwardOutlined'
 import AvatarWrapper from '@polar-sh/ui/components/atoms/Avatar'
 import Button from '@polar-sh/ui/components/atoms/Button'
-import { motion, useMotionValue, useMotionValueEvent } from 'framer-motion'
 import Link from 'next/link'
-import { useMemo, useRef, useState } from 'react'
 import { Section } from './Section'
 
 export const Events = () => {
-  const [eventOffset, setEventOffset] = useState(() => 7)
-  const y = useMotionValue(0)
-  const previousClosestIndexRef = useRef<number | null>(null)
-
-  const keyframes = useMemo(
-    () =>
-      Array.from({ length: mockedEvents.length + 1 }, (_, i) => -750 + i * 50),
-    [],
-  )
-
-  useMotionValueEvent(y, 'change', (latest) => {
-    // Find the closest keyframe to the current position
-    let closestIndex = 0
-    let closestDistance = Math.abs(latest - keyframes[0])
-
-    for (let i = 1; i < keyframes.length; i++) {
-      const distance = Math.abs(latest - keyframes[i])
-      if (distance < closestDistance) {
-        closestDistance = distance
-        closestIndex = i
-      }
-    }
-
-    // Only update if we've moved to a different keyframe
-    if (previousClosestIndexRef.current !== closestIndex) {
-      previousClosestIndexRef.current = closestIndex
-      // Update offset based on the current keyframe
-      // Add 1 because we want to include events from the current keyframe onwards
-      const newOffset = Math.min(closestIndex, mockedEvents.length)
-      setEventOffset(newOffset)
-    }
-  })
-
-  const activeCount = useMemo(() => {
-    const events = mockedEvents.slice(-eventOffset)
-    return events.filter(e => e.status === 'In progress' || e.status === 'Running').length
-  }, [eventOffset])
-
   return (
     <Section className="flex flex-col gap-y-32 py-0 md:py-0">
       <div className="dark:bg-polar-900 flex w-full flex-col gap-y-6 overflow-hidden rounded-4xl bg-gray-200 p-2 xl:flex-row">
@@ -58,9 +20,7 @@ export const Events = () => {
           <p className="dark:text-polar-500 text-lg text-gray-500">
             We help teams understand how their systems perform, evolve, and scale over time through disciplined engineering and lifecycle ownership.
           </p>
-          <Link
-            href="/resources/why"
-          >
+          <Link href="/resources/why">
             <Button
               variant="secondary"
               className="rounded-full"
@@ -77,9 +37,7 @@ export const Events = () => {
             <div className="flex flex-row items-center gap-x-4">
               <div className="flex flex-row items-center gap-x-4 font-mono text-xs">
                 <span>Active</span>
-                <span className="dark:text-polar-500 text-gray-500">
-                  {activeCount}
-                </span>
+                <span className="dark:text-polar-500 text-gray-500">3</span>
               </div>
             </div>
           </div>
@@ -92,37 +50,21 @@ export const Events = () => {
                 'linear-gradient(to bottom, transparent 0rem, black .5rem, black calc(100% - .5rem), transparent 100%)',
             }}
           >
-            <motion.div
-              className="flex w-full flex-col gap-y-2 py-2"
-              style={{ y }}
-              initial={{
-                y: '-100%',
-              }}
-              animate={{
-                y: keyframes,
-              }}
-              transition={{
-                duration: 20,
-                repeat: Infinity,
-                repeatType: 'loop',
-                ease: 'linear',
-              }}
-              whileInView="animate"
-            >
-              {mockedEvents.map((event, idx) => (
-                <motion.div
+            <div className="animate-scroll flex flex-col gap-y-2 py-2">
+              {[...baseEvents, ...baseEvents].map((event, idx) => (
+                <div
                   key={idx}
                   className="dark:bg-polar-700 flex flex-row items-center justify-between gap-x-8 rounded-md border border-gray-100 bg-gray-100 p-2 pl-4 font-mono text-xs md:justify-start dark:border-white/5"
                 >
                   <h3 className="w-full truncate xl:w-36">{event.name}</h3>
                   <p className="dark:text-polar-500 hidden w-28 text-xs text-gray-500 xl:flex">
-                    {event.timestamp.toLocaleDateString('en-US', {
+                    {new Date().toLocaleDateString('en-US', {
                       day: 'numeric',
                       month: 'short',
                       year: 'numeric',
                     })}
                   </p>
-                  <div className="flex w-fit flex-row items-center justify-end gap-x-4 md:w-32">
+                  <div className="flex w-fit shrink-0 flex-row items-center justify-end gap-x-4 md:w-32">
                     <StatusBadge status={event.status} />
                     <AvatarWrapper
                       className="hidden md:block"
@@ -130,12 +72,25 @@ export const Events = () => {
                       avatar_url="/assets/landing/testamonials/emil.jpg"
                     />
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
+      <style jsx>{`
+        @keyframes scroll {
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(-50%);
+          }
+        }
+        .animate-scroll {
+          animation: scroll 30s linear infinite;
+        }
+      `}</style>
     </Section>
   )
 }
@@ -159,7 +114,9 @@ const StatusBadge = ({ status }: { status: string }) => {
   }
 
   return (
-    <span className={`shrink-0 whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusStyle(status)}`}>
+    <span
+      className={`shrink-0 whitespace-nowrap rounded-full px-2 py-0.5 text-[10px] font-medium ${getStatusStyle(status)}`}
+    >
       {status}
     </span>
   )
@@ -177,10 +134,3 @@ const baseEvents = [
   { name: 'Infrastructure update', status: 'Applied' },
   { name: 'Release published', status: 'v1.4.0' },
 ]
-
-const mockedEvents = [...baseEvents, ...baseEvents, ...baseEvents].map((event, idx) => ({
-  id: idx + 1,
-  name: event.name,
-  timestamp: new Date(Date.now() - idx * 60000),
-  status: event.status,
-}))
