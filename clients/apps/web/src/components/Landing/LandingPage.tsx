@@ -8,11 +8,14 @@ import Link from 'next/link'
 import GetStartedButton from '../Auth/GetStartedButton'
 import { Adapters } from './Adapters'
 import { Checkout } from './Checkout'
+import { ClientLogos } from './ClientLogos'
 import { Events } from './Events'
 import Features from './Features'
 import { FeaturedWork } from './FeaturedWork'
+import { ImpactMetrics } from './ImpactMetrics'
 import { Pricing } from './Pricing'
 import { Section } from './Section'
+import { UrgencyBanner } from './UrgencyBanner'
 import { Usage } from './Usage'
 
 export default function Page() {
@@ -47,7 +50,9 @@ export const PageContent = () => {
           </Link>
         </Hero>
         <Features />
+        <ClientLogos />
         <FeaturedWork />
+        <ImpactMetrics />
         <Events />
         <Adapters />
         <Usage />
@@ -68,6 +73,7 @@ export const PageContent = () => {
         <Testimonials />
       </Section>
       <Section className="flex flex-col gap-y-24">
+        <UrgencyBanner />
         <Pricing />
       </Section>
     </>

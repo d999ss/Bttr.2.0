@@ -4,6 +4,7 @@ export interface CaseStudy {
   description: string
   thumbnail: string
   featured?: boolean
+  resultHighlight?: string
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -13,6 +14,7 @@ export const caseStudies: CaseStudy[] = [
     description: 'Redefining the ride with an ambitious digital transformation',
     thumbnail: '/assets/work/uploads/2024/06/ikon-pass-thumb.jpg',
     featured: true,
+    resultHighlight: '2M+ active users',
   },
   {
     slug: 'juvederm',
@@ -20,6 +22,7 @@ export const caseStudies: CaseStudy[] = [
     description: 'Enhancing engagement for a leading aesthetic brand',
     thumbnail: '/assets/work/uploads/2025/04/juvederm-thumb.jpg',
     featured: true,
+    resultHighlight: '40% engagement lift',
   },
   {
     slug: 'botox-cosmetic',
@@ -27,6 +30,7 @@ export const caseStudies: CaseStudy[] = [
     description: 'Strengthening product recognition and loyalty across a market leader',
     thumbnail: '/assets/work/uploads/2025/04/ST13_botox-scaled.jpg',
     featured: true,
+    resultHighlight: '#1 aesthetic brand',
   },
   {
     slug: 'ami',
@@ -40,6 +44,7 @@ export const caseStudies: CaseStudy[] = [
     description: 'Luxury electric motorcycle configurator and mobile app',
     thumbnail: '/assets/work/uploads/2024/08/tarform-tech.jpg',
     featured: true,
+    resultHighlight: '$15M+ configured',
   },
   {
     slug: 'revaire',
@@ -77,6 +82,7 @@ export const caseStudies: CaseStudy[] = [
     description: 'Redefining regenerative medicine through innovation',
     thumbnail: '/assets/work/uploads/2024/08/tiger-fur-thumb.png',
     featured: true,
+    resultHighlight: 'FDA breakthrough',
   },
   {
     slug: 'alle-for-business',

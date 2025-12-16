@@ -102,30 +102,61 @@ export default function ContactPage() {
           </div>
 
           {/* Right Column - CTA */}
-          <div className="flex flex-col justify-center">
-            <div className="rounded-lg bg-gray-50 p-12">
-              <h3 className="mb-4 text-2xl font-medium text-gray-900">
-                Start a conversation
+          <div className="flex flex-col gap-6">
+            {/* Schedule a Call - Primary CTA */}
+            <div className="rounded-2xl bg-gradient-to-br from-[#D2A62C] to-[#E8C65C] p-8">
+              <div className="mb-2 inline-block rounded-full bg-black/10 px-3 py-1 text-xs font-medium text-black/70">
+                Recommended
+              </div>
+              <h3 className="mb-2 text-2xl font-bold text-black">
+                Schedule a Call
               </h3>
-              <p className="mb-8 text-lg text-gray-600">
-                Tell us about your project and we&apos;ll get back to you within
-                24 hours.
+              <p className="mb-6 text-black/70">
+                Book a 30-minute discovery call directly on our calendar.
+              </p>
+              <a
+                href="https://calendly.com/donny-makebttr/discovery"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-black py-4 text-sm font-medium text-white transition-colors hover:bg-gray-900"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                  <line x1="16" y1="2" x2="16" y2="6"></line>
+                  <line x1="8" y1="2" x2="8" y2="6"></line>
+                  <line x1="3" y1="10" x2="21" y2="10"></line>
+                </svg>
+                Book Discovery Call
+              </a>
+              <p className="mt-3 text-center text-xs text-black/50">
+                Most clients prefer this option
+              </p>
+            </div>
+
+            {/* Email - Secondary CTA */}
+            <div className="rounded-2xl border border-gray-200 bg-white p-8">
+              <h3 className="mb-2 text-xl font-medium text-gray-900">
+                Send a Message
+              </h3>
+              <p className="mb-6 text-gray-600">
+                Prefer email? We respond within 24 hours.
               </p>
               <a
                 href="mailto:donny@makebttr.com?subject=New%20Project%20Inquiry&body=Hi%20Bttr.%20team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20potential%20project.%0A%0ACompany%3A%20%0AProject%20Overview%3A%20%0ATimeline%3A%20%0A%0AThanks!"
-                className="inline-block w-full bg-[#0a0a0a] py-4 text-center text-sm font-medium uppercase tracking-wider text-white transition-colors hover:bg-[#D2A62C]"
+                className="inline-block w-full rounded-lg border-2 border-gray-900 py-3 text-center text-sm font-medium text-gray-900 transition-colors hover:bg-gray-900 hover:text-white"
               >
-                Send Us an Email
+                Send Email
               </a>
-              <p className="mt-4 text-center text-sm text-gray-500">
-                Or email us directly at{' '}
-                <a
-                  href="mailto:donny@makebttr.com"
-                  className="text-gray-900 hover:text-[#D2A62C]"
-                >
-                  donny@makebttr.com
-                </a>
-              </p>
             </div>
           </div>
         </div>

@@ -78,6 +78,11 @@ const FeaturedCard = ({
             sizes="(max-width: 768px) 144px, 192px"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+          {study.resultHighlight && (
+            <div className="absolute right-2 top-2 rounded-full bg-[#D2A62C] px-2 py-0.5 text-[10px] font-semibold text-black shadow-md md:px-2.5 md:py-1 md:text-xs">
+              {study.resultHighlight}
+            </div>
+          )}
           <motion.div
             className="absolute inset-x-0 bottom-0 flex flex-col gap-1 p-4"
             initial={{ y: 20, opacity: 0 }}
