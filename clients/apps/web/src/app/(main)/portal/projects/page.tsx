@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 interface Project {
   id: string
@@ -21,12 +22,54 @@ const statusColors: Record<string, string> = {
   archived: 'bg-gray-100 text-gray-500',
 }
 
+const DEMO_PROJECTS: Project[] = [
+  {
+    id: '1',
+    name: 'Website Redesign',
+    description: 'Complete overhaul of the marketing website with new branding',
+    status: 'active',
+    vercel_preview_url: 'https://preview.example.com',
+    vercel_production_url: 'https://example.com',
+    figma_link: 'https://figma.com/file/example',
+    created_at: '2024-01-15T00:00:00Z',
+  },
+  {
+    id: '2',
+    name: 'Mobile App',
+    description: 'iOS and Android native application',
+    status: 'active',
+    vercel_preview_url: 'https://app-preview.example.com',
+    vercel_production_url: null,
+    figma_link: 'https://figma.com/file/app',
+    created_at: '2024-02-01T00:00:00Z',
+  },
+  {
+    id: '3',
+    name: 'E-commerce Platform',
+    description: 'Online store with inventory management',
+    status: 'completed',
+    vercel_preview_url: null,
+    vercel_production_url: 'https://shop.example.com',
+    figma_link: null,
+    created_at: '2023-06-10T00:00:00Z',
+  },
+]
+
 export default function ProjectsPage() {
+  const searchParams = useSearchParams()
+  const isDemo = searchParams.get('demo') === 'true'
+
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    if (isDemo) {
+      setProjects(DEMO_PROJECTS)
+      setLoading(false)
+      return
+    }
+
     async function fetchProjects() {
       try {
         const res = await fetch('/api/client-portal/projects')
@@ -40,7 +83,7 @@ export default function ProjectsPage() {
       }
     }
     fetchProjects()
-  }, [])
+  }, [isDemo])
 
   if (loading) {
     return (
@@ -55,6 +98,14 @@ export default function ProjectsPage() {
       <div className="rounded-lg bg-white p-8 text-center shadow-sm">
         <h2 className="mb-2 text-xl font-medium text-gray-900">Unable to load projects</h2>
         <p className="text-gray-600">Please try again later.</p>
+        <div className="mt-6 border-t border-gray-200 pt-6">
+          <Link
+            href="/portal/projects?demo=true"
+            className="text-sm text-gray-500 hover:text-gray-700"
+          >
+            Try Demo Mode
+          </Link>
+        </div>
       </div>
     )
   }

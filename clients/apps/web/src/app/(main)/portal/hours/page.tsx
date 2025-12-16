@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 interface HoursBalance {
   purchased_hours: number
@@ -24,13 +26,65 @@ const changeTypeLabels: Record<string, { label: string; color: string }> = {
   adjustment: { label: 'Adjustment', color: 'text-blue-600' },
 }
 
+const DEMO_BALANCE: HoursBalance = {
+  purchased_hours: 40,
+  used_hours: 12.5,
+  hourly_rate: 150,
+  notes: 'Monthly retainer package',
+}
+
+const DEMO_LOG: HoursLog[] = [
+  {
+    id: '1',
+    change_type: 'purchased',
+    hours_amount: 40,
+    description: 'Monthly retainer - January 2024',
+    logged_by: 'admin',
+    created_at: '2024-01-01T00:00:00Z',
+  },
+  {
+    id: '2',
+    change_type: 'used',
+    hours_amount: 4.5,
+    description: 'Homepage redesign',
+    logged_by: 'admin',
+    created_at: '2024-01-08T00:00:00Z',
+  },
+  {
+    id: '3',
+    change_type: 'used',
+    hours_amount: 3,
+    description: 'Navigation updates',
+    logged_by: 'admin',
+    created_at: '2024-01-12T00:00:00Z',
+  },
+  {
+    id: '4',
+    change_type: 'used',
+    hours_amount: 5,
+    description: 'Contact form implementation',
+    logged_by: 'admin',
+    created_at: '2024-01-15T00:00:00Z',
+  },
+]
+
 export default function HoursPage() {
+  const searchParams = useSearchParams()
+  const isDemo = searchParams.get('demo') === 'true'
+
   const [balance, setBalance] = useState<HoursBalance | null>(null)
   const [log, setLog] = useState<HoursLog[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
   useEffect(() => {
+    if (isDemo) {
+      setBalance(DEMO_BALANCE)
+      setLog(DEMO_LOG)
+      setLoading(false)
+      return
+    }
+
     async function fetchHours() {
       try {
         const res = await fetch('/api/client-portal/hours')
@@ -45,7 +99,7 @@ export default function HoursPage() {
       }
     }
     fetchHours()
-  }, [])
+  }, [isDemo])
 
   if (loading) {
     return (
@@ -60,6 +114,14 @@ export default function HoursPage() {
       <div className="rounded-lg bg-white p-8 text-center shadow-sm">
         <h2 className="mb-2 text-xl font-medium text-gray-900">Unable to load hours</h2>
         <p className="text-gray-600">Please try again later.</p>
+        <div className="mt-6 border-t border-gray-200 pt-6">
+          <Link
+            href="/portal/hours?demo=true"
+            className="text-sm text-gray-500 hover:text-gray-700"
+          >
+            Try Demo Mode
+          </Link>
+        </div>
       </div>
     )
   }

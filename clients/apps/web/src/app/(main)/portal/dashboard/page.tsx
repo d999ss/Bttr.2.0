@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useSearchParams } from 'next/navigation'
 
 interface Project {
   id: string
@@ -26,12 +27,52 @@ interface ClientData {
   hours_balances: HoursBalance[]
 }
 
+const DEMO_DATA: ClientData = {
+  id: 'demo',
+  name: 'Demo User',
+  company_name: 'Acme Corp',
+  projects: [
+    {
+      id: '1',
+      name: 'Website Redesign',
+      status: 'active',
+      vercel_preview_url: 'https://preview.example.com',
+      vercel_production_url: 'https://example.com',
+      figma_link: 'https://figma.com/file/example',
+    },
+    {
+      id: '2',
+      name: 'Mobile App',
+      status: 'active',
+      vercel_preview_url: 'https://app-preview.example.com',
+      vercel_production_url: null,
+      figma_link: 'https://figma.com/file/app',
+    },
+  ],
+  hours_balances: [
+    {
+      purchased_hours: 40,
+      used_hours: 12.5,
+      hourly_rate: 150,
+    },
+  ],
+}
+
 export default function DashboardPage() {
+  const searchParams = useSearchParams()
+  const isDemo = searchParams.get('demo') === 'true'
+
   const [client, setClient] = useState<ClientData | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    if (isDemo) {
+      setClient(DEMO_DATA)
+      setLoading(false)
+      return
+    }
+
     async function fetchData() {
       try {
         const res = await fetch('/api/client-portal/me')
@@ -54,7 +95,7 @@ export default function DashboardPage() {
       }
     }
     fetchData()
-  }, [])
+  }, [isDemo])
 
   if (loading) {
     return (
@@ -75,6 +116,14 @@ export default function DashboardPage() {
         >
           Go to Login
         </Link>
+        <div className="mt-6 border-t border-gray-200 pt-6">
+          <Link
+            href="/portal/dashboard?demo=true"
+            className="text-sm text-gray-500 hover:text-gray-700"
+          >
+            Try Demo Mode
+          </Link>
+        </div>
       </div>
     )
   }
@@ -92,6 +141,14 @@ export default function DashboardPage() {
         >
           Contact Support
         </a>
+        <div className="mt-6 border-t border-gray-200 pt-6">
+          <Link
+            href="/portal/dashboard?demo=true"
+            className="text-sm text-gray-500 hover:text-gray-700"
+          >
+            Try Demo Mode
+          </Link>
+        </div>
       </div>
     )
   }
@@ -100,7 +157,15 @@ export default function DashboardPage() {
     return (
       <div className="rounded-lg bg-white p-8 text-center shadow-sm">
         <h2 className="mb-2 text-xl font-medium text-gray-900">Something went wrong</h2>
-        <p className="text-gray-600">Please try again later.</p>
+        <p className="mb-4 text-gray-600">Please try again later.</p>
+        <div className="mt-6 border-t border-gray-200 pt-6">
+          <Link
+            href="/portal/dashboard?demo=true"
+            className="text-sm text-gray-500 hover:text-gray-700"
+          >
+            Try Demo Mode
+          </Link>
+        </div>
       </div>
     )
   }
