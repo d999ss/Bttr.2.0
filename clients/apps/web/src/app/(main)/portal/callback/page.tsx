@@ -4,6 +4,17 @@ import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
+// Helper to set auth cookie that server can read
+function setAuthCookie(session: { access_token: string; refresh_token: string }) {
+  const cookieValue = JSON.stringify({
+    access_token: session.access_token,
+    refresh_token: session.refresh_token,
+  })
+  const expires = new Date()
+  expires.setTime(expires.getTime() + 7 * 24 * 60 * 60 * 1000) // 7 days
+  document.cookie = `sb-oiekbwdggfjihihdmzsa-auth-token=${encodeURIComponent(cookieValue)}; path=/; expires=${expires.toUTCString()}; SameSite=Lax`
+}
+
 export default function AuthCallbackPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -25,7 +36,9 @@ export default function AuthCallbackPage() {
     // via detectSessionInUrl: true when the client initializes.
     // We just need to listen for the auth state change.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN' && session) {
+      if ((event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') && session) {
+        // Set cookie for server-side auth
+        setAuthCookie(session)
         router.replace('/portal/dashboard')
       }
     })
@@ -34,6 +47,8 @@ export default function AuthCallbackPage() {
     const checkExistingSession = async () => {
       const { data: { session } } = await supabase.auth.getSession()
       if (session) {
+        // Set cookie for server-side auth
+        setAuthCookie(session)
         router.replace('/portal/dashboard')
       } else {
         // Check for hash fragment - if present, wait for Supabase to process
@@ -42,6 +57,7 @@ export default function AuthCallbackPage() {
           setTimeout(async () => {
             const { data: { session: retrySession } } = await supabase.auth.getSession()
             if (retrySession) {
+              setAuthCookie(retrySession)
               router.replace('/portal/dashboard')
             } else {
               setError('Failed to complete authentication. Please try again.')
