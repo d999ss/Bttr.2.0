@@ -45,7 +45,7 @@ export async function GET() {
         firstName: contact.FirstName,
         lastName: contact.LastName
       },
-      invoices: invoices.filter(inv => inv.type === 'ACCREC').slice(0, 20),
+      invoices: invoices.filter((inv: any) => inv.type === 'ACCREC').slice(0, 20),
       projects: projects,
       summary: {
         ...invoiceSummary,
