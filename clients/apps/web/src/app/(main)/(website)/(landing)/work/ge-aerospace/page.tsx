@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'GE Aerospace FlightDeck - Bttr.',
     description: 'Modernizing the FlightDeck Activation Hub for GE Aerospace.',
-    images: ['/assets/work/uploads/2024/08/ge-aerospace-hero.jpg'],
+    images: ['/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg'],
   },
 }
 
@@ -18,7 +18,7 @@ export default function GEAerospacePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-hero.jpg"
+            src="/assets/work/uploads/2024/08/ge-aerospace-thumb.jpg"
             alt="GE Aerospace"
             fill
             className="object-cover opacity-70"
@@ -95,8 +95,8 @@ export default function GEAerospacePage() {
       <section className="w-full bg-[#0a1628]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-engine.jpg"
-            alt="GE Aerospace Engine"
+            src="/assets/work/uploads/2023/08/GE_wayfinding.jpg"
+            alt="GE Aerospace FlightDeck"
             fill
             className="object-cover"
             sizes="100vw"
@@ -259,8 +259,8 @@ export default function GEAerospacePage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-platform.jpg"
-            alt="GE Aerospace Platform"
+            src="/assets/work/uploads/2024/08/ge-aerospace-engines.jpg"
+            alt="GE Aerospace Engines"
             fill
             className="object-cover"
             sizes="100vw"
@@ -306,13 +306,13 @@ export default function GEAerospacePage() {
         </div>
       </section>
 
-      {/* Engine Grid */}
+      {/* Image Grid */}
       <section className="w-full bg-[#0a1628]">
         <div className="grid md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-f110.jpg"
-              alt="F110 Military Engine"
+              src="/assets/work/uploads/2024/08/ge-aerospace-ge9x.jpg"
+              alt="GE9X Engine"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -320,8 +320,8 @@ export default function GEAerospacePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-t901.jpg"
-              alt="T901 Engine"
+              src="/assets/work/uploads/2024/08/ge-aerospace-catalyst.jpg"
+              alt="Catalyst Engine"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -362,8 +362,8 @@ export default function GEAerospacePage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-catalyst.jpg"
-            alt="GE Catalyst Engine"
+            src="/assets/work/uploads/2024/08/ge-aerospace-services.jpg"
+            alt="GE Aerospace Services"
             fill
             className="object-cover"
             sizes="100vw"
