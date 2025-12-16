@@ -15,15 +15,27 @@ export default function PortalLoginPage() {
 
   const handleGoogleLogin = async () => {
     setLoading(true)
-    const supabase = getSupabaseBrowserClient()
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: 'google',
-      options: {
-        redirectTo: `${window.location.origin}/api/auth/callback?next=/portal/dashboard`,
-      },
-    })
-    if (error) {
-      setMessage(error.message)
+    setMessage('')
+
+    try {
+      const supabase = getSupabaseBrowserClient()
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: `${window.location.origin}/api/auth/callback?next=/portal/dashboard`,
+        },
+      })
+
+      if (error) {
+        console.error('Google login error:', error)
+        setMessage(error.message)
+        setLoading(false)
+      } else {
+        console.log('OAuth initiated:', data)
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err)
+      setMessage(err instanceof Error ? err.message : 'An unexpected error occurred')
       setLoading(false)
     }
   }
