@@ -48,7 +48,7 @@ const MetricCard = ({ metric, index }: { metric: Metric; index: number }) => {
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
       className="group relative"
     >
-      <div className="dark:bg-polar-900 dark:border-polar-800 dark:hover:border-polar-700 dark:hover:bg-polar-800 relative flex flex-col items-center gap-y-4 rounded-2xl border border-transparent bg-white p-10 transition-all duration-500 hover:translate-y-[-4px]">
+      <div className="dark:bg-polar-900 dark:hover:bg-polar-800 relative flex flex-col items-center gap-y-4 rounded-2xl bg-white p-10 transition-all duration-500 hover:translate-y-[-4px]">
         <span className="relative text-5xl font-light tracking-tight text-black md:text-6xl dark:text-white">
           <AnimatedNumber value={metric.value} suffix={metric.suffix} prefix={metric.prefix} />
         </span>
