@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
+import { useDemoData, DemoProject, DemoHoursLog } from '@/hooks/useDemoData'
 
 interface Project {
   id: string
@@ -133,6 +134,7 @@ export default function DashboardPage() {
   const [loading, setLoading] = useState(true)
   const [hoursLog, setHoursLog] = useState<HoursLog[]>([])
   const [activities, setActivities] = useState<Activity[]>([])
+  const { demoData, isDemoEnabled, clearDemoData, resetDemoData, isLoading: demoLoading } = useDemoData()
 
   useEffect(() => {
     async function checkAuth() {
@@ -182,14 +184,21 @@ export default function DashboardPage() {
     checkAuth()
   }, [router])
 
+  // Use demo data if no real client data
+  const useDemo = !user?.clientData && isDemoEnabled && demoData
+  const effectiveProjects: (Project | DemoProject)[] = user?.clientData?.projects || (useDemo ? demoData.projects : [])
+  const effectiveHoursBalance = user?.clientData?.hours_balances?.[0] || (useDemo ? demoData.hours_balance : null)
+  const effectiveHoursLog: (HoursLog | DemoHoursLog)[] = hoursLog.length > 0 ? hoursLog : (useDemo ? demoData.hours_log : [])
+  const effectiveCompanyName = user?.clientData?.company_name || user?.clientData?.name || (useDemo ? demoData.company_name : null)
+
   // Generate activities from hours log and projects
   useEffect(() => {
-    if (!user?.clientData) return
+    if (effectiveProjects.length === 0 && effectiveHoursLog.length === 0) return
 
     const acts: Activity[] = []
 
     // Add hours log entries as activities
-    hoursLog.slice(0, 5).forEach(log => {
+    effectiveHoursLog.slice(0, 5).forEach(log => {
       acts.push({
         id: `hours-${log.id}`,
         type: 'hours',
@@ -201,7 +210,7 @@ export default function DashboardPage() {
     })
 
     // Add project creation as activities
-    user.clientData.projects.slice(0, 3).forEach(project => {
+    effectiveProjects.slice(0, 3).forEach(project => {
       acts.push({
         id: `project-${project.id}`,
         type: 'project',
@@ -215,9 +224,9 @@ export default function DashboardPage() {
     // Sort by timestamp, most recent first
     acts.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
     setActivities(acts.slice(0, 5))
-  }, [user, hoursLog])
+  }, [effectiveProjects, effectiveHoursLog])
 
-  if (loading) {
+  if (loading || demoLoading) {
     return (
       <div className="flex items-center justify-center py-24">
         <div className="flex flex-col items-center gap-4">
@@ -257,20 +266,20 @@ export default function DashboardPage() {
     )
   }
 
-  const { clientData } = user
-  const hoursBalance = clientData?.hours_balances?.[0]
-  const remainingHours = hoursBalance ? hoursBalance.purchased_hours - hoursBalance.used_hours : 0
-  const hoursPercentUsed = hoursBalance && hoursBalance.purchased_hours > 0
-    ? (hoursBalance.used_hours / hoursBalance.purchased_hours) * 100
+  const remainingHours = effectiveHoursBalance ? effectiveHoursBalance.purchased_hours - effectiveHoursBalance.used_hours : 0
+  const hoursPercentUsed = effectiveHoursBalance && effectiveHoursBalance.purchased_hours > 0
+    ? (effectiveHoursBalance.used_hours / effectiveHoursBalance.purchased_hours) * 100
     : 0
 
-  const activeProjects = clientData?.projects?.filter(p => p.status === 'active') || []
-  const completedProjects = clientData?.projects?.filter(p => p.status === 'completed') || []
-  const allProjects = clientData?.projects || []
+  const activeProjects = effectiveProjects.filter(p => p.status === 'active')
+  const completedProjects = effectiveProjects.filter(p => p.status === 'completed')
+  const allProjects = effectiveProjects
 
   // Get greeting based on time of day
   const hour = new Date().getHours()
   const greeting = hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening'
+
+  const hasData = allProjects.length > 0 || (effectiveHoursBalance && effectiveHoursBalance.purchased_hours > 0)
 
   return (
     <motion.div
@@ -279,18 +288,56 @@ export default function DashboardPage() {
       initial="hidden"
       animate="visible"
     >
+      {/* Demo Mode Banner */}
+      {useDemo && (
+        <motion.div
+          className="flex flex-col gap-4 rounded-2xl border-2 border-dashed border-[#D2A62C]/30 bg-[#D2A62C]/5 p-6 sm:flex-row sm:items-center sm:justify-between"
+          variants={itemVariants}
+        >
+          <div className="flex items-start gap-4">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#D2A62C]/20">
+              <svg className="h-5 w-5 text-[#D2A62C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="flex flex-col gap-1">
+              <h3 className="font-medium text-[#D2A62C]">Demo Mode</h3>
+              <p className="dark:text-polar-400 text-sm text-gray-600">
+                You're viewing sample data to explore the portal. Start a project to see your real data here.
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={clearDemoData}
+              className="dark:bg-polar-800 dark:hover:bg-polar-700 rounded-full bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100"
+            >
+              Clear Demo
+            </button>
+            <a
+              href="https://calendly.com/d999ss/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-[#D2A62C] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              Schedule Call
+            </a>
+          </div>
+        </motion.div>
+      )}
+
       {/* Header */}
       <motion.div className="flex flex-col gap-y-2" variants={itemVariants}>
         <h1 className="text-3xl leading-normal tracking-tight md:text-4xl dark:text-white">
-          {greeting}{clientData?.company_name ? `, ${clientData.company_name}` : clientData?.name ? `, ${clientData.name}` : ''}
+          {greeting}{effectiveCompanyName ? `, ${effectiveCompanyName}` : ''}
         </h1>
         <p className="dark:text-polar-500 text-lg text-gray-500">
-          {clientData ? "Here's an overview of your projects and hours." : `Signed in as ${user.email}`}
+          {hasData ? "Here's an overview of your projects and hours." : `Signed in as ${user.email}`}
         </p>
       </motion.div>
 
       {/* Stats Grid */}
-      {clientData ? (
+      {hasData ? (
         <>
           <motion.div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" variants={itemVariants}>
             {/* Active Projects */}
@@ -327,7 +374,7 @@ export default function DashboardPage() {
                 </svg>
               </div>
               <div>
-                <div className="text-3xl font-bold tracking-tight dark:text-white">{hoursBalance?.used_hours || 0}</div>
+                <div className="text-3xl font-bold tracking-tight dark:text-white">{effectiveHoursBalance?.used_hours || 0}</div>
                 <div className="dark:text-polar-500 text-sm text-gray-500">Hours Used</div>
               </div>
             </div>
@@ -414,13 +461,13 @@ export default function DashboardPage() {
           </motion.div>
 
           {/* Hours Progress */}
-          {hoursBalance && hoursBalance.purchased_hours > 0 && (
+          {effectiveHoursBalance && effectiveHoursBalance.purchased_hours > 0 && (
             <motion.div className="dark:bg-polar-900 flex flex-col gap-y-6 rounded-2xl bg-white p-8" variants={itemVariants}>
               <div className="flex items-center justify-between">
                 <div className="flex flex-col gap-y-1">
                   <h3 className="text-xl dark:text-white">Hours Balance</h3>
                   <p className="dark:text-polar-500 text-gray-500">
-                    {hoursBalance.used_hours} of {hoursBalance.purchased_hours} hours used
+                    {effectiveHoursBalance.used_hours} of {effectiveHoursBalance.purchased_hours} hours used
                   </p>
                 </div>
                 <Link
@@ -564,7 +611,7 @@ export default function DashboardPage() {
           )}
         </>
       ) : (
-        /* Not a registered client yet */
+        /* Not a registered client yet - show welcome with reset demo option */
         <motion.div
           className="dark:bg-polar-900 flex flex-col items-center gap-y-6 rounded-2xl bg-white p-8 md:p-12"
           variants={itemVariants}
@@ -581,12 +628,22 @@ export default function DashboardPage() {
               you'll be able to track progress, view hours, and access all your project resources here.
             </p>
           </div>
-          <a
-            href="mailto:donny@makebttr.com?subject=New Project Inquiry"
-            className="dark:hover:bg-polar-50 rounded-full border-none bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-900 dark:bg-white dark:text-black"
-          >
-            Start a Project
-          </a>
+          <div className="flex flex-col gap-3 sm:flex-row">
+            <a
+              href="https://calendly.com/d999ss/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="dark:hover:bg-polar-50 rounded-full border-none bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-900 dark:bg-white dark:text-black"
+            >
+              Schedule a Call
+            </a>
+            <button
+              onClick={resetDemoData}
+              className="dark:bg-polar-800 dark:hover:bg-polar-700 rounded-full bg-gray-100 px-6 py-3 text-sm font-medium transition-colors hover:bg-gray-200"
+            >
+              View Demo Data
+            </button>
+          </div>
         </motion.div>
       )}
 
@@ -622,20 +679,22 @@ export default function DashboardPage() {
           </div>
         </Link>
 
-        <Link
-          href="/portal/support"
+        <a
+          href="https://calendly.com/d999ss/15min"
+          target="_blank"
+          rel="noopener noreferrer"
           className="dark:bg-polar-900 group flex items-center gap-x-4 rounded-2xl bg-white p-6 transition-transform hover:translate-y-[-4px]"
         >
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
             <svg className="h-6 w-6 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
             </svg>
           </div>
           <div className="flex flex-col gap-y-1">
-            <h3 className="dark:text-white">Submit Ticket</h3>
-            <p className="dark:text-polar-500 text-sm text-gray-500">Need help? We're here</p>
+            <h3 className="dark:text-white">Schedule Call</h3>
+            <p className="dark:text-polar-500 text-sm text-gray-500">Book a 15-min chat</p>
           </div>
-        </Link>
+        </a>
       </motion.div>
     </motion.div>
   )

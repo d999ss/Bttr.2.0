@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 import { twMerge } from 'tailwind-merge'
+import { useDemoData, DemoProject } from '@/hooks/useDemoData'
 
 interface Project {
   id: string
@@ -60,6 +61,8 @@ export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [isRealClient, setIsRealClient] = useState(false)
+  const { demoData, isDemoEnabled, clearDemoData, isLoading: demoLoading } = useDemoData()
 
   useEffect(() => {
     async function fetchData() {
@@ -75,7 +78,8 @@ export default function ProjectsPage() {
 
         const res = await fetch('/api/client-portal/projects')
         if (res.status === 404) {
-          setError('not-a-client')
+          // Not a client - will use demo data
+          setIsRealClient(false)
           setLoading(false)
           return
         }
@@ -83,6 +87,7 @@ export default function ProjectsPage() {
 
         const data = await res.json()
         setProjects(data.projects || [])
+        setIsRealClient(true)
       } catch {
         setError('failed')
       } finally {
@@ -92,7 +97,11 @@ export default function ProjectsPage() {
     fetchData()
   }, [])
 
-  if (loading) {
+  // Use demo data if not a real client and demo is enabled
+  const useDemo = !isRealClient && isDemoEnabled && demoData
+  const effectiveProjects: (Project | DemoProject)[] = isRealClient ? projects : (useDemo ? demoData.projects : [])
+
+  if (loading || demoLoading) {
     return (
       <div className="flex items-center justify-center py-24">
         <div className="flex flex-col items-center gap-4">
@@ -132,48 +141,6 @@ export default function ProjectsPage() {
     )
   }
 
-  if (error === 'not-a-client') {
-    return (
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="flex flex-col gap-y-12"
-      >
-        <motion.div className="flex flex-col gap-y-2" variants={itemVariants}>
-          <h1 className="text-3xl leading-normal tracking-tight md:text-4xl dark:text-white">Projects</h1>
-          <p className="dark:text-polar-500 text-lg text-gray-500">Your projects and their progress.</p>
-        </motion.div>
-        <motion.div variants={itemVariants} className="dark:bg-polar-900 flex flex-col items-center gap-y-6 rounded-2xl bg-white p-8 md:p-12">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-[#D2A62C]/20">
-            <svg className="h-8 w-8 text-[#D2A62C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-            </svg>
-          </div>
-          <div className="flex max-w-xl flex-col gap-y-2 text-center">
-            <h2 className="text-2xl leading-normal tracking-tight dark:text-white">No Projects Yet</h2>
-            <p className="dark:text-polar-500 text-lg text-gray-500">
-              Once you start a project with us, it will appear here with all your resources.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href="mailto:donny@makebttr.com?subject=New Project Inquiry"
-              className="dark:hover:bg-polar-50 rounded-full border-none bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-900 dark:bg-white dark:text-black"
-            >
-              Start a Project
-            </a>
-            <Link
-              href="/portal/dashboard"
-              className="dark:bg-polar-800 dark:border-polar-700 rounded-full border border-transparent bg-gray-100 px-6 py-3 text-sm font-medium transition-colors hover:bg-gray-200 dark:hover:bg-polar-700"
-            >
-              Back to Dashboard
-            </Link>
-          </div>
-        </motion.div>
-      </motion.div>
-    )
-  }
 
   if (error) {
     return (
@@ -195,9 +162,9 @@ export default function ProjectsPage() {
     )
   }
 
-  const activeProjects = projects.filter(p => p.status === 'active')
-  const completedProjects = projects.filter(p => p.status === 'completed')
-  const pausedProjects = projects.filter(p => p.status === 'paused')
+  const activeProjects = effectiveProjects.filter(p => p.status === 'active')
+  const completedProjects = effectiveProjects.filter(p => p.status === 'completed')
+  const pausedProjects = effectiveProjects.filter(p => p.status === 'paused')
 
   return (
     <motion.div
@@ -206,6 +173,44 @@ export default function ProjectsPage() {
       animate="visible"
       className="flex flex-col gap-y-12"
     >
+      {/* Demo Mode Banner */}
+      {useDemo && (
+        <motion.div
+          className="flex flex-col gap-4 rounded-2xl border-2 border-dashed border-[#D2A62C]/30 bg-[#D2A62C]/5 p-6 sm:flex-row sm:items-center sm:justify-between"
+          variants={itemVariants}
+        >
+          <div className="flex items-start gap-4">
+            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#D2A62C]/20">
+              <svg className="h-5 w-5 text-[#D2A62C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div className="flex flex-col gap-1">
+              <h3 className="font-medium text-[#D2A62C]">Demo Mode</h3>
+              <p className="dark:text-polar-400 text-sm text-gray-600">
+                You're viewing sample projects. Start a project to see your real data here.
+              </p>
+            </div>
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={clearDemoData}
+              className="dark:bg-polar-800 dark:hover:bg-polar-700 rounded-full bg-white px-4 py-2 text-sm font-medium transition-colors hover:bg-gray-100"
+            >
+              Clear Demo
+            </button>
+            <a
+              href="https://calendly.com/d999ss/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full bg-[#D2A62C] px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
+            >
+              Schedule Call
+            </a>
+          </div>
+        </motion.div>
+      )}
+
       {/* Header */}
       <motion.div className="flex flex-col gap-y-2" variants={itemVariants}>
         <h1 className="text-3xl leading-normal tracking-tight md:text-4xl dark:text-white">Projects</h1>
@@ -245,7 +250,7 @@ export default function ProjectsPage() {
             </svg>
           </div>
           <div>
-            <div className="text-3xl font-bold tracking-tight dark:text-white">{projects.length}</div>
+            <div className="text-3xl font-bold tracking-tight dark:text-white">{effectiveProjects.length}</div>
             <div className="dark:text-polar-500 text-sm text-gray-500">Total Projects</div>
           </div>
         </div>
@@ -288,7 +293,7 @@ export default function ProjectsPage() {
       )}
 
       {/* Empty State */}
-      {projects.length === 0 && (
+      {effectiveProjects.length === 0 && (
         <motion.div variants={itemVariants} className="dark:border-polar-800 flex flex-col items-center gap-y-4 rounded-2xl border-2 border-dashed border-gray-200 p-12 text-center">
           <div className="dark:bg-polar-800 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100">
             <svg className="dark:text-polar-500 h-7 w-7 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -300,16 +305,18 @@ export default function ProjectsPage() {
             <p className="dark:text-polar-500 text-gray-500">Your projects will appear here once we get started.</p>
           </div>
           <a
-            href="mailto:donny@makebttr.com?subject=New Project Inquiry"
+            href="https://calendly.com/d999ss/15min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="dark:hover:bg-polar-50 mt-2 rounded-full border-none bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-900 dark:bg-white dark:text-black"
           >
-            Start a Project
+            Schedule a Call
           </a>
         </motion.div>
       )}
 
       {/* Start New Project CTA */}
-      {projects.length > 0 && (
+      {effectiveProjects.length > 0 && (
         <motion.div variants={itemVariants} className="dark:bg-polar-900 flex flex-col gap-4 rounded-2xl bg-white p-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-y-1">
             <h3 className="text-xl dark:text-white">Ready to start a new project?</h3>
@@ -318,10 +325,12 @@ export default function ProjectsPage() {
             </p>
           </div>
           <a
-            href="mailto:donny@makebttr.com?subject=New Project Inquiry"
+            href="https://calendly.com/d999ss/15min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="dark:hover:bg-polar-50 rounded-full border-none bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-900 dark:bg-white dark:text-black whitespace-nowrap"
           >
-            Get in Touch
+            Schedule a Call
           </a>
         </motion.div>
       )}
