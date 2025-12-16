@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 import { motion } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
@@ -57,6 +58,7 @@ const itemVariants = {
 }
 
 export default function DashboardPage() {
+  const router = useRouter()
   const [user, setUser] = useState<UserInfo | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -77,9 +79,15 @@ export default function DashboardPage() {
           const res = await fetch('/api/client-portal/me')
           if (res.ok) {
             clientData = await res.json()
+          } else {
+            // Not a registered client - redirect to onboarding
+            router.push('/portal/onboarding')
+            return
           }
         } catch {
-          // Not a registered client yet
+          // Not a registered client - redirect to onboarding
+          router.push('/portal/onboarding')
+          return
         }
 
         setUser({ email: authUser.email, clientData })
@@ -90,7 +98,7 @@ export default function DashboardPage() {
       }
     }
     checkAuth()
-  }, [])
+  }, [router])
 
   if (loading) {
     return (

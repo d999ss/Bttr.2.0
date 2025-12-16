@@ -15,6 +15,16 @@ function setAuthCookie(session: { access_token: string; refresh_token: string })
   document.cookie = `sb-oiekbwdggfjihihdmzsa-auth-token=${encodeURIComponent(cookieValue)}; path=/; expires=${expires.toUTCString()}; SameSite=Lax`
 }
 
+// Check if user is already a registered client
+async function checkClientExists(): Promise<boolean> {
+  try {
+    const res = await fetch('/api/client-portal/me')
+    return res.ok
+  } catch {
+    return false
+  }
+}
+
 export default function AuthCallbackPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -38,6 +48,18 @@ export default function AuthCallbackPage() {
         return
       }
 
+      // Helper to complete auth and redirect appropriately
+      const completeAuth = async (session: { access_token: string; refresh_token: string }) => {
+        setAuthCookie(session)
+        // Check if user is already registered as a client
+        const isClient = await checkClientExists()
+        if (isClient) {
+          router.replace('/portal/dashboard')
+        } else {
+          router.replace('/portal/onboarding')
+        }
+      }
+
       // Check for PKCE code in URL (query param)
       const code = searchParams.get('code')
       if (code) {
@@ -48,8 +70,7 @@ export default function AuthCallbackPage() {
             return
           }
           if (data.session) {
-            setAuthCookie(data.session)
-            router.replace('/portal/dashboard')
+            await completeAuth(data.session)
             return
           }
         } catch (err) {
@@ -64,8 +85,7 @@ export default function AuthCallbackPage() {
 
         const { data: { session } } = await supabase.auth.getSession()
         if (session) {
-          setAuthCookie(session)
-          router.replace('/portal/dashboard')
+          await completeAuth(session)
           return
         }
       }
@@ -73,8 +93,7 @@ export default function AuthCallbackPage() {
       // Final check for existing session
       const { data: { session } } = await supabase.auth.getSession()
       if (session) {
-        setAuthCookie(session)
-        router.replace('/portal/dashboard')
+        await completeAuth(session)
         return
       }
 

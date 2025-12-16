@@ -31,6 +31,7 @@ export interface Client {
   name: string
   email: string
   company_name: string | null
+  phone: string | null
   xero_contact_id: string | null
   is_active: boolean
   created_at: string
