@@ -1,72 +1,61 @@
 'use client'
 
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function AuthCallbackPage() {
   const router = useRouter()
-  const searchParams = useSearchParams()
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const handleAuth = async () => {
-      // Check if there's an error in the URL
-      const errorParam = searchParams.get('error')
-      const errorDescription = searchParams.get('error_description')
+    const supabase = getSupabaseBrowserClient()
 
-      // Also check hash for errors
-      const hashParams = new URLSearchParams(window.location.hash.substring(1))
-      const hashError = hashParams.get('error')
-      const hashErrorDesc = hashParams.get('error_description')
+    // Check for errors in URL
+    const hashParams = new URLSearchParams(window.location.hash.substring(1))
+    const urlParams = new URLSearchParams(window.location.search)
+    const errorParam = urlParams.get('error') || hashParams.get('error')
+    const errorDesc = urlParams.get('error_description') || hashParams.get('error_description')
 
-      if (errorParam || hashError) {
-        setError(errorDescription || hashErrorDesc || errorParam || hashError || 'Unknown error')
+    if (errorParam) {
+      setError(errorDesc || errorParam)
+      return
+    }
+
+    // Use onAuthStateChange to detect when Supabase processes the hash tokens
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+      if (session) {
+        router.replace('/portal/dashboard')
+      }
+    })
+
+    // Check if session already exists or wait for it
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      if (session) {
+        router.replace('/portal/dashboard')
         return
       }
 
-      const supabase = getSupabaseBrowserClient()
-
-      // Check if tokens are in the hash (implicit flow)
-      const accessToken = hashParams.get('access_token')
-      const refreshToken = hashParams.get('refresh_token')
-
-      if (accessToken) {
-        console.log('Found tokens in hash, setting session manually')
-
-        // Set the session manually
-        const { data, error: sessionError } = await supabase.auth.setSession({
-          access_token: accessToken,
-          refresh_token: refreshToken || '',
-        })
-
-        if (sessionError) {
-          console.error('Error setting session:', sessionError)
-          setError(sessionError.message)
-          return
-        }
-
-        if (data.session) {
-          console.log('Session set successfully:', data.session.user?.email)
-          const next = searchParams.get('next') || '/portal/dashboard'
-          router.replace(next)
-          return
-        }
-      }
-
-      // Fallback: check if we already have a session
-      const { data: { session } } = await supabase.auth.getSession()
-
-      if (session) {
-        const next = searchParams.get('next') || '/portal/dashboard'
-        router.replace(next)
+      // If tokens in hash but no session yet, wait a bit longer
+      if (hashParams.get('access_token')) {
+        setTimeout(async () => {
+          const { data: { session: retry } } = await supabase.auth.getSession()
+          if (retry) {
+            router.replace('/portal/dashboard')
+          } else {
+            setError('Failed to complete authentication. Please try again.')
+          }
+        }, 2000)
       } else {
-        setError('No authentication tokens found. Please try again.')
+        setError('No authentication data found. Please try again.')
       }
     }
 
-    handleAuth()
-  }, [router, searchParams])
+    checkSession()
+
+    return () => subscription.unsubscribe()
+  }, [router])
 
   if (error) {
     return (
