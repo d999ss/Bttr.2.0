@@ -8,7 +8,7 @@ export const FeaturedMasthead = () => {
   return (
     <section className="relative w-full overflow-hidden">
       <Link href="/work/ge-aerospace" className="group block">
-        <div className="relative h-screen w-full">
+        <div className="relative h-[80vh] w-full">
           <Image
             src="/assets/work/uploads/2024/08/ge-aerospace-masthead.jpg"
             alt="GE Aerospace FlightDeck"
