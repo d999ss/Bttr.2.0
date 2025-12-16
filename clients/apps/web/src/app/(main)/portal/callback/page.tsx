@@ -1,61 +1,56 @@
 'use client'
 
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function AuthCallbackPage() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const supabase = getSupabaseBrowserClient()
+    const handleCallback = async () => {
+      const supabase = getSupabaseBrowserClient()
 
-    // Check for errors in URL
-    const hashParams = new URLSearchParams(window.location.hash.substring(1))
-    const urlParams = new URLSearchParams(window.location.search)
-    const errorParam = urlParams.get('error') || hashParams.get('error')
-    const errorDesc = urlParams.get('error_description') || hashParams.get('error_description')
+      // Check for errors in URL
+      const errorParam = searchParams.get('error')
+      const errorDesc = searchParams.get('error_description')
 
-    if (errorParam) {
-      setError(errorDesc || errorParam)
-      return
-    }
-
-    // Use onAuthStateChange to detect when Supabase processes the hash tokens
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session) {
-        router.replace('/portal/dashboard')
-      }
-    })
-
-    // Check if session already exists or wait for it
-    const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession()
-      if (session) {
-        router.replace('/portal/dashboard')
+      if (errorParam) {
+        setError(errorDesc || errorParam)
         return
       }
 
-      // If tokens in hash but no session yet, wait a bit longer
-      if (hashParams.get('access_token')) {
-        setTimeout(async () => {
-          const { data: { session: retry } } = await supabase.auth.getSession()
-          if (retry) {
-            router.replace('/portal/dashboard')
-          } else {
-            setError('Failed to complete authentication. Please try again.')
-          }
-        }, 2000)
+      // PKCE flow: exchange code for session
+      const code = searchParams.get('code')
+      if (code) {
+        const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
+        if (exchangeError) {
+          console.error('Code exchange error:', exchangeError)
+          setError(exchangeError.message)
+          return
+        }
+      }
+
+      // Check for session
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
+
+      if (sessionError) {
+        console.error('Session error:', sessionError)
+        setError(sessionError.message)
+        return
+      }
+
+      if (session) {
+        router.replace('/portal/dashboard')
       } else {
         setError('No authentication data found. Please try again.')
       }
     }
 
-    checkSession()
-
-    return () => subscription.unsubscribe()
-  }, [router])
+    handleCallback()
+  }, [router, searchParams])
 
   if (error) {
     return (
