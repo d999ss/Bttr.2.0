@@ -18,8 +18,8 @@ export default function GEAerospacePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-ge9x-gearbox.jpg"
-            alt="GE Aerospace GE9X Gearbox"
+            src="/assets/work/uploads/2024/08/ge-aerospace-cfm-engines.jpg"
+            alt="GE Aerospace CFM Engines"
             fill
             className="object-cover opacity-80"
             priority
@@ -95,8 +95,8 @@ export default function GEAerospacePage() {
       <section className="w-full bg-[#0a1628]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-cfm-engines.jpg"
-            alt="CFM Engines"
+            src="/assets/work/uploads/2024/08/ge-aerospace-ge9x-gearbox.jpg"
+            alt="GE9X Gearbox"
             fill
             className="object-cover"
             sizes="100vw"
