@@ -19,7 +19,7 @@ export default function GEBrilliantYouPage() {
       <section className="relative min-h-screen w-full overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/08/Desktop-4.png"
+            src="/assets/work/uploads/2023/08/Desktop-4.webp"
             alt="GE Brilliant You"
             fill
             className="object-cover"
@@ -104,7 +104,7 @@ export default function GEBrilliantYouPage() {
       <section className="w-full bg-[#1a3a5c]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/Full-width-5.png"
+            src="/assets/work/uploads/2023/08/Full-width-5.webp"
             alt="GE Brilliant You Platform"
             fill
             className="object-cover"
@@ -127,7 +127,7 @@ export default function GEBrilliantYouPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/08/GE-B-U-replacement-image.jpg"
+              src="/assets/work/uploads/2023/08/GE-B-U-replacement-image.webp"
               alt="GE Brilliant You Interface"
               fill
               className="object-cover"
@@ -141,7 +141,7 @@ export default function GEBrilliantYouPage() {
       <section className="w-full bg-[#1a3a5c]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/CS_Inset-full-width.jpg"
+            src="/assets/work/uploads/2023/08/CS_Inset-full-width.webp"
             alt="GE Brilliant You Dashboard"
             fill
             className="object-cover"
@@ -164,7 +164,7 @@ export default function GEBrilliantYouPage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/CS_Inset-full-width-12.png"
+            src="/assets/work/uploads/2023/08/CS_Inset-full-width-12.webp"
             alt="GE Brilliant You Design System"
             fill
             className="object-cover"
@@ -177,7 +177,7 @@ export default function GEBrilliantYouPage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/CS_Inset-full-width_2.jpg"
+            src="/assets/work/uploads/2023/08/CS_Inset-full-width_2.webp"
             alt="GE Brilliant You Interface Design"
             fill
             className="object-cover"
@@ -191,7 +191,7 @@ export default function GEBrilliantYouPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/08/SQ-Image-frame.jpg"
+              src="/assets/work/uploads/2023/08/SQ-Image-frame.webp"
               alt="GE Brilliant You Feature"
               fill
               className="object-cover"
@@ -243,7 +243,7 @@ export default function GEBrilliantYouPage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/Frame-1171275801.jpg"
+            src="/assets/work/uploads/2023/08/Frame-1171275801.webp"
             alt="GE Brilliant You Cards System"
             fill
             className="object-cover"
@@ -256,7 +256,7 @@ export default function GEBrilliantYouPage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/CS_Inset-full-width_3.jpg"
+            src="/assets/work/uploads/2023/08/CS_Inset-full-width_3.webp"
             alt="GE Brilliant You Interface"
             fill
             className="object-cover"
@@ -281,7 +281,7 @@ export default function GEBrilliantYouPage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/CS_Inset-full-width_3-1.jpg"
+            src="/assets/work/uploads/2023/08/CS_Inset-full-width_3-1.webp"
             alt="GE Brilliant You Global"
             fill
             className="object-cover"
@@ -309,7 +309,7 @@ export default function GEBrilliantYouPage() {
       <section className="w-full">
         <div className="relative aspect-[2880/2064] w-full">
           <Image
-            src="/assets/work/uploads/2023/08/Frame-1171275809-1.png"
+            src="/assets/work/uploads/2023/08/Frame-1171275809-1.webp"
             alt="GE Brilliant You AI"
             fill
             className="object-cover"

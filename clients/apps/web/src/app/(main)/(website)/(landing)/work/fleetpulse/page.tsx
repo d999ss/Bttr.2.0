@@ -20,7 +20,7 @@ export default function FleetPulsePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0f172a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/06/FP1.png"
+            src="/assets/work/uploads/2024/06/FP1.webp"
             alt="FleetPulse"
             fill
             className="hidden object-cover lg:block"
@@ -28,7 +28,7 @@ export default function FleetPulsePage() {
             sizes="100vw"
           />
           <Image
-            src="/assets/work/uploads/2024/06/Mobile-Header-image-FP.png"
+            src="/assets/work/uploads/2024/06/Mobile-Header-image-FP.webp"
             alt="FleetPulse Mobile"
             fill
             className="block object-cover lg:hidden"
@@ -102,7 +102,7 @@ export default function FleetPulsePage() {
       <section className="w-full bg-[#0f172a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/07/CS_Inset-full-width-pt2.png"
+            src="/assets/work/uploads/2024/07/CS_Inset-full-width-pt2.webp"
             alt="FleetPulse Overview"
             fill
             className="object-cover"
@@ -138,7 +138,7 @@ export default function FleetPulsePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/07/CS_Inset-full-width_Fleetpulse-1.jpg"
+            src="/assets/work/uploads/2024/07/CS_Inset-full-width_Fleetpulse-1.webp"
             alt="FleetPulse Platform"
             fill
             className="object-cover"
@@ -196,7 +196,7 @@ export default function FleetPulsePage() {
       <section className="w-full bg-gray-100">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/06/Full-width-1-1.jpg"
+            src="/assets/work/uploads/2024/06/Full-width-1-1.webp"
             alt="FleetPulse Personas"
             fill
             className="object-cover"
@@ -225,7 +225,7 @@ export default function FleetPulsePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/06/CS_Inset-full-width-5.jpg"
+            src="/assets/work/uploads/2024/06/CS_Inset-full-width-5.webp"
             alt="FleetPulse Dashboard"
             fill
             className="object-cover"
@@ -238,7 +238,7 @@ export default function FleetPulsePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/06/Frame-1171275803-1.jpg"
+            src="/assets/work/uploads/2024/06/Frame-1171275803-1.webp"
             alt="FleetPulse Features"
             fill
             className="object-cover"
@@ -270,7 +270,7 @@ export default function FleetPulsePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/07/MM_Laptop_LT-E-03_fleetpulse-1-scaled.jpg"
+            src="/assets/work/uploads/2024/07/MM_Laptop_LT-E-03_fleetpulse-1-scaled.webp"
             alt="FleetPulse Laptop Display"
             fill
             className="object-cover"

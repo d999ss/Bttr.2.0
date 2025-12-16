@@ -29,7 +29,7 @@ export default function AMIPage() {
             sizes="100vw"
           />
           <Image
-            src="/assets/work/uploads/2025/03/AMIO_Mobile.jpg"
+            src="/assets/work/uploads/2025/03/AMIO_Mobile.webp"
             alt="AMI Mobile"
             fill
             className="block object-cover lg:hidden"
@@ -282,7 +282,7 @@ export default function AMIPage() {
           </div>
           <div className="relative aspect-[1344/2010]">
             <Image
-              src="/assets/work/uploads/2025/03/Portrait-Image-frame-1.jpg"
+              src="/assets/work/uploads/2025/03/Portrait-Image-frame-1.webp"
               alt="AMI Mobile Experience"
               fill
               className="object-cover"

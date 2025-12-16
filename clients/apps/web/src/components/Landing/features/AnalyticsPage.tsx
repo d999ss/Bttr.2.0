@@ -35,7 +35,7 @@ const caseStudies = [
       'Streamlined $42K+ purchase flow',
       'Integrated with manufacturing pipeline',
     ],
-    image: '/assets/work/uploads/2024/08/NIKED.png',
+    image: '/assets/work/uploads/2024/08/NIKED.webp',
   },
   {
     client: 'GE Aerospace',
@@ -46,7 +46,7 @@ const caseStudies = [
       'Real-time visibility across global operations',
       'Integrated with existing SAP systems',
     ],
-    image: '/assets/work/uploads/2023/08/GE_wayfinding.jpg',
+    image: '/assets/work/uploads/2023/08/GE_wayfinding.webp',
   },
   {
     client: 'Healthcare Network',
@@ -57,7 +57,7 @@ const caseStudies = [
       'HIPAA compliance achieved',
       'Reduced no-show rates by 35%',
     ],
-    image: '/assets/work/uploads/2024/03/CS_Inset-full-width-1-2.jpg',
+    image: '/assets/work/uploads/2024/03/CS_Inset-full-width-1-2.webp',
   },
   {
     client: 'Financial Services Firm',

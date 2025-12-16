@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ross J Barr - Bttr.',
     description: 'Launch, Iterate, Scale.',
-    images: ['/assets/work/uploads/2023/08/Frame-1171275772.png'],
+    images: ['/assets/work/uploads/2023/08/Frame-1171275772.webp'],
   },
 }
 
@@ -19,7 +19,7 @@ export default function RossJBarrPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/08/Frame-1171275772.png"
+            src="/assets/work/uploads/2023/08/Frame-1171275772.webp"
             alt="Ross J Barr"
             fill
             className="object-cover"
@@ -98,7 +98,7 @@ export default function RossJBarrPage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width-7.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-7.webp"
             alt="Ross J Barr Website"
             fill
             className="object-cover"
@@ -132,7 +132,7 @@ export default function RossJBarrPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/08/SQ-Image-frame-9.png"
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-9.webp"
               alt="Ross J Barr Products"
               fill
               className="object-cover"

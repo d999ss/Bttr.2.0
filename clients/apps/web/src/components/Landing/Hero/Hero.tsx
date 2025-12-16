@@ -45,7 +45,7 @@ export const Hero = ({
     >
       <motion.div variants={itemVariants}>
         <Image
-          src="/assets/brand/app-icon.png"
+          src="/assets/brand/app-icon.webp"
           alt="App Icon"
           width={320}
           height={320}

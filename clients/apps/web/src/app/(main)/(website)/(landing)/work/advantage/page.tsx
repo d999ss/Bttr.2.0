@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Advantage - Bttr.',
     description: 'A Fresh New Look for an Established B2B Platform.',
-    images: ['/assets/work/uploads/2023/09/Desktop-copy.jpg'],
+    images: ['/assets/work/uploads/2023/09/Desktop-copy.webp'],
   },
 }
 
@@ -19,7 +19,7 @@ export default function AdvantagePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/Desktop-copy.jpg"
+            src="/assets/work/uploads/2023/09/Desktop-copy.webp"
             alt="Advantage"
             fill
             className="object-cover"

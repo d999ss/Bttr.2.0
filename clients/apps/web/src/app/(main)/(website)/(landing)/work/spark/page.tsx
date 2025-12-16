@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Spark - Bttr.',
     description: 'Inspiring & educating a new generation.',
-    images: ['/assets/work/uploads/2025/04/Desktop-3.png'],
+    images: ['/assets/work/uploads/2025/04/Desktop-3.webp'],
   },
 }
 
@@ -19,7 +19,7 @@ export default function SparkPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-3.png"
+            src="/assets/work/uploads/2025/04/Desktop-3.webp"
             alt="Spark"
             fill
             className="object-cover"

@@ -19,7 +19,7 @@ export default function GEAerospacePage() {
       <section className="relative h-[80vh] w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-cfm-engines.jpg"
+            src="/assets/work/uploads/2024/08/ge-aerospace-cfm-engines.webp"
             alt="GE Aerospace CFM Engines"
             fill
             className="object-cover opacity-80"
@@ -96,7 +96,7 @@ export default function GEAerospacePage() {
       <section className="w-full bg-[#0a1628]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/ge-aerospace-ge9x-gearbox.jpg"
+            src="/assets/work/uploads/2024/08/ge-aerospace-ge9x-gearbox.webp"
             alt="GE9X Gearbox"
             fill
             className="object-cover"
@@ -177,7 +177,7 @@ export default function GEAerospacePage() {
         <div className="grid md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-cf6.jpg"
+              src="/assets/work/uploads/2024/08/ge-aerospace-cf6.webp"
               alt="CF6 Engine"
               fill
               className="object-cover"
@@ -186,7 +186,7 @@ export default function GEAerospacePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/ge-aerospace-choice.jpg"
+              src="/assets/work/uploads/2024/08/ge-aerospace-choice.webp"
               alt="GE Aerospace Innovation"
               fill
               className="object-cover"

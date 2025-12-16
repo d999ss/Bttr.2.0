@@ -143,7 +143,7 @@ export default function SummitPage() {
       <section className="w-full">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/02/summit-sedan.png"
+            src="/assets/work/uploads/2025/02/summit-sedan.webp"
             alt="Summit Sedan"
             fill
             className="object-cover"

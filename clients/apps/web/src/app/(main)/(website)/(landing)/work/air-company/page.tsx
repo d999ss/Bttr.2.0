@@ -225,7 +225,7 @@ export default function AirCompanyPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/08/Full-width.png"
+            src="/assets/work/uploads/2023/08/Full-width.webp"
             alt="Air Company Full View"
             fill
             className="object-cover"

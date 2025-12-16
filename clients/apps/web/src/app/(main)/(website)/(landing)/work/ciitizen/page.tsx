@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ciitizen - Bttr.',
     description: "Turning one brother's dream into a reality.",
-    images: ['/assets/work/uploads/2023/09/Desktop-5.jpg'],
+    images: ['/assets/work/uploads/2023/09/Desktop-5.webp'],
   },
 }
 
@@ -19,7 +19,7 @@ export default function CiitizenPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/Desktop-5.jpg"
+            src="/assets/work/uploads/2023/09/Desktop-5.webp"
             alt="Ciitizen"
             fill
             className="object-cover"

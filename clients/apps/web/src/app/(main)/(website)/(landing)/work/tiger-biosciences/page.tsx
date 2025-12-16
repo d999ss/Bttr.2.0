@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Tiger BioSciences - Bttr.',
     description: 'Redefining regenerative medicine through innovation.',
-    images: ['/assets/work/uploads/2024/08/tiger-biosciences-hero.jpg'],
+    images: ['/assets/work/uploads/2024/08/tiger-biosciences-hero.webp'],
   },
 }
 

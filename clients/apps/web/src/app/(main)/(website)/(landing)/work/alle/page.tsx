@@ -19,7 +19,7 @@ export default function AllePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#00856f]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/Desktop-2.jpg"
+            src="/assets/work/uploads/2023/09/Desktop-2.webp"
             alt="Allē"
             fill
             className="hidden object-cover lg:block"
@@ -27,7 +27,7 @@ export default function AllePage() {
             sizes="100vw"
           />
           <Image
-            src="/assets/work/uploads/2023/09/Desktop-4.jpg"
+            src="/assets/work/uploads/2023/09/Desktop-4.webp"
             alt="Allē Mobile"
             fill
             className="block object-cover lg:hidden"
@@ -247,7 +247,7 @@ export default function AllePage() {
       <section className="w-full bg-[#f5f5f5]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/Full-width-1.jpg"
+            src="/assets/work/uploads/2023/09/Full-width-1.webp"
             alt="Allē Stats"
             fill
             className="object-cover"
@@ -384,7 +384,7 @@ export default function AllePage() {
       <section className="w-full bg-gray-100">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width_1-1-scaled.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width_1-1-scaled.webp"
             alt="Allē Business Platform"
             fill
             className="object-cover"
@@ -477,7 +477,7 @@ export default function AllePage() {
       <section className="w-full bg-gray-900">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width-7.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-7.webp"
             alt="Allē Design System"
             fill
             className="object-cover"
@@ -491,7 +491,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame_17.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_17.webp"
               alt="Allē Design Components"
               fill
               className="object-cover"

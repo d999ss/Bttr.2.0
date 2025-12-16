@@ -19,7 +19,7 @@ export default function IkonPassPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#1a1f4e]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/12/IkonSnow.png"
+            src="/assets/work/uploads/2025/12/IkonSnow.webp"
             alt="Ikon Pass"
             fill
             className="hidden object-cover lg:block"
@@ -27,7 +27,7 @@ export default function IkonPassPage() {
             sizes="100vw"
           />
           <Image
-            src="/assets/work/uploads/2025/05/Mobile-Icon.png"
+            src="/assets/work/uploads/2025/05/Mobile-Icon.webp"
             alt="Ikon Pass Mobile"
             fill
             className="block object-cover lg:hidden"
@@ -112,7 +112,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-[#1a1f4e]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-2.png"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-2.webp"
             alt="Ikon Pass App Overview"
             fill
             className="object-cover"
@@ -124,7 +124,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-[#1a1f4e]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width2.png"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width2.webp"
             alt="Ikon Pass App Features"
             fill
             className="object-cover"
@@ -157,7 +157,7 @@ export default function IkonPassPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-10.png"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-10.webp"
               alt="Ikon Pass Interface"
               fill
               className="object-cover"
@@ -247,7 +247,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-[#e5e3df]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/Full-width-1.png"
+            src="/assets/work/uploads/2025/04/Full-width-1.webp"
             alt="Ikon Pass Full Experience"
             fill
             className="object-cover"
@@ -289,7 +289,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-4.png"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-4.webp"
             alt="Williams Family Personas"
             fill
             className="object-cover"
@@ -301,7 +301,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-12.png"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-12.webp"
             alt="Ikon Pass User Journey"
             fill
             className="object-cover"
@@ -338,7 +338,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-4.png"
+            src="/assets/work/uploads/2025/04/Desktop-4.webp"
             alt="Ikon Pass Desktop Experience"
             fill
             className="object-cover"
@@ -430,7 +430,7 @@ export default function IkonPassPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-1.png"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-1.webp"
               alt="Design System Feature"
               fill
               className="object-cover"
@@ -439,7 +439,7 @@ export default function IkonPassPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/Desktop-3.png"
+              src="/assets/work/uploads/2025/04/Desktop-3.webp"
               alt="Desktop Design"
               fill
               className="object-cover"
@@ -487,7 +487,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-14.png"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-14.webp"
             alt="Ikon Pass Experience"
             fill
             className="object-cover"
@@ -500,7 +500,7 @@ export default function IkonPassPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-6.png"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-6.webp"
               alt="Ikon Pass Feature"
               fill
               className="object-cover"
@@ -522,7 +522,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-1.png"
+            src="/assets/work/uploads/2025/04/Desktop-1.webp"
             alt="Ikon Pass Desktop"
             fill
             className="object-cover"
@@ -534,7 +534,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-5.png"
+            src="/assets/work/uploads/2025/04/Desktop-5.webp"
             alt="Ikon Pass Dashboard"
             fill
             className="object-cover"
@@ -556,7 +556,7 @@ export default function IkonPassPage() {
           </div>
           <div className="relative aspect-[1344/2010]">
             <Image
-              src="/assets/work/uploads/2025/04/Portrait-Image-frame-1.png"
+              src="/assets/work/uploads/2025/04/Portrait-Image-frame-1.webp"
               alt="Ikon Pass Mobile"
               fill
               className="object-cover"
@@ -569,7 +569,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-2.png"
+            src="/assets/work/uploads/2025/04/Desktop-2.webp"
             alt="Ikon Pass Final"
             fill
             className="object-cover"

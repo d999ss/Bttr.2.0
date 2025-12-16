@@ -141,7 +141,7 @@ export default function AlleForConsumersPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/03/Alle-for-consumers_mobile.jpg"
+              src="/assets/work/uploads/2024/03/Alle-for-consumers_mobile.webp"
               alt="Allē Mobile Experience"
               fill
               className="object-cover"

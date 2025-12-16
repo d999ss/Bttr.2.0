@@ -19,7 +19,7 @@ export default function JuvedermPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#f07459]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-6.jpg"
+            src="/assets/work/uploads/2025/04/Desktop-6.webp"
             alt="JUVÉDERM"
             fill
             className="object-cover"
@@ -130,7 +130,7 @@ export default function JuvedermPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/Full-width-3-scaled.jpg"
+            src="/assets/work/uploads/2025/04/Full-width-3-scaled.webp"
             alt="JUVÉDERM Design System"
             fill
             className="object-cover"
@@ -144,7 +144,7 @@ export default function JuvedermPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-6.jpg"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-6.webp"
               alt="JUVÉDERM Interface"
               fill
               className="object-cover"
@@ -153,7 +153,7 @@ export default function JuvedermPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-1-1.jpg"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-1-1.webp"
               alt="JUVÉDERM Mobile"
               fill
               className="object-cover"
@@ -191,7 +191,7 @@ export default function JuvedermPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-3-1.jpg"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-3-1.webp"
               alt="JUVÉDERM Feature"
               fill
               className="object-cover"
@@ -200,7 +200,7 @@ export default function JuvedermPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-4-1.jpg"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-4-1.webp"
               alt="JUVÉDERM Feature"
               fill
               className="object-cover"

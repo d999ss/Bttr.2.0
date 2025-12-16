@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Great Dane - Bttr.',
     description: 'Redesigning the digital presence for a 125-year legacy in American manufacturing.',
-    images: ['/assets/work/uploads/2025/01/great-dane/1.jpg'],
+    images: ['/assets/work/uploads/2025/01/great-dane/1.webp'],
   },
 }
 
@@ -19,7 +19,7 @@ export default function GreatDanePage() {
       <section className="relative h-[85vh] w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/1.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/1.webp"
             alt="Great Dane trailer on scenic highway"
             fill
             className="object-cover opacity-90"
@@ -98,7 +98,7 @@ export default function GreatDanePage() {
       <section className="w-full bg-[#0a1628]">
         <div className="relative aspect-[16/10] w-full">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/2.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/2.webp"
             alt="Great Dane website homepage - We Make the Products That Move America"
             fill
             className="object-cover"
@@ -157,7 +157,7 @@ export default function GreatDanePage() {
         {/* Design System Image */}
         <div className="relative aspect-[16/9] w-full overflow-hidden rounded-2xl">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/5.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/5.webp"
             alt="Great Dane design system - logos, colors, typography, buttons"
             fill
             className="object-cover"
@@ -194,7 +194,7 @@ export default function GreatDanePage() {
         {/* Product Carousel */}
         <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/7.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/7.webp"
             alt="Great Dane Everest product carousel"
             fill
             className="object-cover"
@@ -207,7 +207,7 @@ export default function GreatDanePage() {
       <section className="w-full">
         <div className="relative aspect-[21/9] w-full">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/8.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/8.webp"
             alt="Driver with Great Dane Champion trailer"
             fill
             className="object-cover"
@@ -231,7 +231,7 @@ export default function GreatDanePage() {
         {/* Innovation Page on Laptop */}
         <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/9.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/9.webp"
             alt="Great Dane innovation page on laptop"
             fill
             className="object-cover"
@@ -244,7 +244,7 @@ export default function GreatDanePage() {
       <section className="w-full">
         <div className="relative aspect-[16/9] w-full">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/10.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/10.webp"
             alt="Great Dane photo collage - trailers, logo detail, employee"
             fill
             className="object-cover"
@@ -269,7 +269,7 @@ export default function GreatDanePage() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image
-              src="/assets/work/uploads/2025/01/great-dane/11.jpg"
+              src="/assets/work/uploads/2025/01/great-dane/11.webp"
               alt="Great Dane Everest specifications on iPad"
               fill
               className="object-cover"
@@ -294,7 +294,7 @@ export default function GreatDanePage() {
         {/* Features Page */}
         <div className="relative aspect-[16/10] w-full overflow-hidden rounded-2xl">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/12.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/12.webp"
             alt="Great Dane features page - Cool and Connected interactive trailer"
             fill
             className="object-cover"
@@ -333,7 +333,7 @@ export default function GreatDanePage() {
       <section className="w-full">
         <div className="relative aspect-[16/9] w-full">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/15.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/15.webp"
             alt="Great Dane customer testimonial - After 25 years together"
             fill
             className="object-cover"
@@ -358,7 +358,7 @@ export default function GreatDanePage() {
         <div className="grid gap-6 md:grid-cols-2">
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image
-              src="/assets/work/uploads/2025/01/great-dane/17.jpg"
+              src="/assets/work/uploads/2025/01/great-dane/17.webp"
               alt="Great Dane FAQs and blog mockups"
               fill
               className="object-cover"
@@ -367,7 +367,7 @@ export default function GreatDanePage() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl">
             <Image
-              src="/assets/work/uploads/2025/01/great-dane/18.jpg"
+              src="/assets/work/uploads/2025/01/great-dane/18.webp"
               alt="Great Dane guide download - Essential Guide to Flatbed Trailers"
               fill
               className="object-cover"
@@ -381,7 +381,7 @@ export default function GreatDanePage() {
       <section className="w-full">
         <div className="relative aspect-[21/9] w-full">
           <Image
-            src="/assets/work/uploads/2025/01/great-dane/19.jpg"
+            src="/assets/work/uploads/2025/01/great-dane/19.webp"
             alt="Great Dane manufacturing - worker at production line"
             fill
             className="object-cover"

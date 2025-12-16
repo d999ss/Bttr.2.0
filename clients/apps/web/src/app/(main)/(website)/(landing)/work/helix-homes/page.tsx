@@ -102,7 +102,7 @@ export default function HelixHomesPage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/Full-Bleed-2-1.jpg"
+            src="/assets/work/uploads/2023/09/Full-Bleed-2-1.webp"
             alt="Helix Brand"
             fill
             className="object-cover"
@@ -146,7 +146,7 @@ export default function HelixHomesPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-3.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-3.webp"
               alt="Helix Carbon"
               fill
               className="object-cover"

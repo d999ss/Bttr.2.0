@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/assets/brand/bttr_og.jpg',
+        url: '/assets/brand/bttr_og.webp',
         width: 1200,
         height: 630,
       },
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: '/assets/brand/bttr_og.jpg',
+        url: '/assets/brand/bttr_og.webp',
         width: 1200,
         height: 630,
         alt: 'Bttr.',

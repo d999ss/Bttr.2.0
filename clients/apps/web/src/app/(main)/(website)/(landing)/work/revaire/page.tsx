@@ -249,7 +249,7 @@ export default function RevairePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/SQ-Image-frame-5.jpg"
+              src="/assets/work/uploads/2024/08/SQ-Image-frame-5.webp"
               alt="Revaire Interface"
               fill
               className="object-cover"
@@ -361,7 +361,7 @@ export default function RevairePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/mobile.jpg"
+            src="/assets/work/uploads/2024/08/mobile.webp"
             alt="Revaire Mobile Assets"
             fill
             className="object-cover"
