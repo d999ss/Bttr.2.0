@@ -149,7 +149,7 @@ export default function DashboardPage() {
         <h2 className="mb-2 text-xl font-medium text-gray-900">Please Log In</h2>
         <p className="mb-4 text-gray-600">You need to be logged in to access the client portal.</p>
         <Link
-          href="/"
+          href="/portal/login"
           className="inline-block rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
         >
           Go to Login

@@ -16,10 +16,11 @@ export default function PortalLayout({ children }: PropsWithChildren) {
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const isDemo = searchParams.get('demo') === 'true'
+  const isLoginPage = pathname === '/portal/login'
   const [isAdmin, setIsAdmin] = useState(false)
 
   useEffect(() => {
-    if (isDemo) return
+    if (isDemo || isLoginPage) return
     async function checkAdmin() {
       try {
         const res = await fetch('/api/client-portal/admin/check')
@@ -30,9 +31,14 @@ export default function PortalLayout({ children }: PropsWithChildren) {
       }
     }
     checkAdmin()
-  }, [isDemo])
+  }, [isDemo, isLoginPage])
 
   const getHref = (href: string) => isDemo ? `${href}?demo=true` : href
+
+  // Login page has its own layout
+  if (isLoginPage) {
+    return <>{children}</>
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
