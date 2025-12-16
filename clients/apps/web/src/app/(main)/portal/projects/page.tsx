@@ -2,255 +2,400 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { motion } from 'framer-motion'
+import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 
 interface Project {
   id: string
   name: string
-  status: string
-  hoursLogged: number
-  hoursToBeInvoiced: number
-  estimate: number
-  totalInvoiced: number
-  totalTaskAmount: number
-  deadlineUtc: string | null
+  description: string | null
+  status: 'active' | 'completed' | 'paused' | 'archived'
+  vercel_preview_url: string | null
+  vercel_production_url: string | null
+  figma_link: string | null
+  created_at: string
 }
 
-const statusColors: Record<string, string> = {
-  INPROGRESS: 'bg-green-50 text-green-700',
-  CLOSED: 'bg-gray-100 text-gray-700',
-  PENDING: 'bg-yellow-50 text-yellow-700',
+const statusConfig = {
+  active: { label: 'Active', color: 'bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300', dot: 'bg-green-500' },
+  completed: { label: 'Completed', color: 'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300', dot: 'bg-blue-500' },
+  paused: { label: 'Paused', color: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300', dot: 'bg-yellow-500' },
+  archived: { label: 'Archived', color: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300', dot: 'bg-gray-400' },
 }
 
-const statusLabels: Record<string, string> = {
-  INPROGRESS: 'In Progress',
-  CLOSED: 'Completed',
-  PENDING: 'Pending',
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
 }
 
-const DEMO_PROJECTS: Project[] = [
-  {
-    id: '1',
-    name: 'Website Redesign',
-    status: 'INPROGRESS',
-    hoursLogged: 24.5,
-    hoursToBeInvoiced: 8.5,
-    estimate: 10000,
-    totalInvoiced: 5000,
-    totalTaskAmount: 3675,
-    deadlineUtc: '2024-03-01T00:00:00Z',
-  },
-  {
-    id: '2',
-    name: 'Mobile App Development',
-    status: 'INPROGRESS',
-    hoursLogged: 48,
-    hoursToBeInvoiced: 16,
-    estimate: 25000,
-    totalInvoiced: 10000,
-    totalTaskAmount: 7200,
-    deadlineUtc: '2024-04-15T00:00:00Z',
-  },
-  {
-    id: '3',
-    name: 'Brand Identity',
-    status: 'CLOSED',
-    hoursLogged: 32,
-    hoursToBeInvoiced: 0,
-    estimate: 8000,
-    totalInvoiced: 8000,
-    totalTaskAmount: 4800,
-    deadlineUtc: null,
-  },
-]
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
 
 export default function ProjectsPage() {
-  const searchParams = useSearchParams()
-  const isDemo = searchParams.get('demo') === 'true'
-
   const [projects, setProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    if (isDemo) {
-      setProjects(DEMO_PROJECTS)
-      setLoading(false)
-      return
-    }
-
-    async function fetchProjects() {
+    async function fetchData() {
       try {
-        const res = await fetch('/api/client-portal/xero/projects')
+        // Check authentication
+        const supabase = getSupabaseBrowserClient()
+        const { data: { user } } = await supabase.auth.getUser()
+
+        if (!user) {
+          setError('not-authenticated')
+          setLoading(false)
+          return
+        }
+
+        // Fetch projects data
+        const res = await fetch('/api/client-portal/projects')
+        if (res.status === 404) {
+          setError('not-a-client')
+          setLoading(false)
+          return
+        }
         if (!res.ok) throw new Error()
+
         const data = await res.json()
         setProjects(data.projects || [])
       } catch {
-        setError(true)
+        setError('failed')
       } finally {
         setLoading(false)
       }
     }
-    fetchProjects()
-  }, [isDemo])
+    fetchData()
+  }, [])
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-gray-500">Loading...</div>
+      <div className="flex items-center justify-center py-24">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-gray-200 dark:border-gray-700 border-t-[#D2A62C]" />
+          <p className="text-sm text-gray-500 dark:text-gray-400">Loading your projects...</p>
+        </div>
       </div>
+    )
+  }
+
+  if (error === 'not-authenticated') {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mx-auto max-w-md py-16"
+      >
+        <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#D2A62C]/10">
+            <svg className="h-8 w-8 text-[#D2A62C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <h2 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Sign In Required</h2>
+          <p className="mb-6 text-gray-600 dark:text-gray-400">Sign in to view your projects.</p>
+          <Link
+            href="/portal/login"
+            className="inline-flex items-center justify-center rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#b8922a]"
+          >
+            Sign In
+          </Link>
+        </div>
+      </motion.div>
+    )
+  }
+
+  if (error === 'not-a-client') {
+    return (
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="space-y-8"
+      >
+        <motion.div variants={itemVariants}>
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Projects</h1>
+          <p className="mt-1 text-gray-500 dark:text-gray-400">Your projects and their progress.</p>
+        </motion.div>
+        <motion.div variants={itemVariants} className="rounded-2xl bg-gradient-to-br from-[#D2A62C]/5 to-[#D2A62C]/10 dark:from-[#D2A62C]/10 dark:to-[#D2A62C]/5 p-8">
+          <div className="mx-auto max-w-xl text-center">
+            <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#D2A62C]/20">
+              <svg className="h-8 w-8 text-[#D2A62C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+              </svg>
+            </div>
+            <h2 className="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">No Projects Yet</h2>
+            <p className="mt-2 text-gray-600 dark:text-gray-400">
+              Once you start a project with us, it will appear here with all your resources.
+            </p>
+            <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+              <a
+                href="mailto:donny@makebttr.com?subject=New Project Inquiry"
+                className="inline-flex items-center justify-center rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#b8922a]"
+              >
+                Start a Project
+              </a>
+              <Link
+                href="/portal/dashboard"
+                className="inline-flex items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700 px-6 py-3 text-sm font-medium text-gray-700 dark:text-gray-200 transition hover:bg-gray-200 dark:hover:bg-gray-600"
+              >
+                Back to Dashboard
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
     )
   }
 
   if (error) {
     return (
-      <div className="rounded-lg bg-white p-8 text-center shadow-sm">
-        <h2 className="mb-2 text-xl font-medium text-gray-900">Unable to load projects</h2>
-        <p className="text-gray-600">Please try again later.</p>
-        <div className="mt-6 border-t border-gray-200 pt-6">
-          <Link
-            href="/portal/projects?demo=true"
-            className="text-sm text-gray-500 hover:text-gray-700"
-          >
-            Try Demo Mode
-          </Link>
-        </div>
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm"
+      >
+        <h2 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Unable to load projects</h2>
+        <p className="text-gray-600 dark:text-gray-400">Please try again later.</p>
+        <Link
+          href="/portal/dashboard"
+          className="mt-6 inline-block text-sm font-medium text-[#D2A62C] hover:underline"
+        >
+          Back to Dashboard
+        </Link>
+      </motion.div>
     )
   }
 
-  const activeProjects = projects.filter(p => p.status === 'INPROGRESS')
-  const completedProjects = projects.filter(p => p.status === 'CLOSED')
+  const activeProjects = projects.filter(p => p.status === 'active')
+  const completedProjects = projects.filter(p => p.status === 'completed')
+  const pausedProjects = projects.filter(p => p.status === 'paused')
 
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-medium text-gray-900">Projects</h1>
-        <p className="mt-1 text-gray-600">Your projects and their progress.</p>
-      </div>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      {/* Header */}
+      <motion.div variants={itemVariants}>
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Projects</h1>
+        <p className="mt-1 text-gray-500 dark:text-gray-400">Your projects and their progress.</p>
+      </motion.div>
 
-      {/* Summary Stats */}
-      <div className="grid gap-4 sm:grid-cols-4">
-        <div className="rounded-lg bg-white p-4 shadow-sm">
-          <div className="text-sm text-gray-500">Active</div>
-          <div className="mt-1 text-2xl font-semibold text-gray-900">{activeProjects.length}</div>
-        </div>
-        <div className="rounded-lg bg-white p-4 shadow-sm">
-          <div className="text-sm text-gray-500">Total Hours</div>
-          <div className="mt-1 text-2xl font-semibold text-gray-900">
-            {projects.reduce((sum, p) => sum + p.hoursLogged, 0).toFixed(1)}
+      {/* Stats */}
+      <motion.div variants={itemVariants} className="grid gap-4 sm:grid-cols-3">
+        <div className="rounded-2xl bg-white dark:bg-gray-800 p-6 shadow-sm transition-transform hover:translate-y-[-4px]">
+          <div className="flex items-center justify-between">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 dark:bg-green-900/30">
+              <svg className="h-5 w-5 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+          </div>
+          <div className="mt-4">
+            <div className="text-3xl font-bold text-gray-900 dark:text-white">{activeProjects.length}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Active Projects</div>
           </div>
         </div>
-        <div className="rounded-lg bg-white p-4 shadow-sm">
-          <div className="text-sm text-gray-500">Uninvoiced Hours</div>
-          <div className="mt-1 text-2xl font-semibold text-[#D2A62C]">
-            {projects.reduce((sum, p) => sum + p.hoursToBeInvoiced, 0).toFixed(1)}
+
+        <div className="rounded-2xl bg-white dark:bg-gray-800 p-6 shadow-sm transition-transform hover:translate-y-[-4px]">
+          <div className="flex items-center justify-between">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-100 dark:bg-blue-900/30">
+              <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+          </div>
+          <div className="mt-4">
+            <div className="text-3xl font-bold text-gray-900 dark:text-white">{completedProjects.length}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Completed</div>
           </div>
         </div>
-        <div className="rounded-lg bg-white p-4 shadow-sm">
-          <div className="text-sm text-gray-500">Total Invoiced</div>
-          <div className="mt-1 text-2xl font-semibold text-gray-900">
-            ${projects.reduce((sum, p) => sum + p.totalInvoiced, 0).toLocaleString()}
+
+        <div className="rounded-2xl bg-white dark:bg-gray-800 p-6 shadow-sm transition-transform hover:translate-y-[-4px]">
+          <div className="flex items-center justify-between">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#D2A62C]/10">
+              <svg className="h-5 w-5 text-[#D2A62C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+              </svg>
+            </div>
+          </div>
+          <div className="mt-4">
+            <div className="text-3xl font-bold text-gray-900 dark:text-white">{projects.length}</div>
+            <div className="text-sm text-gray-500 dark:text-gray-400">Total Projects</div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Active Projects */}
       {activeProjects.length > 0 && (
-        <div>
-          <h2 className="mb-4 text-lg font-medium text-gray-900">Active Projects</h2>
-          <div className="space-y-4">
-            {activeProjects.map((project) => (
-              <div key={project.id} className="rounded-lg bg-white p-6 shadow-sm">
-                <div className="flex items-start justify-between">
-                  <div>
-                    <div className="flex items-center gap-3">
-                      <h3 className="text-lg font-medium text-gray-900">{project.name}</h3>
-                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${statusColors[project.status] || 'bg-gray-100 text-gray-700'}`}>
-                        {statusLabels[project.status] || project.status}
-                      </span>
-                    </div>
-                    {project.deadlineUtc && (
-                      <p className="mt-1 text-sm text-gray-500">
-                        Deadline: {new Date(project.deadlineUtc).toLocaleDateString()}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div className="mt-4 grid gap-4 sm:grid-cols-4">
-                  <div>
-                    <div className="text-sm text-gray-500">Hours Logged</div>
-                    <div className="font-semibold text-gray-900">{project.hoursLogged}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500">To Invoice</div>
-                    <div className="font-semibold text-[#D2A62C]">{project.hoursToBeInvoiced} hrs</div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500">Invoiced</div>
-                    <div className="font-semibold text-gray-900">${project.totalInvoiced.toLocaleString()}</div>
-                  </div>
-                  <div>
-                    <div className="text-sm text-gray-500">Budget</div>
-                    <div className="font-semibold text-gray-900">${project.estimate.toLocaleString()}</div>
-                  </div>
-                </div>
-
-                {project.estimate > 0 && (
-                  <div className="mt-4">
-                    <div className="flex justify-between text-xs text-gray-500">
-                      <span>Budget Progress</span>
-                      <span>{Math.round((project.totalInvoiced / project.estimate) * 100)}%</span>
-                    </div>
-                    <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-gray-200">
-                      <div
-                        className={`h-full rounded-full ${
-                          project.totalInvoiced / project.estimate > 0.9 ? 'bg-red-500' :
-                          project.totalInvoiced / project.estimate > 0.75 ? 'bg-yellow-500' : 'bg-[#D2A62C]'
-                        }`}
-                        style={{
-                          width: `${Math.min((project.totalInvoiced / project.estimate) * 100, 100)}%`
-                        }}
-                      />
-                    </div>
-                  </div>
-                )}
-              </div>
+        <motion.div variants={itemVariants}>
+          <h2 className="mb-4 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Active Projects</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {activeProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
-        </div>
+        </motion.div>
+      )}
+
+      {/* Paused Projects */}
+      {pausedProjects.length > 0 && (
+        <motion.div variants={itemVariants}>
+          <h2 className="mb-4 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Paused Projects</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {pausedProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
+            ))}
+          </div>
+        </motion.div>
       )}
 
       {/* Completed Projects */}
       {completedProjects.length > 0 && (
-        <div>
-          <h2 className="mb-4 text-lg font-medium text-gray-900">Completed Projects</h2>
-          <div className="space-y-4">
-            {completedProjects.map((project) => (
-              <div key={project.id} className="rounded-lg bg-white p-6 shadow-sm opacity-75">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <h3 className="font-medium text-gray-900">{project.name}</h3>
-                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-700">
-                      Completed
-                    </span>
-                  </div>
-                  <div className="text-sm text-gray-500">
-                    {project.hoursLogged} hrs | ${project.totalInvoiced.toLocaleString()} invoiced
-                  </div>
-                </div>
-              </div>
+        <motion.div variants={itemVariants}>
+          <h2 className="mb-4 text-lg font-semibold tracking-tight text-gray-900 dark:text-white">Completed Projects</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {completedProjects.map((project, index) => (
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
 
+      {/* Empty State */}
       {projects.length === 0 && (
-        <div className="rounded-lg bg-white p-8 text-center shadow-sm">
-          <p className="text-gray-500">No projects yet</p>
+        <motion.div variants={itemVariants} className="rounded-2xl border-2 border-dashed border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 p-12 text-center">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-700">
+            <svg className="h-7 w-7 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+            </svg>
+          </div>
+          <h3 className="text-lg font-semibold tracking-tight text-gray-900 dark:text-white">No projects yet</h3>
+          <p className="mt-1 text-gray-500 dark:text-gray-400">Your projects will appear here once we get started.</p>
+          <a
+            href="mailto:donny@makebttr.com?subject=New Project Inquiry"
+            className="mt-6 inline-flex items-center justify-center rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#b8922a]"
+          >
+            Start a Project
+          </a>
+        </motion.div>
+      )}
+
+      {/* Start New Project CTA */}
+      {projects.length > 0 && (
+        <motion.div variants={itemVariants} className="rounded-2xl bg-gradient-to-r from-gray-900 to-gray-800 p-6 text-white">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h3 className="font-semibold tracking-tight">Ready to start a new project?</h3>
+              <p className="mt-1 text-sm text-gray-300">
+                Let's discuss your next idea and bring it to life.
+              </p>
+            </div>
+            <a
+              href="mailto:donny@makebttr.com?subject=New Project Inquiry"
+              className="inline-flex items-center justify-center rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#b8922a] whitespace-nowrap"
+            >
+              Get in Touch
+            </a>
+          </div>
+        </motion.div>
+      )}
+    </motion.div>
+  )
+}
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  const status = statusConfig[project.status] || statusConfig.active
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.05 }}
+      className="group rounded-2xl bg-white dark:bg-gray-800 p-6 shadow-sm transition-all hover:shadow-md hover:translate-y-[-4px]"
+    >
+      <div className="mb-3 flex items-start justify-between">
+        <div className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium ${status.color}`}>
+          <span className={`h-1.5 w-1.5 rounded-full ${status.dot}`} />
+          {status.label}
+        </div>
+        {project.created_at && (
+          <span className="text-xs text-gray-400 dark:text-gray-500">
+            {new Date(project.created_at).toLocaleDateString('en-US', {
+              month: 'short',
+              year: 'numeric'
+            })}
+          </span>
+        )}
+      </div>
+
+      <h3 className="font-semibold tracking-tight text-gray-900 dark:text-white group-hover:text-[#D2A62C]">
+        {project.name}
+      </h3>
+      {project.description && (
+        <p className="mt-2 line-clamp-2 text-sm text-gray-500 dark:text-gray-400">
+          {project.description}
+        </p>
+      )}
+
+      {/* Quick Links */}
+      {(project.vercel_preview_url || project.vercel_production_url || project.figma_link) && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.vercel_production_url && (
+            <a
+              href={project.vercel_production_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 dark:bg-gray-700 px-3 py-2 text-xs font-medium text-gray-700 dark:text-gray-200 transition hover:bg-gray-200 dark:hover:bg-gray-600"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+              </svg>
+              Live Site
+            </a>
+          )}
+          {project.vercel_preview_url && (
+            <a
+              href={project.vercel_preview_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 dark:bg-gray-700 px-3 py-2 text-xs font-medium text-gray-700 dark:text-gray-200 transition hover:bg-gray-200 dark:hover:bg-gray-600"
+            >
+              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+              </svg>
+              Preview
+            </a>
+          )}
+          {project.figma_link && (
+            <a
+              href={project.figma_link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-gray-100 dark:bg-gray-700 px-3 py-2 text-xs font-medium text-gray-700 dark:text-gray-200 transition hover:bg-gray-200 dark:hover:bg-gray-600"
+            >
+              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 5.5A3.5 3.5 0 0 1 8.5 2H12v7H8.5A3.5 3.5 0 0 1 5 5.5z" />
+                <path d="M12 2h3.5a3.5 3.5 0 1 1 0 7H12V2z" />
+                <path d="M12 12.5a3.5 3.5 0 1 1 7 0 3.5 3.5 0 1 1-7 0z" />
+                <path d="M5 19.5A3.5 3.5 0 0 1 8.5 16H12v3.5a3.5 3.5 0 1 1-7 0z" />
+                <path d="M5 12.5A3.5 3.5 0 0 1 8.5 9H12v7H8.5A3.5 3.5 0 0 1 5 12.5z" />
+              </svg>
+              Figma
+            </a>
+          )}
         </div>
       )}
-    </div>
+    </motion.div>
   )
 }

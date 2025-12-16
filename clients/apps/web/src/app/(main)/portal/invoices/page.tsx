@@ -2,322 +2,182 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { useSearchParams } from 'next/navigation'
+import { motion } from 'framer-motion'
+import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 
-interface Invoice {
-  id: string
-  number: string
-  reference: string | null
-  date: string
-  dueDate: string
-  status: string
-  total: number
-  amountDue: number
-  amountPaid: number
-  daysOverdue: number
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1 },
+  },
 }
 
-const statusColors: Record<string, string> = {
-  PAID: 'bg-green-100 text-green-800',
-  AUTHORISED: 'bg-yellow-100 text-yellow-800',
-  SUBMITTED: 'bg-blue-100 text-blue-800',
-  DRAFT: 'bg-gray-100 text-gray-800',
-  VOIDED: 'bg-red-100 text-red-800',
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
-
-const statusLabels: Record<string, string> = {
-  PAID: 'Paid',
-  AUTHORISED: 'Awaiting Payment',
-  SUBMITTED: 'Submitted',
-  DRAFT: 'Draft',
-  VOIDED: 'Voided',
-}
-
-const DEMO_INVOICES: Invoice[] = [
-  {
-    id: '1',
-    number: 'INV-001',
-    reference: 'Website Redesign - Phase 1',
-    date: '2024-01-15',
-    dueDate: '2024-02-15',
-    status: 'AUTHORISED',
-    total: 5000,
-    amountDue: 5000,
-    amountPaid: 0,
-    daysOverdue: 0,
-  },
-  {
-    id: '2',
-    number: 'INV-002',
-    reference: 'Mobile App - Initial Deposit',
-    date: '2024-01-20',
-    dueDate: '2024-02-20',
-    status: 'AUTHORISED',
-    total: 7500,
-    amountDue: 7500,
-    amountPaid: 0,
-    daysOverdue: 0,
-  },
-  {
-    id: '3',
-    number: 'INV-003',
-    reference: 'Brand Identity Project',
-    date: '2024-01-01',
-    dueDate: '2024-01-31',
-    status: 'PAID',
-    total: 8000,
-    amountDue: 0,
-    amountPaid: 8000,
-    daysOverdue: 0,
-  },
-  {
-    id: '4',
-    number: 'INV-004',
-    reference: 'Consulting - December',
-    date: '2023-12-15',
-    dueDate: '2024-01-15',
-    status: 'PAID',
-    total: 3500,
-    amountDue: 0,
-    amountPaid: 3500,
-    daysOverdue: 0,
-  },
-]
 
 export default function InvoicesPage() {
-  const searchParams = useSearchParams()
-  const isDemo = searchParams.get('demo') === 'true'
-
-  const [invoices, setInvoices] = useState<Invoice[]>([])
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    if (isDemo) {
-      setInvoices(DEMO_INVOICES)
-      setLoading(false)
-      return
-    }
-
-    async function fetchInvoices() {
+    async function checkAuth() {
       try {
-        const res = await fetch('/api/client-portal/xero/invoices')
-        if (!res.ok) throw new Error()
-        const data = await res.json()
-        setInvoices(data.invoices || [])
+        const supabase = getSupabaseBrowserClient()
+        const { data: { user } } = await supabase.auth.getUser()
+        setIsAuthenticated(!!user)
       } catch {
-        setError(true)
+        // Not authenticated
       } finally {
         setLoading(false)
       }
     }
-    fetchInvoices()
-  }, [isDemo])
+    checkAuth()
+  }, [])
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <div className="text-gray-500">Loading...</div>
+      <div className="flex items-center justify-center py-24">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-10 w-10 animate-spin rounded-full border-2 border-gray-200 dark:border-gray-700 border-t-[#D2A62C]" />
+          <p className="text-sm text-gray-500 dark:text-gray-400">Loading...</p>
+        </div>
       </div>
     )
   }
 
-  if (error) {
+  if (!isAuthenticated) {
     return (
-      <div className="rounded-lg bg-white p-8 text-center shadow-sm">
-        <h2 className="mb-2 text-xl font-medium text-gray-900">Unable to load invoices</h2>
-        <p className="text-gray-600">Please try again later.</p>
-        <div className="mt-6 border-t border-gray-200 pt-6">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="mx-auto max-w-md py-16"
+      >
+        <div className="rounded-2xl bg-white dark:bg-gray-800 p-8 text-center shadow-sm">
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#D2A62C]/10">
+            <svg className="h-8 w-8 text-[#D2A62C]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+          </div>
+          <h2 className="mb-2 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">Sign In Required</h2>
+          <p className="mb-6 text-gray-600 dark:text-gray-400">Sign in to view your invoices.</p>
           <Link
-            href="/portal/invoices?demo=true"
-            className="text-sm text-gray-500 hover:text-gray-700"
+            href="/portal/login"
+            className="inline-flex items-center justify-center rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#b8922a]"
           >
-            Try Demo Mode
+            Sign In
           </Link>
         </div>
-      </div>
+      </motion.div>
     )
   }
 
-  const outstanding = invoices.filter(inv =>
-    inv.status === 'AUTHORISED' || inv.status === 'SUBMITTED'
-  )
-  const paid = invoices.filter(inv => inv.status === 'PAID')
-  const overdue = outstanding.filter(inv => inv.daysOverdue > 0)
-
-  const totalOutstanding = outstanding.reduce((sum, inv) => sum + inv.amountDue, 0)
-  const totalOverdue = overdue.reduce((sum, inv) => sum + inv.amountDue, 0)
-  const totalPaid = paid.reduce((sum, inv) => sum + inv.total, 0)
-
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-medium text-gray-900">Invoices</h1>
-        <p className="mt-1 text-gray-600">View and track your invoices.</p>
-      </div>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+      className="space-y-8"
+    >
+      {/* Header */}
+      <motion.div variants={itemVariants}>
+        <h1 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Invoices</h1>
+        <p className="mt-1 text-gray-500 dark:text-gray-400">View and track your invoices.</p>
+      </motion.div>
 
-      {/* Summary Stats */}
-      <div className="grid gap-4 sm:grid-cols-4">
-        <div className="rounded-lg bg-white p-4 shadow-sm">
-          <div className="text-sm text-gray-500">Outstanding</div>
-          <div className="mt-1 text-2xl font-semibold text-gray-900">
-            ${totalOutstanding.toLocaleString()}
+      {/* Coming Soon */}
+      <motion.div variants={itemVariants} className="rounded-2xl bg-gradient-to-br from-blue-50 to-blue-100/50 dark:from-blue-900/20 dark:to-blue-800/10 p-8">
+        <div className="mx-auto max-w-xl text-center">
+          <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-100 dark:bg-blue-900/40">
+            <svg className="h-10 w-10 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
           </div>
-          <div className="text-xs text-gray-500">{outstanding.length} invoices</div>
-        </div>
-        <div className="rounded-lg bg-white p-4 shadow-sm">
-          <div className="text-sm text-gray-500">Overdue</div>
-          <div className={`mt-1 text-2xl font-semibold ${totalOverdue > 0 ? 'text-red-600' : 'text-green-600'}`}>
-            ${totalOverdue.toLocaleString()}
-          </div>
-          <div className="text-xs text-gray-500">{overdue.length} invoices</div>
-        </div>
-        <div className="rounded-lg bg-white p-4 shadow-sm">
-          <div className="text-sm text-gray-500">Paid (All Time)</div>
-          <div className="mt-1 text-2xl font-semibold text-green-600">
-            ${totalPaid.toLocaleString()}
-          </div>
-          <div className="text-xs text-gray-500">{paid.length} invoices</div>
-        </div>
-        <div className="rounded-lg bg-white p-4 shadow-sm">
-          <div className="text-sm text-gray-500">Total Invoices</div>
-          <div className="mt-1 text-2xl font-semibold text-gray-900">{invoices.length}</div>
-        </div>
-      </div>
-
-      {/* Outstanding Invoices */}
-      {outstanding.length > 0 && (
-        <div>
-          <h2 className="mb-4 text-lg font-medium text-gray-900">Outstanding</h2>
-          <div className="overflow-hidden rounded-lg bg-white shadow-sm">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Invoice
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Due Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Amount Due
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
-                {outstanding.map((invoice) => (
-                  <tr key={invoice.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <div className="font-medium text-gray-900">{invoice.number}</div>
-                      {invoice.reference && (
-                        <div className="text-sm text-gray-500">{invoice.reference}</div>
-                      )}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
-                      {new Date(invoice.date).toLocaleDateString()}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
-                      {invoice.dueDate ? new Date(invoice.dueDate).toLocaleDateString() : '-'}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      {invoice.daysOverdue > 0 ? (
-                        <span className="inline-flex rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-800">
-                          {invoice.daysOverdue} days overdue
-                        </span>
-                      ) : (
-                        <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${statusColors[invoice.status] || 'bg-gray-100 text-gray-800'}`}>
-                          {statusLabels[invoice.status] || invoice.status}
-                        </span>
-                      )}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-semibold text-gray-900">
-                      ${invoice.amountDue.toLocaleString()}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-
-      {/* Paid Invoices */}
-      {paid.length > 0 && (
-        <div>
-          <h2 className="mb-4 text-lg font-medium text-gray-900">Paid</h2>
-          <div className="overflow-hidden rounded-lg bg-white shadow-sm">
-            <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Invoice
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Date
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Status
-                  </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium uppercase tracking-wider text-gray-500">
-                    Amount
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
-                {paid.slice(0, 10).map((invoice) => (
-                  <tr key={invoice.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4">
-                      <div className="font-medium text-gray-900">{invoice.number}</div>
-                      {invoice.reference && (
-                        <div className="text-sm text-gray-500">{invoice.reference}</div>
-                      )}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
-                      {new Date(invoice.date).toLocaleDateString()}
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4">
-                      <span className="inline-flex rounded-full bg-green-100 px-2 py-1 text-xs font-medium text-green-800">
-                        Paid
-                      </span>
-                    </td>
-                    <td className="whitespace-nowrap px-6 py-4 text-right text-sm font-medium text-gray-900">
-                      ${invoice.total.toLocaleString()}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-      )}
-
-      {invoices.length === 0 && (
-        <div className="rounded-lg bg-white p-8 text-center shadow-sm">
-          <p className="text-gray-500">No invoices yet</p>
-        </div>
-      )}
-
-      {/* Payment Info */}
-      {outstanding.length > 0 && (
-        <div className="rounded-lg border border-[#D2A62C]/30 bg-[#D2A62C]/5 p-6">
-          <h3 className="font-medium text-gray-900">Need to make a payment?</h3>
-          <p className="mt-1 text-sm text-gray-600">
-            Contact us to arrange payment or request a payment link.
+          <h2 className="text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">Invoice Portal Coming Soon</h2>
+          <p className="mt-3 text-gray-600 dark:text-gray-400">
+            We're building a beautiful invoice tracking experience. Soon you'll be able to view all your invoices, payment history, and download receipts right here.
           </p>
+
+          {/* Features Preview */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-3">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="rounded-xl bg-white/80 dark:bg-gray-800/80 p-4 backdrop-blur transition-transform hover:translate-y-[-4px]"
+            >
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900/40">
+                <svg className="h-5 w-5 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+              </div>
+              <h3 className="font-medium text-gray-900 dark:text-white">View Invoices</h3>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">See all your invoices in one place</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="rounded-xl bg-white/80 dark:bg-gray-800/80 p-4 backdrop-blur transition-transform hover:translate-y-[-4px]"
+            >
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900/40">
+                <svg className="h-5 w-5 text-green-600 dark:text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="font-medium text-gray-900 dark:text-white">Payment Status</h3>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Track paid and outstanding amounts</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="rounded-xl bg-white/80 dark:bg-gray-800/80 p-4 backdrop-blur transition-transform hover:translate-y-[-4px]"
+            >
+              <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900/40">
+                <svg className="h-5 w-5 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+              </div>
+              <h3 className="font-medium text-gray-900 dark:text-white">Download PDFs</h3>
+              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">Get copies of all your invoices</p>
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Contact CTA */}
+      <motion.div variants={itemVariants} className="rounded-2xl bg-white dark:bg-gray-800 p-6 shadow-sm transition-transform hover:translate-y-[-2px]">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div>
+            <h3 className="font-semibold tracking-tight text-gray-900 dark:text-white">Need an invoice now?</h3>
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
+              Contact us directly and we'll send you any invoice you need.
+            </p>
+          </div>
           <a
-            href="mailto:donny@makebttr.com?subject=Payment Inquiry"
-            className="mt-3 inline-block rounded-lg bg-[#D2A62C] px-4 py-2 text-sm font-medium text-white hover:bg-[#b8922a]"
+            href="mailto:donny@makebttr.com?subject=Invoice Request"
+            className="inline-flex items-center justify-center rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#b8922a] whitespace-nowrap"
           >
-            Contact Us
+            Request Invoice
           </a>
         </div>
-      )}
-    </div>
+      </motion.div>
+
+      {/* Back to Dashboard */}
+      <motion.div variants={itemVariants} className="text-center">
+        <Link
+          href="/portal/dashboard"
+          className="inline-flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+          </svg>
+          Back to Dashboard
+        </Link>
+      </motion.div>
+    </motion.div>
   )
 }
