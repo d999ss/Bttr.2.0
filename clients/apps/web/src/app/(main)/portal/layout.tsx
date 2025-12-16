@@ -9,7 +9,7 @@ import { twMerge } from 'tailwind-merge'
 const navItems = [
   { href: '/portal/dashboard', label: 'Dashboard' },
   { href: '/portal/projects', label: 'Projects' },
-  { href: '/portal/hours', label: 'Hours' },
+  { href: '/portal/invoices', label: 'Invoices' },
 ]
 
 export default function PortalLayout({ children }: PropsWithChildren) {
