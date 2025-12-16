@@ -10,6 +10,7 @@ import { Adapters } from './Adapters'
 import { Checkout } from './Checkout'
 import { Events } from './Events'
 import Features from './Features'
+import { FeaturedMasthead } from './FeaturedMasthead'
 import { FeaturedWork } from './FeaturedWork'
 import { ImpactMetrics } from './ImpactMetrics'
 import { Pricing } from './Pricing'
@@ -27,6 +28,7 @@ export default function Page() {
 export const PageContent = () => {
   return (
     <>
+      <FeaturedMasthead />
       <Section className="flex flex-col gap-y-32 py-0 md:py-0">
         <Hero
           title="Designed to Adapt. Engineered to Win."
