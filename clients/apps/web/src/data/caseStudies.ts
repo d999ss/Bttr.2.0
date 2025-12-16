@@ -76,7 +76,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'ge-brilliant-you',
     title: 'GE Brilliant You',
     description: "Investing in GE's most valuable asset—their people",
-    thumbnail: '/assets/work/uploads/2023/08/GE_wayfinding.jpg',
+    thumbnail: '/assets/work/uploads/2023/08/ge-brilliant-you-thumb.webp',
   },
   {
     slug: 'ge-aerospace',
