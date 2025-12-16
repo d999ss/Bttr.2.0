@@ -37,7 +37,7 @@ export const Hero = ({
     <div className="relative min-h-[80vh] w-full overflow-hidden">
       {/* Animated Background */}
       <UnicornStudioEmbed
-        projectId="Vg6VdZ0vfLRPrZr8voJT"
+        projectId="ziFP1lFITDIU9uVSFulg"
         className="absolute inset-0 z-0"
       />
 
