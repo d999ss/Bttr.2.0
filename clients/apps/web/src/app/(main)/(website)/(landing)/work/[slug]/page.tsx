@@ -106,6 +106,16 @@ const staticPages = [
   'ge-aerospace',
   'tiger-biosciences',
   'alle',
+  'alle-for-business',
+  'alle-for-consumers',
+  'ciitizen',
+  'helix-homes',
+  'advantage',
+  'allergan-data-labs',
+  'ross-j-barr',
+  'spark',
+  'ge-user-conference',
+  'atom',
 ]
 
 export async function generateStaticParams() {

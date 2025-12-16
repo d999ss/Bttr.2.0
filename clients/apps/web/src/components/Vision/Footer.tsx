@@ -13,7 +13,7 @@ export const Footer = ({ className }: { className?: string }) => {
     >
       <NavigationLegend />
       <SectionsLegend />
-      <OpenSourceLegend />
+      <WorkLegend />
       <ContactUsLegend />
     </div>
   )
@@ -48,11 +48,11 @@ const SectionsLegend = () => {
   )
 }
 
-const OpenSourceLegend = () => {
+const WorkLegend = () => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'o') {
-        window.open('https://github.com/polarsource', '_blank')
+      if (event.key === 'w') {
+        window.open('/work', '_self')
       }
     }
 
@@ -66,9 +66,9 @@ const OpenSourceLegend = () => {
   return (
     <div className="flex flex-col gap-y-2">
       <div className="flex flex-row gap-x-2">
-        <Button variant="icon">O</Button>
+        <Button variant="icon">W</Button>
       </div>
-      <span>Open Source</span>
+      <span>View Work</span>
     </div>
   )
 }
@@ -77,7 +77,7 @@ const ContactUsLegend = () => {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'm') {
-        window.open('mailto:birk@polar.sh', '_blank')
+        window.open('mailto:donny@makebttr.com', '_blank')
       }
     }
 
