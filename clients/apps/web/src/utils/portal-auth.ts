@@ -21,21 +21,41 @@ export async function getPortalUser(): Promise<PortalUser | null> {
 
   // Get cookies for auth
   const cookieStore = await cookies()
-  const accessToken = cookieStore.get('sb-oiekbwdggfjihihdmzsa-auth-token')
+  const authCookie = cookieStore.get('sb-oiekbwdggfjihihdmzsa-auth-token')
 
-  if (!accessToken) {
+  if (!authCookie) {
     return null
   }
 
   try {
-    // Parse the cookie value (it's a JSON array with [access_token, refresh_token])
-    const tokenData = JSON.parse(accessToken.value)
-    const token = Array.isArray(tokenData) ? tokenData[0] : tokenData
+    // Parse the cookie value - it's stored as a JSON object with access_token and refresh_token
+    const tokenData = JSON.parse(decodeURIComponent(authCookie.value))
+
+    // Handle different possible formats
+    let accessToken: string | null = null
+
+    if (typeof tokenData === 'string') {
+      accessToken = tokenData
+    } else if (Array.isArray(tokenData)) {
+      // Old format: [access_token, refresh_token]
+      accessToken = tokenData[0]
+    } else if (tokenData.access_token) {
+      // New format: { access_token, refresh_token, ... }
+      accessToken = tokenData.access_token
+    } else if (tokenData.currentSession?.access_token) {
+      // Another possible format
+      accessToken = tokenData.currentSession.access_token
+    }
+
+    if (!accessToken) {
+      console.error('Could not extract access token from cookie')
+      return null
+    }
 
     const supabase = createClient(supabaseUrl, supabaseAnonKey, {
       global: {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${accessToken}`,
         },
       },
     })
@@ -43,6 +63,7 @@ export async function getPortalUser(): Promise<PortalUser | null> {
     const { data: { user }, error } = await supabase.auth.getUser()
 
     if (error || !user) {
+      console.error('Error getting user:', error)
       return null
     }
 
