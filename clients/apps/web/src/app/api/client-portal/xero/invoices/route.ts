@@ -1,8 +1,10 @@
 import { getAuthenticatedUser } from '@/utils/user'
 import { NextResponse } from 'next/server'
-
-// GodMode server handles Xero token refresh
-const GODMODE_URL = process.env.GODMODE_URL || 'http://localhost:3001'
+import {
+  getContactByEmail,
+  getInvoicesForContact,
+  calculateInvoiceSummary
+} from '@/utils/xero'
 
 export async function GET() {
   try {
@@ -12,47 +14,33 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Call GodMode server to get invoices
-    const response = await fetch(
-      `${GODMODE_URL}/api/xero/client/invoices?email=${encodeURIComponent(user.email)}`,
-      {
-        headers: { 'Accept': 'application/json' },
-        cache: 'no-store'
-      }
-    )
+    // Find Xero contact by email
+    const contact = await getContactByEmail(user.email)
 
-    if (response.status === 404) {
+    if (!contact) {
       return NextResponse.json({
         error: 'not-a-client',
         message: 'No Xero contact found for this email'
       }, { status: 404 })
     }
 
-    if (!response.ok) {
-      throw new Error(`GodMode API error: ${response.status}`)
-    }
+    // Fetch invoices
+    const invoices = await getInvoicesForContact(contact.ContactID)
 
-    const data = await response.json()
-    const invoices = data.invoices || []
+    // Filter to only receivables (invoices TO the client, not FROM)
+    const receivables = invoices.filter((inv: any) => inv.type === 'ACCREC')
 
     // Separate by status
-    const outstanding = invoices.filter((inv: any) =>
+    const outstanding = receivables.filter((inv: any) =>
       inv.status === 'AUTHORISED' || inv.status === 'SUBMITTED'
     )
-    const paid = invoices.filter((inv: any) => inv.status === 'PAID')
+    const paid = receivables.filter((inv: any) => inv.status === 'PAID')
     const overdue = outstanding.filter((inv: any) => inv.daysOverdue > 0)
 
-    // Calculate summary
-    const summary = {
-      totalOutstanding: outstanding.reduce((sum: number, inv: any) => sum + (inv.amountDue || 0), 0),
-      overdueAmount: overdue.reduce((sum: number, inv: any) => sum + (inv.amountDue || 0), 0),
-      overdueCount: overdue.length,
-      totalPaid: paid.reduce((sum: number, inv: any) => sum + (inv.total || 0), 0),
-      paidCount: paid.length
-    }
+    const summary = calculateInvoiceSummary(invoices)
 
     return NextResponse.json({
-      invoices,
+      invoices: receivables,
       outstanding,
       paid: paid.slice(0, 10), // Last 10 paid
       overdue,

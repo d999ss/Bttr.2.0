@@ -1,8 +1,10 @@
 import { getAuthenticatedUser } from '@/utils/user'
 import { NextResponse } from 'next/server'
-
-// GodMode server handles Xero token refresh
-const GODMODE_URL = process.env.GODMODE_URL || 'http://localhost:3001'
+import {
+  getContactByEmail,
+  getProjectsForContact,
+  calculateProjectSummary
+} from '@/utils/xero'
 
 export async function GET() {
   try {
@@ -12,42 +14,24 @@ export async function GET() {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
 
-    // Call GodMode server to get projects
-    const response = await fetch(
-      `${GODMODE_URL}/api/xero/client/projects?email=${encodeURIComponent(user.email)}`,
-      {
-        headers: { 'Accept': 'application/json' },
-        cache: 'no-store'
-      }
-    )
+    // Find Xero contact by email
+    const contact = await getContactByEmail(user.email)
 
-    if (response.status === 404) {
+    if (!contact) {
       return NextResponse.json({
         error: 'not-a-client',
         message: 'No Xero contact found for this email'
       }, { status: 404 })
     }
 
-    if (!response.ok) {
-      throw new Error(`GodMode API error: ${response.status}`)
-    }
-
-    const data = await response.json()
-    const projects = data.projects || []
+    // Fetch projects
+    const projects = await getProjectsForContact(contact.ContactID)
 
     // Separate by status
     const active = projects.filter((p: any) => p.status === 'INPROGRESS')
     const completed = projects.filter((p: any) => p.status === 'CLOSED')
 
-    // Calculate summary
-    const summary = {
-      activeCount: active.length,
-      completedCount: completed.length,
-      totalHoursLogged: projects.reduce((sum: number, p: any) => sum + (p.hoursLogged || 0), 0),
-      totalHoursToInvoice: projects.reduce((sum: number, p: any) => sum + (p.hoursToBeInvoiced || 0), 0),
-      totalInvoiced: projects.reduce((sum: number, p: any) => sum + (p.totalInvoiced || 0), 0),
-      totalBudget: projects.reduce((sum: number, p: any) => sum + (p.estimate || 0), 0)
-    }
+    const summary = calculateProjectSummary(projects)
 
     return NextResponse.json({
       projects,

@@ -1,15 +1,14 @@
 /**
  * Xero API Integration for Client Portal
  * Fetches projects, invoices, and time entries for clients
+ * Tokens are stored in Supabase for serverless compatibility
  */
 
-import fs from 'fs'
-import path from 'path'
+import { supabase } from './supabase'
 
 const XERO_CLIENT_ID = process.env.XERO_CLIENT_ID
 const XERO_CLIENT_SECRET = process.env.XERO_CLIENT_SECRET
 const XERO_TENANT_ID = process.env.XERO_TENANT_ID
-const XERO_TOKEN_PATH = process.env.XERO_TOKEN_PATH || '/Users/donnysmith/Library/Mobile Documents/com~apple~CloudDocs/GodMode/xero-tokens.json'
 
 interface XeroTokens {
   access_token: string
@@ -17,21 +16,67 @@ interface XeroTokens {
   expires_at: string
 }
 
-async function refreshXeroToken(): Promise<string> {
-  let tokens: XeroTokens
-
+// Get tokens from Supabase
+async function getStoredTokens(): Promise<XeroTokens | null> {
   try {
-    const tokenData = fs.readFileSync(XERO_TOKEN_PATH, 'utf8')
-    tokens = JSON.parse(tokenData)
-  } catch {
-    throw new Error('Xero tokens not found')
+    const { data, error } = await supabase
+      .from('xero_tokens')
+      .select('*')
+      .eq('id', 'default')
+      .single()
+
+    if (error || !data) {
+      console.log('No stored Xero tokens found')
+      return null
+    }
+
+    return {
+      access_token: data.access_token,
+      refresh_token: data.refresh_token,
+      expires_at: data.expires_at
+    }
+  } catch (error) {
+    console.error('Error fetching Xero tokens:', error)
+    return null
+  }
+}
+
+// Store tokens in Supabase
+async function storeTokens(tokens: XeroTokens): Promise<void> {
+  try {
+    const { error } = await supabase
+      .from('xero_tokens')
+      .upsert({
+        id: 'default',
+        access_token: tokens.access_token,
+        refresh_token: tokens.refresh_token,
+        expires_at: tokens.expires_at,
+        updated_at: new Date().toISOString()
+      })
+
+    if (error) {
+      console.error('Error storing Xero tokens:', error)
+    }
+  } catch (error) {
+    console.error('Error storing Xero tokens:', error)
+  }
+}
+
+async function refreshXeroToken(): Promise<string> {
+  const tokens = await getStoredTokens()
+
+  if (!tokens) {
+    throw new Error('Xero tokens not found. Please run initial OAuth setup.')
   }
 
   const expiresAt = tokens.expires_at ? new Date(tokens.expires_at) : new Date(0)
   const now = new Date()
 
-  if (now >= expiresAt) {
-    console.log('Xero token expired, refreshing...')
+  // Refresh if expired or expiring in next 5 minutes
+  const fiveMinutesFromNow = new Date(now.getTime() + 5 * 60 * 1000)
+
+  if (fiveMinutesFromNow >= expiresAt) {
+    console.log('Xero token expired or expiring soon, refreshing...')
 
     if (!XERO_CLIENT_ID || !XERO_CLIENT_SECRET) {
       throw new Error('Xero credentials not configured')
@@ -47,18 +92,22 @@ async function refreshXeroToken(): Promise<string> {
     })
 
     if (!response.ok) {
+      const errorText = await response.text()
+      console.error('Token refresh failed:', errorText)
       throw new Error(`Token refresh failed: ${response.status}`)
     }
 
     const newTokens = await response.json()
-    tokens = {
+    const updatedTokens: XeroTokens = {
       access_token: newTokens.access_token,
       refresh_token: newTokens.refresh_token,
       expires_at: new Date(Date.now() + (newTokens.expires_in * 1000)).toISOString()
     }
 
-    fs.writeFileSync(XERO_TOKEN_PATH, JSON.stringify(tokens, null, 2))
+    await storeTokens(updatedTokens)
     console.log('Xero token refreshed successfully')
+
+    return updatedTokens.access_token
   }
 
   return tokens.access_token
@@ -263,4 +312,10 @@ export function calculateProjectSummary(projects: any[]) {
     totalEstimate: Math.round(projects.reduce((sum, p) => sum + p.estimate, 0) * 100) / 100,
     totalInvoiced: Math.round(projects.reduce((sum, p) => sum + p.totalInvoiced, 0) * 100) / 100
   }
+}
+
+// Seed initial tokens from environment (for first-time setup)
+export async function seedXeroTokens(tokens: XeroTokens): Promise<void> {
+  await storeTokens(tokens)
+  console.log('Xero tokens seeded to Supabase')
 }
