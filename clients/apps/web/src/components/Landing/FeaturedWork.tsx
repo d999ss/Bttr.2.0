@@ -121,11 +121,11 @@ export const FeaturedWork = () => {
       className="flex w-full flex-col items-center gap-y-12"
     >
       <div className="flex items-center gap-x-4">
-        <div className="h-px w-12 bg-gradient-to-r from-transparent to-gray-300 dark:to-gray-700" />
-        <p className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400">
+        <div className="dark:to-polar-700 h-px w-12 bg-gradient-to-r from-transparent to-gray-300" />
+        <p className="dark:text-polar-500 text-lg text-gray-400">
           Featured Work
         </p>
-        <div className="h-px w-12 bg-gradient-to-l from-transparent to-gray-300 dark:to-gray-700" />
+        <div className="dark:to-polar-700 h-px w-12 bg-gradient-to-l from-transparent to-gray-300" />
       </div>
 
       <div className="flex flex-wrap items-center justify-center gap-5 md:gap-6">
@@ -136,7 +136,7 @@ export const FeaturedWork = () => {
 
       <Link
         href="/work"
-        className="group mt-4 flex items-center gap-x-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-900 dark:hover:text-white"
+        className="dark:text-polar-500 group mt-4 flex items-center gap-x-2 text-sm text-gray-500 transition-colors duration-300 hover:text-gray-900 dark:hover:text-white"
       >
         <span>View all work</span>
         <svg

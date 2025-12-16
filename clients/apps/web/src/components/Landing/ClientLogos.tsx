@@ -66,15 +66,15 @@ export const ClientLogos = () => {
         initial={{ opacity: 0, y: 10 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 dark:text-gray-500"
+        className="dark:text-polar-500 text-lg text-gray-400"
       >
         Trusted by industry leaders
       </motion.p>
 
       <div className="relative w-full">
         {/* Gradient masks */}
-        <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-gray-50 to-transparent dark:from-gray-950" />
-        <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-gray-50 to-transparent dark:from-gray-950" />
+        <div className="dark:from-polar-950 pointer-events-none absolute left-0 top-0 z-10 h-full w-32 bg-gradient-to-r from-gray-50 to-transparent" />
+        <div className="dark:from-polar-950 pointer-events-none absolute right-0 top-0 z-10 h-full w-32 bg-gradient-to-l from-gray-50 to-transparent" />
 
         {/* Infinite marquee */}
         <div className="flex animate-marquee items-center gap-x-16">
@@ -83,7 +83,7 @@ export const ClientLogos = () => {
               key={`${client.name}-${index}`}
               className="flex shrink-0 items-center justify-center px-4"
             >
-              <client.Logo className="h-12 w-auto text-gray-400 grayscale transition-all duration-500 hover:text-gray-900 hover:grayscale-0 dark:text-gray-600 dark:hover:text-white" />
+              <client.Logo className="dark:text-polar-500 h-12 w-auto text-gray-400 grayscale transition-all duration-500 hover:text-gray-900 hover:grayscale-0 dark:hover:text-white" />
             </div>
           ))}
         </div>

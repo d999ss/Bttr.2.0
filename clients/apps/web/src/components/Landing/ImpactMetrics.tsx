@@ -48,18 +48,15 @@ const MetricCard = ({ metric, index }: { metric: Metric; index: number }) => {
       transition={{ duration: 0.8, delay: index * 0.15, ease: [0.21, 0.47, 0.32, 0.98] }}
       className="group relative"
     >
-      <div className="relative flex flex-col items-center gap-y-4 rounded-3xl border border-gray-200/50 bg-white/70 p-10 backdrop-blur-sm transition-all duration-500 hover:border-gray-300/80 hover:bg-white hover:shadow-2xl hover:shadow-gray-200/50 dark:border-gray-800/50 dark:bg-gray-900/50 dark:hover:border-gray-700 dark:hover:bg-gray-900/80 dark:hover:shadow-none">
-        {/* Subtle gradient orb */}
-        <div className="absolute -top-20 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-gradient-to-b from-[#D2A62C]/10 to-transparent opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
-
-        <span className="relative text-5xl font-light tracking-tight text-gray-900 dark:text-white md:text-6xl">
+      <div className="dark:bg-polar-900 dark:border-polar-800 dark:hover:border-polar-700 dark:hover:bg-polar-800 relative flex flex-col items-center gap-y-4 rounded-2xl border border-transparent bg-white p-10 transition-all duration-500 hover:translate-y-[-4px]">
+        <span className="relative text-5xl font-light tracking-tight text-black md:text-6xl dark:text-white">
           <AnimatedNumber value={metric.value} suffix={metric.suffix} prefix={metric.prefix} />
         </span>
         <div className="flex flex-col items-center gap-y-1 text-center">
-          <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-900 dark:text-white">
+          <span className="text-sm font-medium text-black dark:text-white">
             {metric.label}
           </span>
-          <span className="text-xs text-gray-500 dark:text-gray-500">
+          <span className="dark:text-polar-500 text-sm text-gray-500">
             {metric.sublabel}
           </span>
         </div>
@@ -70,23 +67,23 @@ const MetricCard = ({ metric, index }: { metric: Metric; index: number }) => {
 
 export const ImpactMetrics = () => {
   return (
-    <div className="flex flex-col items-center gap-y-16 py-8">
+    <div className="flex flex-col items-center gap-y-12 md:gap-y-24 md:py-12">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="flex flex-col items-center gap-y-4 text-center"
+        className="flex flex-col items-center gap-y-8"
       >
-        <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-400 dark:text-gray-500">
+        <span className="dark:text-polar-500 text-lg text-gray-400">
           Proven Impact
         </span>
-        <h2 className="max-w-xl text-3xl font-light tracking-tight text-gray-900 dark:text-white md:text-4xl">
+        <h2 className="w-fit max-w-2xl text-center text-3xl text-pretty md:text-5xl md:leading-normal">
           Results that speak for themselves
         </h2>
       </motion.div>
 
-      <div className="grid w-full max-w-5xl grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
+      <div className="grid w-full max-w-5xl grid-cols-2 gap-4 md:grid-cols-4 md:gap-8">
         {metrics.map((metric, index) => (
           <MetricCard key={metric.label} metric={metric} index={index} />
         ))}
