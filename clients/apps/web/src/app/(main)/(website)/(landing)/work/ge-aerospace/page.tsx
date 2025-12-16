@@ -179,6 +179,67 @@ export default function GEAerospacePage() {
         </div>
       </section>
 
+      {/* Engine Portfolio Section */}
+      <section className="dark:bg-polar-950 w-full bg-white px-8 py-16 md:px-16 lg:px-24">
+        <p className="dark:text-polar-500 mb-4 text-sm uppercase tracking-wider text-gray-500">
+          Engine Portfolio
+        </p>
+        <h2 className="mb-12 max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+          Powering commercial and military aviation
+        </h2>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="relative aspect-video overflow-hidden rounded-xl">
+            <Image
+              src="/assets/work/uploads/2024/08/ge-aerospace-ge90.jpg"
+              alt="GE90 Engine"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-video overflow-hidden rounded-xl">
+            <Image
+              src="/assets/work/uploads/2024/08/ge-aerospace-genx.jpg"
+              alt="GEnx Engine"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-video overflow-hidden rounded-xl">
+            <Image
+              src="/assets/work/uploads/2024/08/ge-aerospace-f110.jpg"
+              alt="F110 Military Engine"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-video overflow-hidden rounded-xl">
+            <Image
+              src="/assets/work/uploads/2024/08/ge-aerospace-t901.jpg"
+              alt="T901 Engine"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Full-width Catalyst Image */}
+      <section className="w-full">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/08/ge-aerospace-catalyst.jpg"
+            alt="GE Catalyst Engine"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
       {/* Credits */}
       <section className="dark:border-polar-800 dark:bg-polar-950 w-full border-t border-gray-200 bg-white px-8 py-16 md:px-16 lg:px-24">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
