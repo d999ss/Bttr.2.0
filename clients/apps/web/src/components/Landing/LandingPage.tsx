@@ -49,7 +49,6 @@ export const PageContent = () => {
         </Hero>
         <Features />
         <FeaturedWork />
-        <ImpactMetrics />
         <Events />
         <Adapters />
         <Usage />
@@ -71,6 +70,9 @@ export const PageContent = () => {
       </Section>
       <Section className="flex flex-col gap-y-24">
         <Pricing />
+      </Section>
+      <Section className="flex flex-col gap-y-24">
+        <ImpactMetrics />
       </Section>
     </>
   )
