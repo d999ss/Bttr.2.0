@@ -153,12 +153,12 @@ const LandingPageMobileNavigation = () => {
             onClick={onLoginClick}
             className="text-xl tracking-tight"
           >
-            Login
+            Client Login
           </NavLink>
         </SidebarContent>
       </Sidebar>
       <Modal
-        title="Login"
+        title="Client Login"
         isShown={isModalShown}
         hide={hideModal}
         modalContent={<AuthModal />}
@@ -285,13 +285,13 @@ const LandingPageDesktopNavigation = () => {
 
         <div className="flex items-center gap-4">
           <Button onClick={onLoginClick} variant="ghost" className="rounded-full">
-            Log In
+            Client Login
           </Button>
           <BeaAnimation size={50} />
         </div>
       </div>
       <Modal
-        title="Login"
+        title="Client Login"
         isShown={isModalShown}
         hide={hideModal}
         modalContent={<AuthModal />}

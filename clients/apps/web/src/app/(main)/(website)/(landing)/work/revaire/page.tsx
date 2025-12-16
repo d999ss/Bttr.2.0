@@ -21,7 +21,15 @@ export default function RevairePage() {
             src="/assets/work/uploads/2024/08/LYRS_071-scaled.jpg.webp"
             alt="Revaire"
             fill
-            className="object-cover"
+            className="hidden object-cover lg:block"
+            priority
+            sizes="100vw"
+          />
+          <Image
+            src="/assets/work/uploads/2024/08/Revaire_mobile.jpg"
+            alt="Revaire Mobile"
+            fill
+            className="block object-cover lg:hidden"
             priority
             sizes="100vw"
           />
@@ -29,7 +37,7 @@ export default function RevairePage() {
         <div className="relative flex min-h-screen items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
             <h1 className="max-w-4xl text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
-              A modern, luxurious identity.
+              Upgrade Beyond First Class
             </h1>
           </div>
         </div>
@@ -99,12 +107,36 @@ export default function RevairePage() {
       <section className="w-full bg-[#0a0a0a]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/CS_Inset-full-width-2.jpg.webp"
+            src="/assets/work/uploads/2024/08/CS_Inset-full-width-3.jpg"
             alt="Revaire Brand Overview"
             fill
             className="object-cover"
             sizes="100vw"
           />
+        </div>
+      </section>
+
+      {/* Two Column Images - App */}
+      <section className="w-full bg-[#0a0a0a]">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2024/08/SOra-app.jpg.webp"
+              alt="Revaire App"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2024/08/sora-logo.png.webp"
+              alt="Revaire Logo"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
         </div>
       </section>
 
@@ -140,13 +172,26 @@ export default function RevairePage() {
         </p>
       </section>
 
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/08/guidelines.jpg.webp"
+            alt="Revaire Guidelines"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
       {/* Two Column Images */}
       <section className="w-full bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/SQ-Image-frame-1.jpg.webp"
-              alt="Revaire Brand"
+              src="/assets/work/uploads/2024/08/SQ-Image-frame.jpg.webp"
+              alt="Revaire Brand Elements"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -154,8 +199,8 @@ export default function RevairePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/SQ-Image-frame-4.jpg.webp"
-              alt="Revaire Experience"
+              src="/assets/work/uploads/2024/08/SQ-Image-frame-1.jpg.webp"
+              alt="Revaire Brand"
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
@@ -189,8 +234,45 @@ export default function RevairePage() {
       <section className="w-full bg-gray-100">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/CS_Inset-full-width-3.jpg"
+            src="/assets/work/uploads/2024/08/MM_Screen_SC-B-01-scaled.jpg.webp"
             alt="Revaire System"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2024/08/SQ-Image-frame-5.jpg"
+              alt="Revaire Interface"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2024/08/MM_Tablet_TB-CAF2-03-scaled.jpg"
+              alt="Revaire Tablet"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/08/Image-Single-1.jpg.webp"
+            alt="Revaire Single"
             fill
             className="object-cover"
             sizes="100vw"
@@ -214,6 +296,43 @@ export default function RevairePage() {
           A seamless, elevated experience at every touchpoint that unlocks
           access to an exciting and adventurous new world.
         </p>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-[#0a0a0a]">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/08/CS_Inset-full-width-2.jpg.webp"
+            alt="Revaire Experience"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-[#0a0a0a]">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2024/08/SQ-Image-frame-4.jpg.webp"
+              alt="Revaire Feature"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-[1344/2010]">
+            <Image
+              src="/assets/work/uploads/2024/08/Portrait-Image-frame.jpg.webp"
+              alt="Revaire Mobile"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
       </section>
 
       {/* Section Header - Digital Assets */}
@@ -241,8 +360,8 @@ export default function RevairePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/08/guidelines.jpg.webp"
-            alt="Revaire Guidelines"
+            src="/assets/work/uploads/2024/08/mobile.jpg"
+            alt="Revaire Mobile Assets"
             fill
             className="object-cover"
             sizes="100vw"
@@ -276,6 +395,7 @@ export default function RevairePage() {
             <div className="space-y-1">
               <p className="text-sm text-gray-600">Jocelyn McArthur</p>
               <p className="text-sm text-gray-600">Bambos Neophytou</p>
+              <p className="text-sm text-gray-600">Neil Corcoran</p>
               <p className="text-sm text-gray-600">Miriam Goldstein</p>
               <p className="text-sm text-gray-600">Bo Floejborg</p>
             </div>

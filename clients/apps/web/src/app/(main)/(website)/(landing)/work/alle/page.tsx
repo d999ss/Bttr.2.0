@@ -18,10 +18,18 @@ export default function AllePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#00856f]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/Alle-HS-1-1-3_00000.png"
+            src="/assets/work/uploads/2023/09/Desktop-2.jpg"
             alt="Allē"
             fill
-            className="object-cover"
+            className="hidden object-cover lg:block"
+            priority
+            sizes="100vw"
+          />
+          <Image
+            src="/assets/work/uploads/2023/09/Desktop-4.jpg"
+            alt="Allē Mobile"
+            fill
+            className="block object-cover lg:hidden"
             priority
             sizes="100vw"
           />
@@ -99,16 +107,27 @@ export default function AllePage() {
         </div>
       </section>
 
-      {/* Full-width Image */}
+      {/* Two Column Images */}
       <section className="w-full bg-[#00856f]">
-        <div className="relative aspect-video w-full">
-          <Image
-            src="/assets/work/uploads/2023/09/Desktop-2.jpg"
-            alt="Allē Platform Overview"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-23.jpg"
+              alt="Allē Brand"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-1-1.jpg"
+              alt="Allē Product"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
         </div>
       </section>
 
@@ -130,6 +149,69 @@ export default function AllePage() {
           A platform that connects patients with providers, rewards loyalty, and
           powers the entire Allergan Aesthetics ecosystem.
         </p>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/alle-master-header.jpg"
+            alt="Allē Platform"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-2.jpg"
+            alt="Allē Interface"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-1.jpg"
+            alt="Allē Overview"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-2-1.jpg"
+              alt="Allē Feature"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-3-1.jpg"
+              alt="Allē App"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
       </section>
 
       {/* Metrics Section */}
@@ -157,6 +239,19 @@ export default function AllePage() {
               Gift Cards Purchased
             </p>
           </div>
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-[#f5f5f5]">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/Full-width-1.jpg"
+            alt="Allē Stats"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
         </div>
       </section>
 
@@ -192,17 +287,82 @@ export default function AllePage() {
         </p>
       </section>
 
-      {/* Full-width placeholder */}
-      <section className="w-full bg-[#00856f]">
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
-          <div className="absolute inset-0 flex items-center justify-center">
-            <p className="text-2xl text-white/50">Consumer Platform Interface</p>
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-3.jpg"
+            alt="Allē Consumer Platform"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-8.jpg"
+              alt="Allē Consumer Feature"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/sq_image_frame_2.jpg"
+              alt="Allē Consumer App"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-4.jpg"
+            alt="Allē Consumer Interface"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_15.jpg"
+              alt="Allē Consumer Detail"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_16.jpg"
+              alt="Allē Consumer Mobile"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
           </div>
         </div>
       </section>
 
       {/* Allē for Business */}
-      <section className="w-full bg-white px-8 py-16 md:px-16 lg:px-24">
+      <section className="w-full bg-gray-100 px-8 py-16 md:px-16 lg:px-24">
         <p className="mb-4 text-sm uppercase tracking-wider text-gray-500">
           Allē for Business
         </p>
@@ -211,12 +371,86 @@ export default function AllePage() {
         </h2>
       </section>
 
-      <section className="w-full bg-white px-8 py-8 md:px-16 lg:px-24">
+      <section className="w-full bg-gray-100 px-8 py-8 md:px-16 lg:px-24">
         <p className="ml-auto max-w-2xl text-base leading-relaxed text-gray-600">
           The business suite serves healthcare practitioners by addressing
           common pain points through lead generation, bookings, payments
           management, and integrated marketing automation.
         </p>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width_1-1-scaled.jpg"
+            alt="Allē Business Platform"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_11.jpg"
+              alt="Allē Business Feature"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-7.jpg"
+              alt="Allē Business App"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width_12.jpg"
+            alt="Allē Business Interface"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_10.jpg"
+              alt="Allē Business Detail"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-11.jpg"
+              alt="Allē Business Mobile"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
       </section>
 
       {/* Design System Section */}
@@ -238,6 +472,80 @@ export default function AllePage() {
         </p>
       </section>
 
+      {/* Full-width Image */}
+      <section className="w-full bg-gray-900">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-7.jpg"
+            alt="Allē Design System"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-gray-900">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_17.jpg"
+              alt="Allē Design Components"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_18.jpg"
+              alt="Allē Design Patterns"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-gray-900">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-9.jpg"
+            alt="Allē Design Guidelines"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-gray-900">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-16.jpg"
+              alt="Allē Design Elements"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-17.jpg"
+              alt="Allē Design Tokens"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Brand Evolution */}
       <section className="w-full bg-white px-8 py-16 md:px-16 lg:px-24">
         <p className="mb-4 text-sm uppercase tracking-wider text-gray-500">
@@ -255,6 +563,54 @@ export default function AllePage() {
           complete with comprehensive brand guidelines, photography direction,
           and motion specifications.
         </p>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_19.jpg"
+              alt="Allē Brand Identity"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-14.jpg"
+              alt="Allē Brand Guidelines"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-15.jpg"
+              alt="Allē Brand Photography"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-[1344/2010]">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-15.jpg"
+              alt="Allē Brand Motion"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
       </section>
 
       {/* Credits */}

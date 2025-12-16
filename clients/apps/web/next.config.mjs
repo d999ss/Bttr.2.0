@@ -182,11 +182,6 @@ const nextConfig = {
         permanent: false,
       },
       {
-        source: '/careers',
-        destination: 'https://polar.sh/company',
-        permanent: false,
-      },
-      {
         source: '/llms.txt',
         destination: 'https://polar.sh/docs/llms.txt',
         permanent: true,

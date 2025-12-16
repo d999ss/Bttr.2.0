@@ -18,7 +18,7 @@ export default function AirCompanyPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2023/09/AirCo-HS-1-1-1_00000.png.webp"
+            src="/assets/work/uploads/2023/09/Header-copy.jpg"
             alt="Air Company"
             fill
             className="object-cover"
@@ -92,6 +92,30 @@ export default function AirCompanyPage() {
         </div>
       </section>
 
+      {/* Two Column Images */}
+      <section className="w-full bg-[#0a0a0a]">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-2.png"
+              alt="Air Company Brand"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-1-1.png"
+              alt="Air Company Product"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Section Header - Making Science Cool */}
       <section className="w-full bg-white px-8 py-16 md:px-16 lg:px-24">
         <p className="mb-4 text-sm uppercase tracking-wider text-gray-500">
@@ -117,12 +141,36 @@ export default function AirCompanyPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width-1.jpg.webp"
+            src="/assets/work/uploads/2023/08/CS_Inset-full-width-3.png"
             alt="Air Company Process"
             fill
             className="object-cover"
             sizes="100vw"
           />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-6.png"
+              alt="Air Company Vodka"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-1.png"
+              alt="Air Company Bottle"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
         </div>
       </section>
 
@@ -150,12 +198,86 @@ export default function AirCompanyPage() {
       <section className="w-full bg-gray-100">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width-2.jpg.webp"
+            src="/assets/work/uploads/2023/08/CS_Inset-full-width-1.png"
+            alt="Air Company Technology"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-2.png"
             alt="Air Company Products"
             fill
             className="object-cover"
             sizes="100vw"
           />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2023/08/Full-width.png"
+            alt="Air Company Full View"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-4.png"
+              alt="Air Company Detail"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame.jpg"
+              alt="Air Company Product Shot"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Two Column Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/08/SQ-Image-frame-6.png"
+              alt="Air Company Packaging"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_2.jpg"
+              alt="Air Company Environment"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
         </div>
       </section>
 

@@ -20,10 +20,18 @@ export default function AMIPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#1a1a2e]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/03/20211133.jpg.webp"
+            src="/assets/work/uploads/2025/03/Desktop-1-scaled.jpg"
             alt="AMI"
             fill
-            className="object-cover"
+            className="hidden object-cover lg:block"
+            priority
+            sizes="100vw"
+          />
+          <Image
+            src="/assets/work/uploads/2025/03/AMIO_Mobile.jpg"
+            alt="AMI Mobile"
+            fill
+            className="block object-cover lg:hidden"
             priority
             sizes="100vw"
           />
@@ -45,7 +53,7 @@ export default function AMIPage() {
             <a href="/work" className="hover:text-white">
               Work
             </a>{' '}
-            / AMI
+            / Allergan Medical Institute
           </p>
         </div>
 
@@ -99,11 +107,11 @@ export default function AMIPage() {
         </div>
       </section>
 
-      {/* Full-width Image */}
+      {/* Main Case Study Image */}
       <section className="w-full bg-[#1a1a2e]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/03/CS_Inset-full-width.jpg.webp"
+            src="/assets/work/uploads/2025/03/20211133.jpg"
             alt="AMI Platform Overview"
             fill
             className="object-cover"
@@ -142,30 +150,6 @@ export default function AMIPage() {
         </p>
       </section>
 
-      {/* Two Column Images */}
-      <section className="w-full bg-white">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="relative aspect-square">
-            <Image
-              src="/assets/work/uploads/2025/03/Portrait-Image-frame-1.jpg"
-              alt="AMI Strategy"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-          <div className="relative aspect-square">
-            <Image
-              src="/assets/work/uploads/2025/03/AMIO_Mobile.jpg"
-              alt="AMI Mobile"
-              fill
-              className="object-cover object-top"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Section Header - Brand */}
       <section className="w-full bg-[#1a1a2e] px-8 py-16 md:px-16 lg:px-24">
         <p className="mb-4 text-sm uppercase tracking-wider text-gray-400">
@@ -185,6 +169,66 @@ export default function AMIPage() {
           introduced a darker color palette to create a video streaming platform
           browsing experience and aesthetic.
         </p>
+      </section>
+
+      {/* Brand Images */}
+      <section className="w-full bg-[#1a1a2e]">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/03/50-Inset-4-scaled.jpg"
+            alt="AMI Brand Identity"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-[#1a1a2e]">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/03/AMI-logo-1.jpg"
+              alt="AMI Logo"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/03/AMI-images-1.jpg"
+              alt="AMI Imagery"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* UI Mockup Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/03/Ui-mockup-pink-1-scaled.jpg"
+              alt="AMI UI Mockup"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/03/model-images.jpg"
+              alt="AMI Model Images"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
       </section>
 
       {/* Section Header - Experience */}
@@ -211,20 +255,80 @@ export default function AMIPage() {
         </p>
       </section>
 
+      {/* Experience Images */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/03/temporary-mockup-2-scaled.jpg"
+            alt="AMI Interface"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/03/UI-element-scaled.jpg"
+              alt="AMI UI Elements"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-[1344/2010]">
+            <Image
+              src="/assets/work/uploads/2025/03/Portrait-Image-frame-1.jpg"
+              alt="AMI Mobile Experience"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/03/CS_Inset-full-width-scaled.jpg"
+            alt="AMI Platform"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/03/CS_Inset-full-width.jpg"
+            alt="AMI Final"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section className="w-full bg-gray-100 px-8 py-16 md:px-16 lg:px-24">
         <div className="grid gap-8 md:grid-cols-2">
           <div className="text-center">
-            <p className="mb-2 text-sm uppercase tracking-wider text-gray-500">
+            <p className="text-6xl font-light text-gray-900">2x</p>
+            <p className="mt-2 text-sm uppercase tracking-wider text-gray-500">
               New user numbers *Since relaunch
             </p>
-            <p className="text-6xl font-light text-gray-900">40%</p>
           </div>
           <div className="text-center">
-            <p className="mb-2 text-sm uppercase tracking-wider text-gray-500">
+            <p className="text-6xl font-light text-gray-900">40%</p>
+            <p className="mt-2 text-sm uppercase tracking-wider text-gray-500">
               More active users *Since relaunch
             </p>
-            <p className="text-6xl font-light text-gray-900">40%</p>
           </div>
         </div>
       </section>

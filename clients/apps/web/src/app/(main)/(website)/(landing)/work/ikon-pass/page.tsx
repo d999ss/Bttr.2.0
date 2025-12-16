@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Ikon Pass - Bttr.',
     description: 'Redefining the ride with an ambitious digital transformation.',
-    images: ['/assets/work/uploads/2025/04/CS_Inset-full-width-2.png'],
+    images: ['/assets/work/uploads/2024/06/ikon-pass-thumb.jpg'],
   },
 }
 
@@ -18,7 +18,7 @@ export default function IkonPassPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#1a1f4e]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-6.png"
+            src="/assets/work/uploads/2025/12/IkonSnow.png"
             alt="Ikon Pass"
             fill
             className="hidden object-cover lg:block"
@@ -68,7 +68,7 @@ export default function IkonPassPage() {
             </div>
 
             <div>
-              <h3 className="mb-2 font-medium text-white/70">Ikon Pass</h3>
+              <h3 className="mb-2 font-medium text-white/70">Client</h3>
               <p className="text-white">Alterra Mountain Company</p>
             </div>
 
@@ -202,19 +202,6 @@ export default function IkonPassPage() {
         </p>
       </section>
 
-      {/* Video Section */}
-      <section className="w-full bg-[#e5e3df] px-8 py-8 md:px-16 lg:px-24">
-        <div className="relative aspect-square w-full overflow-hidden">
-          <iframe
-            src="https://player.vimeo.com/video/1079447220?background=1&autoplay=1&loop=1&muted=1"
-            className="h-full w-full"
-            frameBorder="0"
-            allow="autoplay; fullscreen"
-            allowFullScreen
-          />
-        </div>
-      </section>
-
       {/* 4F Definition List */}
       <section className="w-full border-t border-gray-300 bg-[#e5e3df] px-8 py-16 md:px-16 lg:px-24">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
@@ -311,7 +298,7 @@ export default function IkonPassPage() {
       </section>
 
       <section className="w-full bg-white">
-        <div className="relative aspect-square w-full">
+        <div className="relative aspect-video w-full">
           <Image
             src="/assets/work/uploads/2025/04/CS_Inset-full-width-12.png"
             alt="Ikon Pass User Journey"
@@ -346,6 +333,258 @@ export default function IkonPassPage() {
         </div>
       </section>
 
+      {/* Desktop-4 Full-width */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/Desktop-4.png"
+            alt="Ikon Pass Desktop Experience"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Design System Section */}
+      <section className="w-full bg-gray-100 px-8 py-16 md:px-16 lg:px-24">
+        <p className="mb-4 text-sm uppercase tracking-wider text-gray-500">
+          Design System
+        </p>
+        <h2 className="max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
+          A universal design system for consistency at scale
+        </h2>
+      </section>
+
+      <section className="w-full bg-gray-100 px-8 py-8 md:px-16 lg:px-24">
+        <p className="ml-auto max-w-2xl text-base leading-relaxed text-gray-600">
+          Building a design system that scales across 50+ resorts requires
+          careful consideration of both consistency and flexibility. Our
+          component library ensures every touchpoint feels cohesive while
+          allowing individual resorts to maintain their unique character.
+        </p>
+      </section>
+
+      {/* Design System Images */}
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-8.png"
+            alt="Design System Overview"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-4.png"
+              alt="Design System Components"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-5.png"
+              alt="Design System Elements"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-13.png"
+            alt="Design System Components"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-6.png"
+            alt="Design System UI"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-gray-100">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-1.png"
+              alt="Design System Feature"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/Desktop-3.png"
+              alt="Desktop Design"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="w-full bg-white px-8 py-16 md:px-16 lg:px-24">
+        <p className="mb-4 text-sm uppercase tracking-wider text-gray-500">
+          Features
+        </p>
+        <h2 className="max-w-4xl text-3xl leading-tight tracking-tight text-gray-900 md:text-4xl lg:text-5xl">
+          Designed for every stage of a skier&apos;s journey
+        </h2>
+      </section>
+
+      <section className="w-full bg-white px-8 py-8 md:px-16 lg:px-24">
+        <p className="ml-auto max-w-2xl text-base leading-relaxed text-gray-600">
+          From planning trips to navigating the slopes and managing in-resort
+          activities, every feature addresses real user needs at every stage of
+          the mountain experience.
+        </p>
+      </section>
+
+      {/* Testimonial Section */}
+      <section className="w-full bg-[#1a1f4e] px-8 py-24 md:px-16 lg:px-24">
+        <blockquote className="mx-auto max-w-4xl text-center">
+          <p className="mb-8 text-2xl leading-relaxed text-white md:text-3xl lg:text-4xl">
+            &ldquo;The collaboration with Bttr. has been exceptional. Their
+            expertise in product strategy and design thinking, combined with
+            their ability to align diverse stakeholders across our organization,
+            has been instrumental in bringing this vision to life.&rdquo;
+          </p>
+          <footer className="text-sm text-white/70">
+            <p className="font-medium text-white">Ryan Schwartz</p>
+            <p>Marketing &amp; Technology Lead, Alterra Mountain Company</p>
+          </footer>
+        </blockquote>
+      </section>
+
+      {/* More Design System Images */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-14.png"
+            alt="Ikon Pass Experience"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-6.png"
+              alt="Ikon Pass Feature"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-7.png"
+              alt="Ikon Pass Feature"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/Desktop-1.png"
+            alt="Ikon Pass Desktop"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/Desktop-5.png"
+            alt="Ikon Pass Dashboard"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-square">
+            <Image
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-9.png"
+              alt="Ikon Pass Feature"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+          <div className="relative aspect-[1344/2010]">
+            <Image
+              src="/assets/work/uploads/2025/04/Portrait-Image-frame-1.png"
+              alt="Ikon Pass Mobile"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+        </div>
+      </section>
+
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2025/04/Desktop-2.png"
+            alt="Ikon Pass Final"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="w-full bg-[#1a1f4e] px-8 py-24 md:px-16 lg:px-24">
+        <h2 className="mx-auto max-w-4xl text-center text-3xl leading-tight tracking-tight text-white md:text-4xl lg:text-5xl">
+          Connect with adventure and maximize your time on the mountain with
+          Ikon Pass.
+        </h2>
+      </section>
+
       {/* Credits */}
       <section className="w-full border-t border-gray-200 px-8 py-16 md:px-16 lg:px-24">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
@@ -365,14 +604,24 @@ export default function IkonPassPage() {
               <p className="text-sm text-gray-600">Skiing &amp; Snow Sports</p>
               <p className="text-sm text-gray-600">Travel &amp; Tourism</p>
               <p className="text-sm text-gray-600">Outdoor Recreation</p>
+              <p className="text-sm text-gray-600">Lifestyle &amp; Leisure</p>
+              <p className="text-sm text-gray-600">Hospitality &amp; Events</p>
             </div>
           </div>
 
           <div>
             <h3 className="mb-3 text-sm font-medium text-gray-900">Team</h3>
             <div className="space-y-1">
-              <p className="text-sm text-gray-600">Donny Smith</p>
               <p className="text-sm text-gray-600">Chris Johns</p>
+              <p className="text-sm text-gray-600">Donny Smith</p>
+              <p className="text-sm text-gray-600">Nicole Hampton</p>
+              <p className="text-sm text-gray-600">Joey Kantor</p>
+              <p className="text-sm text-gray-600">Jenna Law</p>
+              <p className="text-sm text-gray-600">Chris Kerr</p>
+              <p className="text-sm text-gray-600">Ryan French</p>
+              <p className="text-sm text-gray-600">Mat Cooper</p>
+              <p className="text-sm text-gray-600">Karen Camacho</p>
+              <p className="text-sm text-gray-600">Matt Wheeler</p>
             </div>
           </div>
         </div>

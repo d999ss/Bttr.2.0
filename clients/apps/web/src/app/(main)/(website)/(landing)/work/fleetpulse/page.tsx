@@ -19,7 +19,7 @@ export default function FleetPulsePage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#0f172a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2024/06/FIG24.png"
+            src="/assets/work/uploads/2024/06/FP1.png"
             alt="FleetPulse"
             fill
             className="hidden object-cover lg:block"
@@ -27,7 +27,7 @@ export default function FleetPulsePage() {
             sizes="100vw"
           />
           <Image
-            src="/assets/work/uploads/2024/06/FIG24-Mobile.png"
+            src="/assets/work/uploads/2024/06/Mobile-Header-image-FP.png"
             alt="FleetPulse Mobile"
             fill
             className="block object-cover lg:hidden"
@@ -97,6 +97,19 @@ export default function FleetPulsePage() {
         </div>
       </section>
 
+      {/* Full-width Image */}
+      <section className="w-full bg-[#0f172a]">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/07/CS_Inset-full-width-pt2.png"
+            alt="FleetPulse Overview"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
       {/* Section Header - Industry Impact */}
       <section className="w-full bg-white px-8 py-16 md:px-16 lg:px-24">
         <p className="mb-4 text-sm uppercase tracking-wider text-gray-500">
@@ -124,8 +137,21 @@ export default function FleetPulsePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/06/CS_Inset-full-width-5.jpg"
+            src="/assets/work/uploads/2024/07/CS_Inset-full-width_Fleetpulse-1.jpg"
             alt="FleetPulse Platform"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/07/Full-width.png"
+            alt="FleetPulse Interface"
             fill
             className="object-cover"
             sizes="100vw"
@@ -165,6 +191,19 @@ export default function FleetPulsePage() {
         </div>
       </section>
 
+      {/* Full-width Image */}
+      <section className="w-full bg-gray-100">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/06/Full-width-1-1.jpg"
+            alt="FleetPulse Personas"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
       {/* Stats Section */}
       <section className="w-full bg-[#0f172a] px-8 py-16 md:px-16 lg:px-24">
         <p className="mb-4 text-sm uppercase tracking-wider text-gray-400">
@@ -185,8 +224,21 @@ export default function FleetPulsePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/06/FP1.png"
+            src="/assets/work/uploads/2024/06/CS_Inset-full-width-5.jpg"
             alt="FleetPulse Dashboard"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
+      </section>
+
+      {/* Full-width Image */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/06/Frame-1171275803-1.jpg"
+            alt="FleetPulse Features"
             fill
             className="object-cover"
             sizes="100vw"
@@ -211,6 +263,19 @@ export default function FleetPulsePage() {
           effective user journeys, supported by sales assets that drive
           conversion and provide sales teams with a compelling proposition.
         </p>
+      </section>
+
+      {/* Full-width Image - Laptop Display */}
+      <section className="w-full bg-white">
+        <div className="relative aspect-video w-full">
+          <Image
+            src="/assets/work/uploads/2024/07/MM_Laptop_LT-E-03_fleetpulse-1-scaled.jpg"
+            alt="FleetPulse Laptop Display"
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+        </div>
       </section>
 
       {/* Credits */}

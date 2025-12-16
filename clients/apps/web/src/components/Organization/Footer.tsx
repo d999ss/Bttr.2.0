@@ -1,4 +1,4 @@
-import GitHub from '@mui/icons-material/GitHub'
+import Instagram from '@mui/icons-material/Instagram'
 import LinkedIn from '@mui/icons-material/LinkedIn'
 import X from '@mui/icons-material/X'
 import Link from 'next/link'
@@ -23,14 +23,6 @@ const Footer = () => {
             </div>
             <div className="flex flex-row gap-x-4">
               <a
-                href="https://github.com/bttr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="dark:text-polar-500 text-gray-400 transition-colors hover:text-black dark:hover:text-white"
-              >
-                <GitHub fontSize="small" />
-              </a>
-              <a
                 href="https://x.com/makebttr"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -39,12 +31,20 @@ const Footer = () => {
                 <X fontSize="small" />
               </a>
               <a
-                href="https://linkedin.com/company/bttr"
+                href="https://www.linkedin.com/company/makebttr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="dark:text-polar-500 text-gray-400 transition-colors hover:text-black dark:hover:text-white"
               >
                 <LinkedIn fontSize="small" />
+              </a>
+              <a
+                href="https://instagram.com/make_bttr"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="dark:text-polar-500 text-gray-400 transition-colors hover:text-black dark:hover:text-white"
+              >
+                <Instagram fontSize="small" />
               </a>
             </div>
           </div>
