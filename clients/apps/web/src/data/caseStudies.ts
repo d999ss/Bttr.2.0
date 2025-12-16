@@ -75,6 +75,8 @@ export const caseStudies: CaseStudy[] = [
     title: 'GE Aerospace',
     description: 'Enterprise asset management for jet engine maintenance',
     thumbnail: '/assets/work/uploads/2023/09/GE-O-HS-1-1-1_00000.png',
+    featured: true,
+    resultHighlight: '$1B+ assets managed',
   },
   {
     slug: 'tiger-biosciences',
