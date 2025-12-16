@@ -15,7 +15,7 @@ export default function GEAerospacePage() {
   return (
     <main className="dark:bg-polar-950 bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#0a1628]">
+      <section className="relative h-[80vh] w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">
           <Image
             src="/assets/work/uploads/2024/08/ge-aerospace-cfm-engines.jpg"
@@ -26,7 +26,7 @@ export default function GEAerospacePage() {
             sizes="100vw"
           />
         </div>
-        <div className="relative flex min-h-screen items-end">
+        <div className="relative flex h-[80vh] items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
             <p className="mb-4 text-sm uppercase tracking-wider text-white/70">
               GE Aerospace

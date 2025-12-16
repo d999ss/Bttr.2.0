@@ -35,7 +35,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] w-full overflow-hidden bg-gray-900">
+      <section className="relative h-[80vh] w-full overflow-hidden bg-gray-900">
         <div className="absolute inset-0">
           <Image
             src={study.thumbnail}
@@ -47,7 +47,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
           />
         </div>
         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
-        <div className="relative flex min-h-[70vh] items-end">
+        <div className="relative flex h-[80vh] items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
             <p className="mb-4 text-sm uppercase tracking-wider text-white/70">
               <Link href="/work" className="hover:text-white">
