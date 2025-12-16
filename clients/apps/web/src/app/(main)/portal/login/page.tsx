@@ -22,7 +22,7 @@ export default function PortalLoginPage() {
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: `${window.location.origin}/portal/callback`,
+          redirectTo: `${window.location.origin}/api/auth/callback`,
         },
       })
 
@@ -55,7 +55,7 @@ export default function PortalLoginPage() {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: `${window.location.origin}/portal/callback`,
+        emailRedirectTo: `${window.location.origin}/api/auth/callback`,
       },
     })
 

@@ -11,7 +11,14 @@ export async function GET(request: Request) {
   const next = searchParams.get('next') ?? '/portal/dashboard'
 
   if (code) {
-    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+    const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      auth: {
+        flowType: 'pkce',
+        autoRefreshToken: false,
+        persistSession: false,
+        detectSessionInUrl: false,
+      },
+    })
 
     const { data, error } = await supabase.auth.exchangeCodeForSession(code)
 
@@ -21,18 +28,28 @@ export async function GET(request: Request) {
     }
 
     if (data.session) {
-      // Set the auth cookie
+      // Set the auth cookies in the format Supabase browser client expects
       const response = NextResponse.redirect(`${origin}${next}`)
-      response.cookies.set('sb-oiekbwdggfjihihdmzsa-auth-token', JSON.stringify([
-        data.session.access_token,
-        data.session.refresh_token
-      ]), {
-        path: '/',
-        httpOnly: true,
-        secure: true,
-        sameSite: 'lax',
-        maxAge: 60 * 60 * 24 * 7 // 1 week
+
+      // Supabase browser client looks for this cookie format
+      const cookieValue = JSON.stringify({
+        access_token: data.session.access_token,
+        refresh_token: data.session.refresh_token,
+        expires_at: Math.floor(Date.now() / 1000) + data.session.expires_in,
+        expires_in: data.session.expires_in,
+        token_type: 'bearer',
+        user: data.session.user,
       })
+
+      // Set cookie that browser-side Supabase can read (NOT httpOnly)
+      response.cookies.set('sb-oiekbwdggfjihihdmzsa-auth-token', cookieValue, {
+        path: '/',
+        httpOnly: false, // Must be false so browser JS can read it
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'lax',
+        maxAge: 60 * 60 * 24 * 7, // 1 week
+      })
+
       return response
     }
   }
