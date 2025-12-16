@@ -31,7 +31,7 @@ export const PageContent = () => {
       <Section className="flex flex-col gap-y-32 py-0 md:py-0">
         <Hero
           title="Designed to Adapt. Engineered to Win."
-          description="We design and operate digital systems for science, aerospace, and biotechnology leaders."
+          description="We design, build, and run digital systems for the science, aerospace, and biotech industries."
         >
           <GetStartedButton size="lg" text="Start a Conversation" />
           <Link
