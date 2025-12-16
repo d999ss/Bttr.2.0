@@ -2,14 +2,19 @@
 
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 export default function AuthCallbackPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [error, setError] = useState<string | null>(null)
+  const exchangeAttempted = useRef(false)
 
   useEffect(() => {
+    // Prevent double execution in React Strict Mode
+    if (exchangeAttempted.current) return
+    exchangeAttempted.current = true
+
     const handleCallback = async () => {
       const supabase = getSupabaseBrowserClient()
 
@@ -31,17 +36,14 @@ export default function AuthCallbackPage() {
           setError(exchangeError.message)
           return
         }
-      }
 
-      // Check for session
-      const { data: { session }, error: sessionError } = await supabase.auth.getSession()
-
-      if (sessionError) {
-        console.error('Session error:', sessionError)
-        setError(sessionError.message)
+        // Successfully exchanged - redirect to dashboard
+        router.replace('/portal/dashboard')
         return
       }
 
+      // No code - check if there's already a session
+      const { data: { session } } = await supabase.auth.getSession()
       if (session) {
         router.replace('/portal/dashboard')
       } else {
