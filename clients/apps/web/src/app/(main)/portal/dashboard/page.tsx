@@ -148,7 +148,10 @@ export default function DashboardPage() {
         // Try to fetch client data
         let clientData: ClientData | null = null
         try {
-          const res = await fetch('/api/client-portal/me')
+          const res = await fetch('/api/client-portal/me', {
+            credentials: 'include',
+            cache: 'no-store',
+          })
           if (res.ok) {
             clientData = await res.json()
           }

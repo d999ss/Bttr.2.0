@@ -16,12 +16,26 @@ function setAuthCookie(session: { access_token: string; refresh_token: string })
 }
 
 // Check if user is already a registered client
-async function checkClientExists(): Promise<boolean> {
+async function checkClientExists(): Promise<{ isClient: boolean; error?: string }> {
   try {
-    const res = await fetch('/api/client-portal/me')
-    return res.ok
-  } catch {
-    return false
+    const res = await fetch('/api/client-portal/me', {
+      credentials: 'include',
+      cache: 'no-store',
+    })
+
+    if (res.ok) {
+      return { isClient: true }
+    }
+
+    if (res.status === 401) {
+      return { isClient: false, error: 'auth' }
+    }
+
+    // 404 means user is authenticated but not a client yet
+    return { isClient: false }
+  } catch (err) {
+    console.error('checkClientExists error:', err)
+    return { isClient: false, error: 'network' }
   }
 }
 
@@ -51,12 +65,29 @@ export default function AuthCallbackPage() {
       // Helper to complete auth and redirect appropriately
       const completeAuth = async (session: { access_token: string; refresh_token: string }) => {
         setAuthCookie(session)
+        // Small delay to ensure cookie is available for server-side reads
+        await new Promise(resolve => setTimeout(resolve, 500))
         // Check if user is already registered as a client
-        const isClient = await checkClientExists()
-        if (isClient) {
-          router.replace('/portal/dashboard')
+        const result = await checkClientExists()
+
+        if (result.error === 'auth') {
+          // Auth cookie not working - try once more after longer delay
+          await new Promise(resolve => setTimeout(resolve, 1000))
+          const retry = await checkClientExists()
+          if (retry.isClient) {
+            window.location.href = '/portal/dashboard'
+          } else if (retry.error === 'auth') {
+            setError('Authentication failed. Please try logging in again.')
+          } else {
+            window.location.href = '/portal/onboarding'
+          }
+          return
+        }
+
+        if (result.isClient) {
+          window.location.href = '/portal/dashboard'
         } else {
-          router.replace('/portal/onboarding')
+          window.location.href = '/portal/onboarding'
         }
       }
 
