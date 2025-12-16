@@ -1,24 +1,18 @@
-'use client'
-
 import { Metadata } from 'next'
-import { useState } from 'react'
 import Link from 'next/link'
 
+export const metadata: Metadata = {
+  title: 'Contact - Bttr.',
+  description:
+    "Let's build something extraordinary together. Get in touch to discuss your next digital product.",
+  openGraph: {
+    title: 'Contact - Bttr.',
+    description:
+      "Let's build something extraordinary together. Get in touch to discuss your next digital product.",
+  },
+}
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    company: '',
-    message: '',
-  })
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // Handle form submission
-    setSubmitted(true)
-  }
-
   return (
     <main className="bg-white">
       {/* Hero Section */}
@@ -33,7 +27,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Contact Form Section */}
+      {/* Contact Section */}
       <section className="w-full bg-white px-8 py-24 md:px-16 lg:px-24">
         <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-2">
           {/* Left Column - Info */}
@@ -107,104 +101,32 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Right Column - Form */}
-          <div>
-            {submitted ? (
-              <div className="flex h-full items-center justify-center rounded-lg bg-gray-50 p-12">
-                <div className="text-center">
-                  <h3 className="mb-2 text-2xl font-medium text-gray-900">
-                    Thank you!
-                  </h3>
-                  <p className="text-gray-600">
-                    We&apos;ll be in touch soon.
-                  </p>
-                </div>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="mb-2 block text-sm font-medium text-gray-900"
-                  >
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    required
-                    value={formData.name}
-                    onChange={(e) =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                    className="w-full border-b border-gray-300 bg-transparent py-3 text-gray-900 outline-none transition-colors focus:border-[#D2A62C]"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="mb-2 block text-sm font-medium text-gray-900"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    required
-                    value={formData.email}
-                    onChange={(e) =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                    className="w-full border-b border-gray-300 bg-transparent py-3 text-gray-900 outline-none transition-colors focus:border-[#D2A62C]"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="company"
-                    className="mb-2 block text-sm font-medium text-gray-900"
-                  >
-                    Company
-                  </label>
-                  <input
-                    type="text"
-                    id="company"
-                    value={formData.company}
-                    onChange={(e) =>
-                      setFormData({ ...formData, company: e.target.value })
-                    }
-                    className="w-full border-b border-gray-300 bg-transparent py-3 text-gray-900 outline-none transition-colors focus:border-[#D2A62C]"
-                  />
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="message"
-                    className="mb-2 block text-sm font-medium text-gray-900"
-                  >
-                    How can we help?
-                  </label>
-                  <textarea
-                    id="message"
-                    required
-                    rows={4}
-                    value={formData.message}
-                    onChange={(e) =>
-                      setFormData({ ...formData, message: e.target.value })
-                    }
-                    className="w-full resize-none border-b border-gray-300 bg-transparent py-3 text-gray-900 outline-none transition-colors focus:border-[#D2A62C]"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full bg-[#0a0a0a] py-4 text-sm font-medium uppercase tracking-wider text-white transition-colors hover:bg-[#D2A62C]"
+          {/* Right Column - CTA */}
+          <div className="flex flex-col justify-center">
+            <div className="rounded-lg bg-gray-50 p-12">
+              <h3 className="mb-4 text-2xl font-medium text-gray-900">
+                Start a conversation
+              </h3>
+              <p className="mb-8 text-lg text-gray-600">
+                Tell us about your project and we&apos;ll get back to you within
+                24 hours.
+              </p>
+              <a
+                href="mailto:donny@makebttr.com?subject=New%20Project%20Inquiry&body=Hi%20Bttr.%20team%2C%0A%0AI%27d%20like%20to%20discuss%20a%20potential%20project.%0A%0ACompany%3A%20%0AProject%20Overview%3A%20%0ATimeline%3A%20%0A%0AThanks!"
+                className="inline-block w-full bg-[#0a0a0a] py-4 text-center text-sm font-medium uppercase tracking-wider text-white transition-colors hover:bg-[#D2A62C]"
+              >
+                Send Us an Email
+              </a>
+              <p className="mt-4 text-center text-sm text-gray-500">
+                Or email us directly at{' '}
+                <a
+                  href="mailto:donny@makebttr.com"
+                  className="text-gray-900 hover:text-[#D2A62C]"
                 >
-                  Send Message
-                </button>
-              </form>
-            )}
+                  donny@makebttr.com
+                </a>
+              </p>
+            </div>
           </div>
         </div>
       </section>
