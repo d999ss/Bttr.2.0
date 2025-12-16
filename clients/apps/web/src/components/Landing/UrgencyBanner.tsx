@@ -15,7 +15,7 @@ export const UrgencyBanner = () => {
       <div className="flex flex-col items-center gap-y-6">
         <span className="inline-flex items-center gap-x-2 text-sm text-[#D2A62C]">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#D2A62C]" />
-          Limited Q1 2025 Availability
+          Limited 2026 Availability
         </span>
 
         <h2 className="max-w-2xl text-2xl text-pretty md:text-4xl md:leading-normal">

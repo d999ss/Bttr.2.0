@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { caseStudies } from '@/data/caseStudies'
 import { Section } from '@/components/Landing/Section'
+import { UrgencyBanner } from '@/components/Landing/UrgencyBanner'
 
 export const metadata: Metadata = {
   title: 'Work - Bttr.',
@@ -66,6 +67,8 @@ export default function WorkPage() {
             ))}
           </div>
         </div>
+
+        <UrgencyBanner />
       </Section>
     </div>
   )

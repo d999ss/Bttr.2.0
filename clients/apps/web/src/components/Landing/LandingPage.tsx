@@ -15,7 +15,6 @@ import { FeaturedWork } from './FeaturedWork'
 import { ImpactMetrics } from './ImpactMetrics'
 import { Pricing } from './Pricing'
 import { Section } from './Section'
-import { UrgencyBanner } from './UrgencyBanner'
 import { Usage } from './Usage'
 
 export default function Page() {
@@ -73,7 +72,6 @@ export const PageContent = () => {
         <Testimonials />
       </Section>
       <Section className="flex flex-col gap-y-24">
-        <UrgencyBanner />
         <Pricing />
       </Section>
     </>
