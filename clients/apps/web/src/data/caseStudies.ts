@@ -17,20 +17,20 @@ export const caseStudies: CaseStudy[] = [
     resultHighlight: '2M+ active users',
   },
   {
-    slug: 'juvederm',
-    title: 'JUVÉDERM',
-    description: 'Enhancing engagement for a leading aesthetic brand',
-    thumbnail: '/assets/work/uploads/2025/04/juvederm-thumb.jpg',
-    featured: true,
-    resultHighlight: '40% engagement lift',
-  },
-  {
     slug: 'botox-cosmetic',
     title: 'BOTOX Cosmetic',
     description: 'Strengthening product recognition and loyalty across a market leader',
     thumbnail: '/assets/work/uploads/2025/04/botox-cosmetic-thumb.webp',
     featured: true,
     resultHighlight: '#1 aesthetic brand',
+  },
+  {
+    slug: 'juvederm',
+    title: 'JUVÉDERM',
+    description: 'Enhancing engagement for a leading aesthetic brand',
+    thumbnail: '/assets/work/uploads/2025/04/juvederm-thumb.jpg',
+    featured: true,
+    resultHighlight: '40% engagement lift',
   },
   {
     slug: 'ami',
