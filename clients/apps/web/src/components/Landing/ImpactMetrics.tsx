@@ -56,7 +56,7 @@ const MetricCard = ({ metric, index }: { metric: Metric; index: number }) => {
           <AnimatedNumber value={metric.value} suffix={metric.suffix} prefix={metric.prefix} />
         </span>
         <div className="flex flex-col items-center gap-y-1 text-center">
-          <span className="text-sm font-medium uppercase tracking-[0.2em] text-gray-900 dark:text-white">
+          <span className="text-xs font-medium uppercase tracking-[0.3em] text-gray-900 dark:text-white">
             {metric.label}
           </span>
           <span className="text-xs text-gray-500 dark:text-gray-500">
