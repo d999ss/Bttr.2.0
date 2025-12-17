@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       'Digital product design and development for biotechnology companies. We build platforms for research, clinical operations, and scientific communication.',
     images: [
       {
-        url: '/assets/brand/bttr_og.webp',
+        url: '/assets/brand/bttr_og.png',
         width: 1200,
         height: 630,
       },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: '/assets/brand/bttr_og.webp',
+        url: '/assets/brand/bttr_og.png',
         width: 1200,
         height: 630,
         alt: 'Bttr.',

@@ -31,7 +31,7 @@ export function CaseStudyJsonLd({
       name: 'Bttr.',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://makebttr.com/assets/brand/bttr_og.webp',
+        url: 'https://makebttr.com/assets/brand/bttr_og.png',
       },
     },
     mainEntityOfPage: {
@@ -57,7 +57,7 @@ export function OrganizationJsonLd() {
     description:
       'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
     url: 'https://makebttr.com',
-    logo: 'https://makebttr.com/assets/brand/bttr_og.webp',
+    logo: 'https://makebttr.com/assets/brand/bttr_og.png',
     sameAs: [
       'https://linkedin.com/company/makebttr',
     ],

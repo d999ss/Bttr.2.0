@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       'Enterprise software solutions for aerospace and defense. We design and build mission-critical systems for aviation, space, and defense organizations.',
     images: [
       {
-        url: '/assets/brand/bttr_og.webp',
+        url: '/assets/brand/bttr_og.png',
         width: 1200,
         height: 630,
       },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: '/assets/brand/bttr_og.webp',
+        url: '/assets/brand/bttr_og.png',
         width: 1200,
         height: 630,
         alt: 'Bttr.',

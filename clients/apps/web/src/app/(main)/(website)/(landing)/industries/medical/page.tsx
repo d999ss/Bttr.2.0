@@ -15,7 +15,7 @@ export const metadata: Metadata = {
       'Digital product design for healthcare and medical companies. We build patient engagement platforms, provider tools, and enterprise health systems.',
     images: [
       {
-        url: '/assets/brand/bttr_og.webp',
+        url: '/assets/brand/bttr_og.png',
         width: 1200,
         height: 630,
       },
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     images: [
       {
-        url: '/assets/brand/bttr_og.webp',
+        url: '/assets/brand/bttr_og.png',
         width: 1200,
         height: 630,
         alt: 'Bttr.',
