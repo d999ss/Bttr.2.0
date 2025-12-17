@@ -1,17 +1,44 @@
 import Image from 'next/image'
+import NextLink from 'next/link'
 import { Link } from '../Link'
 import { Section } from '../Section'
 
 const team = [
   {
     name: 'Donny Smith',
-    title: 'Founder & CEO',
-    image: '/assets/team/donny.jpg',
+    title: 'ECD, Founder',
+    image: '/assets/team/donny.png',
+    slug: 'donny-smith',
+  },
+  {
+    name: 'Ken Leung',
+    title: 'CTO',
+    image: '/assets/team/ken.png',
+    slug: 'ken-leung',
+  },
+  {
+    name: 'Michaela Kee',
+    title: 'Head of Projects',
+    image: '/assets/team/michaela.png',
+    slug: 'michaela-kee',
+  },
+  {
+    name: 'Chris Kerr',
+    title: 'Principal Designer',
+    image: '/assets/team/chris.png',
+    slug: 'chris-kerr',
   },
   {
     name: 'Ava Cohen',
     title: 'Chief of Staff',
-    image: '/assets/team/ava.jpg',
+    image: '/assets/team/ava.png',
+    slug: 'ava-cohen',
+  },
+  {
+    name: 'Hiro Grant',
+    title: 'Commercial Lead',
+    image: '/assets/team/hiro.png',
+    slug: 'hiro-grant',
   },
 ]
 
@@ -99,22 +126,26 @@ interface ProfileProps {
   name: string
   title: string
   image: string
+  slug: string
 }
 
-const Profile = ({ name, title, image }: ProfileProps) => {
+const Profile = ({ name, title, image, slug }: ProfileProps) => {
   return (
-    <div className="relative flex flex-col gap-y-4">
+    <NextLink
+      href={`/team/${slug}`}
+      className="group relative flex flex-col gap-y-4 transition-opacity hover:opacity-80"
+    >
       <Image
-        className="aspect-square size-32 flex-1 shrink-0 rounded-full object-cover"
+        className="aspect-square size-32 flex-1 shrink-0 rounded-full object-cover transition-transform duration-300 group-hover:scale-105"
         src={image}
         alt={name}
         width={200}
         height={200}
       />
-      <div className="flex flex-col text-left">
+      <div className="flex flex-col text-center">
         <h1 className="text-xs">{name}</h1>
         <h1 className="text-polar-500 text-xs">{title}</h1>
       </div>
-    </div>
+    </NextLink>
   )
 }

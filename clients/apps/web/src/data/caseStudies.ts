@@ -156,7 +156,7 @@ export const caseStudies: CaseStudy[] = [
     slug: 'ciitizen',
     title: 'Ciitizen',
     description: 'Empowering patients with ownership of their health data',
-    thumbnail: '/assets/work/uploads/2023/08/ADL_Square_1.png.webp',
+    thumbnail: '/assets/work/uploads/2023/09/CS_Inset-full-width-12.jpg.webp',
     tags: ['Healthcare', 'Consumer', 'Web Design', 'UX Strategy'],
   },
   {

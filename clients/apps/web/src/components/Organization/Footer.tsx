@@ -83,7 +83,7 @@ const Footer = () => {
             <div className="flex flex-col gap-y-3">
               <FooterLink href="/resources/why">Why Bttr.</FooterLink>
               <FooterLink href="/resources/pricing">Pricing</FooterLink>
-              <FooterLink href="/features/analytics">Case Studies</FooterLink>
+              <FooterLink href="/industries">Industries</FooterLink>
               <FooterLink href="/resources/client-hub">Client Hub</FooterLink>
               <FooterLink href="/portal/login">Client Login</FooterLink>
             </div>
@@ -158,10 +158,9 @@ const Footer = () => {
             Industries We Serve
           </h3>
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-sm">
-            <span className="dark:text-polar-300 text-gray-700">Aerospace &amp; Defense</span>
-            <span className="dark:text-polar-300 text-gray-700">Biotech &amp; Life Sciences</span>
-            <span className="dark:text-polar-300 text-gray-700">Medical Devices</span>
-            <span className="dark:text-polar-300 text-gray-700">Healthcare Technology</span>
+            <FooterLink href="/industries/aerospace">Aerospace &amp; Defense</FooterLink>
+            <FooterLink href="/industries/biotech">Biotechnology</FooterLink>
+            <FooterLink href="/industries/medical">Medical &amp; Healthcare</FooterLink>
             <span className="dark:text-polar-300 text-gray-700">Manufacturing</span>
             <span className="dark:text-polar-300 text-gray-700">Financial Services</span>
             <span className="dark:text-polar-300 text-gray-700">Consumer Products</span>

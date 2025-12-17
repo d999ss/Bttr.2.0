@@ -91,6 +91,11 @@ const mobileNavigationItems: NavigationItem[] = [
     isActive: (pathname) => pathname.startsWith('/features'),
   },
   {
+    title: 'Industries',
+    href: '/industries',
+    isActive: (pathname) => pathname.startsWith('/industries'),
+  },
+  {
     title: 'Work',
     href: '/work',
   },
@@ -192,14 +197,29 @@ const LandingPageDesktopNavigation = () => {
           subtitle: 'Ways to work with us',
         },
         {
-          href: '/features/analytics',
-          label: 'Case Studies',
-          subtitle: 'Our work in action',
-        },
-        {
           href: '/resources/client-hub',
           label: 'Client Hub',
           subtitle: 'Your project command center',
+        },
+      ],
+    },
+    {
+      title: 'Industries',
+      items: [
+        {
+          href: '/industries/aerospace',
+          label: 'Aerospace & Defense',
+          subtitle: 'Mission-critical systems',
+        },
+        {
+          href: '/industries/biotech',
+          label: 'Biotechnology',
+          subtitle: 'Research & clinical platforms',
+        },
+        {
+          href: '/industries/medical',
+          label: 'Medical & Healthcare',
+          subtitle: 'Patient & provider solutions',
         },
       ],
     },
