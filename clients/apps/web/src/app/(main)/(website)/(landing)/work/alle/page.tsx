@@ -113,7 +113,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-23.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-23.webp"
               alt="Allē Brand"
               fill
               className="object-cover"
@@ -122,7 +122,7 @@ export default function AllePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-1-1.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-1-1.webp"
               alt="Allē Product"
               fill
               className="object-cover"
@@ -156,7 +156,7 @@ export default function AllePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/alle-master-header.jpg"
+            src="/assets/work/uploads/2023/09/alle-master-header.webp"
             alt="Allē Platform"
             fill
             className="object-cover"
@@ -196,7 +196,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-2-1.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-2-1.webp"
               alt="Allē Feature"
               fill
               className="object-cover"
@@ -205,7 +205,7 @@ export default function AllePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-3-1.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-3-1.webp"
               alt="Allē App"
               fill
               className="object-cover"
@@ -292,7 +292,7 @@ export default function AllePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width-3.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-3.webp"
             alt="Allē Consumer Platform"
             fill
             className="object-cover"
@@ -306,7 +306,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-8.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-8.webp"
               alt="Allē Consumer Feature"
               fill
               className="object-cover"
@@ -329,7 +329,7 @@ export default function AllePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width-4.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-4.webp"
             alt="Allē Consumer Interface"
             fill
             className="object-cover"
@@ -343,7 +343,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame_15.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_15.webp"
               alt="Allē Consumer Detail"
               fill
               className="object-cover"
@@ -421,7 +421,7 @@ export default function AllePage() {
       <section className="w-full bg-gray-100">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width_12.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width_12.jpg.webp"
             alt="Allē Business Interface"
             fill
             className="object-cover"
@@ -435,7 +435,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame_10.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_10.webp"
               alt="Allē Business Detail"
               fill
               className="object-cover"
@@ -444,7 +444,7 @@ export default function AllePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-11.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-11.webp"
               alt="Allē Business Mobile"
               fill
               className="object-cover"
@@ -500,7 +500,7 @@ export default function AllePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame_18.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_18.webp"
               alt="Allē Design Patterns"
               fill
               className="object-cover"
@@ -514,7 +514,7 @@ export default function AllePage() {
       <section className="w-full bg-gray-900">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2023/09/CS_Inset-full-width-9.jpg"
+            src="/assets/work/uploads/2023/09/CS_Inset-full-width-9.webp"
             alt="Allē Design Guidelines"
             fill
             className="object-cover"
@@ -528,7 +528,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-16.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-16.webp"
               alt="Allē Design Elements"
               fill
               className="object-cover"
@@ -537,7 +537,7 @@ export default function AllePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-17.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-17.webp"
               alt="Allē Design Tokens"
               fill
               className="object-cover"
@@ -571,7 +571,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame_19.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame_19.webp"
               alt="Allē Brand Identity"
               fill
               className="object-cover"
@@ -595,7 +595,7 @@ export default function AllePage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-15.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-15.webp"
               alt="Allē Brand Photography"
               fill
               className="object-cover"
@@ -604,7 +604,7 @@ export default function AllePage() {
           </div>
           <div className="relative aspect-[1344/2010]">
             <Image
-              src="/assets/work/uploads/2023/09/SQ-Image-frame-15.jpg"
+              src="/assets/work/uploads/2023/09/SQ-Image-frame-15.webp"
               alt="Allē Brand Motion"
               fill
               className="object-cover"

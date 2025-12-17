@@ -324,7 +324,7 @@ export default function IkonPassPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-3.png"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-3.png.webp"
               alt="Ikon Pass Feature"
               fill
               className="object-cover"
@@ -392,7 +392,7 @@ export default function IkonPassPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-5.png"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-5.png.webp"
               alt="Design System Elements"
               fill
               className="object-cover"
@@ -405,7 +405,7 @@ export default function IkonPassPage() {
       <section className="w-full bg-gray-100">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-13.png"
+            src="/assets/work/uploads/2025/04/CS_Inset-full-width-13.png.webp"
             alt="Design System Components"
             fill
             className="object-cover"
@@ -547,7 +547,7 @@ export default function IkonPassPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-9.png"
+              src="/assets/work/uploads/2025/04/SQ-Image-frame-9.png.webp"
               alt="Ikon Pass Feature"
               fill
               className="object-cover"

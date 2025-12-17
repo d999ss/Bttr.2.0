@@ -21,7 +21,7 @@ export default function AMIPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#1a1a2e]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/03/Desktop-1-scaled.jpg"
+            src="/assets/work/uploads/2025/03/20211133.jpg.webp"
             alt="AMI"
             fill
             className="hidden object-cover lg:block"
@@ -29,7 +29,7 @@ export default function AMIPage() {
             sizes="100vw"
           />
           <Image
-            src="/assets/work/uploads/2025/03/AMIO_Mobile.webp"
+            src="/assets/work/uploads/2025/03/AMIO_Mobile.jpg"
             alt="AMI Mobile"
             fill
             className="block object-cover lg:hidden"
@@ -112,7 +112,7 @@ export default function AMIPage() {
       <section className="w-full bg-[#1a1a2e]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/03/20211133.jpg"
+            src="/assets/work/uploads/2025/03/20211133.jpg.webp"
             alt="AMI Platform Overview"
             fill
             className="object-cover"
@@ -172,63 +172,16 @@ export default function AMIPage() {
         </p>
       </section>
 
-      {/* Brand Images */}
+      {/* Brand Images - Using available imagery */}
       <section className="w-full bg-[#1a1a2e]">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/03/50-Inset-4-scaled.jpg"
+            src="/assets/work/uploads/2025/03/CS_Inset-full-width.jpg.webp"
             alt="AMI Brand Identity"
             fill
             className="object-cover"
             sizes="100vw"
           />
-        </div>
-      </section>
-
-      <section className="w-full bg-[#1a1a2e]">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="relative aspect-square">
-            <Image
-              src="/assets/work/uploads/2025/03/AMI-logo-1.jpg"
-              alt="AMI Logo"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-          <div className="relative aspect-square">
-            <Image
-              src="/assets/work/uploads/2025/03/AMI-images-1.jpg"
-              alt="AMI Imagery"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* UI Mockup Images */}
-      <section className="w-full bg-white">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="relative aspect-square">
-            <Image
-              src="/assets/work/uploads/2025/03/Ui-mockup-pink-1-scaled.jpg"
-              alt="AMI UI Mockup"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-          <div className="relative aspect-square">
-            <Image
-              src="/assets/work/uploads/2025/03/model-images.jpg"
-              alt="AMI Model Images"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
         </div>
       </section>
 
@@ -260,7 +213,7 @@ export default function AMIPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/03/temporary-mockup-2-scaled.jpg"
+            src="/assets/work/uploads/2025/03/CS_Inset-full-width.jpg.webp"
             alt="AMI Interface"
             fill
             className="object-cover"
@@ -270,45 +223,10 @@ export default function AMIPage() {
       </section>
 
       <section className="w-full bg-white">
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          <div className="relative aspect-square">
-            <Image
-              src="/assets/work/uploads/2025/03/UI-element-scaled.jpg"
-              alt="AMI UI Elements"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-          <div className="relative aspect-[1344/2010]">
-            <Image
-              src="/assets/work/uploads/2025/03/Portrait-Image-frame-1.webp"
-              alt="AMI Mobile Experience"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/03/CS_Inset-full-width-scaled.jpg"
+            src="/assets/work/uploads/2025/03/20211133.jpg.webp"
             alt="AMI Platform"
-            fill
-            className="object-cover"
-            sizes="100vw"
-          />
-        </div>
-      </section>
-
-      <section className="w-full bg-white">
-        <div className="relative aspect-video w-full">
-          <Image
-            src="/assets/work/uploads/2025/03/CS_Inset-full-width.jpg"
-            alt="AMI Final"
             fill
             className="object-cover"
             sizes="100vw"

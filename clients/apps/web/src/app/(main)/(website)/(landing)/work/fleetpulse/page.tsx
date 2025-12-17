@@ -151,7 +151,7 @@ export default function FleetPulsePage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2024/07/Full-width.png"
+            src="/assets/work/uploads/2024/07/Full-width.png.webp"
             alt="FleetPulse Interface"
             fill
             className="object-cover"

@@ -27,7 +27,7 @@ export default function RevairePage() {
             sizes="100vw"
           />
           <Image
-            src="/assets/work/uploads/2024/08/Revaire_mobile.jpg"
+            src="/assets/work/uploads/2024/08/mobile.webp"
             alt="Revaire Mobile"
             fill
             className="block object-cover lg:hidden"
@@ -258,7 +258,7 @@ export default function RevairePage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2024/08/MM_Tablet_TB-CAF2-03-scaled.jpg"
+              src="/assets/work/uploads/2024/08/MM_Screen_SC-B-01-scaled.jpg.webp"
               alt="Revaire Tablet"
               fill
               className="object-cover"
