@@ -3,7 +3,10 @@ import '../styles/globals.css'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import Script from 'next/script'
+import { SkipToContent } from '@/components/Accessibility/SkipToContent'
+import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary'
 import SandboxBanner from '@/components/Sandbox/SandboxBanner'
+import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/SEO/CaseStudyJsonLd'
 import { UserContextProvider } from '@/providers/auth'
 import { getServerSideAPI } from '@/utils/client/serverside'
 import { CONFIG } from '@/utils/config'
@@ -155,6 +158,9 @@ export default async function RootLayout({
           textRendering: 'optimizeLegibility',
         }}
       >
+        <SkipToContent />
+        <OrganizationJsonLd />
+        <WebsiteJsonLd />
         <UserContextProvider
           user={authenticatedUser}
           userOrganizations={userOrganizations}
@@ -163,8 +169,12 @@ export default async function RootLayout({
             <PolarQueryClientProvider>
               <PolarNuqsProvider>
                 <NavigationHistoryProvider>
-                  <SandboxBanner />
-                  {children}
+                  <ErrorBoundary>
+                    <SandboxBanner />
+                    <main id="main-content">
+                      {children}
+                    </main>
+                  </ErrorBoundary>
                   <Analytics />
                   <SpeedInsights />
                 </NavigationHistoryProvider>

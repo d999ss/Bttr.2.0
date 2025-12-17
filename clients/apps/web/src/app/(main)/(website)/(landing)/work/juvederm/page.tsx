@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
+import { CaseStudyJsonLd } from '@/components/SEO/CaseStudyJsonLd'
+import { caseStudies } from '@/data/caseStudies'
 
 export const metadata: Metadata = {
   title: 'JUVÉDERM - Bttr.',
@@ -12,9 +14,20 @@ export const metadata: Metadata = {
   },
 }
 
+const caseStudy = caseStudies.find((cs) => cs.slug === 'juvederm')!
+
 export default function JuvedermPage() {
   return (
     <main className="bg-white">
+      <CaseStudyJsonLd
+        caseStudy={caseStudy}
+        description="JUVÉDERM®, a prominent name in dermal fillers, sought to revamp its digital presence to better connect with both healthcare professionals and consumers."
+        datePublished="2024-01-15"
+        images={[
+          'https://makebttr.com/assets/work/uploads/2025/04/Desktop-6.webp',
+          'https://makebttr.com/assets/work/uploads/2025/04/juvederm-thumb.jpg',
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative min-h-screen w-full overflow-hidden bg-[#f07459]">
         <div className="absolute inset-0">
