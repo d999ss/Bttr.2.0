@@ -29,7 +29,7 @@ export default function JuvedermPage() {
         ]}
       />
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#f07459]">
+      <section className="relative h-[80vh] w-full overflow-hidden bg-[#f07459]">
         <div className="absolute inset-0">
           <Image
             src="/assets/work/uploads/2025/04/Desktop-6.webp"
@@ -40,7 +40,7 @@ export default function JuvedermPage() {
             sizes="100vw"
           />
         </div>
-        <div className="relative flex min-h-screen items-end">
+        <div className="relative flex h-[80vh] items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
             <h1 className="max-w-4xl text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
               Enhancing engagement for a leading aesthetic brand

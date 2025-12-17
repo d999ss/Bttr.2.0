@@ -18,7 +18,7 @@ export default function BotoxCosmeticPage() {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#1a1a1a]">
+      <section className="relative h-[80vh] w-full overflow-hidden bg-[#1a1a1a]">
         <div className="absolute inset-0">
           <Image
             src="/assets/work/uploads/2025/04/botox-hero.jpg"
@@ -29,7 +29,7 @@ export default function BotoxCosmeticPage() {
             sizes="100vw"
           />
         </div>
-        <div className="relative flex min-h-screen items-end">
+        <div className="relative flex h-[80vh] items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
             <h1 className="max-w-4xl text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
               Strengthening product recognition and loyalty across a market

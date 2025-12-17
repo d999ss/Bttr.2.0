@@ -17,7 +17,7 @@ export default function FleetPulsePage() {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#0f172a]">
+      <section className="relative h-[80vh] w-full overflow-hidden bg-[#0f172a]">
         <div className="absolute inset-0">
           <Image
             src="/assets/work/uploads/2024/06/FP1.webp"
@@ -36,7 +36,7 @@ export default function FleetPulsePage() {
             sizes="100vw"
           />
         </div>
-        <div className="relative flex min-h-screen items-end">
+        <div className="relative flex h-[80vh] items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
             <h1 className="max-w-4xl text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
               Smart-Trailer innovation, designed for a more efficient future

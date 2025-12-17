@@ -16,7 +16,7 @@ export default function GEBrilliantYouPage() {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden">
+      <section className="relative h-[80vh] w-full overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/assets/work/uploads/2023/08/Desktop-4.webp"
@@ -28,7 +28,7 @@ export default function GEBrilliantYouPage() {
           />
         </div>
         <div className="absolute inset-0 bg-black/10" />
-        <div className="relative flex min-h-screen items-end">
+        <div className="relative flex h-[80vh] items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
             <h1 className="text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
               <span className="block">GE Brilliant You</span>

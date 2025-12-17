@@ -16,7 +16,7 @@ export default function AdvantagePage() {
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="relative min-h-screen w-full overflow-hidden bg-[#0a0a0a]">
+      <section className="relative h-[80vh] w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">
           <Image
             src="/assets/work/uploads/2023/09/Desktop-copy.webp"
@@ -26,10 +26,9 @@ export default function AdvantagePage() {
             priority
             sizes="100vw"
           />
-          {/* Gradient overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
         </div>
-        <div className="relative flex min-h-screen items-end">
+        <div className="relative flex h-[80vh] items-end">
           <div className="w-full px-8 pb-16 md:px-16 lg:px-24">
             <h1 className="max-w-4xl text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl xl:text-7xl">
               A Fresh New Look for an Established B2B Platform
