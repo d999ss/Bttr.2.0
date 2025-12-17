@@ -16,6 +16,7 @@ import { ImpactMetrics } from './ImpactMetrics'
 import { Pricing } from './Pricing'
 import { Section } from './Section'
 import { Usage } from './Usage'
+import { ViewWork } from './ViewWork'
 
 export default function Page() {
   return (
@@ -75,6 +76,7 @@ export const PageContent = () => {
       </Section>
       <Section className="flex flex-col gap-y-24">
         <ImpactMetrics />
+        <ViewWork />
       </Section>
     </>
   )
