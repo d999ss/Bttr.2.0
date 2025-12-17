@@ -1,64 +1,50 @@
 'use client'
 
-import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const clientLogos = [
-  { name: 'GE Aerospace', src: '/assets/landing/logos/ge.svg' },
-  { name: 'Allergan', src: '/assets/landing/logos/allergan.svg' },
-  { name: 'Ikon Pass', src: '/assets/landing/logos/ikon.svg' },
-  { name: 'Tiger BioSciences', src: '/assets/landing/logos/tiger.svg' },
-]
-
 const faqs = [
   {
-    question: 'What does the discovery call cover?',
+    question: 'What does the call cover?',
     answer:
-      "We'll discuss your current challenges, goals, and timeline. This is a two-way conversation to determine if there's a good fit. No sales pitch—just an honest assessment of whether we can help.",
+      "Your challenges, goals, and timeline. We'll determine fit together—no pitch, just an honest conversation.",
   },
   {
     question: 'What are your rates?',
     answer:
-      'We work on a project basis with fees typically ranging from $150K to $500K+ depending on scope. We can discuss budget alignment on our call.',
+      'Projects typically range from $150K to $500K+ depending on scope. We can discuss alignment on our call.',
   },
   {
-    question: 'How long do projects typically take?',
+    question: 'How long do projects take?',
     answer:
-      'Most engagements run 4-8 months from kickoff to launch. We maintain deep focus by limiting ourselves to 2-3 concurrent clients.',
+      'Most engagements run 4-8 months. We maintain focus by limiting ourselves to 2-3 clients at a time.',
   },
   {
-    question: 'Do you work with early-stage startups?',
+    question: 'What happens after?',
     answer:
-      "Our model works best for growth-stage companies and enterprises with established product-market fit. If you're pre-Series A, we're probably not the right partner yet.",
-  },
-  {
-    question: 'What happens after the call?',
-    answer:
-      "If there's mutual interest, we'll schedule a deeper discovery session and prepare a proposal within 2 weeks. No obligation, no pressure.",
+      "If there's mutual interest, we'll prepare a proposal within two weeks. No obligation.",
   },
 ]
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
+function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="border-b border-gray-200">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="border-b border-gray-200/60"
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between py-5 text-left"
+        className="group flex w-full items-center justify-between py-6 text-left"
       >
-        <span className="text-lg font-medium text-gray-900">{question}</span>
-        <svg
-          className={`h-5 w-5 text-gray-500 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
+        <span className="text-lg text-gray-900 transition-colors group-hover:text-[#D2A62C]">{question}</span>
+        <span className={`ml-4 text-2xl text-gray-300 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>+</span>
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -66,262 +52,232 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-gray-600">{answer}</p>
+            <p className="pb-6 text-gray-500 leading-relaxed">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </motion.div>
   )
 }
 
 export default function ContactPage() {
   return (
     <main className="bg-white">
-      {/* Hero Section */}
-      <section className="relative w-full bg-[#0a0a0a] px-8 py-24 md:px-16 md:py-32 lg:px-24">
-        <div className="mx-auto max-w-4xl">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#D2A62C]/20 px-4 py-1.5">
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#D2A62C]" />
-            <span className="text-sm text-[#D2A62C]">Currently Booking Q2 2026</span>
-          </div>
-          <h1 className="mb-6 text-4xl leading-tight tracking-tight text-white md:text-5xl lg:text-6xl">
-            Start a conversation
-          </h1>
-          <p className="max-w-2xl text-lg text-gray-400">
-            15 minutes to explore whether we&apos;re the right partner for your next initiative.
-            No pitch, no pressure—just an honest conversation.
-          </p>
-        </div>
-      </section>
+      {/* Hero - Apple style: massive, confident, minimal */}
+      <section className="relative flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] px-8 py-32">
+        {/* Subtle gradient orb */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#D2A62C]/20 via-[#D2A62C]/5 to-transparent blur-3xl" />
 
-      {/* Client Logos */}
-      <section className="w-full border-b border-gray-100 bg-white px-8 py-8 md:px-16 lg:px-24">
-        <div className="mx-auto flex max-w-6xl flex-col items-center gap-6 md:flex-row md:justify-between">
-          <span className="text-sm text-gray-400">Trusted by teams at</span>
-          <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
-            {clientLogos.map((logo) => (
-              <div key={logo.name} className="relative h-8 w-24 opacity-60 grayscale transition-opacity hover:opacity-100">
-                <Image
-                  src={logo.src}
-                  alt={logo.name}
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <section className="w-full bg-white px-8 py-16 md:px-16 md:py-24 lg:px-24">
-        <div className="mx-auto grid max-w-6xl gap-16 lg:grid-cols-5">
-          {/* Left Column - CTA */}
-          <div className="lg:col-span-3">
-            {/* Primary CTA Card */}
-            <div className="rounded-2xl bg-gradient-to-br from-[#D2A62C] to-[#E8C65C] p-8 md:p-10">
-              <h2 className="mb-2 text-2xl font-bold text-black md:text-3xl">
-                Schedule a Discovery Call
-              </h2>
-              <p className="mb-8 text-black/70">
-                Book a 15-minute call to discuss your project and see if there&apos;s a fit.
-              </p>
-
-              <a
-                href="https://calendly.com/d999ss/15min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mb-8 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-black py-4 text-base font-medium text-white transition-colors hover:bg-gray-900"
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                  <line x1="16" y1="2" x2="16" y2="6"></line>
-                  <line x1="8" y1="2" x2="8" y2="6"></line>
-                  <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-                Book Your Call
-              </a>
-
-              {/* What to Expect */}
-              <div className="rounded-xl bg-black/10 p-6">
-                <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-black/70">
-                  What we&apos;ll cover
-                </h3>
-                <ul className="space-y-3">
-                  {[
-                    'Your current challenges and goals',
-                    'Timeline and budget alignment',
-                    'Whether there\'s a fit (honest assessment)',
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-start gap-3 text-black/80">
-                      <svg
-                        className="mt-0.5 h-5 w-5 flex-shrink-0 text-black/60"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Testimonial */}
-            <div className="mt-8 rounded-2xl border border-gray-100 bg-gray-50 p-8">
-              <svg
-                className="mb-4 h-8 w-8 text-gray-300"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-              </svg>
-              <p className="mb-6 text-lg text-gray-900">
-                &ldquo;Bttr have been an essential part of All&#275;&apos;s success and business transformation—their vision and expertise continues driving progress.&rdquo;
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="h-12 w-12 rounded-full bg-gray-200" />
-                <div>
-                  <p className="font-medium text-gray-900">Tory Brady</p>
-                  <p className="text-sm text-gray-500">CTO, Allergan Aesthetics</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Info */}
-          <div className="space-y-8 lg:col-span-2">
-            {/* You'll Speak With */}
-            <div className="rounded-2xl border border-gray-200 bg-white p-6">
-              <h3 className="mb-4 text-sm font-medium uppercase tracking-wider text-gray-500">
-                You&apos;ll speak with
-              </h3>
-              <div className="flex items-start gap-4">
-                <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-full bg-gray-200">
-                  <Image
-                    src="/assets/team/donny.jpg"
-                    alt="Donny Smith"
-                    width={64}
-                    height={64}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div>
-                  <p className="font-medium text-gray-900">Donny Smith</p>
-                  <p className="mb-2 text-sm text-gray-500">Founder & Principal</p>
-                  <p className="text-sm text-gray-600">
-                    15+ years building digital products for GE, Allergan, and growth-stage ventures.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Contact Info */}
-            <div className="space-y-6">
-              <div>
-                <h3 className="mb-2 text-sm font-medium uppercase tracking-wider text-gray-500">
-                  Prefer email?
-                </h3>
-                <a
-                  href="mailto:donny@makebttr.com?subject=New%20Project%20Inquiry"
-                  className="text-gray-900 underline decoration-gray-300 underline-offset-4 transition-colors hover:text-[#D2A62C] hover:decoration-[#D2A62C]"
-                >
-                  donny@makebttr.com
-                </a>
-                <p className="mt-1 text-sm text-gray-500">We respond within 24 hours</p>
-              </div>
-
-              <div>
-                <h3 className="mb-2 text-sm font-medium uppercase tracking-wider text-gray-500">
-                  Location
-                </h3>
-                <p className="text-gray-900">
-                  Los Angeles, CA
-                </p>
-                <p className="text-sm text-gray-500">Working with teams globally</p>
-              </div>
-
-              <div>
-                <h3 className="mb-2 text-sm font-medium uppercase tracking-wider text-gray-500">
-                  Follow us
-                </h3>
-                <div className="flex gap-4">
-                  <a
-                    href="https://www.linkedin.com/company/makebttr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 transition-colors hover:text-gray-900"
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://x.com/makebttr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-600 transition-colors hover:text-gray-900"
-                  >
-                    X
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="w-full border-t border-gray-100 bg-gray-50 px-8 py-16 md:px-16 md:py-24 lg:px-24">
-        <div className="mx-auto max-w-3xl">
-          <h2 className="mb-12 text-center text-3xl font-medium text-gray-900">
-            Common questions
-          </h2>
-          <div className="rounded-2xl border border-gray-200 bg-white p-8">
-            {faqs.map((faq, index) => (
-              <FAQItem key={index} question={faq.question} answer={faq.answer} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA */}
-      <section className="w-full bg-[#0a0a0a] px-8 py-16 md:px-16 md:py-24 lg:px-24">
-        <div className="mx-auto max-w-4xl text-center">
-          <h2 className="mb-4 text-2xl leading-tight tracking-tight text-white md:text-3xl">
-            Still exploring?
-          </h2>
-          <p className="mb-8 text-gray-400">
-            See how we&apos;ve helped organizations like yours transform their digital presence.
-          </p>
-          <Link
-            href="/work"
-            className="inline-flex items-center gap-2 text-[#D2A62C] transition-colors hover:text-white"
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
+          className="relative z-10 mx-auto max-w-4xl text-center"
+        >
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#D2A62C]/30 bg-[#D2A62C]/10 px-4 py-2"
           >
-            <span>View case studies</span>
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#D2A62C]" />
+            <span className="text-sm text-[#D2A62C]">Booking Q2 2026</span>
+          </motion.div>
+
+          <h1 className="mb-8 text-5xl font-medium leading-[1.1] tracking-tight text-white md:text-7xl lg:text-8xl">
+            Let&apos;s talk.
+          </h1>
+
+          <p className="mx-auto mb-12 max-w-xl text-xl text-gray-400 md:text-2xl">
+            15 minutes to see if we&apos;re the right fit.
+          </p>
+
+          <motion.a
+            href="https://calendly.com/d999ss/15min"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="group inline-flex items-center gap-3 rounded-full bg-[#D2A62C] px-8 py-4 text-lg font-medium text-black transition-all hover:bg-[#e0b432] hover:shadow-lg hover:shadow-[#D2A62C]/25"
+          >
+            <span>Book a call</span>
+            <svg
+              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </Link>
+          </motion.a>
+        </motion.div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2"
+        >
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="h-12 w-6 rounded-full border border-gray-700 p-1"
+          >
+            <div className="h-2 w-full rounded-full bg-gray-600" />
+          </motion.div>
+        </motion.div>
+      </section>
+
+      {/* Social Proof - subtle, not desperate */}
+      <section className="w-full border-b border-gray-100 bg-white px-8 py-16">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mx-auto max-w-5xl"
+        >
+          <p className="mb-12 text-center text-sm uppercase tracking-widest text-gray-400">
+            Trusted by
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+            {['GE Aerospace', 'Allergan', 'Ikon Pass', 'Tiger Bio'].map((name, i) => (
+              <motion.span
+                key={name}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="text-xl font-medium text-gray-300 transition-colors hover:text-gray-900"
+              >
+                {name}
+              </motion.span>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* The Promise - single powerful statement */}
+      <section className="w-full bg-white px-8 py-32">
+        <div className="mx-auto max-w-4xl text-center">
+          <motion.blockquote
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative"
+          >
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-8xl text-gray-100">&ldquo;</span>
+            <p className="relative z-10 text-2xl leading-relaxed text-gray-900 md:text-3xl lg:text-4xl">
+              Bttr have been an essential part of Allē&apos;s success and business transformation—their vision and expertise continues driving progress.
+            </p>
+            <footer className="mt-10 flex flex-col items-center gap-4">
+              <div className="h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+                <Image
+                  src="/assets/landing/testamonials/rauch.jpg"
+                  alt="Tory Brady"
+                  width={64}
+                  height={64}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="text-center">
+                <p className="font-medium text-gray-900">Tory Brady</p>
+                <p className="text-gray-500">CTO, Allergan Aesthetics</p>
+              </div>
+            </footer>
+          </motion.blockquote>
         </div>
+      </section>
+
+      {/* You'll speak with - human connection */}
+      <section className="w-full bg-gray-50 px-8 py-24">
+        <div className="mx-auto max-w-2xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="mb-8 text-sm uppercase tracking-widest text-gray-400">You&apos;ll speak with</p>
+            <div className="mb-6 inline-block overflow-hidden rounded-full">
+              <Image
+                src="/assets/team/donny.jpg"
+                alt="Donny Smith"
+                width={120}
+                height={120}
+                className="h-28 w-28 object-cover"
+              />
+            </div>
+            <h3 className="mb-2 text-2xl font-medium text-gray-900">Donny Smith</h3>
+            <p className="mb-4 text-gray-500">Founder & Principal</p>
+            <p className="mx-auto max-w-md text-gray-600">
+              15 years building digital products for GE, Allergan, and growth-stage ventures. Direct line to the work.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* FAQ - clean, minimal */}
+      <section className="w-full bg-white px-8 py-24">
+        <div className="mx-auto max-w-2xl">
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center text-sm uppercase tracking-widest text-gray-400"
+          >
+            Common questions
+          </motion.h2>
+          <div>
+            {faqs.map((faq, index) => (
+              <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA - confident close */}
+      <section className="w-full bg-[#0a0a0a] px-8 py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto max-w-2xl text-center"
+        >
+          <h2 className="mb-6 text-4xl font-medium text-white md:text-5xl">
+            Ready?
+          </h2>
+          <p className="mb-10 text-xl text-gray-400">
+            15 minutes. No pitch. Just conversation.
+          </p>
+          <a
+            href="https://calendly.com/d999ss/15min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 text-lg text-[#D2A62C] transition-colors hover:text-white"
+          >
+            <span>Book your call</span>
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+
+          <div className="mt-16 flex flex-col items-center gap-2 text-gray-600">
+            <p>Prefer email?</p>
+            <a
+              href="mailto:donny@makebttr.com"
+              className="text-gray-400 transition-colors hover:text-white"
+            >
+              donny@makebttr.com
+            </a>
+          </div>
+        </motion.div>
       </section>
     </main>
   )
