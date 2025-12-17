@@ -91,7 +91,7 @@ export default function ContactPage() {
             Start a conversation
           </h1>
           <p className="max-w-2xl text-lg text-gray-400">
-            30 minutes to explore whether we&apos;re the right partner for your next initiative.
+            15 minutes to explore whether we&apos;re the right partner for your next initiative.
             No pitch, no pressure—just an honest conversation.
           </p>
         </div>
@@ -127,11 +127,11 @@ export default function ContactPage() {
                 Schedule a Discovery Call
               </h2>
               <p className="mb-8 text-black/70">
-                Book a 30-minute call to discuss your project and see if there&apos;s a fit.
+                Book a 15-minute call to discuss your project and see if there&apos;s a fit.
               </p>
 
               <a
-                href="https://calendly.com/donny-makebttr/discovery"
+                href="https://calendly.com/d999ss/15min"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mb-8 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-black py-4 text-base font-medium text-white transition-colors hover:bg-gray-900"
