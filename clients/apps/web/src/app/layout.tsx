@@ -1,4 +1,5 @@
 import '../styles/globals.css'
+import '../styles/skunkworks.css'
 
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
@@ -8,6 +9,7 @@ import { ErrorBoundary } from '@/components/ErrorBoundary/ErrorBoundary'
 import SandboxBanner from '@/components/Sandbox/SandboxBanner'
 import { OrganizationJsonLd, WebsiteJsonLd } from '@/components/SEO/CaseStudyJsonLd'
 import { UserContextProvider } from '@/providers/auth'
+import { SkunkworksProvider } from '@/providers/skunkworks'
 import { getServerSideAPI } from '@/utils/client/serverside'
 import { CONFIG } from '@/utils/config'
 import { getAuthenticatedUser, getUserOrganizations } from '@/utils/user'
@@ -158,30 +160,32 @@ export default async function RootLayout({
           textRendering: 'optimizeLegibility',
         }}
       >
-        <SkipToContent />
-        <OrganizationJsonLd />
-        <WebsiteJsonLd />
-        <UserContextProvider
-          user={authenticatedUser}
-          userOrganizations={userOrganizations}
-        >
-          <PolarPostHogProvider>
-            <PolarQueryClientProvider>
-              <PolarNuqsProvider>
-                <NavigationHistoryProvider>
-                  <ErrorBoundary>
-                    <SandboxBanner />
-                    <main id="main-content">
-                      {children}
-                    </main>
-                  </ErrorBoundary>
-                  <Analytics />
-                  <SpeedInsights />
-                </NavigationHistoryProvider>
-              </PolarNuqsProvider>
-            </PolarQueryClientProvider>
-          </PolarPostHogProvider>
-        </UserContextProvider>
+        <SkunkworksProvider>
+          <SkipToContent />
+          <OrganizationJsonLd />
+          <WebsiteJsonLd />
+          <UserContextProvider
+            user={authenticatedUser}
+            userOrganizations={userOrganizations}
+          >
+            <PolarPostHogProvider>
+              <PolarQueryClientProvider>
+                <PolarNuqsProvider>
+                  <NavigationHistoryProvider>
+                    <ErrorBoundary>
+                      <SandboxBanner />
+                      <main id="main-content">
+                        {children}
+                      </main>
+                    </ErrorBoundary>
+                    <Analytics />
+                    <SpeedInsights />
+                  </NavigationHistoryProvider>
+                </PolarNuqsProvider>
+              </PolarQueryClientProvider>
+            </PolarPostHogProvider>
+          </UserContextProvider>
+        </SkunkworksProvider>
       </body>
     </html>
   )

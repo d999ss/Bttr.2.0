@@ -1,3 +1,5 @@
+'use client'
+
 import Instagram from '@mui/icons-material/Instagram'
 import LinkedIn from '@mui/icons-material/LinkedIn'
 import X from '@mui/icons-material/X'
@@ -5,6 +7,7 @@ import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 import { BttrLogotype } from '../Brand/BttrLogotype'
 import { caseStudies } from '@/data/caseStudies'
+import { SkunkworksToggle } from '@/providers/skunkworks'
 
 const Footer = () => {
   const featuredWork = caseStudies.filter((study) => study.featured)
@@ -210,11 +213,13 @@ const Footer = () => {
           <span className="dark:text-polar-500 text-sm text-gray-500">
             &copy; {new Date().getFullYear()} Bttr. All rights reserved.
           </span>
-          <div className="flex flex-row flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
+          <div className="flex flex-row flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm">
             <FooterLink href="/legal/privacy">Privacy</FooterLink>
             <FooterLink href="/legal/terms">Terms</FooterLink>
             <FooterLink href="/contact">Contact</FooterLink>
             <FooterLink href="/portal/login">Client Portal</FooterLink>
+            <span className="dark:border-polar-700 hidden h-4 border-l border-gray-300 md:block" />
+            <SkunkworksToggle />
           </div>
         </div>
       </div>

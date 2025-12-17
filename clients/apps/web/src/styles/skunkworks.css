@@ -1,0 +1,622 @@
+/**
+ * SKUNKWORKS THEME
+ * Dark, industrial, Swiss-modern design system
+ * Typography-led hierarchy. Motion communicates state only.
+ */
+
+/* ==========================================================================
+   ROOT VARIABLES
+   ========================================================================== */
+
+[data-theme="skunkworks"] {
+  /* Colors */
+  --sk-black: #000000;
+  --sk-near-black: #010101;
+  --sk-white: #FFFFFF;
+  --sk-cream: #F1F0EA;
+  --sk-tan-gold: #BDAD96;
+
+  /* Typography */
+  --sk-font-primary: 'HelveticaNowDisplay', Helvetica, Arial, sans-serif;
+  --sk-font-accent: 'Elios', Helvetica, Arial, sans-serif;
+
+  /* Timing */
+  --sk-duration-micro: 0.125s;
+  --sk-duration-hover: 0.2s;
+  --sk-duration-small: 0.25s;
+  --sk-duration-primary: 0.3s;
+  --sk-duration-stagger: 0.35s;
+  --sk-duration-large: 0.45s;
+  --sk-duration-panel: 0.5s;
+  --sk-duration-loader: 0.8s;
+  --sk-duration-hero: 1s;
+
+  /* Easing */
+  --sk-ease-out: ease-out;
+  --sk-ease-in-out: ease-in-out;
+  --sk-ease-reveal: cubic-bezier(0.215, 0.62, 0.34, 1);
+}
+
+/* ==========================================================================
+   RESPONSIVE ROOT FONT SIZE
+   ========================================================================== */
+
+[data-theme="skunkworks"] {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1280px) {
+  [data-theme="skunkworks"] {
+    font-size: calc(1.25vw - 2px);
+  }
+}
+
+@media (min-width: 1440px) {
+  [data-theme="skunkworks"] {
+    font-size: calc(0.416667vw + 10px);
+  }
+}
+
+@media (min-width: 1920px) {
+  [data-theme="skunkworks"] {
+    font-size: calc(1.25vw - 6px);
+  }
+}
+
+@media (min-width: 2400px) {
+  [data-theme="skunkworks"] {
+    font-size: 24px;
+  }
+}
+
+/* ==========================================================================
+   BASE STYLES
+   ========================================================================== */
+
+[data-theme="skunkworks"] body,
+[data-theme="skunkworks"] {
+  background-color: var(--sk-black) !important;
+  color: var(--sk-white) !important;
+  font-family: var(--sk-font-primary) !important;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==========================================================================
+   TYPOGRAPHY
+   ========================================================================== */
+
+/* H1 */
+[data-theme="skunkworks"] h1,
+[data-theme="skunkworks"] .sk-h1 {
+  font-family: var(--sk-font-primary) !important;
+  font-size: 2.714rem !important;
+  font-weight: 700 !important;
+  line-height: 100% !important;
+  letter-spacing: -0.054rem !important;
+  color: var(--sk-white) !important;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] h1,
+  [data-theme="skunkworks"] .sk-h1 {
+    font-size: 5rem !important;
+    line-height: 105% !important;
+    letter-spacing: -0.1rem !important;
+  }
+}
+
+/* H2 */
+[data-theme="skunkworks"] h2,
+[data-theme="skunkworks"] .sk-h2 {
+  font-family: var(--sk-font-primary) !important;
+  font-size: 2.571rem !important;
+  font-weight: 400 !important;
+  line-height: 100% !important;
+  letter-spacing: -0.051rem !important;
+  color: var(--sk-white) !important;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] h2,
+  [data-theme="skunkworks"] .sk-h2 {
+    font-size: 4rem !important;
+    line-height: 105% !important;
+    letter-spacing: -0.08rem !important;
+  }
+}
+
+/* H3 */
+[data-theme="skunkworks"] h3,
+[data-theme="skunkworks"] .sk-h3 {
+  font-family: var(--sk-font-primary) !important;
+  font-size: 2.429rem !important;
+  font-weight: 400 !important;
+  line-height: 115% !important;
+  letter-spacing: -0.049rem !important;
+  color: var(--sk-white) !important;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] h3,
+  [data-theme="skunkworks"] .sk-h3 {
+    font-size: 3.5rem !important;
+    line-height: 110% !important;
+    letter-spacing: -0.07rem !important;
+  }
+}
+
+/* H4 */
+[data-theme="skunkworks"] h4,
+[data-theme="skunkworks"] .sk-h4 {
+  font-family: var(--sk-font-primary) !important;
+  font-size: 2.286rem !important;
+  font-weight: 400 !important;
+  line-height: 105% !important;
+  letter-spacing: -0.023rem !important;
+  color: var(--sk-white) !important;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] h4,
+  [data-theme="skunkworks"] .sk-h4 {
+    font-size: 2.5rem !important;
+    line-height: 115% !important;
+    letter-spacing: -0.05rem !important;
+  }
+}
+
+/* H5 */
+[data-theme="skunkworks"] h5,
+[data-theme="skunkworks"] .sk-h5 {
+  font-family: var(--sk-font-primary) !important;
+  font-size: 1.929rem !important;
+  font-weight: 400 !important;
+  line-height: 115% !important;
+  letter-spacing: -0.019rem !important;
+  color: var(--sk-white) !important;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] h5,
+  [data-theme="skunkworks"] .sk-h5 {
+    font-size: 2rem !important;
+    letter-spacing: -0.02rem !important;
+  }
+}
+
+/* H6 */
+[data-theme="skunkworks"] h6,
+[data-theme="skunkworks"] .sk-h6 {
+  font-family: var(--sk-font-primary) !important;
+  font-size: 1.714rem !important;
+  font-weight: 400 !important;
+  line-height: 115% !important;
+  letter-spacing: -0.017rem !important;
+  color: var(--sk-white) !important;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] h6,
+  [data-theme="skunkworks"] .sk-h6 {
+    font-size: 1.5rem !important;
+    letter-spacing: -0.015rem !important;
+  }
+}
+
+/* Body text */
+[data-theme="skunkworks"] p,
+[data-theme="skunkworks"] .sk-body {
+  font-family: var(--sk-font-primary) !important;
+  font-size: 1.286rem !important;
+  font-weight: 400 !important;
+  line-height: 120% !important;
+  letter-spacing: -0.013rem !important;
+  color: var(--sk-white) !important;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] p,
+  [data-theme="skunkworks"] .sk-body {
+    font-size: 1.05rem !important;
+    letter-spacing: -0.009rem !important;
+  }
+}
+
+/* ==========================================================================
+   BUTTONS
+   ========================================================================== */
+
+[data-theme="skunkworks"] button,
+[data-theme="skunkworks"] .sk-button,
+[data-theme="skunkworks"] a[class*="button"],
+[data-theme="skunkworks"] a[class*="btn"] {
+  font-family: var(--sk-font-primary) !important;
+  font-size: 1.071rem !important;
+  font-weight: 400 !important;
+  line-height: 105% !important;
+  letter-spacing: -0.011rem !important;
+  background-color: transparent !important;
+  color: var(--sk-white) !important;
+  border: 1px solid var(--sk-white) !important;
+  border-radius: 0 !important;
+  padding: 1rem 2rem !important;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--sk-duration-primary) var(--sk-ease-out) !important;
+  cursor: pointer;
+}
+
+@media (min-width: 768px) {
+  [data-theme="skunkworks"] button,
+  [data-theme="skunkworks"] .sk-button,
+  [data-theme="skunkworks"] a[class*="button"],
+  [data-theme="skunkworks"] a[class*="btn"] {
+    font-size: 0.875rem !important;
+    letter-spacing: -0.009rem !important;
+  }
+}
+
+/* Button fill effect */
+[data-theme="skunkworks"] button::before,
+[data-theme="skunkworks"] .sk-button::before,
+[data-theme="skunkworks"] a[class*="button"]::before,
+[data-theme="skunkworks"] a[class*="btn"]::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--sk-white);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--sk-duration-primary) var(--sk-ease-reveal);
+  z-index: -1;
+}
+
+[data-theme="skunkworks"] button:hover::before,
+[data-theme="skunkworks"] .sk-button:hover::before,
+[data-theme="skunkworks"] a[class*="button"]:hover::before,
+[data-theme="skunkworks"] a[class*="btn"]:hover::before {
+  transform: scaleY(1);
+}
+
+[data-theme="skunkworks"] button:hover,
+[data-theme="skunkworks"] .sk-button:hover,
+[data-theme="skunkworks"] a[class*="button"]:hover,
+[data-theme="skunkworks"] a[class*="btn"]:hover {
+  color: var(--sk-black) !important;
+  border-color: var(--sk-white) !important;
+}
+
+/* Primary/Gold buttons */
+[data-theme="skunkworks"] button[class*="primary"],
+[data-theme="skunkworks"] a[class*="bg-[#D2A62C]"],
+[data-theme="skunkworks"] .sk-button-primary {
+  background-color: var(--sk-tan-gold) !important;
+  color: var(--sk-black) !important;
+  border-color: var(--sk-tan-gold) !important;
+}
+
+[data-theme="skunkworks"] button[class*="primary"]::before,
+[data-theme="skunkworks"] a[class*="bg-[#D2A62C]"]::before,
+[data-theme="skunkworks"] .sk-button-primary::before {
+  background-color: var(--sk-white);
+}
+
+/* ==========================================================================
+   LINKS
+   ========================================================================== */
+
+[data-theme="skunkworks"] a {
+  color: var(--sk-white) !important;
+  text-decoration: none;
+  position: relative;
+  transition: color var(--sk-duration-primary) var(--sk-ease-out);
+}
+
+[data-theme="skunkworks"] a:not([class*="button"]):not([class*="btn"]):not([class*="logo"])::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--sk-tan-gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--sk-duration-primary) var(--sk-ease-reveal);
+}
+
+[data-theme="skunkworks"] a:not([class*="button"]):not([class*="btn"]):not([class*="logo"]):hover::after {
+  transform: scaleX(1);
+}
+
+[data-theme="skunkworks"] a:hover {
+  color: var(--sk-tan-gold) !important;
+}
+
+/* ==========================================================================
+   IMAGES & CARDS
+   ========================================================================== */
+
+[data-theme="skunkworks"] img {
+  filter: grayscale(20%) contrast(1.05);
+  transition: transform var(--sk-duration-panel) var(--sk-ease-out),
+              filter var(--sk-duration-panel) var(--sk-ease-out);
+}
+
+[data-theme="skunkworks"] *:hover > img,
+[data-theme="skunkworks"] a:hover img {
+  transform: scale(1.05);
+  filter: grayscale(0%) contrast(1);
+}
+
+/* Cards */
+[data-theme="skunkworks"] [class*="card"],
+[data-theme="skunkworks"] [class*="Card"] {
+  background-color: var(--sk-near-black) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  border-radius: 0 !important;
+  transition: border-color var(--sk-duration-panel) var(--sk-ease-out),
+              background-color var(--sk-duration-panel) var(--sk-ease-out);
+}
+
+[data-theme="skunkworks"] [class*="card"]:hover,
+[data-theme="skunkworks"] [class*="Card"]:hover {
+  border-color: var(--sk-tan-gold) !important;
+}
+
+/* ==========================================================================
+   SECTIONS & CONTAINERS
+   ========================================================================== */
+
+[data-theme="skunkworks"] section,
+[data-theme="skunkworks"] [class*="Section"],
+[data-theme="skunkworks"] main,
+[data-theme="skunkworks"] header,
+[data-theme="skunkworks"] footer,
+[data-theme="skunkworks"] nav {
+  background-color: var(--sk-black) !important;
+}
+
+/* Light sections override */
+[data-theme="skunkworks"] [class*="bg-gray-50"],
+[data-theme="skunkworks"] [class*="bg-white"],
+[data-theme="skunkworks"] [class*="bg-polar-900"] {
+  background-color: var(--sk-near-black) !important;
+}
+
+/* Dividers */
+[data-theme="skunkworks"] hr,
+[data-theme="skunkworks"] [class*="border"] {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ==========================================================================
+   NAVIGATION
+   ========================================================================== */
+
+[data-theme="skunkworks"] nav a,
+[data-theme="skunkworks"] header a {
+  font-family: var(--sk-font-primary) !important;
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important;
+  text-transform: none !important;
+}
+
+/* ==========================================================================
+   ICONS
+   ========================================================================== */
+
+[data-theme="skunkworks"] svg {
+  transition: transform var(--sk-duration-primary) var(--sk-ease-out);
+}
+
+[data-theme="skunkworks"] a:hover svg,
+[data-theme="skunkworks"] button:hover svg {
+  transform: rotate(90deg);
+}
+
+/* Arrow icons - don't rotate, translate instead */
+[data-theme="skunkworks"] a:hover svg[class*="arrow"],
+[data-theme="skunkworks"] button:hover svg[class*="arrow"],
+[data-theme="skunkworks"] a:hover svg path[d*="M17 8l4 4"],
+[data-theme="skunkworks"] button:hover svg path[d*="M17 8l4 4"] {
+  transform: translateX(4px) !important;
+}
+
+/* ==========================================================================
+   FORMS
+   ========================================================================== */
+
+[data-theme="skunkworks"] input,
+[data-theme="skunkworks"] textarea,
+[data-theme="skunkworks"] select {
+  background-color: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 0 !important;
+  color: var(--sk-white) !important;
+  font-family: var(--sk-font-primary) !important;
+  padding: 1rem !important;
+  transition: border-color var(--sk-duration-primary) var(--sk-ease-out);
+}
+
+[data-theme="skunkworks"] input:focus,
+[data-theme="skunkworks"] textarea:focus,
+[data-theme="skunkworks"] select:focus {
+  border-color: var(--sk-tan-gold) !important;
+  outline: none !important;
+}
+
+[data-theme="skunkworks"] input::placeholder,
+[data-theme="skunkworks"] textarea::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* ==========================================================================
+   SPECIAL EFFECTS
+   ========================================================================== */
+
+/* Gradient fade overlays */
+[data-theme="skunkworks"] [class*="gradient"],
+[data-theme="skunkworks"] [class*="Gradient"] {
+  background: linear-gradient(to bottom, transparent, var(--sk-black)) !important;
+}
+
+/* Backdrop blur */
+[data-theme="skunkworks"] [class*="backdrop"],
+[data-theme="skunkworks"] [class*="blur"] {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
+@keyframes sk-inView {
+  from {
+    transform: translateY(16%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes sk-bar {
+  0%, 100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes sk-fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+[data-theme="skunkworks"] [class*="animate"] {
+  animation-timing-function: var(--sk-ease-out) !important;
+}
+
+/* Cursor blink */
+[data-theme="skunkworks"] .sk-cursor {
+  animation: sk-bar 0.8s step-end infinite;
+}
+
+/* ==========================================================================
+   ACCENT ELEMENTS
+   ========================================================================== */
+
+/* Gold accents - use sparingly */
+[data-theme="skunkworks"] .sk-accent,
+[data-theme="skunkworks"] [class*="text-[#D2A62C]"] {
+  color: var(--sk-tan-gold) !important;
+}
+
+[data-theme="skunkworks"] [class*="bg-[#D2A62C]"]:not(button):not(a) {
+  background-color: var(--sk-tan-gold) !important;
+}
+
+[data-theme="skunkworks"] [class*="border-[#D2A62C]"] {
+  border-color: var(--sk-tan-gold) !important;
+}
+
+/* ==========================================================================
+   UTILITY OVERRIDES
+   ========================================================================== */
+
+/* Remove all rounded corners */
+[data-theme="skunkworks"] [class*="rounded"] {
+  border-radius: 0 !important;
+}
+
+/* Override shadows */
+[data-theme="skunkworks"] [class*="shadow"] {
+  box-shadow: none !important;
+}
+
+/* Text colors */
+[data-theme="skunkworks"] [class*="text-gray"],
+[data-theme="skunkworks"] [class*="text-polar"] {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+[data-theme="skunkworks"] [class*="text-white"],
+[data-theme="skunkworks"] [class*="text-polar-50"] {
+  color: var(--sk-white) !important;
+}
+
+/* Background colors */
+[data-theme="skunkworks"] [class*="bg-gray"],
+[data-theme="skunkworks"] [class*="bg-polar"] {
+  background-color: var(--sk-black) !important;
+}
+
+/* ==========================================================================
+   THEME TOGGLE
+   ========================================================================== */
+
+.sk-theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--sk-font-primary), Helvetica, Arial, sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.sk-theme-toggle:hover {
+  border-color: var(--sk-tan-gold, #BDAD96);
+  color: var(--sk-tan-gold, #BDAD96);
+}
+
+.sk-theme-toggle-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  transition: background-color 0.3s ease-out;
+}
+
+[data-theme="skunkworks"] .sk-theme-toggle-indicator {
+  background-color: var(--sk-tan-gold);
+}
+
+/* ==========================================================================
+   LOGO OVERRIDE
+   ========================================================================== */
+
+[data-theme="skunkworks"] [class*="logo"] svg,
+[data-theme="skunkworks"] [class*="Logo"] svg {
+  fill: var(--sk-white) !important;
+}
+
+[data-theme="skunkworks"] [class*="logo"] svg:hover,
+[data-theme="skunkworks"] [class*="Logo"] svg:hover {
+  transform: none !important;
+}
