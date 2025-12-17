@@ -37,10 +37,28 @@ export const FeaturedMasthead = () => {
     setCurrentIndex((prev) => (prev + 1) % slides.length)
   }, [])
 
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + slides.length) % slides.length)
+  }, [])
+
   useEffect(() => {
     const interval = setInterval(nextSlide, 6000)
     return () => clearInterval(interval)
   }, [nextSlide])
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight') {
+        nextSlide()
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [nextSlide, prevSlide])
 
   const currentSlide = slides[currentIndex]
 
