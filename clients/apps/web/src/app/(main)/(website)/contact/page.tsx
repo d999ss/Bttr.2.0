@@ -214,7 +214,7 @@ export default function ContactPage() {
               />
             </div>
             <h3 className="dark:text-polar-50 mb-2 text-2xl font-medium text-gray-900">Hiro Grant</h3>
-            <p className="dark:text-polar-500 mb-4 text-gray-500">Partner</p>
+            <p className="dark:text-polar-500 mb-4 text-gray-500">Commercial Lead</p>
             <p className="dark:text-polar-400 mx-auto max-w-md text-gray-600">
               15 years building digital products for GE, Allergan, and growth-stage ventures. Direct line to the work.
             </p>
