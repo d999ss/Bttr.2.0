@@ -1,13 +1,20 @@
 import { CONFIG } from '@/utils/config'
 import { GoogleAnalytics } from '@next/third-parties/google'
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+  children,
+  modal,
+}: {
+  children: React.ReactNode
+  modal: React.ReactNode
+}) {
   return (
     <>
       {CONFIG.GOOGLE_ANALYTICS_ID && (
         <GoogleAnalytics gaId={CONFIG.GOOGLE_ANALYTICS_ID} />
       )}
       {children}
+      {modal}
     </>
   )
 }
