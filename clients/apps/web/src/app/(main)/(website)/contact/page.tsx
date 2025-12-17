@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Section } from '@/components/Landing/Section'
 
 const faqs = [
   {
@@ -37,14 +38,14 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="border-b border-gray-200/60"
+      className="dark:border-polar-800 border-b border-gray-200"
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="group flex w-full items-center justify-between py-6 text-left"
       >
-        <span className="text-lg text-gray-900 transition-colors group-hover:text-[#D2A62C]">{question}</span>
-        <span className={`ml-4 text-2xl text-gray-300 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>+</span>
+        <span className="dark:text-polar-50 text-lg text-gray-900 transition-colors group-hover:text-[#D2A62C]">{question}</span>
+        <span className={`dark:text-polar-500 ml-4 text-2xl text-gray-300 transition-transform duration-300 ${isOpen ? 'rotate-45' : ''}`}>+</span>
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -55,7 +56,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
             className="overflow-hidden"
           >
-            <p className="pb-6 text-gray-500 leading-relaxed">{answer}</p>
+            <p className="dark:text-polar-400 pb-6 leading-relaxed text-gray-500">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -65,9 +66,9 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 
 export default function ContactPage() {
   return (
-    <main className="bg-white">
-      {/* Hero - Apple style: massive, confident, minimal */}
-      <section className="relative flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden bg-[#0a0a0a] px-8 py-32">
+    <div className="flex flex-col">
+      {/* Hero */}
+      <div className="dark:bg-polar-950 relative flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden bg-gray-950 px-8 py-32">
         {/* Subtle gradient orb */}
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#D2A62C]/20 via-[#D2A62C]/5 to-transparent blur-3xl" />
 
@@ -87,11 +88,11 @@ export default function ContactPage() {
             <span className="text-sm text-[#D2A62C]">Booking Q2 2026</span>
           </motion.div>
 
-          <h1 className="mb-8 text-5xl font-medium leading-[1.1] tracking-tight text-white md:text-7xl lg:text-8xl">
+          <h1 className="dark:text-polar-50 mb-8 text-5xl font-medium leading-[1.1] tracking-tight text-white md:text-7xl lg:text-8xl">
             Let&apos;s talk.
           </h1>
 
-          <p className="mx-auto mb-12 max-w-xl text-xl text-gray-400 md:text-2xl">
+          <p className="dark:text-polar-400 mx-auto mb-12 max-w-xl text-xl text-gray-400 md:text-2xl">
             15 minutes to see if we&apos;re the right fit.
           </p>
 
@@ -125,26 +126,26 @@ export default function ContactPage() {
           <motion.div
             animate={{ y: [0, 8, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="h-12 w-6 rounded-full border border-gray-700 p-1"
+            className="dark:border-polar-700 h-12 w-6 rounded-full border border-gray-700 p-1"
           >
-            <div className="h-2 w-full rounded-full bg-gray-600" />
+            <div className="dark:bg-polar-600 h-2 w-full rounded-full bg-gray-600" />
           </motion.div>
         </motion.div>
-      </section>
+      </div>
 
-      {/* Social Proof - subtle, not desperate */}
-      <section className="w-full border-b border-gray-100 bg-white px-8 py-16">
+      {/* Social Proof */}
+      <Section className="py-16">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mx-auto max-w-5xl"
+          className="flex flex-col items-center"
         >
-          <p className="mb-12 text-center text-sm uppercase tracking-widest text-gray-400">
+          <p className="dark:text-polar-500 mb-12 text-center text-sm uppercase tracking-widest text-gray-400">
             Trusted by
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-16 gap-y-8">
+          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 md:gap-x-16">
             {['GE Aerospace', 'Allergan', 'Ikon Pass', 'Tiger Bio'].map((name, i) => (
               <motion.span
                 key={name}
@@ -152,58 +153,57 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="text-xl font-medium text-gray-300 transition-colors hover:text-gray-900"
+                className="dark:text-polar-500 dark:hover:text-polar-50 text-xl font-medium text-gray-300 transition-colors hover:text-gray-900"
               >
                 {name}
               </motion.span>
             ))}
           </div>
         </motion.div>
-      </section>
+      </Section>
 
-      {/* The Promise - single powerful statement */}
-      <section className="w-full bg-white px-8 py-32">
-        <div className="mx-auto max-w-4xl text-center">
-          <motion.blockquote
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="relative"
-          >
-            <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-8xl text-gray-100">&ldquo;</span>
-            <p className="relative z-10 text-2xl leading-relaxed text-gray-900 md:text-3xl lg:text-4xl">
-              Bttr have been an essential part of Allē&apos;s success and business transformation—their vision and expertise continues driving progress.
-            </p>
-            <footer className="mt-10 flex flex-col items-center gap-4">
-              <div className="h-16 w-16 overflow-hidden rounded-full bg-gray-100">
-                <Image
-                  src="/assets/landing/testamonials/rauch.jpg"
-                  alt="Tory Brady"
-                  width={64}
-                  height={64}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-              <div className="text-center">
-                <p className="font-medium text-gray-900">Tory Brady</p>
-                <p className="text-gray-500">CTO, Allergan Aesthetics</p>
-              </div>
-            </footer>
-          </motion.blockquote>
-        </div>
-      </section>
+      {/* Testimonial */}
+      <Section className="py-24 md:py-32">
+        <motion.blockquote
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative text-center"
+        >
+          <span className="dark:text-polar-800 absolute -top-8 left-1/2 -translate-x-1/2 text-8xl text-gray-100">&ldquo;</span>
+          <p className="dark:text-polar-50 relative z-10 text-2xl leading-relaxed text-gray-900 md:text-3xl lg:text-4xl">
+            Bttr have been an essential part of Allē&apos;s success and business transformation—their vision and expertise continues driving progress.
+          </p>
+          <footer className="mt-10 flex flex-col items-center gap-4">
+            <div className="dark:bg-polar-800 h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+              <Image
+                src="/assets/landing/testamonials/rauch.jpg"
+                alt="Tory Brady"
+                width={64}
+                height={64}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="text-center">
+              <p className="dark:text-polar-50 font-medium text-gray-900">Tory Brady</p>
+              <p className="dark:text-polar-500 text-gray-500">CTO, Allergan Aesthetics</p>
+            </div>
+          </footer>
+        </motion.blockquote>
+      </Section>
 
-      {/* You'll speak with - human connection */}
-      <section className="w-full bg-gray-50 px-8 py-24">
-        <div className="mx-auto max-w-2xl text-center">
+      {/* You'll speak with */}
+      <div className="dark:bg-polar-900 w-full bg-gray-50">
+        <Section className="py-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col items-center text-center"
           >
-            <p className="mb-8 text-sm uppercase tracking-widest text-gray-400">You&apos;ll speak with</p>
+            <p className="dark:text-polar-500 mb-8 text-sm uppercase tracking-widest text-gray-400">You&apos;ll speak with</p>
             <div className="mb-6 inline-block overflow-hidden rounded-full">
               <Image
                 src="/assets/team/donny.jpg"
@@ -213,72 +213,72 @@ export default function ContactPage() {
                 className="h-28 w-28 object-cover"
               />
             </div>
-            <h3 className="mb-2 text-2xl font-medium text-gray-900">Donny Smith</h3>
-            <p className="mb-4 text-gray-500">Founder & Principal</p>
-            <p className="mx-auto max-w-md text-gray-600">
+            <h3 className="dark:text-polar-50 mb-2 text-2xl font-medium text-gray-900">Donny Smith</h3>
+            <p className="dark:text-polar-500 mb-4 text-gray-500">Founder & Principal</p>
+            <p className="dark:text-polar-400 mx-auto max-w-md text-gray-600">
               15 years building digital products for GE, Allergan, and growth-stage ventures. Direct line to the work.
             </p>
           </motion.div>
-        </div>
-      </section>
+        </Section>
+      </div>
 
-      {/* FAQ - clean, minimal */}
-      <section className="w-full bg-white px-8 py-24">
-        <div className="mx-auto max-w-2xl">
-          <motion.h2
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mb-12 text-center text-sm uppercase tracking-widest text-gray-400"
-          >
-            Common questions
-          </motion.h2>
-          <div>
-            {faqs.map((faq, index) => (
-              <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA - confident close */}
-      <section className="w-full bg-[#0a0a0a] px-8 py-32">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+      {/* FAQ */}
+      <Section className="py-24">
+        <motion.h2
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mx-auto max-w-2xl text-center"
+          className="dark:text-polar-500 mb-12 text-center text-sm uppercase tracking-widest text-gray-400"
         >
-          <h2 className="mb-6 text-4xl font-medium text-white md:text-5xl">
-            Ready?
-          </h2>
-          <p className="mb-10 text-xl text-gray-400">
-            15 minutes. No pitch. Just conversation.
-          </p>
-          <a
-            href="https://calendly.com/d999ss/15min"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-lg text-[#D2A62C] transition-colors hover:text-white"
-          >
-            <span>Book your call</span>
-            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
+          Common questions
+        </motion.h2>
+        <div className="mx-auto max-w-2xl">
+          {faqs.map((faq, index) => (
+            <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
+          ))}
+        </div>
+      </Section>
 
-          <div className="mt-16 flex flex-col items-center gap-2 text-gray-600">
-            <p>Prefer email?</p>
+      {/* Final CTA */}
+      <div className="dark:bg-polar-950 w-full bg-gray-950">
+        <Section className="py-24 md:py-32">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center text-center"
+          >
+            <h2 className="dark:text-polar-50 mb-6 text-4xl font-medium text-white md:text-5xl">
+              Ready?
+            </h2>
+            <p className="dark:text-polar-400 mb-10 text-xl text-gray-400">
+              15 minutes. No pitch. Just conversation.
+            </p>
             <a
-              href="mailto:donny@makebttr.com"
-              className="text-gray-400 transition-colors hover:text-white"
+              href="https://calendly.com/d999ss/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-lg text-[#D2A62C] transition-colors hover:text-white"
             >
-              donny@makebttr.com
+              <span>Book your call</span>
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
             </a>
-          </div>
-        </motion.div>
-      </section>
-    </main>
+
+            <div className="dark:text-polar-600 mt-16 flex flex-col items-center gap-2 text-gray-600">
+              <p>Prefer email?</p>
+              <a
+                href="mailto:donny@makebttr.com"
+                className="dark:text-polar-400 text-gray-400 transition-colors hover:text-white"
+              >
+                donny@makebttr.com
+              </a>
+            </div>
+          </motion.div>
+        </Section>
+      </div>
+    </div>
   )
 }
