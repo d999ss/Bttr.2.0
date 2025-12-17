@@ -206,15 +206,15 @@ export default function ContactPage() {
             <p className="dark:text-polar-500 mb-8 text-sm uppercase tracking-widest text-gray-400">You&apos;ll speak with</p>
             <div className="mb-6 inline-block overflow-hidden rounded-full">
               <Image
-                src="/assets/team/donny.jpg"
-                alt="Donny Smith"
+                src="/assets/team/hiro.png"
+                alt="Hiro Grant"
                 width={120}
                 height={120}
                 className="h-28 w-28 object-cover"
               />
             </div>
-            <h3 className="dark:text-polar-50 mb-2 text-2xl font-medium text-gray-900">Donny Smith</h3>
-            <p className="dark:text-polar-500 mb-4 text-gray-500">Founder & Principal</p>
+            <h3 className="dark:text-polar-50 mb-2 text-2xl font-medium text-gray-900">Hiro Grant</h3>
+            <p className="dark:text-polar-500 mb-4 text-gray-500">Partner</p>
             <p className="dark:text-polar-400 mx-auto max-w-md text-gray-600">
               15 years building digital products for GE, Allergan, and growth-stage ventures. Direct line to the work.
             </p>
