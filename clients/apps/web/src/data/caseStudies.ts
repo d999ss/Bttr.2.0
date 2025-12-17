@@ -75,6 +75,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'AMI',
     description: 'Improving the user experience and product strategy for a learning platform.',
     thumbnail: '/assets/work/uploads/2025/03/20211133.jpg.webp',
+    resultHighlight: '2x new users',
     tags: ['Web Design', 'B2B', 'UX Strategy', 'Enterprise'],
   },
   {
@@ -91,6 +92,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'FleetPulse',
     description: 'Smart-Trailer innovation, designed for a more efficient future',
     thumbnail: '/assets/work/uploads/2024/06/Fleetpulse_Thumb.jpg.webp',
+    resultHighlight: '47% faster ROI',
     tags: ['Enterprise', 'Manufacturing', 'Mobile App', 'B2B'],
   },
   {
@@ -98,6 +100,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'GE Brilliant You',
     description: "Investing in GE's most valuable asset—their people",
     thumbnail: '/assets/work/uploads/2023/08/ge-brilliant-you-thumb.webp',
+    resultHighlight: '300K+ employees',
     tags: ['Enterprise', 'Aerospace', 'Web Design', 'UX Strategy'],
   },
   {
@@ -124,6 +127,7 @@ export const caseStudies: CaseStudy[] = [
     description: 'A modern, luxurious identity.',
     thumbnail: '/assets/work/uploads/2024/08/SQ-Image-frame-4.jpg.webp',
     featured: true,
+    resultHighlight: 'Series A funded',
     tags: ['Branding', 'Web Design', 'Consumer', 'UX Strategy'],
   },
   {
@@ -160,6 +164,7 @@ export const caseStudies: CaseStudy[] = [
     title: 'Allē',
     description: 'Building the loyalty platform for Allergan Aesthetics',
     thumbnail: '/assets/work/uploads/2023/09/Alle-HS-1-1-3_00000.png',
+    resultHighlight: '6M+ users',
     tags: ['Healthcare', 'Enterprise', 'Design System', 'UX Strategy'],
   },
   {

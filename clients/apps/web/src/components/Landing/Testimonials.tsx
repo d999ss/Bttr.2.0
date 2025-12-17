@@ -4,38 +4,38 @@ import Link from 'next/link'
 
 export const testimonials = [
   {
-    link: '#',
-    name: 'GE Aerospace',
-    company: 'Enterprise',
+    link: '/work/alle',
+    name: 'Tory Brady',
+    company: 'CTO, Allergan Aesthetics',
     verified: true,
     avatar: '/assets/landing/testamonials/rauch.jpg',
     text: (
       <p>
-        Senior leaders at GE and GE Aerospace trust Bttr. to design and engineer systems that operate under real world constraints.
+        &ldquo;Bttr have been an essential part of Allē&apos;s success and business transformation—their vision and expertise continues driving progress.&rdquo;
       </p>
     ),
   },
   {
-    link: '#',
-    name: 'Enterprise Client',
-    company: 'Regulated Industry',
+    link: '/work/ge-aerospace',
+    name: 'GE Aerospace',
+    company: 'Enterprise Aviation',
     verified: true,
     avatar: '/assets/landing/testamonials/steven.jpg',
     text: (
       <p>
-        Bttr. consistently delivers clarity, speed, and execution across complex, regulated environments.
+        &ldquo;Senior leaders at GE and GE Aerospace trust Bttr. to design and engineer systems that operate under real world constraints.&rdquo;
       </p>
     ),
   },
   {
-    link: '#',
-    name: 'Product Leader',
-    company: 'Technology',
+    link: '/work/tiger-biosciences',
+    name: 'Tiger BioSciences',
+    company: 'Regenerative Medicine',
     verified: true,
     avatar: '/assets/landing/testamonials/mitchell.jpg',
     text: (
       <p>
-        Working with Bttr. feels less like hiring an agency and more like extending your core team.
+        &ldquo;The new platform has transformed how we communicate with healthcare professionals. It&apos;s not just a website—it&apos;s a tool that helps our sales team close deals.&rdquo;
       </p>
     ),
   },

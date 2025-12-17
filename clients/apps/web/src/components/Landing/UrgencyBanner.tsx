@@ -15,7 +15,7 @@ export const UrgencyBanner = () => {
       <div className="flex flex-col items-center gap-y-6">
         <span className="inline-flex items-center gap-x-2 text-sm text-[#D2A62C]">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#D2A62C]" />
-          Limited 2026 Availability
+          Currently Booking Q2 2026
         </span>
 
         <h2 className="max-w-2xl text-2xl text-pretty md:text-4xl md:leading-normal">
@@ -27,21 +27,29 @@ export const UrgencyBanner = () => {
         </p>
       </div>
 
-      <Link
-        href="/contact"
-        className="dark:bg-polar-800 dark:hover:bg-polar-700 group inline-flex items-center gap-x-2 rounded-full bg-gray-50 px-6 py-3 text-sm transition-colors hover:bg-gray-100"
-      >
-        <span>Schedule a Conversation</span>
-        <svg
-          className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2}
+      <div className="flex flex-col items-center gap-4 sm:flex-row">
+        <Link
+          href="/contact"
+          className="group inline-flex items-center gap-x-2 rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
         >
-          <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-        </svg>
-      </Link>
+          <span>Schedule a Conversation</span>
+          <svg
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </Link>
+        <Link
+          href="/work"
+          className="dark:bg-polar-800 dark:hover:bg-polar-700 dark:text-polar-300 inline-flex items-center gap-x-2 rounded-full bg-gray-100 px-6 py-3 text-sm text-gray-600 transition-colors hover:bg-gray-200"
+        >
+          <span>View Case Studies</span>
+        </Link>
+      </div>
     </motion.div>
   )
 }

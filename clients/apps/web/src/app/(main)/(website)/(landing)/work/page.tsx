@@ -151,6 +151,11 @@ export default function WorkPage() {
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         />
+                        {study.resultHighlight && (
+                          <div className="absolute bottom-3 left-3 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+                            {study.resultHighlight}
+                          </div>
+                        )}
                       </div>
                       <h3 className="mb-2 text-xl tracking-tight text-gray-900 dark:text-white">
                         {study.title}
