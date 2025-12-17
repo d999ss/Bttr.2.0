@@ -5,6 +5,7 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Section } from '@/components/Landing/Section'
+import { BttrLogotype } from '@/components/Brand/BttrLogotype'
 
 const faqs = [
   {
@@ -67,69 +68,84 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 export default function ContactPage() {
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <div className="dark:bg-polar-950 relative flex min-h-[80vh] w-full flex-col items-center justify-center overflow-hidden bg-gray-950 px-8 py-32">
-        {/* Subtle gradient orb */}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-r from-[#D2A62C]/20 via-[#D2A62C]/5 to-transparent blur-3xl" />
-
+      {/* Hero with Card - matching login page style */}
+      <div className="dark:bg-polar-950 flex min-h-screen w-full items-center justify-center bg-gray-50 px-4 py-24">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, ease: [0.23, 1, 0.32, 1] }}
-          className="relative z-10 mx-auto max-w-4xl text-center"
+          transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+          className="dark:bg-polar-900 flex w-full max-w-md flex-col justify-between gap-12 rounded-4xl bg-white p-12 shadow-sm dark:shadow-none"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mb-8 inline-flex items-center gap-2 rounded-full border border-[#D2A62C]/30 bg-[#D2A62C]/10 px-4 py-2"
-          >
-            <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-[#D2A62C]" />
-            <span className="text-sm text-[#D2A62C]">Booking Q2 2026</span>
-          </motion.div>
+          <div className="flex flex-col gap-y-8">
+            <BttrLogotype variant="icon" size={60} />
+            <div className="flex flex-col gap-4">
+              <h1 className="text-2xl text-black dark:text-white">
+                Let&apos;s talk.
+              </h1>
+              <p className="dark:text-polar-400 text-lg text-gray-500">
+                15 minutes to see if we&apos;re the right fit.
+              </p>
+            </div>
+          </div>
 
-          <h1 className="dark:text-polar-50 mb-8 text-5xl font-medium leading-[1.1] tracking-tight text-white md:text-7xl lg:text-8xl">
-            Let&apos;s talk.
-          </h1>
+          <div className="flex flex-col gap-y-6">
+            {/* Availability badge */}
+            <div className="flex items-center gap-2">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-[#D2A62C]" />
+              <span className="dark:text-polar-400 text-sm text-gray-500">Booking Q2 2026</span>
+            </div>
 
-          <p className="dark:text-polar-400 mx-auto mb-12 max-w-xl text-xl text-gray-400 md:text-2xl">
-            15 minutes to see if we&apos;re the right fit.
-          </p>
+            {/* You'll speak with */}
+            <div className="dark:border-polar-700 flex items-center gap-4 rounded-2xl border border-gray-100 p-4">
+              <div className="h-12 w-12 overflow-hidden rounded-full">
+                <Image
+                  src="/assets/team/hiro.png"
+                  alt="Hiro Grant"
+                  width={48}
+                  height={48}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div>
+                <p className="font-medium text-black dark:text-white">Hiro Grant</p>
+                <p className="dark:text-polar-500 text-sm text-gray-500">Commercial Lead</p>
+              </div>
+            </div>
 
-          <motion.a
-            href="https://calendly.com/d999ss/15min"
-            target="_blank"
-            rel="noopener noreferrer"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="group inline-flex items-center gap-3 rounded-full bg-[#D2A62C] px-8 py-4 text-lg font-medium text-black transition-all hover:bg-[#e0b432] hover:shadow-lg hover:shadow-[#D2A62C]/25"
-          >
-            <span>Book a call</span>
-            <svg
-              className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            {/* Primary CTA */}
+            <a
+              href="https://calendly.com/d999ss/15min"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-full bg-[#D2A62C] px-6 py-3 text-sm font-medium text-white transition-opacity hover:opacity-90"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </motion.a>
-        </motion.div>
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Book a Call
+            </a>
 
-        {/* Scroll indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="dark:border-polar-700 h-12 w-6 rounded-full border border-gray-700 p-1"
-          >
-            <div className="dark:bg-polar-600 h-2 w-full rounded-full bg-gray-600" />
-          </motion.div>
+            <div className="flex items-center gap-4">
+              <div className="dark:border-polar-700 h-px flex-1 border-t border-gray-200" />
+              <span className="dark:text-polar-500 text-sm text-gray-400">or</span>
+              <div className="dark:border-polar-700 h-px flex-1 border-t border-gray-200" />
+            </div>
+
+            {/* Email option */}
+            <a
+              href="mailto:hello@makebttr.com"
+              className="dark:bg-polar-700 dark:hover:bg-polar-600 dark:border-polar-600 flex w-full items-center justify-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-medium text-black transition-colors hover:bg-gray-50 dark:text-white"
+            >
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              Send an Email
+            </a>
+          </div>
+
+          <div className="dark:text-polar-500 text-center text-xs text-gray-400">
+            No pitch. No pressure. Just an honest conversation about your project.
+          </div>
         </motion.div>
       </div>
 
@@ -193,92 +209,53 @@ export default function ContactPage() {
         </motion.blockquote>
       </Section>
 
-      {/* You'll speak with */}
+      {/* FAQ */}
       <div className="dark:bg-polar-900 w-full bg-gray-50">
         <Section className="py-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+          <motion.h2
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center text-center"
+            className="dark:text-polar-500 mb-12 text-center text-sm uppercase tracking-widest text-gray-400"
           >
-            <p className="dark:text-polar-500 mb-8 text-sm uppercase tracking-widest text-gray-400">You&apos;ll speak with</p>
-            <div className="mb-6 inline-block overflow-hidden rounded-full">
-              <Image
-                src="/assets/team/hiro.png"
-                alt="Hiro Grant"
-                width={120}
-                height={120}
-                className="h-28 w-28 object-cover"
-              />
-            </div>
-            <h3 className="dark:text-polar-50 mb-2 text-2xl font-medium text-gray-900">Hiro Grant</h3>
-            <p className="dark:text-polar-500 mb-4 text-gray-500">Commercial Lead</p>
-            <p className="dark:text-polar-400 mx-auto max-w-md text-gray-600">
-              15 years building digital products for GE, Allergan, and growth-stage ventures. Direct line to the work.
-            </p>
-          </motion.div>
+            Common questions
+          </motion.h2>
+          <div className="mx-auto max-w-2xl">
+            {faqs.map((faq, index) => (
+              <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
+            ))}
+          </div>
         </Section>
       </div>
-
-      {/* FAQ */}
-      <Section className="py-24">
-        <motion.h2
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="dark:text-polar-500 mb-12 text-center text-sm uppercase tracking-widest text-gray-400"
-        >
-          Common questions
-        </motion.h2>
-        <div className="mx-auto max-w-2xl">
-          {faqs.map((faq, index) => (
-            <FAQItem key={index} question={faq.question} answer={faq.answer} index={index} />
-          ))}
-        </div>
-      </Section>
 
       {/* Final CTA */}
-      <div className="dark:bg-polar-950 w-full bg-gray-950">
-        <Section className="py-24 md:py-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col items-center text-center"
+      <Section className="py-24 md:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col items-center text-center"
+        >
+          <h2 className="dark:text-polar-50 mb-6 text-4xl font-medium text-gray-900 md:text-5xl">
+            Ready to start?
+          </h2>
+          <p className="dark:text-polar-400 mb-10 max-w-md text-xl text-gray-500">
+            15 minutes. No pitch. Just conversation.
+          </p>
+          <a
+            href="https://calendly.com/d999ss/15min"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-[#D2A62C] px-8 py-4 text-lg font-medium text-white transition-opacity hover:opacity-90"
           >
-            <h2 className="dark:text-polar-50 mb-6 text-4xl font-medium text-white md:text-5xl">
-              Ready?
-            </h2>
-            <p className="dark:text-polar-400 mb-10 text-xl text-gray-400">
-              15 minutes. No pitch. Just conversation.
-            </p>
-            <a
-              href="https://calendly.com/d999ss/15min"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-lg text-[#D2A62C] transition-colors hover:text-white"
-            >
-              <span>Book your call</span>
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
-
-            <div className="dark:text-polar-600 mt-16 flex flex-col items-center gap-2 text-gray-600">
-              <p>Prefer email?</p>
-              <a
-                href="mailto:donny@makebttr.com"
-                className="dark:text-polar-400 text-gray-400 transition-colors hover:text-white"
-              >
-                donny@makebttr.com
-              </a>
-            </div>
-          </motion.div>
-        </Section>
-      </div>
+            <span>Book your call</span>
+            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </motion.div>
+      </Section>
     </div>
   )
 }
