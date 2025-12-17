@@ -1,5 +1,7 @@
 import '../styles/globals.css'
 
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import Script from 'next/script'
 import SandboxBanner from '@/components/Sandbox/SandboxBanner'
 import { UserContextProvider } from '@/providers/auth'
@@ -163,6 +165,8 @@ export default async function RootLayout({
                 <NavigationHistoryProvider>
                   <SandboxBanner />
                   {children}
+                  <Analytics />
+                  <SpeedInsights />
                 </NavigationHistoryProvider>
               </PolarNuqsProvider>
             </PolarQueryClientProvider>
