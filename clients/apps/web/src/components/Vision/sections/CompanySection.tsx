@@ -74,7 +74,10 @@ export const CompanySection = ({ active }: { active: boolean }) => {
       header={{ index: '01', name: 'Company' }}
       title="Designed to Adapt. Engineered to Win."
       context={
-        <div className="flex flex-col gap-y-8">
+        <div className="flex flex-col gap-y-4">
+          <h3 className="text-polar-400 text-xs uppercase tracking-wider">
+            Leadership Team
+          </h3>
           <div className="grid grid-cols-2 gap-4 md:grid-cols-3 md:gap-6">
             {team.map((profile) => (
               <Profile key={profile.name} {...profile} />
