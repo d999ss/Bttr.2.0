@@ -56,7 +56,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
           >
             <p className="pb-4 text-sm leading-relaxed text-gray-500 dark:text-polar-400" style={{ textTransform: 'none', fontFamily: 'inherit', letterSpacing: 'normal' }}>{answer}</p>
           </motion.div>
-        )}
+        ))}
       </AnimatePresence>
     </motion.div>
   )

@@ -162,6 +162,37 @@ export default function ContactPage() {
         </motion.div>
       </Section>
 
+      {/* Testimonial */}
+      <Section className="py-24 md:py-32">
+        <motion.blockquote
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative text-center"
+        >
+          <span className="dark:text-polar-800 absolute -top-8 left-1/2 -translate-x-1/2 text-8xl text-gray-100">&ldquo;</span>
+          <p className="dark:text-polar-50 relative z-10 text-2xl leading-relaxed text-gray-900 md:text-3xl lg:text-4xl">
+            Bttr have been an essential part of Allē&apos;s success and business transformation—their vision and expertise continues driving progress.
+          </p>
+          <footer className="mt-10 flex flex-col items-center gap-4">
+            <div className="dark:bg-polar-800 h-16 w-16 overflow-hidden rounded-full bg-gray-100">
+              <Image
+                src="/assets/landing/testamonials/rauch.jpg"
+                alt="Tory Brady"
+                width={64}
+                height={64}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="text-center">
+              <p className="dark:text-polar-50 font-medium text-gray-900">Tory Brady</p>
+              <p className="dark:text-polar-500 text-gray-500">CTO, Allergan Aesthetics</p>
+            </div>
+          </footer>
+        </motion.blockquote>
+      </Section>
+
       {/* You'll speak with */}
       <div className="dark:bg-polar-900 w-full bg-gray-50">
         <Section className="py-24">
@@ -185,7 +216,7 @@ export default function ContactPage() {
             <h3 className="dark:text-polar-50 mb-2 text-2xl font-medium text-gray-900">Hiro Grant</h3>
             <p className="dark:text-polar-500 mb-4 text-gray-500">Commercial Lead</p>
             <p className="dark:text-polar-400 mx-auto max-w-md text-gray-600">
-              10 years in enterprise software and regulated industries. He'll help you figure out if we're the right fit.
+              15 years building digital products for GE, Allergan, and growth-stage ventures. Direct line to the work.
             </p>
           </motion.div>
         </Section>

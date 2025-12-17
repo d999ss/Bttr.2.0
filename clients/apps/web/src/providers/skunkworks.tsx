@@ -74,26 +74,18 @@ export function useSkunkworks() {
   return context
 }
 
-// Safe hook that doesn't throw if outside provider
-function useSkunkworksSafe() {
-  return useContext(SkunkworksContext)
-}
-
 // Theme toggle component for footer
 export function SkunkworksToggle() {
-  const context = useSkunkworksSafe()
+  const { isSkunkworks, toggleSkunkworks } = useSkunkworks()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  // Don't render if not mounted or context not available
-  if (!mounted || !context) {
+  if (!mounted) {
     return null
   }
-
-  const { isSkunkworks, toggleSkunkworks } = context
 
   return (
     <button
