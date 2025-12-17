@@ -21,7 +21,7 @@ export default function BotoxCosmeticPage() {
       <section className="relative min-h-screen w-full overflow-hidden bg-[#1a1a1a]">
         <div className="absolute inset-0">
           <Image
-            src="/assets/work/uploads/2025/04/Desktop-2.webp"
+            src="/assets/work/uploads/2025/04/botox-hero.jpg"
             alt="BOTOX Cosmetic"
             fill
             className="object-cover"
@@ -103,7 +103,7 @@ export default function BotoxCosmeticPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/Full-width-1.webp"
+            src="/assets/work/uploads/2025/04/botox-fullwidth-1.jpg"
             alt="BOTOX Cosmetic Website"
             fill
             className="object-cover"
@@ -154,7 +154,7 @@ export default function BotoxCosmeticPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-1.webp"
+              src="/assets/work/uploads/2025/04/botox-sq-1.jpg"
               alt="BOTOX Interface"
               fill
               className="object-cover"
@@ -163,7 +163,7 @@ export default function BotoxCosmeticPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame.jpg.webp"
+              src="/assets/work/uploads/2025/04/botox-sq-logo.webp"
               alt="BOTOX Mobile"
               fill
               className="object-cover"
@@ -177,7 +177,7 @@ export default function BotoxCosmeticPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/Full-width.webp"
+            src="/assets/work/uploads/2025/04/botox-fullwidth.jpg"
             alt="BOTOX Website Full View"
             fill
             className="object-cover"
@@ -190,7 +190,7 @@ export default function BotoxCosmeticPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width_12.webp"
+            src="/assets/work/uploads/2025/04/botox-components.jpg"
             alt="BOTOX Components"
             fill
             className="object-cover"
@@ -213,7 +213,7 @@ export default function BotoxCosmeticPage() {
       <section className="w-full bg-gray-100">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width-3.webp"
+            src="/assets/work/uploads/2025/04/botox-experience.jpg"
             alt="BOTOX Experience"
             fill
             className="object-cover"
@@ -227,7 +227,7 @@ export default function BotoxCosmeticPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame_4.jpg"
+              src="/assets/work/uploads/2025/04/botox-sq-4.jpg"
               alt="BOTOX Feature"
               fill
               className="object-cover"
@@ -236,7 +236,7 @@ export default function BotoxCosmeticPage() {
           </div>
           <div className="relative aspect-square">
             <Image
-              src="/assets/work/uploads/2025/04/SQ-Image-frame-4.jpg.webp"
+              src="/assets/work/uploads/2025/04/botox-sq-4.webp"
               alt="BOTOX Feature"
               fill
               className="object-cover"
@@ -271,7 +271,7 @@ export default function BotoxCosmeticPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-square w-full md:aspect-video">
           <Image
-            src="/assets/work/uploads/2025/04/SQ-Image-frame_6.webp"
+            src="/assets/work/uploads/2025/04/botox-sq-6.jpg"
             alt="BOTOX Content Strategy"
             fill
             className="object-cover"
@@ -284,7 +284,7 @@ export default function BotoxCosmeticPage() {
       <section className="w-full bg-white">
         <div className="relative aspect-video w-full">
           <Image
-            src="/assets/work/uploads/2025/04/CS_Inset-full-width_10-scaled.webp"
+            src="/assets/work/uploads/2025/04/botox-platform.jpg"
             alt="BOTOX Platform"
             fill
             className="object-cover"
