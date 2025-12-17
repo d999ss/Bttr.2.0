@@ -32,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description:
       'We design, build, and operate mission critical digital products for organizations where failure is not an option.',
     openGraph: {
-      images: '/assets/brand/bttr_og.webp',
+      images: 'https://www.makebttr.com/assets/brand/bttr_og.webp',
       type: 'website',
       siteName: 'Bttr.',
       title: 'Bttr. | Designed to Adapt. Engineered to Win.',
@@ -41,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: 'en_US',
     },
     twitter: {
-      images: '/assets/brand/bttr_og.webp',
+      images: 'https://www.makebttr.com/assets/brand/bttr_og.webp',
       card: 'summary_large_image',
       title: 'Bttr. | Designed to Adapt. Engineered to Win.',
       description:
