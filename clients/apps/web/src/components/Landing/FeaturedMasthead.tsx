@@ -23,7 +23,7 @@ const slides: FeaturedSlide[] = [
   },
   {
     href: '/work/great-dane',
-    image: '/assets/work/uploads/2025/01/great-dane-thumb.webp',
+    image: '/assets/work/uploads/2025/01/great-dane/1.webp',
     alt: 'Great Dane',
     title: 'Great Dane',
     description: 'Redesigning the digital presence for a 125-year legacy in American manufacturing',
