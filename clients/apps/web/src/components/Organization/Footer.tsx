@@ -207,7 +207,7 @@ const Footer = () => {
         {/* Bottom row with copyright */}
         <div className="dark:border-polar-800 mt-12 flex w-full flex-col items-center justify-between gap-y-4 border-t border-gray-200 pt-8 md:flex-row">
           <span className="dark:text-polar-500 text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} Bttr. All rights reserved.
+            &copy; 2025 Bttr. All rights reserved.
           </span>
           <div className="flex flex-row flex-wrap justify-center gap-x-6 gap-y-2 text-sm">
             <FooterLink href="/legal/privacy">Privacy</FooterLink>

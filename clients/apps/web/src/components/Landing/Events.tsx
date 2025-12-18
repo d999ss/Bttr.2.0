@@ -58,11 +58,7 @@ export const Events = () => {
                 >
                   <h3 className="w-full truncate xl:w-36">{event.name}</h3>
                   <p className="dark:text-polar-500 hidden w-28 text-xs text-gray-500 xl:flex">
-                    {new Date().toLocaleDateString('en-US', {
-                      day: 'numeric',
-                      month: 'short',
-                      year: 'numeric',
-                    })}
+                    {event.time}
                   </p>
                   <div className="flex w-fit shrink-0 flex-row items-center justify-end gap-x-4 md:w-32">
                     <StatusBadge status={event.status} />
@@ -123,14 +119,14 @@ const StatusBadge = ({ status }: { status: string }) => {
 }
 
 const baseEvents = [
-  { name: 'Contract signed', status: 'Confirmed' },
-  { name: 'Cloud deployment', status: 'Live' },
-  { name: 'Performance test', status: 'Running' },
-  { name: 'API integration', status: 'In progress' },
-  { name: 'Security review', status: 'Passed' },
-  { name: 'Sprint completed', status: 'Closed' },
-  { name: 'Design review', status: 'Approved' },
-  { name: 'User testing', status: 'In progress' },
-  { name: 'Infrastructure update', status: 'Applied' },
-  { name: 'Release published', status: 'v1.4.0' },
+  { name: 'Contract signed', status: 'Confirmed', time: 'Just now' },
+  { name: 'Cloud deployment', status: 'Live', time: '2m ago' },
+  { name: 'Performance test', status: 'Running', time: '5m ago' },
+  { name: 'API integration', status: 'In progress', time: '12m ago' },
+  { name: 'Security review', status: 'Passed', time: '1h ago' },
+  { name: 'Sprint completed', status: 'Closed', time: '2h ago' },
+  { name: 'Design review', status: 'Approved', time: '3h ago' },
+  { name: 'User testing', status: 'In progress', time: '4h ago' },
+  { name: 'Infrastructure update', status: 'Applied', time: '6h ago' },
+  { name: 'Release published', status: 'v1.4.0', time: '1d ago' },
 ]
