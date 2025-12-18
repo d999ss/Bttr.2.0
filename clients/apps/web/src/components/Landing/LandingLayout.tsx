@@ -3,6 +3,8 @@
 import { BeaAnimation } from '@/components/Brand/BeaAnimation'
 import { BttrLogotype } from '@/components/Brand/BttrLogotype'
 import Footer from '@/components/Organization/Footer'
+import { SearchTrigger, SiteSearch } from '@/components/SiteSearch'
+import { useSearchShortcut } from '@/components/SiteSearch/useSearchShortcut'
 import { caseStudies } from '@/data/caseStudies'
 import Button from '@polar-sh/ui/components/atoms/Button'
 import {
@@ -16,17 +18,21 @@ import {
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { ComponentProps, PropsWithChildren } from 'react'
+import { ComponentProps, PropsWithChildren, useCallback, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import { NavPopover, NavPopoverSection } from './NavPopover'
 
 export default function Layout({ children }: PropsWithChildren) {
+  const [searchOpen, setSearchOpen] = useState(false)
+  const openSearch = useCallback(() => setSearchOpen(true), [])
+  useSearchShortcut(openSearch)
+
   return (
     <div className="dark:bg-polar-950 relative flex flex-col bg-gray-50 px-0 md:w-full md:flex-1 md:items-center md:px-4">
       <div className="flex flex-col gap-y-2 md:w-full">
-        <LandingPageDesktopNavigation />
+        <LandingPageDesktopNavigation onSearchClick={openSearch} />
         <SidebarProvider className="absolute inset-0 flex flex-col items-start md:hidden">
-          <LandingPageTopbar />
+          <LandingPageTopbar onSearchClick={openSearch} />
           <LandingPageMobileNavigation />
         </SidebarProvider>
 
@@ -35,6 +41,7 @@ export default function Layout({ children }: PropsWithChildren) {
         </div>
         <LandingPageFooter />
       </div>
+      <SiteSearch open={searchOpen} onOpenChange={setSearchOpen} />
     </div>
   )
 }
@@ -152,7 +159,11 @@ const LandingPageMobileNavigation = () => {
   )
 }
 
-const LandingPageDesktopNavigation = () => {
+const LandingPageDesktopNavigation = ({
+  onSearchClick,
+}: {
+  onSearchClick: () => void
+}) => {
   const pathname = usePathname()
 
   const featuresSections: NavPopoverSection[] = [
@@ -281,6 +292,7 @@ const LandingPageDesktopNavigation = () => {
         </ul>
 
         <div className="flex items-center gap-4 justify-self-end">
+          <SearchTrigger onClick={onSearchClick} />
           <Link href="/portal/login">
             <Button variant="ghost" className="rounded-full">
               Client Login
@@ -293,7 +305,11 @@ const LandingPageDesktopNavigation = () => {
   )
 }
 
-const LandingPageTopbar = () => {
+const LandingPageTopbar = ({
+  onSearchClick,
+}: {
+  onSearchClick: () => void
+}) => {
   return (
     <div className="z-30 flex w-full flex-row items-center justify-between px-6 py-6 md:hidden md:px-12">
       <Link href="/">
@@ -303,7 +319,29 @@ const LandingPageTopbar = () => {
           size={100}
         />
       </Link>
-      <SidebarTrigger className="md:hidden" />
+      <div className="flex items-center gap-2">
+        <button
+          onClick={onSearchClick}
+          className="dark:text-polar-400 dark:hover:text-polar-200 rounded-lg p-2 text-gray-500 transition-colors hover:text-gray-700"
+          aria-label="Search"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="11" cy="11" r="8" />
+            <path d="m21 21-4.3-4.3" />
+          </svg>
+        </button>
+        <SidebarTrigger className="md:hidden" />
+      </div>
     </div>
   )
 }

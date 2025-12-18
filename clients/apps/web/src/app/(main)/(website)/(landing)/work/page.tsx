@@ -8,10 +8,14 @@ import { Section } from '@/components/Landing/Section'
 import { UrgencyBanner } from '@/components/Landing/UrgencyBanner'
 import { motion, AnimatePresence } from 'framer-motion'
 import { twMerge } from 'tailwind-merge'
+import { Grid3X3, List } from 'lucide-react'
+
+type ViewMode = 'grid' | 'list'
 
 export default function WorkPage() {
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [viewMode, setViewMode] = useState<ViewMode>('grid')
 
   const filteredStudies = useMemo(() => {
     return caseStudies.filter((study) => {
@@ -110,70 +114,165 @@ export default function WorkPage() {
 
           {/* Active Filters & Results Count */}
           <div className="flex items-center justify-between">
-            <p className="dark:text-polar-500 text-sm text-gray-500">
-              {filteredStudies.length} {filteredStudies.length === 1 ? 'project' : 'projects'}
-              {hasFilters && ' found'}
-            </p>
-            {hasFilters && (
+            <div className="flex items-center gap-4">
+              <p className="dark:text-polar-500 text-sm text-gray-500">
+                {filteredStudies.length} {filteredStudies.length === 1 ? 'project' : 'projects'}
+                {hasFilters && ' found'}
+              </p>
+              {hasFilters && (
+                <button
+                  onClick={clearFilters}
+                  className="text-sm font-medium text-[#D2A62C] transition-colors hover:text-[#b8922a]"
+                >
+                  Clear all filters
+                </button>
+              )}
+            </div>
+
+            {/* View Toggle */}
+            <div className="dark:bg-polar-800 flex items-center gap-1 rounded-lg bg-gray-100 p-1">
               <button
-                onClick={clearFilters}
-                className="text-sm font-medium text-[#D2A62C] transition-colors hover:text-[#b8922a]"
+                onClick={() => setViewMode('grid')}
+                className={twMerge(
+                  'rounded-md p-2 transition-all',
+                  viewMode === 'grid'
+                    ? 'bg-white text-gray-900 shadow-sm dark:bg-polar-700 dark:text-white'
+                    : 'text-gray-500 hover:text-gray-700 dark:text-polar-400 dark:hover:text-polar-200'
+                )}
+                aria-label="Grid view"
               >
-                Clear all filters
+                <Grid3X3 className="h-4 w-4" />
               </button>
-            )}
+              <button
+                onClick={() => setViewMode('list')}
+                className={twMerge(
+                  'rounded-md p-2 transition-all',
+                  viewMode === 'list'
+                    ? 'bg-white text-gray-900 shadow-sm dark:bg-polar-700 dark:text-white'
+                    : 'text-gray-500 hover:text-gray-700 dark:text-polar-400 dark:hover:text-polar-200'
+                )}
+                aria-label="List view"
+              >
+                <List className="h-4 w-4" />
+              </button>
+            </div>
           </div>
         </div>
 
-        {/* Case Studies Grid */}
+        {/* Case Studies Grid/List */}
         <div className="flex flex-col gap-y-8">
           <AnimatePresence mode="popLayout">
             {filteredStudies.length > 0 ? (
               <motion.div
-                className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+                className={twMerge(
+                  viewMode === 'grid'
+                    ? 'grid gap-8 sm:grid-cols-2 lg:grid-cols-3'
+                    : 'flex flex-col gap-4'
+                )}
                 layout
               >
                 {filteredStudies.map((study, index) => (
                   <motion.div
                     key={study.slug}
                     layout
-                    initial={{ opacity: 0, scale: 0.9 }}
+                    initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.9 }}
-                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.2, delay: index * 0.02 }}
                   >
-                    <Link href={`/work/${study.slug}`} className="group block">
-                      <div className="dark:bg-polar-800 relative mb-4 aspect-square overflow-hidden rounded-xl bg-gray-200">
-                        <Image
-                          src={study.thumbnail}
-                          alt={study.title}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-                        {study.resultHighlight && (
-                          <div className="absolute bottom-3 left-3 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
-                            {study.resultHighlight}
+                    {viewMode === 'grid' ? (
+                      /* Grid View Card */
+                      <Link href={`/work/${study.slug}`} className="group block">
+                        <div className="dark:bg-polar-800 relative mb-4 aspect-square overflow-hidden rounded-xl bg-gray-200">
+                          <Image
+                            src={study.thumbnail}
+                            alt={study.title}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          />
+                          {study.resultHighlight && (
+                            <div className="absolute bottom-3 left-3 rounded-full bg-black/70 px-3 py-1.5 text-xs font-medium text-white backdrop-blur-sm">
+                              {study.resultHighlight}
+                            </div>
+                          )}
+                        </div>
+                        <h3 className="mb-2 text-xl tracking-tight text-gray-900 dark:text-white">
+                          {study.title}
+                        </h3>
+                        <p className="dark:text-polar-500 mb-3 text-gray-500">
+                          {study.description}
+                        </p>
+                        <div className="flex flex-wrap gap-2">
+                          {study.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="dark:bg-polar-800 dark:text-polar-400 rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-600"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </Link>
+                    ) : (
+                      /* List View Row */
+                      <Link
+                        href={`/work/${study.slug}`}
+                        className="dark:bg-polar-900 dark:border-polar-800 dark:hover:border-polar-700 group flex items-center gap-6 rounded-xl border border-gray-100 bg-white p-4 transition-all hover:border-gray-200 hover:shadow-sm"
+                      >
+                        <div className="dark:bg-polar-800 relative h-20 w-20 shrink-0 overflow-hidden rounded-lg bg-gray-200 md:h-24 md:w-24">
+                          <Image
+                            src={study.thumbnail}
+                            alt={study.title}
+                            fill
+                            className="object-cover transition-transform duration-300 group-hover:scale-105"
+                            sizes="96px"
+                          />
+                        </div>
+                        <div className="flex min-w-0 flex-1 flex-col gap-2">
+                          <div className="flex items-start justify-between gap-4">
+                            <div className="min-w-0 flex-1">
+                              <div className="flex items-center gap-3">
+                                <h3 className="truncate text-lg font-medium text-gray-900 dark:text-white">
+                                  {study.title}
+                                </h3>
+                                {study.resultHighlight && (
+                                  <span className="hidden shrink-0 rounded-full bg-[#D2A62C]/10 px-2.5 py-0.5 text-xs font-medium text-[#D2A62C] sm:inline">
+                                    {study.resultHighlight}
+                                  </span>
+                                )}
+                              </div>
+                              <p className="dark:text-polar-500 mt-1 line-clamp-1 text-sm text-gray-500">
+                                {study.description}
+                              </p>
+                            </div>
+                            <svg
+                              className="dark:text-polar-500 h-5 w-5 shrink-0 text-gray-400 transition-transform group-hover:translate-x-1"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
                           </div>
-                        )}
-                      </div>
-                      <h3 className="mb-2 text-xl tracking-tight text-gray-900 dark:text-white">
-                        {study.title}
-                      </h3>
-                      <p className="dark:text-polar-500 mb-3 text-gray-500">
-                        {study.description}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {study.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="dark:bg-polar-800 dark:text-polar-400 rounded-full bg-gray-100 px-2.5 py-1 text-xs text-gray-600"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </Link>
+                          <div className="flex flex-wrap gap-1.5">
+                            {study.tags.slice(0, 4).map((tag) => (
+                              <span
+                                key={tag}
+                                className="dark:bg-polar-800 dark:text-polar-400 rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      </Link>
+                    )}
                   </motion.div>
                 ))}
               </motion.div>
