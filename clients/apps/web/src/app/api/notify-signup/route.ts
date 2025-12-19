@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          from: 'Bttr Portal <notifications@makebttr.com>',
+          from: 'Bttr Portal <onboarding@resend.dev>',
           to: [NOTIFY_EMAIL],
           subject: `🎉 New Portal Signup: ${email}`,
           html: `
