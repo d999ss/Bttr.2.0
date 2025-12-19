@@ -1,7 +1,6 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Image from 'next/image'
 import { PropsWithChildren } from 'react'
 import { twMerge } from 'tailwind-merge'
 
@@ -22,8 +21,8 @@ const itemVariants = {
 
 export type HeroProps = PropsWithChildren<{
   className?: string
-  title: string
-  description: string
+  title?: string
+  description?: string
 }>
 
 export const Hero = ({
@@ -43,26 +42,22 @@ export const Hero = ({
       whileInView="visible"
       viewport={{ once: true }}
     >
-      <motion.div variants={itemVariants}>
-        <Image
-          src="/assets/brand/app-icon.webp"
-          alt="App Icon"
-          width={320}
-          height={320}
-        />
-      </motion.div>
-      <motion.h1
-        className="text-5xl leading-tight! tracking-tight text-balance md:px-0 md:text-7xl"
-        variants={itemVariants}
-      >
-        {title}
-      </motion.h1>
-      <motion.p
-        className="dark:text-polar-500 max-w-2xl text-center text-2xl !leading-relaxed text-balance text-gray-500"
-        variants={itemVariants}
-      >
-        {description}
-      </motion.p>
+      {title && (
+        <motion.h1
+          className="text-5xl leading-tight! tracking-tight text-balance md:px-0 md:text-7xl"
+          variants={itemVariants}
+        >
+          {title}
+        </motion.h1>
+      )}
+      {description && (
+        <motion.p
+          className="dark:text-polar-500 max-w-2xl text-center text-2xl !leading-relaxed text-balance text-gray-500"
+          variants={itemVariants}
+        >
+          {description}
+        </motion.p>
+      )}
       <motion.div
         className="mt-6 flex flex-col items-center gap-4 md:flex-row md:gap-6"
         variants={itemVariants}

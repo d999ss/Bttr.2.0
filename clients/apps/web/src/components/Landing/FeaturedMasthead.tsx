@@ -15,11 +15,11 @@ interface FeaturedSlide {
 
 const slides: FeaturedSlide[] = [
   {
-    href: '/work/ge-aerospace',
-    image: '/assets/work/uploads/2024/08/ge-aerospace-masthead.jpg',
-    alt: 'GE Aerospace FlightDeck',
-    title: 'GE Aerospace FlightDeck',
-    description: 'Modernizing enterprise systems under real-world constraints',
+    href: '/work/ikon-pass',
+    image: '/assets/work/uploads/2025/12/IkonSnow.webp',
+    alt: 'Ikon Pass',
+    title: 'Ikon Pass',
+    description: 'Redefining the ride with an ambitious digital transformation',
   },
   {
     href: '/work/great-dane',
@@ -27,6 +27,20 @@ const slides: FeaturedSlide[] = [
     alt: 'Great Dane',
     title: 'Great Dane',
     description: 'Redesigning the digital presence for a 125-year legacy in American manufacturing',
+  },
+  {
+    href: '/work/juvederm',
+    image: '/assets/work/uploads/2025/04/Desktop-6.webp',
+    alt: 'JUVÉDERM',
+    title: 'JUVÉDERM',
+    description: 'Enhancing engagement for a leading aesthetic brand',
+  },
+  {
+    href: '/work/ge-aerospace',
+    image: '/assets/work/uploads/2024/08/ge-aerospace-masthead.jpg',
+    alt: 'GE Aerospace FlightDeck',
+    title: 'GE Aerospace FlightDeck',
+    description: 'Modernizing enterprise systems under real-world constraints',
   },
 ]
 

@@ -1,11 +1,7 @@
 'use client'
 
-import { Hero } from '@/components/Landing/Hero/Hero'
 import { MerchantOfRecord } from '@/components/Landing/MOR'
 import { Testimonials } from '@/components/Landing/Testimonials'
-import Button from '@polar-sh/ui/components/atoms/Button'
-import Link from 'next/link'
-import GetStartedButton from '../Auth/GetStartedButton'
 import { Adapters } from './Adapters'
 import { Checkout } from './Checkout'
 import { Events } from './Events'
@@ -30,26 +26,7 @@ export const PageContent = () => {
   return (
     <>
       <FeaturedMasthead />
-      <Section className="flex flex-col gap-y-32 py-0 md:py-0">
-        <Hero
-          title="Designed to Adapt. Engineered to Win."
-          description="We design, build, and run digital systems for the science, aerospace, and biotech industries."
-        >
-          <GetStartedButton size="lg" text="Start a Conversation" />
-          <Link
-            href="/resources/why"
-            prefetch
-            className="dark:text-polar-400 text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-200"
-          >
-            <Button
-              variant="secondary"
-              size="lg"
-              className="dark:bg-polar-800 rounded-full border-none bg-white"
-            >
-              Why Bttr
-            </Button>
-          </Link>
-        </Hero>
+      <Section className="flex flex-col gap-y-32 pt-16 md:pt-24">
         <Features />
         <FeaturedWork />
         <Events />

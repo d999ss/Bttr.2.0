@@ -47,7 +47,7 @@ const FeatureCard = ({
               {title}
             </h3>
             {typeof description === 'string' ? (
-              <p className="dark:text-polar-500 w-full grow text-lg text-gray-500 md:max-w-96">
+              <p className="dark:text-polar-500 mb-8 w-full grow text-lg text-gray-500 md:max-w-96">
                 {description}
               </p>
             ) : (
@@ -109,7 +109,7 @@ const Features = ({ className }: FeaturesProps) => {
     {
       title: 'Engineering',
       description:
-        'Production grade platforms engineered for scale, security, and compliance.',
+        'Production grade platforms engineered for performance, scale, reliability, and compliance.',
       linkHref: '/features/benefits',
       children: (
         <div className="grid grid-cols-2 gap-2">
@@ -147,31 +147,25 @@ const Features = ({ className }: FeaturesProps) => {
     {
       title: 'Lifecycle Ownership',
       description:
-        'Long term system stewardship beyond launch.',
+        'Long term system stewardship beyond launch, with ongoing support and continuous improvement.',
       linkHref: '/resources/merchant-of-record',
       children: (
-        <div className="dark:bg-polar-800 dark:border-polar-700 flex flex-col gap-y-2 rounded-lg border border-transparent bg-gray-50 p-4">
-          <div className="flex items-center justify-between">
-            <span className="text-sm text-black dark:text-white">
-              System Status
-            </span>
-            <span className="text-sm text-emerald-500">Operational</span>
+        <div className="grid grid-cols-2 gap-2">
+          <div className="dark:bg-polar-800 dark:border-polar-700 flex items-center justify-between rounded-lg border border-transparent bg-gray-50 px-3 py-2">
+            <span className="dark:text-polar-50 text-xs text-gray-950">Status</span>
+            <span className="text-xs text-emerald-500">Live</span>
           </div>
-          <div className="dark:border-polar-700 flex items-center justify-between border-t border-gray-200 pt-2">
-            <span className="dark:text-polar-500 text-sm text-gray-500">
-              Uptime
-            </span>
-            <span className="dark:text-polar-500 text-sm text-gray-500">
-              99.99%
-            </span>
+          <div className="dark:bg-polar-800 dark:border-polar-700 flex items-center justify-between rounded-lg border border-transparent bg-gray-50 px-3 py-2">
+            <span className="dark:text-polar-50 text-xs text-gray-950">Uptime</span>
+            <span className="dark:text-polar-500 text-xs text-gray-500">99.99%</span>
           </div>
-          <div className="flex items-center justify-between">
-            <span className="dark:text-polar-500 text-sm text-gray-500">
-              Response Time
-            </span>
-            <span className="dark:text-polar-500 text-sm text-gray-500">
-              42ms avg
-            </span>
+          <div className="dark:bg-polar-800 dark:border-polar-700 flex items-center justify-between rounded-lg border border-transparent bg-gray-50 px-3 py-2">
+            <span className="dark:text-polar-50 text-xs text-gray-950">Monitoring</span>
+            <span className="dark:text-polar-500 text-xs text-gray-500">24/7</span>
+          </div>
+          <div className="dark:bg-polar-800 dark:border-polar-700 flex items-center justify-between rounded-lg border border-transparent bg-gray-50 px-3 py-2">
+            <span className="dark:text-polar-50 text-xs text-gray-950">SLA</span>
+            <span className="dark:text-polar-500 text-xs text-gray-500">Enterprise</span>
           </div>
         </div>
       ),

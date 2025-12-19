@@ -29,6 +29,96 @@ export default function Layout({ children }: PropsWithChildren) {
 
   return (
     <div className="dark:bg-polar-950 relative flex flex-col bg-gray-50 px-0 md:w-full md:flex-1 md:items-center md:px-4">
+      {/* SVG Filters for Liquid Glass Effect */}
+      <svg className="absolute h-0 w-0" aria-hidden="true">
+        <defs>
+          {/*
+            Liquid Glass Refraction Filter
+            Based on Apple's Liquid Glass (WWDC 2025)
+            - Uses feTurbulence for organic distortion pattern
+            - feDisplacementMap creates the lens-like refraction
+            - Chromatic aberration via RGB channel separation
+            - Note: Full effect only works in Chromium browsers
+          */}
+          <filter id="liquid-glass-refraction" x="-20%" y="-20%" width="140%" height="140%">
+            {/* Generate organic noise pattern for distortion */}
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.003"
+              numOctaves="3"
+              seed="42"
+              result="noise"
+            />
+            {/* Soften the noise for smoother distortion */}
+            <feGaussianBlur in="noise" stdDeviation="4" result="softNoise" />
+            {/* Apply displacement - creates the lens refraction effect */}
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="softNoise"
+              scale="12"
+              xChannelSelector="R"
+              yChannelSelector="G"
+              result="displaced"
+            />
+            {/* Chromatic aberration - separate RGB channels */}
+            {/* Red channel - shift left */}
+            <feColorMatrix
+              in="displaced"
+              type="matrix"
+              values="1 0 0 0 0
+                      0 0 0 0 0
+                      0 0 0 0 0
+                      0 0 0 1 0"
+              result="red"
+            />
+            <feOffset in="red" dx="-1" dy="0" result="redShift" />
+            {/* Green channel - no shift */}
+            <feColorMatrix
+              in="displaced"
+              type="matrix"
+              values="0 0 0 0 0
+                      0 1 0 0 0
+                      0 0 0 0 0
+                      0 0 0 1 0"
+              result="green"
+            />
+            {/* Blue channel - shift right */}
+            <feColorMatrix
+              in="displaced"
+              type="matrix"
+              values="0 0 0 0 0
+                      0 0 0 0 0
+                      0 0 1 0 0
+                      0 0 0 1 0"
+              result="blue"
+            />
+            <feOffset in="blue" dx="1" dy="0" result="blueShift" />
+            {/* Recombine channels with screen blend */}
+            <feBlend in="redShift" in2="green" mode="screen" result="rg" />
+            <feBlend in="rg" in2="blueShift" mode="screen" result="aberration" />
+            {/* Blend with original for subtlety */}
+            <feBlend in="aberration" in2="displaced" mode="normal" result="final" />
+          </filter>
+          {/* Simpler distortion filter for performance */}
+          <filter id="liquid-glass-simple" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.005"
+              numOctaves="2"
+              seed="7"
+              result="noise"
+            />
+            <feGaussianBlur in="noise" stdDeviation="3" result="softNoise" />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="softNoise"
+              scale="8"
+              xChannelSelector="R"
+              yChannelSelector="G"
+            />
+          </filter>
+        </defs>
+      </svg>
       <div className="flex flex-col gap-y-2 md:w-full">
         <LandingPageDesktopNavigation onSearchClick={openSearch} />
         <SidebarProvider className="absolute inset-0 flex flex-col items-start md:hidden">
@@ -258,13 +348,31 @@ const LandingPageDesktopNavigation = ({
   ]
 
   return (
-    <div className="dark:text-polar-50 hidden w-full flex-col items-center gap-12 py-8 md:flex">
-      <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center px-8 lg:max-w-7xl">
-        <Link href="/" className="justify-self-start">
+    <div className="dark:text-polar-50 sticky top-0 z-50 hidden w-full flex-col items-center px-4 py-4 md:flex">
+      {/* Liquid Glass Navbar - Three layer system */}
+      <div className="group relative grid w-full grid-cols-[1fr_auto_1fr] items-center overflow-hidden rounded-full lg:max-w-7xl">
+        {/* Layer 1: Backdrop blur + SVG distortion filter (Chrome-only for full effect) */}
+        <div
+          className="pointer-events-none absolute inset-0 rounded-full"
+          style={{
+            backdropFilter: 'blur(24px) saturate(180%) url(#liquid-glass-simple)',
+            WebkitBackdropFilter: 'blur(24px) saturate(180%)',
+          }}
+        />
+        {/* Layer 2: Glass surface with specular highlights */}
+        <div className="pointer-events-none absolute inset-0 rounded-full border border-white/40 bg-white/50 shadow-[inset_0_1px_2px_rgba(255,255,255,0.9),inset_0_-1px_1px_rgba(0,0,0,0.05),0_8px_32px_rgba(0,0,0,0.12)] dark:border-white/15 dark:bg-black/25 dark:shadow-[inset_0_1px_2px_rgba(255,255,255,0.2),inset_0_-1px_1px_rgba(0,0,0,0.3),0_8px_32px_rgba(0,0,0,0.5)]" />
+        {/* Layer 3: Curved lens highlights - top arc and bottom reflection */}
+        <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(ellipse_100%_50%_at_50%_-10%,rgba(255,255,255,0.6),transparent_60%)] dark:bg-[radial-gradient(ellipse_100%_50%_at_50%_-10%,rgba(255,255,255,0.25),transparent_60%)]" />
+        <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(ellipse_80%_30%_at_50%_110%,rgba(255,255,255,0.2),transparent_50%)] dark:bg-[radial-gradient(ellipse_80%_30%_at_50%_110%,rgba(255,255,255,0.08),transparent_50%)]" />
+        {/* Layer 4: Edge refraction - subtle color fringing at borders */}
+        <div className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(90deg,rgba(255,200,200,0.08)_0%,transparent_3%,transparent_97%,rgba(200,200,255,0.08)_100%)] dark:bg-[linear-gradient(90deg,rgba(255,150,150,0.05)_0%,transparent_3%,transparent_97%,rgba(150,150,255,0.05)_100%)]" />
+        {/* Content container with padding */}
+        <div className="relative z-10 col-span-3 grid grid-cols-[1fr_auto_1fr] items-center px-8 py-4">
+        <Link href="/" className="relative z-10 justify-self-start">
           <BttrLogotype variant="icon" size={40} />
         </Link>
 
-        <ul className="flex flex-row gap-x-8 font-medium">
+        <ul className="relative z-10 flex flex-row gap-x-8 font-medium">
           <li>
             <NavPopover
               trigger="Capabilities"
@@ -291,7 +399,7 @@ const LandingPageDesktopNavigation = ({
           </li>
         </ul>
 
-        <div className="flex items-center gap-4 justify-self-end">
+        <div className="relative z-10 flex items-center gap-4 justify-self-end">
           <SearchTrigger onClick={onSearchClick} />
           <Link href="/portal/login">
             <Button variant="ghost" className="rounded-full">
@@ -299,6 +407,7 @@ const LandingPageDesktopNavigation = ({
             </Button>
           </Link>
           <BeaAnimation size={50} />
+        </div>
         </div>
       </div>
     </div>
