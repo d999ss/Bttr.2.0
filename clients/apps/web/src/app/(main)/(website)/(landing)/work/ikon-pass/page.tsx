@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
+import { CaseStudyJsonLd } from '@/components/SEO/CaseStudyJsonLd'
+import { caseStudies } from '@/data/caseStudies'
 
 export const metadata: Metadata = {
   title: 'Ikon Pass - Bttr.',
@@ -13,8 +15,19 @@ export const metadata: Metadata = {
 }
 
 export default function IkonPassPage() {
+  const study = caseStudies.find((s) => s.slug === 'ikon-pass')!
+
   return (
     <main className="bg-white">
+      <CaseStudyJsonLd
+        caseStudy={study}
+        description="Redefining the ride – transforming 50+ disconnected resort Apps into a single, centralized digital platform for Alterra Mountain Company."
+        datePublished="2024-06-01"
+        images={[
+          'https://makebttr.com/assets/work/uploads/2025/12/IkonSnow.webp',
+          'https://makebttr.com/assets/work/uploads/2025/04/CS_Inset-full-width-2.webp',
+        ]}
+      />
       {/* Hero Section */}
       <section className="relative h-[80vh] w-full overflow-hidden bg-[#1a1f4e]">
         <div className="absolute inset-0">

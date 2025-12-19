@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
+import { CaseStudyJsonLd } from '@/components/SEO/CaseStudyJsonLd'
+import { caseStudies } from '@/data/caseStudies'
 
 export const metadata: Metadata = {
   title: 'GE Brilliant You - Bttr.',
@@ -13,8 +15,11 @@ export const metadata: Metadata = {
 }
 
 export default function GEBrilliantYouPage() {
+  const study = caseStudies.find((s) => s.slug === 'ge-brilliant-you')!
+
   return (
     <main className="bg-white">
+      <CaseStudyJsonLd caseStudy={study} datePublished="2023-08-01" />
       {/* Hero Section */}
       <section className="relative h-[80vh] w-full overflow-hidden">
         <div className="absolute inset-0">

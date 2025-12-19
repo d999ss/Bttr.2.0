@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
+import { CaseStudyJsonLd } from '@/components/SEO/CaseStudyJsonLd'
+import { caseStudies } from '@/data/caseStudies'
 
 export const metadata: Metadata = {
   title: 'AMI - Bttr.',
@@ -15,8 +17,11 @@ export const metadata: Metadata = {
 }
 
 export default function AMIPage() {
+  const study = caseStudies.find((s) => s.slug === 'ami')!
+
   return (
     <main className="bg-white">
+      <CaseStudyJsonLd caseStudy={study} datePublished="2025-03-01" />
       {/* Hero Section */}
       <section className="relative h-[80vh] w-full overflow-hidden bg-[#1a1a2e]">
         <div className="absolute inset-0">

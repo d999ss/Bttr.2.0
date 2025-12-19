@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
+import { CaseStudyJsonLd } from '@/components/SEO/CaseStudyJsonLd'
+import { caseStudies } from '@/data/caseStudies'
 
 export const metadata: Metadata = {
   title: 'Great Dane - Bttr.',
@@ -13,8 +15,11 @@ export const metadata: Metadata = {
 }
 
 export default function GreatDanePage() {
+  const study = caseStudies.find((s) => s.slug === 'great-dane')!
+
   return (
     <main className="dark:bg-polar-950 bg-white">
+      <CaseStudyJsonLd caseStudy={study} datePublished="2025-01-15" />
       {/* Hero Section - Aerial truck shot */}
       <section className="relative h-[85vh] w-full overflow-hidden bg-[#0a1628]">
         <div className="absolute inset-0">

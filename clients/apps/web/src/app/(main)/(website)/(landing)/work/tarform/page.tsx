@@ -1,6 +1,8 @@
 import { Metadata } from 'next'
 import Image from 'next/image'
 import { NextCaseStudy } from '@/components/CaseStudy/NextCaseStudy'
+import { CaseStudyJsonLd } from '@/components/SEO/CaseStudyJsonLd'
+import { caseStudies } from '@/data/caseStudies'
 
 export const metadata: Metadata = {
   title: 'Tarform - Bttr.',
@@ -13,8 +15,11 @@ export const metadata: Metadata = {
 }
 
 export default function TarformPage() {
+  const study = caseStudies.find((s) => s.slug === 'tarform')!
+
   return (
     <main className="bg-white">
+      <CaseStudyJsonLd caseStudy={study} datePublished="2024-08-01" />
       {/* Hero Section */}
       <section className="relative h-[80vh] w-full overflow-hidden bg-[#0a0a0a]">
         <div className="absolute inset-0">

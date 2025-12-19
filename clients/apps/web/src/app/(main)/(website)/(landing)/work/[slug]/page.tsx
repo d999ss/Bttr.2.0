@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { caseStudies } from '@/data/caseStudies'
 import { Section } from '@/components/Landing/Section'
+import { CaseStudyJsonLd } from '@/components/SEO/CaseStudyJsonLd'
 import Button from '@polar-sh/ui/components/atoms/Button'
 
 interface PageProps {
@@ -34,6 +35,7 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-col">
+      <CaseStudyJsonLd caseStudy={study} />
       {/* Hero Section */}
       <section className="relative h-[80vh] w-full overflow-hidden bg-gray-900">
         <div className="absolute inset-0">
