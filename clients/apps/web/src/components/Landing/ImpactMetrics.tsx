@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useInView, useSpring, useTransform } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
 
 interface Metric {
   value: number
@@ -20,22 +20,37 @@ const metrics: Metric[] = [
 const AnimatedNumber = ({ value, suffix, prefix = '' }: { value: number; suffix: string; prefix?: string }) => {
   const ref = useRef<HTMLSpanElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
-
-  const spring = useSpring(0, { mass: 0.8, stiffness: 75, damping: 15 })
-  const display = useTransform(spring, (current) => {
-    if (value % 1 !== 0) {
-      return `${prefix}${current.toFixed(2)}${suffix}`
-    }
-    return `${prefix}${Math.floor(current)}${suffix}`
-  })
+  const [displayValue, setDisplayValue] = useState(0)
 
   useEffect(() => {
-    if (isInView) {
-      spring.set(value)
-    }
-  }, [isInView, spring, value])
+    if (!isInView) return
 
-  return <motion.span ref={ref}>{display}</motion.span>
+    const duration = 2000
+    const startTime = Date.now()
+    const startValue = 0
+
+    const animate = () => {
+      const elapsed = Date.now() - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      // Ease out cubic
+      const eased = 1 - Math.pow(1 - progress, 3)
+      const current = startValue + (value - startValue) * eased
+
+      setDisplayValue(current)
+
+      if (progress < 1) {
+        requestAnimationFrame(animate)
+      }
+    }
+
+    requestAnimationFrame(animate)
+  }, [isInView, value])
+
+  const formatted = value % 1 !== 0
+    ? `${prefix}${displayValue.toFixed(2)}${suffix}`
+    : `${prefix}${Math.floor(displayValue)}${suffix}`
+
+  return <span ref={ref}>{formatted}</span>
 }
 
 export const ImpactMetrics = () => {

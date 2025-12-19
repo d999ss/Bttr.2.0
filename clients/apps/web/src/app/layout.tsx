@@ -114,13 +114,6 @@ export default async function RootLayout({
       className={`antialiased ${GeistSans.variable} ${GeistMono.variable}`}
     >
       <head>
-        {CONFIG.ENVIRONMENT === 'development' && (
-          <Script
-            src="//unpkg.com/react-grab/dist/index.global.js"
-            crossOrigin="anonymous"
-            strategy="beforeInteractive"
-          />
-        )}
         {CONFIG.ENVIRONMENT === 'development' ? (
           <>
             <link

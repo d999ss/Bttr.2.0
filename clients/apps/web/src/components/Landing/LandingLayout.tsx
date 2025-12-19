@@ -433,7 +433,7 @@ const LandingPageTopbar = ({
       <div className="flex items-center gap-2">
         <button
           onClick={onSearchClick}
-          className="dark:text-polar-400 dark:hover:text-polar-200 rounded-lg p-2 text-gray-500 transition-colors hover:text-gray-700"
+          className="rounded-lg p-2 text-black transition-colors hover:text-gray-600 dark:text-white dark:hover:text-gray-300"
           aria-label="Search"
         >
           <svg

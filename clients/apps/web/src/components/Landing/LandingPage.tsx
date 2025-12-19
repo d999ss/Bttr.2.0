@@ -32,15 +32,17 @@ export const PageContent = () => {
         <Events />
         <Adapters />
         <Usage />
-        <div
-          className="flex flex-col items-center gap-y-12 text-center"
-        >
-          <div className="flex flex-col items-center gap-y-2">
-            <h2 className="text-6xl">"</h2>
-            <h2 className="text-2xl leading-relaxed! md:text-4xl">
+        <div className="flex flex-col items-center gap-y-8 text-center">
+          <blockquote className="relative max-w-4xl px-8">
+            <span className="absolute -top-8 left-0 text-8xl font-serif text-gray-200 leading-none select-none dark:text-gray-800" aria-hidden="true">"</span>
+            <p className="relative text-2xl leading-relaxed md:text-3xl lg:text-4xl">
               Senior leaders at GE and GE Aerospace trust Bttr. to design and engineer systems that operate under real world constraints.
-            </h2>
-          </div>
+            </p>
+            <span className="absolute -bottom-12 right-0 text-8xl font-serif text-gray-200 leading-none select-none dark:text-gray-800" aria-hidden="true">"</span>
+          </blockquote>
+          <cite className="dark:text-polar-500 text-sm text-gray-500 not-italic">
+            — GE Aerospace, Enterprise Aviation
+          </cite>
         </div>
       </Section>
       <Section className="flex flex-col gap-y-24">
