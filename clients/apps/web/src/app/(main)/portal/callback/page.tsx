@@ -14,7 +14,6 @@ export default function PortalCallbackPage() {
   useEffect(() => {
     async function handleCallback() {
       try {
-        const code = searchParams.get('code')
         const error = searchParams.get('error')
         const errorDescription = searchParams.get('error_description')
 
@@ -24,43 +23,40 @@ export default function PortalCallbackPage() {
           return
         }
 
-        if (!code) {
-          // No code - check if we already have a session
-          const supabase = getSupabaseBrowserClient()
-          const { data: { session } } = await supabase.auth.getSession()
-
-          if (session) {
-            setStatus('success')
-            router.replace('/portal/dashboard')
-            return
-          }
-
-          setStatus('error')
-          setErrorMessage('No authorization code received')
-          return
-        }
-
-        // Exchange the code for a session using the browser client
-        // This works because the browser client has access to the PKCE code_verifier
+        // With detectSessionInUrl: true, Supabase automatically handles the code exchange
+        // We just need to wait for it and check for the session
         const supabase = getSupabaseBrowserClient()
-        const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
 
-        if (exchangeError) {
-          console.error('Code exchange error:', exchangeError)
-          setStatus('error')
-          setErrorMessage(exchangeError.message)
-          return
-        }
+        // Listen for auth state changes (Supabase will auto-exchange the code)
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+          if (event === 'SIGNED_IN' && session) {
+            setStatus('success')
+            setTimeout(() => {
+              router.replace('/portal/dashboard')
+            }, 100)
+          }
+        })
 
-        if (data.session) {
+        // Also check if we already have a session (in case the exchange already happened)
+        const { data: { session } } = await supabase.auth.getSession()
+
+        if (session) {
           setStatus('success')
-          // Small delay to ensure session is persisted
           setTimeout(() => {
             router.replace('/portal/dashboard')
           }, 100)
-        } else {
+          return
+        }
+
+        // If no session after a delay, show error
+        const timeout = setTimeout(() => {
           setStatus('error')
-          setErrorMessage('No session returned from authentication')
+          setErrorMessage('Authentication timed out. Please try again.')
+        }, 10000)
+
+        return () => {
+          subscription.unsubscribe()
+          clearTimeout(timeout)
         }
       } catch (err) {
         console.error('Callback error:', err)
