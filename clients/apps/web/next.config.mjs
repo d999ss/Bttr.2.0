@@ -65,6 +65,7 @@ const docsCSP = `
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  devIndicators: false,
   transpilePackages: ['shiki'],
   pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 

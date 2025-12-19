@@ -28,7 +28,7 @@ export default function Layout({ children }: PropsWithChildren) {
   useSearchShortcut(openSearch)
 
   return (
-    <div className="dark:bg-polar-950 relative flex flex-col bg-gray-50 px-0 md:w-full md:flex-1 md:items-center md:px-4">
+    <div className="dark:bg-polar-950 relative flex flex-col bg-white px-0 md:w-full md:flex-1 md:items-center md:px-4">
       {/* SVG Filters for Liquid Glass Effect */}
       <svg className="absolute h-0 w-0" aria-hidden="true">
         <defs>
@@ -197,7 +197,7 @@ const mobileNavigationItems: NavigationItem[] = [
     href: '/work',
   },
   {
-    title: 'Company',
+    title: 'Team',
     href: '/company',
   },
   {
@@ -368,9 +368,14 @@ const LandingPageDesktopNavigation = ({
         <div className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(90deg,rgba(255,200,200,0.08)_0%,transparent_3%,transparent_97%,rgba(200,200,255,0.08)_100%)] dark:bg-[linear-gradient(90deg,rgba(255,150,150,0.05)_0%,transparent_3%,transparent_97%,rgba(150,150,255,0.05)_100%)]" />
         {/* Content container with padding - responsive spacing */}
         <div className="relative z-10 col-span-3 flex items-center justify-between px-4 py-3 md:px-6 md:py-4 lg:px-8 xl:px-10">
-          <Link href="/" className="relative z-10 shrink-0">
-            <BttrLogotype variant="icon" size={40} />
-          </Link>
+          <div className="relative z-10 flex shrink-0 items-center gap-3">
+            <div className="hidden xl:block">
+              <BeaAnimation size={50} />
+            </div>
+            <Link href="/">
+              <BttrLogotype variant="icon" size={40} />
+            </Link>
+          </div>
 
           <ul className="relative z-10 flex flex-row gap-x-5 font-medium md:gap-x-6 lg:gap-x-8 xl:gap-x-10">
             <li>
@@ -392,7 +397,7 @@ const LandingPageDesktopNavigation = ({
               />
             </li>
             <li>
-              <NavLink href="/company">Company</NavLink>
+              <NavLink href="/company">Team</NavLink>
             </li>
             <li>
               <NavLink href="/contact">Contact</NavLink>
@@ -406,9 +411,6 @@ const LandingPageDesktopNavigation = ({
               </Button>
             </Link>
             <SearchTrigger onClick={onSearchClick} />
-            <div className="hidden xl:block">
-              <BeaAnimation size={50} />
-            </div>
           </div>
         </div>
       </div>

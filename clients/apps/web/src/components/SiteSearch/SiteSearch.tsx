@@ -216,16 +216,13 @@ export function SearchTrigger({
   return (
     <button
       onClick={onClick}
+      aria-label="Search"
       className={twMerge(
-        'flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3 py-1.5 text-sm text-black backdrop-blur-sm transition-all hover:border-gray-300 hover:text-gray-600 dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:border-white/30 dark:hover:text-gray-300',
+        'flex items-center justify-center rounded-full p-2 text-black transition-colors hover:text-gray-600 dark:text-white dark:hover:text-gray-300',
         className,
       )}
     >
-      <Search className="h-4 w-4" />
-      <span className="hidden sm:inline">Search</span>
-      <kbd className="hidden rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs text-gray-500 sm:inline dark:bg-white/10 dark:text-gray-300">
-        ⌘K
-      </kbd>
+      <Search className="h-5 w-5" />
     </button>
   )
 }

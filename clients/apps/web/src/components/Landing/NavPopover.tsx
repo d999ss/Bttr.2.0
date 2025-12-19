@@ -49,6 +49,9 @@ export const NavPopover = ({
     </span>
   )
 
+  // Track item index across all sections for staggered animation
+  let globalItemIndex = 0
+
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger
@@ -68,7 +71,7 @@ export const NavPopover = ({
       </PopoverTrigger>
       <PopoverContent
         className={twMerge(
-          'w-fit divide-x p-0',
+          'w-fit divide-x p-0 border-white/10 bg-white/95 backdrop-blur-xl dark:bg-black/90 dark:backdrop-saturate-150',
           layout === 'flex'
             ? 'flex flex-row'
             : `grid ${sections.length === 1 ? 'grid-cols-1' : `grid-cols-${sections.length}`}`,
@@ -86,7 +89,10 @@ export const NavPopover = ({
             )}
           >
             {section.title && (
-              <h3 className="dark:text-polar-500 px-4 py-2 text-sm text-gray-500">
+              <h3
+                className="dark:text-polar-500 px-4 py-2 text-sm text-gray-500 opacity-0 animate-[navFadeIn_0.32s_cubic-bezier(0.4,0,0.6,1)_forwards]"
+                style={{ animationDelay: `${globalItemIndex++ * 40}ms` }}
+              >
                 {section.title}
               </h3>
             )}
@@ -97,22 +103,26 @@ export const NavPopover = ({
                   : '',
               )}
             >
-              {section.items.map(({ href, label, subtitle, target }) => (
-                <Link
-                  key={href + label}
-                  href={href}
-                  prefetch
-                  target={target}
-                  className="dark:hover:bg-polar-800 flex flex-col rounded-md px-4 py-2 text-sm transition-colors hover:bg-gray-100"
-                >
-                  <span className="font-medium">{label}</span>
-                  {subtitle && (
-                    <span className="dark:text-polar-500 text-gray-500">
-                      {subtitle}
-                    </span>
-                  )}
-                </Link>
-              ))}
+              {section.items.map(({ href, label, subtitle, target }) => {
+                const itemDelay = globalItemIndex++ * 40
+                return (
+                  <Link
+                    key={href + label}
+                    href={href}
+                    prefetch
+                    target={target}
+                    className="dark:hover:bg-polar-800 flex flex-col rounded-md px-4 py-2 text-sm transition-colors hover:bg-gray-100 opacity-0 animate-[navFadeIn_0.32s_cubic-bezier(0.4,0,0.6,1)_forwards]"
+                    style={{ animationDelay: `${itemDelay}ms` }}
+                  >
+                    <span className="font-medium">{label}</span>
+                    {subtitle && (
+                      <span className="dark:text-polar-500 text-gray-500">
+                        {subtitle}
+                      </span>
+                    )}
+                  </Link>
+                )
+              })}
             </div>
           </div>
         ))}
