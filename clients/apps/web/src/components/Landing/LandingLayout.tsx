@@ -158,7 +158,7 @@ const NavLink = ({
       target={isExternal ? '_blank' : target}
       prefetch
       className={twMerge(
-        'dark:text-polar-500 -m-1 flex items-center gap-x-2 p-1 text-gray-500 transition-colors hover:text-black dark:hover:text-white',
+        '-m-1 flex items-center gap-x-2 p-1 text-black transition-colors hover:text-gray-600 dark:text-white dark:hover:text-gray-300',
         isActive && 'text-black dark:text-white',
         className,
       )}
@@ -366,48 +366,50 @@ const LandingPageDesktopNavigation = ({
         <div className="pointer-events-none absolute inset-0 rounded-full bg-[radial-gradient(ellipse_80%_30%_at_50%_110%,rgba(255,255,255,0.2),transparent_50%)] dark:bg-[radial-gradient(ellipse_80%_30%_at_50%_110%,rgba(255,255,255,0.08),transparent_50%)]" />
         {/* Layer 4: Edge refraction - subtle color fringing at borders */}
         <div className="pointer-events-none absolute inset-0 rounded-full bg-[linear-gradient(90deg,rgba(255,200,200,0.08)_0%,transparent_3%,transparent_97%,rgba(200,200,255,0.08)_100%)] dark:bg-[linear-gradient(90deg,rgba(255,150,150,0.05)_0%,transparent_3%,transparent_97%,rgba(150,150,255,0.05)_100%)]" />
-        {/* Content container with padding */}
-        <div className="relative z-10 col-span-3 grid grid-cols-[1fr_auto_1fr] items-center px-8 py-4">
-        <Link href="/" className="relative z-10 justify-self-start">
-          <BttrLogotype variant="icon" size={40} />
-        </Link>
-
-        <ul className="relative z-10 flex flex-row gap-x-8 font-medium">
-          <li>
-            <NavPopover
-              trigger="Capabilities"
-              sections={featuresSections}
-              isActive={pathname.startsWith('/features')}
-            />
-          </li>
-          <li>
-            <NavPopover trigger="Approach" sections={docsSections} layout="flex" />
-          </li>
-          <li>
-            <NavPopover
-              trigger="Work"
-              sections={workSections}
-              isActive={pathname.startsWith('/work')}
-              href="/work"
-            />
-          </li>
-          <li>
-            <NavLink href="/company">Company</NavLink>
-          </li>
-          <li>
-            <NavLink href="/contact">Contact</NavLink>
-          </li>
-        </ul>
-
-        <div className="relative z-10 flex items-center gap-4 justify-self-end">
-          <SearchTrigger onClick={onSearchClick} />
-          <Link href="/portal/login">
-            <Button variant="ghost" className="rounded-full">
-              Client Login
-            </Button>
+        {/* Content container with padding - responsive spacing */}
+        <div className="relative z-10 col-span-3 flex items-center justify-between px-4 py-3 md:px-6 md:py-4 lg:px-8 xl:px-10">
+          <Link href="/" className="relative z-10 shrink-0">
+            <BttrLogotype variant="icon" size={40} />
           </Link>
-          <BeaAnimation size={50} />
-        </div>
+
+          <ul className="relative z-10 flex flex-row gap-x-5 font-medium md:gap-x-6 lg:gap-x-8 xl:gap-x-10">
+            <li>
+              <NavPopover
+                trigger="Capabilities"
+                sections={featuresSections}
+                isActive={pathname.startsWith('/features')}
+              />
+            </li>
+            <li>
+              <NavPopover trigger="Approach" sections={docsSections} layout="flex" />
+            </li>
+            <li>
+              <NavPopover
+                trigger="Work"
+                sections={workSections}
+                isActive={pathname.startsWith('/work')}
+                href="/work"
+              />
+            </li>
+            <li>
+              <NavLink href="/company">Company</NavLink>
+            </li>
+            <li>
+              <NavLink href="/contact">Contact</NavLink>
+            </li>
+          </ul>
+
+          <div className="relative z-10 flex items-center gap-2 justify-self-end md:gap-3 lg:gap-4">
+            <Link href="/portal/login" className="hidden lg:block">
+              <Button variant="ghost" className="rounded-full">
+                Client Login
+              </Button>
+            </Link>
+            <SearchTrigger onClick={onSearchClick} />
+            <div className="hidden xl:block">
+              <BeaAnimation size={50} />
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -41,7 +41,7 @@ export const NavPopover = ({
   const triggerContent = (
     <span
       className={twMerge(
-        'dark:text-polar-500 -m-1 flex cursor-pointer items-center gap-x-2 p-1 text-gray-500 transition-colors hover:text-black focus:outline-none dark:hover:text-white',
+        '-m-1 flex cursor-pointer items-center gap-x-2 p-1 text-black transition-colors hover:text-gray-600 focus:outline-none dark:text-white dark:hover:text-gray-300',
         (isOpen || isActive) && 'text-black dark:text-white',
       )}
     >

@@ -217,13 +217,13 @@ export function SearchTrigger({
     <button
       onClick={onClick}
       className={twMerge(
-        'dark:bg-polar-900 dark:border-polar-700 dark:text-polar-400 dark:hover:border-polar-600 dark:hover:text-polar-300 flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3 py-1.5 text-sm text-gray-500 backdrop-blur-sm transition-all hover:border-gray-300 hover:text-gray-700',
+        'flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-3 py-1.5 text-sm text-black backdrop-blur-sm transition-all hover:border-gray-300 hover:text-gray-600 dark:border-white/20 dark:bg-white/10 dark:text-white dark:hover:border-white/30 dark:hover:text-gray-300',
         className,
       )}
     >
       <Search className="h-4 w-4" />
       <span className="hidden sm:inline">Search</span>
-      <kbd className="dark:bg-polar-800 dark:text-polar-500 hidden rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs text-gray-400 sm:inline">
+      <kbd className="hidden rounded bg-gray-100 px-1.5 py-0.5 font-mono text-xs text-gray-500 sm:inline dark:bg-white/10 dark:text-gray-300">
         ⌘K
       </kbd>
     </button>
