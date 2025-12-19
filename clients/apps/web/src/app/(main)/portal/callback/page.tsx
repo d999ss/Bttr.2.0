@@ -1,15 +1,44 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 import { BttrLogotype } from '@/components/Brand/BttrLogotype'
+import type { Session } from '@supabase/supabase-js'
+
+// Check if user was created within last 5 minutes (new signup)
+function isNewUser(session: Session): boolean {
+  const createdAt = session.user?.created_at
+  if (!createdAt) return false
+  const createdTime = new Date(createdAt).getTime()
+  const now = Date.now()
+  const fiveMinutes = 5 * 60 * 1000
+  return now - createdTime < fiveMinutes
+}
+
+// Send signup notification (fire and forget)
+async function notifySignup(session: Session) {
+  try {
+    await fetch('/api/notify-signup', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: session.user?.email,
+        userId: session.user?.id,
+        provider: session.user?.app_metadata?.provider || 'email',
+      }),
+    })
+  } catch (error) {
+    console.error('Failed to send signup notification:', error)
+  }
+}
 
 export default function PortalCallbackPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [status, setStatus] = useState<'loading' | 'success' | 'error'>('loading')
   const [errorMessage, setErrorMessage] = useState('')
+  const notifiedRef = useRef(false)
 
   useEffect(() => {
     async function handleCallback() {
@@ -27,13 +56,23 @@ export default function PortalCallbackPage() {
         // We just need to wait for it and check for the session
         const supabase = getSupabaseBrowserClient()
 
+        // Helper to handle successful auth
+        const handleSuccess = (session: Session) => {
+          // Send notification for new users (only once)
+          if (isNewUser(session) && !notifiedRef.current) {
+            notifiedRef.current = true
+            notifySignup(session)
+          }
+          setStatus('success')
+          setTimeout(() => {
+            router.replace('/portal/dashboard')
+          }, 100)
+        }
+
         // Listen for auth state changes (Supabase will auto-exchange the code)
         const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
           if (event === 'SIGNED_IN' && session) {
-            setStatus('success')
-            setTimeout(() => {
-              router.replace('/portal/dashboard')
-            }, 100)
+            handleSuccess(session)
           }
         })
 
@@ -41,10 +80,7 @@ export default function PortalCallbackPage() {
         const { data: { session } } = await supabase.auth.getSession()
 
         if (session) {
-          setStatus('success')
-          setTimeout(() => {
-            router.replace('/portal/dashboard')
-          }, 100)
+          handleSuccess(session)
           return
         }
 
