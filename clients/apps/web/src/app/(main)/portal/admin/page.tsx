@@ -27,6 +27,7 @@ export default function AdminPage() {
     company_name: '',
   })
   const [submitting, setSubmitting] = useState(false)
+  const [successMessage, setSuccessMessage] = useState('')
 
   useEffect(() => {
     async function checkAdmin() {
@@ -57,16 +58,28 @@ export default function AdminPage() {
   async function handleAddClient(e: React.FormEvent) {
     e.preventDefault()
     setSubmitting(true)
+    setSuccessMessage('')
     try {
       const res = await fetch('/api/client-portal/admin/clients', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
+      const data = await res.json()
       if (res.ok) {
         setFormData({ name: '', email: '', company_name: '' })
         setShowAddForm(false)
         fetchClients()
+        // Show success message with invite status
+        if (data.invite?.sent) {
+          setSuccessMessage(`Client created! Invite email sent to ${formData.email}`)
+        } else if (data.invite?.url) {
+          setSuccessMessage(`Client created! Invite link: ${data.invite.url}`)
+        } else {
+          setSuccessMessage('Client created successfully!')
+        }
+        // Clear message after 10 seconds
+        setTimeout(() => setSuccessMessage(''), 10000)
       }
     } finally {
       setSubmitting(false)
@@ -85,8 +98,8 @@ export default function AdminPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-medium text-gray-900">Admin</h1>
-          <p className="mt-1 text-gray-600">Manage clients, projects, and hours.</p>
+          <h1 className="text-2xl font-medium text-gray-900 dark:text-white">Admin</h1>
+          <p className="mt-1 text-gray-600 dark:text-polar-400">Manage clients, projects, and hours.</p>
         </div>
         <button
           onClick={() => setShowAddForm(true)}
@@ -96,38 +109,52 @@ export default function AdminPage() {
         </button>
       </div>
 
+      {successMessage && (
+        <div className="rounded-lg bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800 p-4">
+          <div className="flex items-center gap-2">
+            <svg className="h-5 w-5 text-emerald-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+            <span className="text-sm text-emerald-700 dark:text-emerald-300">{successMessage}</span>
+          </div>
+        </div>
+      )}
+
       {showAddForm && (
-        <div className="rounded-lg bg-white p-6 shadow-sm">
-          <h2 className="mb-4 text-lg font-medium text-gray-900">Add New Client</h2>
+        <div className="rounded-lg bg-white dark:bg-polar-800 p-6 shadow-sm">
+          <h2 className="mb-4 text-lg font-medium text-gray-900 dark:text-white">Add New Client</h2>
           <form onSubmit={handleAddClient} className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Name *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-polar-300">Name *</label>
                 <input
                   type="text"
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-gray-300 dark:border-polar-600 bg-white dark:bg-polar-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-polar-400 focus:border-gray-500 dark:focus:border-polar-400 focus:outline-none"
+                  placeholder="John Smith"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Email *</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-polar-300">Email *</label>
                 <input
                   type="email"
                   required
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-gray-300 dark:border-polar-600 bg-white dark:bg-polar-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-polar-400 focus:border-gray-500 dark:focus:border-polar-400 focus:outline-none"
+                  placeholder="john@example.com"
                 />
               </div>
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">Company Name</label>
+                <label className="block text-sm font-medium text-gray-700 dark:text-polar-300">Company Name</label>
                 <input
                   type="text"
                   value={formData.company_name}
                   onChange={(e) => setFormData({ ...formData, company_name: e.target.value })}
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-gray-500 focus:outline-none"
+                  className="mt-1 block w-full rounded-lg border border-gray-300 dark:border-polar-600 bg-white dark:bg-polar-700 px-3 py-2 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-polar-400 focus:border-gray-500 dark:focus:border-polar-400 focus:outline-none"
+                  placeholder="Acme Inc."
                 />
               </div>
             </div>
@@ -135,14 +162,14 @@ export default function AdminPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800 disabled:opacity-50"
+                className="rounded-lg bg-[#D2A62C] px-4 py-2 text-sm font-medium text-white hover:bg-[#b8922a] disabled:opacity-50"
               >
                 {submitting ? 'Adding...' : 'Add Client'}
               </button>
               <button
                 type="button"
                 onClick={() => setShowAddForm(false)}
-                className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                className="rounded-lg border border-gray-300 dark:border-polar-600 bg-white dark:bg-polar-700 px-4 py-2 text-sm font-medium text-gray-700 dark:text-polar-300 hover:bg-gray-50 dark:hover:bg-polar-600"
               >
                 Cancel
               </button>
@@ -151,14 +178,14 @@ export default function AdminPage() {
         </div>
       )}
 
-      <div className="rounded-lg bg-white shadow-sm">
-        <div className="border-b border-gray-200 px-6 py-4">
-          <h2 className="text-lg font-medium text-gray-900">Clients ({clients.length})</h2>
+      <div className="rounded-lg bg-white dark:bg-polar-800 shadow-sm">
+        <div className="border-b border-gray-200 dark:border-polar-700 px-6 py-4">
+          <h2 className="text-lg font-medium text-gray-900 dark:text-white">Clients ({clients.length})</h2>
         </div>
         {clients.length === 0 ? (
-          <div className="p-6 text-center text-gray-500">No clients yet</div>
+          <div className="p-6 text-center text-gray-500 dark:text-polar-400">No clients yet</div>
         ) : (
-          <div className="divide-y divide-gray-200">
+          <div className="divide-y divide-gray-200 dark:divide-polar-700">
             {clients.map((client) => {
               const hours = client.hours_balances?.[0]
               const remaining = hours ? hours.purchased_hours - hours.used_hours : 0
@@ -168,35 +195,35 @@ export default function AdminPage() {
                 <Link
                   key={client.id}
                   href={`/portal/admin/clients/${client.id}`}
-                  className="flex items-center justify-between p-6 hover:bg-gray-50"
+                  className="flex items-center justify-between p-6 hover:bg-gray-50 dark:hover:bg-polar-700"
                 >
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-medium text-gray-900">{client.name}</span>
+                      <span className="font-medium text-gray-900 dark:text-white">{client.name}</span>
                       {client.company_name && (
-                        <span className="text-gray-500">({client.company_name})</span>
+                        <span className="text-gray-500 dark:text-polar-400">({client.company_name})</span>
                       )}
                       {!client.is_active && (
-                        <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-600">
+                        <span className="rounded-full bg-gray-100 dark:bg-polar-600 px-2 py-0.5 text-xs text-gray-600 dark:text-polar-300">
                           Inactive
                         </span>
                       )}
                     </div>
-                    <div className="mt-1 text-sm text-gray-500">{client.email}</div>
+                    <div className="mt-1 text-sm text-gray-500 dark:text-polar-400">{client.email}</div>
                   </div>
                   <div className="flex items-center gap-6 text-sm">
                     <div className="text-center">
-                      <div className="font-medium text-gray-900">{activeProjects}</div>
-                      <div className="text-gray-500">Projects</div>
+                      <div className="font-medium text-gray-900 dark:text-white">{activeProjects}</div>
+                      <div className="text-gray-500 dark:text-polar-400">Projects</div>
                     </div>
                     <div className="text-center">
-                      <div className={`font-medium ${remaining < 5 ? 'text-red-600' : 'text-gray-900'}`}>
+                      <div className={`font-medium ${remaining < 5 ? 'text-red-500' : 'text-gray-900 dark:text-white'}`}>
                         {remaining.toFixed(1)}
                       </div>
-                      <div className="text-gray-500">Hours</div>
+                      <div className="text-gray-500 dark:text-polar-400">Hours</div>
                     </div>
                     <svg
-                      className="h-5 w-5 text-gray-400"
+                      className="h-5 w-5 text-gray-400 dark:text-polar-500"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"

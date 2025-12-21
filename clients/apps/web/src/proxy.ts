@@ -1,8 +1,12 @@
 import { schemas } from '@polar-sh/client'
+import { createServerClient } from '@supabase/ssr'
 import { RequestCookiesAdapter } from 'next/dist/server/web/spec-extension/adapters/request-cookies'
 import type { NextRequest } from 'next/server'
 import { NextResponse } from 'next/server'
 import { createServerSideAPI } from './utils/client'
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://oiekbwdggfjihihdmzsa.supabase.co'
+const SUPABASE_ANON_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9pZWtid2RnZ2ZqaWhpaGRtenNhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4NDQ2NTEsImV4cCI6MjA4MTQyMDY1MX0.p7lMi2CShGRnGAMaFvfkJghD1cKXPTR-e4QK3lLFvYs'
 
 const POLAR_AUTH_COOKIE_KEY =
   process.env.POLAR_AUTH_COOKIE_KEY || 'polar_session'
@@ -54,6 +58,14 @@ const getLoginResponse = (request: NextRequest): NextResponse => {
   return NextResponse.redirect(redirectURL)
 }
 
+// Check if request is for portal or client-portal API routes
+const isPortalRoute = (request: NextRequest): boolean => {
+  return (
+    request.nextUrl.pathname.startsWith('/portal') ||
+    request.nextUrl.pathname.startsWith('/api/client-portal')
+  )
+}
+
 export async function proxy(request: NextRequest) {
   // Handle OAuth code on homepage - redirect to client-side callback
   const code = request.nextUrl.searchParams.get('code')
@@ -65,6 +77,41 @@ export async function proxy(request: NextRequest) {
       callbackUrl.searchParams.set('next', next)
     }
     return NextResponse.redirect(callbackUrl)
+  }
+
+  // Handle Supabase auth for portal routes - refresh session and set cookies
+  if (isPortalRoute(request)) {
+    let response = NextResponse.next({
+      request: {
+        headers: request.headers,
+      },
+    })
+
+    const supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+      cookies: {
+        getAll() {
+          return request.cookies.getAll()
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value }) =>
+            request.cookies.set(name, value),
+          )
+          response = NextResponse.next({
+            request: {
+              headers: request.headers,
+            },
+          })
+          cookiesToSet.forEach(({ name, value, options }) =>
+            response.cookies.set(name, value, options),
+          )
+        },
+      },
+    })
+
+    // This refreshes the session if expired and sets cookies
+    await supabase.auth.getUser()
+
+    return response
   }
 
   // Do not run middleware for forwarded routes

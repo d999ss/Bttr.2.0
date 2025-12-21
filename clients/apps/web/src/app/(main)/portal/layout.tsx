@@ -10,6 +10,8 @@ import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 const navItems = [
   { href: '/portal/dashboard', label: 'Dashboard' },
   { href: '/portal/projects', label: 'Projects' },
+  { href: '/portal/milestones', label: 'Milestones' },
+  { href: '/portal/files', label: 'Files' },
   { href: '/portal/hours', label: 'Hours' },
   { href: '/portal/invoices', label: 'Invoices' },
   { href: '/portal/support', label: 'Support' },
@@ -30,6 +32,7 @@ export default function PortalLayout({ children }: PropsWithChildren) {
   const isOnboardingPage = pathname === '/portal/onboarding'
   const [isAdmin, setIsAdmin] = useState(false)
   const [user, setUser] = useState<UserInfo | null>(null)
+  const [avatarError, setAvatarError] = useState(false)
 
   useEffect(() => {
     if (isDemo || isLoginPage || isCallbackPage) return
@@ -119,11 +122,12 @@ export default function PortalLayout({ children }: PropsWithChildren) {
               <span className="dark:text-polar-500 text-sm text-gray-500">Demo Mode</span>
             ) : user ? (
               <Link href="/portal/profile" className="flex items-center gap-3 group">
-                {user.avatarUrl ? (
+                {user.avatarUrl && !avatarError ? (
                   <img
                     src={user.avatarUrl}
                     alt={user.name || user.email}
                     className="h-9 w-9 rounded-full object-cover ring-2 ring-transparent transition-all group-hover:ring-[#D2A62C]"
+                    onError={() => setAvatarError(true)}
                   />
                 ) : (
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#D2A62C] text-sm font-medium text-white ring-2 ring-transparent transition-all group-hover:ring-[#D2A62C]/50">
@@ -173,11 +177,12 @@ export default function PortalLayout({ children }: PropsWithChildren) {
           </div>
           {user && !isDemo && (
             <Link href="/portal/profile" className="flex-shrink-0">
-              {user.avatarUrl ? (
+              {user.avatarUrl && !avatarError ? (
                 <img
                   src={user.avatarUrl}
                   alt={user.name || user.email}
                   className="h-8 w-8 rounded-full object-cover"
+                  onError={() => setAvatarError(true)}
                 />
               ) : (
                 <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#D2A62C] text-sm font-medium text-white">

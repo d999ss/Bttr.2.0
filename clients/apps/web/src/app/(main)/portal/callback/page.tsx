@@ -33,6 +33,29 @@ async function notifySignup(session: Session) {
   }
 }
 
+// Accept invite and link user to client record
+async function acceptInvite(session: Session, inviteToken: string) {
+  try {
+    const res = await fetch(`/api/client-portal/invite/${inviteToken}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: session.user?.id,
+        user_email: session.user?.email,
+      }),
+    })
+    if (res.ok) {
+      console.log('Invite accepted successfully')
+      // Clear stored invite token
+      localStorage.removeItem('bttr_invite_token')
+    } else {
+      console.error('Failed to accept invite:', await res.text())
+    }
+  } catch (error) {
+    console.error('Error accepting invite:', error)
+  }
+}
+
 export default function PortalCallbackPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -43,21 +66,33 @@ export default function PortalCallbackPage() {
   useEffect(() => {
     async function handleCallback() {
       try {
+        // Debug: log all URL params
+        const allParams = Object.fromEntries(searchParams.entries())
+        console.log('Callback URL params:', allParams)
+        console.log('Full URL:', window.location.href)
+
         const error = searchParams.get('error')
         const errorDescription = searchParams.get('error_description')
 
         if (error) {
+          console.error('OAuth error:', error, errorDescription)
           setStatus('error')
           setErrorMessage(errorDescription || error)
           return
         }
 
-        // With detectSessionInUrl: true, Supabase automatically handles the code exchange
-        // We just need to wait for it and check for the session
         const supabase = getSupabaseBrowserClient()
 
         // Helper to handle successful auth
-        const handleSuccess = (session: Session) => {
+        const handleSuccess = async (session: Session) => {
+          // Check for invite token (from URL param or localStorage)
+          const inviteToken = searchParams.get('invite') || localStorage.getItem('bttr_invite_token')
+
+          if (inviteToken) {
+            // Accept the invite to link user to client record
+            await acceptInvite(session, inviteToken)
+          }
+
           // Send notification for new users (only once)
           if (isNewUser(session) && !notifiedRef.current) {
             notifiedRef.current = true
@@ -69,18 +104,51 @@ export default function PortalCallbackPage() {
           }, 100)
         }
 
-        // Listen for auth state changes (Supabase will auto-exchange the code)
+        // Check if there's an auth code in the URL that needs to be exchanged
+        const code = searchParams.get('code')
+
+        if (code) {
+          console.log('Exchanging code for session...')
+          // Explicitly exchange the code for a session
+          const { data, error: exchangeError } = await supabase.auth.exchangeCodeForSession(code)
+
+          if (exchangeError) {
+            console.error('Code exchange error:', exchangeError)
+            setStatus('error')
+            setErrorMessage(exchangeError.message || 'Failed to complete authentication. Please try again.')
+            return
+          }
+
+          if (data.session) {
+            console.log('Session obtained:', data.session.user?.email)
+            console.log('Session stored, checking cookies...')
+            // Log cookies to verify they were set
+            console.log('Document cookies:', document.cookie.split(';').map(c => c.trim().split('=')[0]))
+            await handleSuccess(data.session)
+            return
+          }
+        }
+
+        // Listen for auth state changes as fallback
         const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
           if (event === 'SIGNED_IN' && session) {
             handleSuccess(session)
           }
         })
 
-        // Also check if we already have a session (in case the exchange already happened)
+        // Also check if we already have a session
         const { data: { session } } = await supabase.auth.getSession()
 
         if (session) {
           handleSuccess(session)
+          return
+        }
+
+        // If no code and no session, show error faster
+        if (!code) {
+          console.error('No code in URL, params:', Object.fromEntries(searchParams.entries()))
+          setStatus('error')
+          setErrorMessage(`No authentication code found. URL: ${window.location.href}`)
           return
         }
 

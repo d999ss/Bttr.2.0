@@ -31,12 +31,40 @@ interface HoursLog {
   created_at: string
 }
 
+interface Milestone {
+  id: string
+  type: 'project' | 'payment'
+  title: string
+  description: string | null
+  due_date: string | null
+  completed_at: string | null
+  amount: number | null
+  sort_order: number
+  project_id: string | null
+  projects: { id: string; name: string } | null
+}
+
+interface FileRecord {
+  id: string
+  filename: string
+  file_size: number
+  mime_type: string | null
+  description: string | null
+  uploaded_by: 'admin' | 'client'
+  uploader_email: string
+  created_at: string
+  projects: { id: string; name: string } | null
+}
+
 interface Client {
   id: string
   name: string
   email: string
   company_name: string | null
   is_active: boolean
+  invite_token: string | null
+  invite_sent_at: string | null
+  invite_accepted_at: string | null
   projects: Project[]
   hours_balances: HoursBalance[]
   hours_log: HoursLog[]
@@ -88,6 +116,26 @@ export default function ClientDetailPage() {
 
   const [submitting, setSubmitting] = useState(false)
 
+  // Invite state
+  const [sendingInvite, setSendingInvite] = useState(false)
+  const [inviteMessage, setInviteMessage] = useState('')
+
+  // Milestones state
+  const [milestones, setMilestones] = useState<Milestone[]>([])
+  const [showMilestoneForm, setShowMilestoneForm] = useState(false)
+  const [milestoneForm, setMilestoneForm] = useState({
+    type: 'project' as 'project' | 'payment',
+    title: '',
+    description: '',
+    due_date: '',
+    amount: '',
+    project_id: '',
+  })
+
+  // Files state
+  const [files, setFiles] = useState<FileRecord[]>([])
+  const [uploading, setUploading] = useState(false)
+
   useEffect(() => {
     async function init() {
       const checkRes = await fetch('/api/client-portal/admin/check')
@@ -98,9 +146,35 @@ export default function ClientDetailPage() {
       }
       setIsAdmin(true)
       fetchClient()
+      fetchMilestones()
+      fetchFiles()
     }
     init()
   }, [router, clientId])
+
+  async function fetchFiles() {
+    try {
+      const res = await fetch(`/api/client-portal/files?client_id=${clientId}`)
+      if (res.ok) {
+        const data = await res.json()
+        setFiles(data.files || [])
+      }
+    } catch (error) {
+      console.error('Failed to fetch files:', error)
+    }
+  }
+
+  async function fetchMilestones() {
+    try {
+      const res = await fetch(`/api/client-portal/admin/milestones?client_id=${clientId}`)
+      if (res.ok) {
+        const data = await res.json()
+        setMilestones(data.milestones || [])
+      }
+    } catch (error) {
+      console.error('Failed to fetch milestones:', error)
+    }
+  }
 
   async function fetchClient() {
     try {
@@ -232,6 +306,113 @@ export default function ClientDetailPage() {
     router.push('/portal/admin')
   }
 
+  async function handleSendInvite() {
+    setSendingInvite(true)
+    setInviteMessage('')
+    try {
+      const res = await fetch('/api/client-portal/admin/invite', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ client_id: clientId }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        setInviteMessage(data.message || 'Invite sent!')
+        fetchClient() // Refresh to show updated invite status
+      } else {
+        setInviteMessage(data.error || 'Failed to send invite')
+      }
+    } catch {
+      setInviteMessage('Failed to send invite')
+    } finally {
+      setSendingInvite(false)
+    }
+  }
+
+  async function handleAddMilestone(e: React.FormEvent) {
+    e.preventDefault()
+    setSubmitting(true)
+    try {
+      const res = await fetch('/api/client-portal/admin/milestones', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          client_id: clientId,
+          type: milestoneForm.type,
+          title: milestoneForm.title,
+          description: milestoneForm.description || null,
+          due_date: milestoneForm.due_date || null,
+          amount: milestoneForm.type === 'payment' && milestoneForm.amount ? parseFloat(milestoneForm.amount) : null,
+          project_id: milestoneForm.project_id || null,
+          sort_order: milestones.length,
+        }),
+      })
+      if (res.ok) {
+        setMilestoneForm({ type: 'project', title: '', description: '', due_date: '', amount: '', project_id: '' })
+        setShowMilestoneForm(false)
+        fetchMilestones()
+      }
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  async function handleToggleMilestone(milestone: Milestone) {
+    const res = await fetch('/api/client-portal/admin/milestones', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: milestone.id,
+        completed_at: milestone.completed_at ? null : new Date().toISOString(),
+      }),
+    })
+    if (res.ok) {
+      fetchMilestones()
+    }
+  }
+
+  async function handleDeleteMilestone(milestoneId: string) {
+    if (!confirm('Delete this milestone?')) return
+    await fetch(`/api/client-portal/admin/milestones?id=${milestoneId}`, { method: 'DELETE' })
+    fetchMilestones()
+  }
+
+  async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+
+    setUploading(true)
+    try {
+      const formData = new FormData()
+      formData.append('file', file)
+      formData.append('client_id', clientId)
+
+      const res = await fetch('/api/client-portal/files', {
+        method: 'POST',
+        body: formData,
+      })
+
+      if (res.ok) {
+        fetchFiles()
+      }
+    } finally {
+      setUploading(false)
+      e.target.value = ''
+    }
+  }
+
+  async function handleDeleteFile(fileId: string) {
+    if (!confirm('Delete this file?')) return
+    await fetch(`/api/client-portal/files?id=${fileId}`, { method: 'DELETE' })
+    fetchFiles()
+  }
+
+  const formatFileSize = (bytes: number) => {
+    if (bytes < 1024) return `${bytes} B`
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`
+  }
+
   if (!isAdmin || loading) {
     return (
       <div className="flex items-center justify-center py-12">
@@ -341,6 +522,87 @@ export default function ClientDetailPage() {
             </div>
           </div>
         )}
+      </div>
+
+      {/* Portal Access */}
+      <div className="rounded-lg bg-white p-6 shadow-sm">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-medium text-gray-900">Portal Access</h2>
+        </div>
+
+        <div className="space-y-4">
+          {client.invite_accepted_at ? (
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-100">
+                <svg className="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <div>
+                <div className="font-medium text-gray-900">Portal Active</div>
+                <div className="text-sm text-gray-500">
+                  Joined {new Date(client.invite_accepted_at).toLocaleDateString()}
+                </div>
+              </div>
+            </div>
+          ) : client.invite_sent_at ? (
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-amber-100">
+                  <svg className="h-5 w-5 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-medium text-gray-900">Invite Pending</div>
+                  <div className="text-sm text-gray-500">
+                    Sent {new Date(client.invite_sent_at).toLocaleDateString()}
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={handleSendInvite}
+                disabled={sendingInvite}
+                className="rounded-lg border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+              >
+                {sendingInvite ? 'Sending...' : 'Resend Invite'}
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100">
+                  <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-medium text-gray-900">No Portal Access</div>
+                  <div className="text-sm text-gray-500">
+                    Send an invite to grant portal access
+                  </div>
+                </div>
+              </div>
+              <button
+                onClick={handleSendInvite}
+                disabled={sendingInvite}
+                className="rounded-lg bg-[#D2A62C] px-4 py-2 text-sm font-medium text-white hover:opacity-90 disabled:opacity-50"
+              >
+                {sendingInvite ? 'Sending...' : 'Send Invite'}
+              </button>
+            </div>
+          )}
+
+          {inviteMessage && (
+            <div className={`rounded-lg p-3 text-sm ${
+              inviteMessage.includes('sent') || inviteMessage.includes('Invite')
+                ? 'bg-emerald-50 text-emerald-700'
+                : 'bg-red-50 text-red-700'
+            }`}>
+              {inviteMessage}
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Hours Balance */}
@@ -647,6 +909,244 @@ export default function ClientDetailPage() {
                 </div>
                 <button
                   onClick={() => handleDeleteProject(project.id)}
+                  className="text-sm text-red-600 hover:text-red-800"
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Milestones */}
+      <div className="rounded-lg bg-white p-6 shadow-sm">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-medium text-gray-900">
+            Milestones ({milestones.length})
+          </h2>
+          <button
+            onClick={() => setShowMilestoneForm(!showMilestoneForm)}
+            className="rounded-lg bg-gray-900 px-3 py-1 text-sm font-medium text-white hover:bg-gray-800"
+          >
+            {showMilestoneForm ? 'Cancel' : 'Add Milestone'}
+          </button>
+        </div>
+
+        {showMilestoneForm && (
+          <form onSubmit={handleAddMilestone} className="mb-4 rounded-lg border border-gray-200 p-4">
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Type *</label>
+                <select
+                  value={milestoneForm.type}
+                  onChange={(e) => setMilestoneForm({ ...milestoneForm, type: e.target.value as 'project' | 'payment' })}
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                >
+                  <option value="project">Project Milestone</option>
+                  <option value="payment">Payment Gate</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Title *</label>
+                <input
+                  type="text"
+                  required
+                  value={milestoneForm.title}
+                  onChange={(e) => setMilestoneForm({ ...milestoneForm, title: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                  placeholder="e.g., Design Review"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Due Date</label>
+                <input
+                  type="date"
+                  value={milestoneForm.due_date}
+                  onChange={(e) => setMilestoneForm({ ...milestoneForm, due_date: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                />
+              </div>
+              {milestoneForm.type === 'payment' && (
+                <div>
+                  <label className="block text-sm font-medium text-gray-700">Amount ($)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={milestoneForm.amount}
+                    onChange={(e) => setMilestoneForm({ ...milestoneForm, amount: e.target.value })}
+                    className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                    placeholder="5000"
+                  />
+                </div>
+              )}
+              <div className={milestoneForm.type === 'payment' ? '' : 'sm:col-span-2'}>
+                <label className="block text-sm font-medium text-gray-700">Project (optional)</label>
+                <select
+                  value={milestoneForm.project_id}
+                  onChange={(e) => setMilestoneForm({ ...milestoneForm, project_id: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                >
+                  <option value="">No specific project</option>
+                  {client.projects?.map((project) => (
+                    <option key={project.id} value={project.id}>{project.name}</option>
+                  ))}
+                </select>
+              </div>
+              <div className="sm:col-span-2">
+                <label className="block text-sm font-medium text-gray-700">Description</label>
+                <input
+                  type="text"
+                  value={milestoneForm.description}
+                  onChange={(e) => setMilestoneForm({ ...milestoneForm, description: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                  placeholder="Brief description..."
+                />
+              </div>
+            </div>
+            <button
+              type="submit"
+              disabled={submitting}
+              className="mt-4 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              Add Milestone
+            </button>
+          </form>
+        )}
+
+        {milestones.length === 0 ? (
+          <p className="text-gray-500">No milestones yet</p>
+        ) : (
+          <div className="space-y-2">
+            {milestones.map((milestone) => {
+              const isOverdue = !milestone.completed_at && milestone.due_date && new Date(milestone.due_date) < new Date()
+              return (
+                <div
+                  key={milestone.id}
+                  className={`flex items-center justify-between rounded-lg border p-3 ${
+                    milestone.completed_at
+                      ? 'border-emerald-200 bg-emerald-50'
+                      : isOverdue
+                        ? 'border-red-200 bg-red-50'
+                        : 'border-gray-200'
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() => handleToggleMilestone(milestone)}
+                      className={`flex h-5 w-5 items-center justify-center rounded border ${
+                        milestone.completed_at
+                          ? 'border-emerald-500 bg-emerald-500 text-white'
+                          : 'border-gray-300 hover:border-gray-400'
+                      }`}
+                    >
+                      {milestone.completed_at && (
+                        <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                        </svg>
+                      )}
+                    </button>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <span className={`font-medium ${milestone.completed_at ? 'text-gray-500 line-through' : 'text-gray-900'}`}>
+                          {milestone.title}
+                        </span>
+                        <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                          milestone.type === 'payment'
+                            ? 'bg-amber-100 text-amber-700'
+                            : 'bg-blue-100 text-blue-700'
+                        }`}>
+                          {milestone.type === 'payment' ? 'Payment' : 'Milestone'}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-2 text-xs text-gray-500">
+                        {milestone.due_date && (
+                          <span className={isOverdue ? 'text-red-600 font-medium' : ''}>
+                            Due: {new Date(milestone.due_date).toLocaleDateString()}
+                          </span>
+                        )}
+                        {milestone.amount && (
+                          <span className="font-medium text-gray-700">${milestone.amount.toLocaleString()}</span>
+                        )}
+                        {milestone.projects && (
+                          <span>• {milestone.projects.name}</span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => handleDeleteMilestone(milestone.id)}
+                    className="text-sm text-red-600 hover:text-red-800"
+                  >
+                    Delete
+                  </button>
+                </div>
+              )
+            })}
+          </div>
+        )}
+      </div>
+
+      {/* Files */}
+      <div className="rounded-lg bg-white p-6 shadow-sm">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-lg font-medium text-gray-900">
+            Files ({files.length})
+          </h2>
+          <div>
+            <input
+              type="file"
+              onChange={handleFileUpload}
+              className="hidden"
+              id="admin-file-upload"
+              disabled={uploading}
+            />
+            <label
+              htmlFor="admin-file-upload"
+              className={`cursor-pointer rounded-lg bg-gray-900 px-3 py-1 text-sm font-medium text-white hover:bg-gray-800 ${
+                uploading ? 'opacity-50 cursor-wait' : ''
+              }`}
+            >
+              {uploading ? 'Uploading...' : 'Upload File'}
+            </label>
+          </div>
+        </div>
+
+        {files.length === 0 ? (
+          <p className="text-gray-500">No files yet</p>
+        ) : (
+          <div className="space-y-2">
+            {files.map((file) => (
+              <div
+                key={file.id}
+                className="flex items-center justify-between rounded-lg border border-gray-200 p-3"
+              >
+                <div className="flex items-center gap-3">
+                  <svg className="h-8 w-8 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium text-gray-900">{file.filename}</span>
+                      <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
+                        file.uploaded_by === 'admin'
+                          ? 'bg-blue-100 text-blue-700'
+                          : 'bg-gray-100 text-gray-600'
+                      }`}>
+                        {file.uploaded_by === 'admin' ? 'Admin' : 'Client'}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2 text-xs text-gray-500">
+                      <span>{formatFileSize(file.file_size)}</span>
+                      <span>•</span>
+                      <span>{new Date(file.created_at).toLocaleDateString()}</span>
+                      <span>•</span>
+                      <span>{file.uploader_email}</span>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleDeleteFile(file.id)}
                   className="text-sm text-red-600 hover:text-red-800"
                 >
                   Delete

@@ -151,10 +151,10 @@ export function LoginContent() {
 
         <div className="text-center">
           <Link
-            href="/portal/dashboard?demo=true"
+            href="/portal/admin"
             className="text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-polar-400 dark:hover:text-polar-300"
           >
-            Try Demo Mode
+            Admin Login
           </Link>
         </div>
       </div>

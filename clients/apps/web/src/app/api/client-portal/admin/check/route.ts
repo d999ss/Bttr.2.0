@@ -1,11 +1,11 @@
 import { getPortalUser } from '@/utils/portal-auth'
 import { NextResponse } from 'next/server'
 
-const ADMIN_EMAIL = 'donny@makebttr.com'
+const ADMIN_EMAILS = ['donny@makebttr.com', 'd999ss@gmail.com']
 
 export async function GET() {
   const user = await getPortalUser()
-  const isAdmin = user?.email === ADMIN_EMAIL
+  const isAdmin = ADMIN_EMAILS.includes(user?.email || '')
 
   return NextResponse.json({ isAdmin, email: user?.email })
 }

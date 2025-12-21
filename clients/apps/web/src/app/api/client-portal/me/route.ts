@@ -14,5 +14,8 @@ export async function GET() {
     return NextResponse.json({ error: 'Not a client' }, { status: 404 })
   }
 
-  return NextResponse.json(client)
+  return NextResponse.json({
+    user: { email: user.email },
+    client,
+  })
 }

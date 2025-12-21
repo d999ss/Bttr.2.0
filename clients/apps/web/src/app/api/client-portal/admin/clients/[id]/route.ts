@@ -2,11 +2,11 @@ import { getPortalUser } from '@/utils/portal-auth'
 import { supabase } from '@/utils/supabase'
 import { NextRequest, NextResponse } from 'next/server'
 
-const ADMIN_EMAIL = 'donny@makebttr.com'
+const ADMIN_EMAILS = ['donny@makebttr.com', 'd999ss@gmail.com']
 
 async function isAdmin(): Promise<boolean> {
   const user = await getPortalUser()
-  return user?.email === ADMIN_EMAIL
+  return ADMIN_EMAILS.includes(user?.email || '')
 }
 
 // GET - Get single client
