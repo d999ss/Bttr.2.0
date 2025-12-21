@@ -362,6 +362,28 @@ export default function TigerBioSciencesPage() {
         </div>
       </section>
 
+      {/* Wound Care Product Images */}
+      <section className="w-full bg-[#0a0a0a]">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div className="relative aspect-video overflow-hidden">
+            <Image
+              src="/assets/work/uploads/2024/08/tiger-acapatch.png"
+              alt="ACAPatch™ - Dehydrated four-layer placental allograft"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative aspect-video overflow-hidden">
+            <Image
+              src="/assets/work/uploads/2024/08/tiger-alloclae.png"
+              alt="alloClae™ - Adipose tissue for volume restoration"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Wound Care Products */}
       <section className="w-full bg-[#0a0a0a] px-8 py-8 pb-16 md:px-16 lg:px-24">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-5">
@@ -424,6 +446,44 @@ export default function TigerBioSciencesPage() {
             cellulite treatment, Tiger Aesthetics provides practitioners with
             tools that differentiate their practices.
           </p>
+        </div>
+      </section>
+
+      {/* Aesthetics Product Images */}
+      <section className="w-full bg-white">
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          <div className="relative aspect-square overflow-hidden">
+            <Image
+              src="/assets/work/uploads/2024/08/tiger-bellafill.png"
+              alt="Bellafill® - Long-lasting collagen builder"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative aspect-square overflow-hidden">
+            <Image
+              src="/assets/work/uploads/2024/08/tiger-aveli.png"
+              alt="Avéli® - Cellulite treatment device"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative aspect-square overflow-hidden">
+            <Image
+              src="/assets/work/uploads/2024/08/tiger-sientra.png"
+              alt="Sientra® - Premium breast implants"
+              fill
+              className="object-cover"
+            />
+          </div>
+          <div className="relative aspect-square overflow-hidden">
+            <Image
+              src="/assets/work/uploads/2024/08/tiger-viality.webp"
+              alt="Viality® - Fat transfer system"
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 
