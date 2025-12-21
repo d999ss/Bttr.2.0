@@ -8,6 +8,7 @@ import { useCallback, useEffect, useState } from 'react'
 interface FeaturedSlide {
   href: string
   image: string
+  video?: string
   alt: string
   title: string
   description: string
@@ -15,18 +16,19 @@ interface FeaturedSlide {
 
 const slides: FeaturedSlide[] = [
   {
+    href: '/work/tiger-biosciences',
+    image: '/assets/work/uploads/2024/08/tiger-fur-hero.jpg',
+    video: '/assets/work/uploads/2024/08/tiger-hero.mp4',
+    alt: 'Tiger BioSciences',
+    title: 'Tiger BioSciences',
+    description: 'Redefining regenerative medicine through innovation',
+  },
+  {
     href: '/work/ikon-pass',
     image: '/assets/work/uploads/2025/12/IkonSnow.webp',
     alt: 'Ikon Pass',
     title: 'Ikon Pass',
     description: 'Redefining the ride with an ambitious digital transformation',
-  },
-  {
-    href: '/work/tiger-biosciences',
-    image: '/assets/work/uploads/2024/08/tiger-fur-hero.jpg',
-    alt: 'Tiger BioSciences',
-    title: 'Tiger BioSciences',
-    description: 'Redefining regenerative medicine through innovation',
   },
   {
     href: '/work/great-dane',
@@ -96,14 +98,26 @@ export const FeaturedMasthead = () => {
               transition={{ duration: 0.8 }}
               className="absolute inset-0"
             >
-              <Image
-                src={currentSlide.image}
-                alt={currentSlide.alt}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-                priority
-                sizes="100vw"
-              />
+              {currentSlide.video ? (
+                <video
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="h-full w-full object-cover"
+                >
+                  <source src={currentSlide.video} type="video/mp4" />
+                </video>
+              ) : (
+                <Image
+                  src={currentSlide.image}
+                  alt={currentSlide.alt}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  priority
+                  sizes="100vw"
+                />
+              )}
             </motion.div>
           </AnimatePresence>
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
