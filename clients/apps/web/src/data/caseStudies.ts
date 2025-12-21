@@ -27,6 +27,15 @@ export type Tag = typeof allTags[number]
 
 export const caseStudies: CaseStudy[] = [
   {
+    slug: 'tiger-biosciences',
+    title: 'Tiger BioSciences',
+    description: 'Redefining regenerative medicine through innovation',
+    thumbnail: '/assets/work/uploads/2024/08/tiger-fur-thumb.webp',
+    featured: true,
+    resultHighlight: 'FDA breakthrough',
+    tags: ['Healthcare', 'Web Design', 'Branding', 'B2B'],
+  },
+  {
     slug: 'great-dane',
     title: 'Great Dane',
     description: 'Redesigning the digital presence for a 125-year legacy in American manufacturing',
@@ -111,15 +120,6 @@ export const caseStudies: CaseStudy[] = [
     featured: true,
     resultHighlight: '$1B+ assets managed',
     tags: ['Enterprise', 'Aerospace', 'B2B', 'UX Strategy'],
-  },
-  {
-    slug: 'tiger-biosciences',
-    title: 'Tiger BioSciences',
-    description: 'Redefining regenerative medicine through innovation',
-    thumbnail: '/assets/work/uploads/2024/08/tiger-fur-thumb.webp',
-    featured: true,
-    resultHighlight: 'FDA breakthrough',
-    tags: ['Healthcare', 'Web Design', 'Branding', 'B2B'],
   },
   {
     slug: 'revaire',
