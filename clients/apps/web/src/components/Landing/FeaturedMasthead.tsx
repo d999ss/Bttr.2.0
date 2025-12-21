@@ -16,7 +16,7 @@ interface FeaturedSlide {
 const slides: FeaturedSlide[] = [
   {
     href: '/work/tiger-biosciences',
-    image: '/assets/work/uploads/2024/08/tiger-biosciences-hero.webp',
+    image: '/assets/work/uploads/2024/08/tiger-fur-hero.jpg',
     alt: 'Tiger BioSciences',
     title: 'Tiger BioSciences',
     description: 'Redefining regenerative medicine through innovation',
