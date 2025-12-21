@@ -367,18 +367,20 @@ export default function TigerBioSciencesPage() {
         <div className="grid grid-cols-1 md:grid-cols-2">
           <div className="relative aspect-video overflow-hidden">
             <Image
-              src="/assets/work/uploads/2024/08/tiger-acapatch.png"
+              src="/assets/work/uploads/2024/08/tiger-acapatch.jpg"
               alt="ACAPatch™ - Dehydrated four-layer placental allograft"
               fill
               className="object-cover"
+              loading="lazy"
             />
           </div>
           <div className="relative aspect-video overflow-hidden">
             <Image
-              src="/assets/work/uploads/2024/08/tiger-alloclae.png"
+              src="/assets/work/uploads/2024/08/tiger-alloclae.jpg"
               alt="alloClae™ - Adipose tissue for volume restoration"
               fill
               className="object-cover"
+              loading="lazy"
             />
           </div>
         </div>
@@ -454,26 +456,29 @@ export default function TigerBioSciencesPage() {
         <div className="grid grid-cols-2 md:grid-cols-4">
           <div className="relative aspect-square overflow-hidden">
             <Image
-              src="/assets/work/uploads/2024/08/tiger-bellafill.png"
+              src="/assets/work/uploads/2024/08/tiger-bellafill.jpg"
               alt="Bellafill® - Long-lasting collagen builder"
               fill
               className="object-cover"
+              loading="lazy"
             />
           </div>
           <div className="relative aspect-square overflow-hidden">
             <Image
-              src="/assets/work/uploads/2024/08/tiger-aveli.png"
+              src="/assets/work/uploads/2024/08/tiger-aveli.jpg"
               alt="Avéli® - Cellulite treatment device"
               fill
               className="object-cover"
+              loading="lazy"
             />
           </div>
           <div className="relative aspect-square overflow-hidden">
             <Image
-              src="/assets/work/uploads/2024/08/tiger-sientra.png"
+              src="/assets/work/uploads/2024/08/tiger-sientra.jpg"
               alt="Sientra® - Premium breast implants"
               fill
               className="object-cover"
+              loading="lazy"
             />
           </div>
           <div className="relative aspect-square overflow-hidden">
@@ -482,6 +487,7 @@ export default function TigerBioSciencesPage() {
               alt="Viality® - Fat transfer system"
               fill
               className="object-cover"
+              loading="lazy"
             />
           </div>
         </div>
