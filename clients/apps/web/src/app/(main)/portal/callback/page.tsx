@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { getSupabaseBrowserClient } from '@/utils/supabase-browser'
 import { BttrLogotype } from '@/components/Brand/BttrLogotype'
-import type { Session } from '@supabase/supabase-js'
+import type { Session, AuthChangeEvent } from '@supabase/supabase-js'
 
 // Check if user was created within last 5 minutes (new signup)
 function isNewUser(session: Session): boolean {
@@ -130,7 +130,7 @@ export default function PortalCallbackPage() {
         }
 
         // Listen for auth state changes as fallback
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event: AuthChangeEvent, session: Session | null) => {
           if (event === 'SIGNED_IN' && session) {
             handleSuccess(session)
           }
