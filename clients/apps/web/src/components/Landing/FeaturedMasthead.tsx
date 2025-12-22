@@ -16,14 +16,6 @@ interface FeaturedSlide {
 
 const slides: FeaturedSlide[] = [
   {
-    href: '/work/tiger-biosciences',
-    image: '/assets/work/uploads/2024/08/tiger-fur-hero.jpg',
-    video: '/assets/work/uploads/2024/08/tiger-hero.mp4',
-    alt: 'Tiger BioSciences',
-    title: 'Tiger BioSciences',
-    description: 'Redefining regenerative medicine through innovation',
-  },
-  {
     href: '/work/ikon-pass',
     image: '/assets/work/uploads/2025/12/IkonSnow.webp',
     alt: 'Ikon Pass',
